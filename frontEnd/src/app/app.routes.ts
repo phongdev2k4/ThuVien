@@ -8,5 +8,9 @@ export const routes: Routes = [
         path:'',
         component:HomeComponent
     },
+    {
+        path:'demo1',
+        component:HomeComponent
+    },
     
 ];
