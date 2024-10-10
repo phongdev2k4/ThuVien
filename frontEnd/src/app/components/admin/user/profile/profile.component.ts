@@ -3,15 +3,15 @@ import { AsideComponent } from '../../aside/aside.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-authors',
+  selector: 'app-profile',
   standalone: true,
   imports: [
     AsideComponent,
     RouterLink
   ],
-  templateUrl: './authors.component.html',
-  styleUrl: './authors.component.css'
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class AuthorsComponent {
+export class ProfileComponent {
 
 }

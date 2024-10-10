@@ -29,22 +29,22 @@
                       <li><a href="wishlist.html"><i class="ri-heart-line"></i>wishlist</a></li>
                     </ul>
                  </li>
-                 <li class="active active-menu">
-                    <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="true"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Admin</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                    <ul id="admin" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
-                       <li class="active"><a href="/DashboardAdmin"><i class="las la-house-damage"></i>Bảng điều khiển</a></li>
+                 <li class=" active-menu">
+                    <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Admin</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <ul id="admin" class="iq-submenu collapse " data-parent="#iq-sidebar-toggle">
+                       <li class=""><a  routerLink="../DashboardAdmin"><i class="las la-house-damage"></i>Bảng điều khiển</a></li>
                        <li><a href="admin-category.html"><i class="ri-function-line"></i>Danh sách danh mục</a></li>
-                       <li ><a href="/AuthorsAdmin"><i class="ri-book-line"></i>Tác giả</a></li>
-                       <li ><a href="/bookadmin"><i class="ri-file-pdf-line"></i>Sách</a></li>
+                       <li ><a routerLink="../AuthorsAdmin"><i class="ri-book-line"></i>Tác giả</a></li>
+                       <li ><a routerLink="../bookadmin"><i class="ri-file-pdf-line"></i>Sách</a></li>
                     </ul>
                  </li>
                  <li>
                     <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-user-tie iq-arrow-left"></i><span>User</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                    <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
-                       <li><a href="profile.html"><i class="las la-id-card-alt"></i>User Profile</a></li>
-                       <li><a href="profile-edit.html"><i class="las la-edit"></i>User Edit</a></li>
-                       <li><a href="add-user.html"><i class="las la-plus-circle"></i>User Add</a></li>
-                       <li><a href="user-list.html"><i class="las la-th-list"></i>User List</a></li>
+                    <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" >
+                       <li><a  routerLink="../Profileadmin" ><i class="las la-id-card-alt"></i>User Profile</a></li>
+                       <li><a  routerLink="../ProfileEditadmin"><i class="las la-edit"></i>User Edit</a></li>
+                       <li><a routerLink="../AddUserComponentadmin"><i class="las la-plus-circle"></i>User Add</a></li>
+                       <li><a href="../UserListadmin"><i class="las la-th-list"></i>User List</a></li>
                     </ul>
                  </li>
                  <li>
