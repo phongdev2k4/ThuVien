@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TacgiaService } from '../tacgia.service';
+import { TacgiaService } from '../../../../services/tacgia.service';
 
 @Component({
   selector: 'app-authors',
@@ -35,9 +35,8 @@ export class AuthorsComponent implements OnInit{
     );
   }
 
-  editTacGia(tacgia: any): void {
-    // debugger;
-    this.tacgiaService.TacGia =tacgia; // Sao chép dữ liệu của tác giả vào newTacGia
+  editTacGia(tacgiaf: any): void {
+    this.tacgiaService.tacGia =tacgiaf; // Sao chép dữ liệu của tác giả vào newTacGia
     this.router.navigateByUrl("/AddAuthorsAdmin"); // Điều hướng về danh sách tác giả
   }
   deleteTacGia(maTacGia: string): void {

@@ -21,7 +21,4 @@ public class TheLoai {
 	@Column(name = "MoTa", columnDefinition = "text")
 	private String moTa;
 	
-	@JsonIgnore
-    @OneToMany(mappedBy = "theLoai")
-    private List<SachTheLoai> sachTheLoaiList;
 }

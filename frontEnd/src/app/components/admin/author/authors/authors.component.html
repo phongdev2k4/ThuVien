@@ -27,16 +27,16 @@
                             </tr>
                          </thead>
                          <tbody>
-                            <tr *ngFor="let tacgia of tacgiaList;let i = index">
+                            <tr *ngFor="let tacgiaf of tacgiaList;let i = index">
                                <td>{{i+1}}</td>
-                               <td>{{ tacgia.maTacGia}}</td>
-                               <td>{{ tacgia.tenTacGia}}</td>
-                               <td>{{ tacgia.ngaySinh | date:'dd/MM/yyyy' }}</td>
-                               <td>{{ tacgia.quocGia}}</td>
+                               <td>{{ tacgiaf.maTacGia}}</td>
+                               <td>{{ tacgiaf.tenTacGia}}</td>
+                               <td>{{ tacgiaf.ngaySinh | date:'dd/MM/yyyy' }}</td>
+                               <td>{{ tacgiaf.quocGia}}</td>
                                <td>
                                   <div class="flex align-items-center list-user-action">
-                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editTacGia(tacgia)"><i class="ri-pencil-line"></i></a>
-                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" (click)="deleteTacGia(tacgia.maTacGia)"><i class="ri-delete-bin-line"></i></a>
+                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editTacGia(tacgiaf)"><i class="ri-pencil-line"></i></a>
+                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" (click)="deleteTacGia(tacgiaf.maTacGia)"><i class="ri-delete-bin-line"></i></a>
                                   </div>
                                </td>
                             </tr>
