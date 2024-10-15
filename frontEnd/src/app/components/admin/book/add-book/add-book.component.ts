@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import {Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
+import { TheloaiService } from '../../../../services/theloai.service';
+import { TacgiaService } from '../../../../services/tacgia.service';
 
 @Component({
   selector: 'app-add-book',
@@ -18,13 +20,40 @@ import { SachService } from '../../../../services/sach.service';
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css'
 })
-export class AddBookComponent {
-
+export class AddBookComponent implements OnInit {
+   
+  theloaiList: any[] = [];
+  tacgiaList: any[] = [];
 
   selectedFile: File | null = null; // Khởi tạo với giá trị null file 
 
-  constructor(public sachService: SachService,private router: Router){} 
+  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router){} 
+  
+  ngOnInit(): void {
+    this.loadTheLoai();
+    this.loadTacGia();
+ }
 
+ loadTheLoai(): void {
+  this.theloaiService.getTheLoai().subscribe(
+    data => {
+      this.theloaiList= data;
+    },
+    error => {
+      console.error('Có lỗi xảy ra khi gọi API:', error);
+    }
+  );
+}
+loadTacGia(): void {
+  this.tacgiaService.getTacGia().subscribe(
+    data => {
+      this.tacgiaList = data;
+    },
+    error => {
+      console.error('Có lỗi xảy ra khi gọi API:', error);
+    }
+  )
+}
   selectedFileName: string | null = null; // ten file
   onFileSelected(event: any): void {
     const fileList: FileList = event.target.files; // Lấy danh sách các tệp
@@ -38,6 +67,7 @@ export class AddBookComponent {
         response => {
           console.log('Sách đã được thêm thành công:', response);
           alert("Sách đã được thêm thành công");
+          this.router.navigate(['/bookadmin']); 
         },
         error => {
           console.error('Có lỗi xảy ra khi thêm sách:', error);
@@ -51,4 +81,6 @@ export class AddBookComponent {
   goBack(): void {
     this.router.navigate(['/bookadmin']); // Điều hướng về AuthorsAdmin
   }
+
+  
 }

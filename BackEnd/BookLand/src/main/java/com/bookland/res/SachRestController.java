@@ -43,7 +43,7 @@ public class SachRestController {
 			@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
 		if (file != null && !file.isEmpty()) {
 			try {
-				String nameImg = ImageUtils.saveImage(file, "book");
+				String nameImg = ImageUtils.saveImage(file, "book"); // tên hình 
 				// Chuyển đổi JSON thành đối tượng Sach
 				Sach sach = new ObjectMapper().readValue(sachJson, Sach.class);
 				sach.setHinhAnhSach(nameImg); // lưu tên ảnh vào đối tượng

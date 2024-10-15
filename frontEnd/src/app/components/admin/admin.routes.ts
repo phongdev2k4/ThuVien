@@ -8,6 +8,8 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { ProfileEditComponent } from './user/profile-edit/profile-edit.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { TheloaiComponent } from './theloai/theloai/theloai.component';
+import { AddTheloaiComponent } from './theloai/add-theloai/add-theloai.component';
 
 
 export const routesAdmin: Routes = [
@@ -46,6 +48,15 @@ export const routesAdmin: Routes = [
     {
         path:'UserListadmin',
         component:UserListComponent
+    },
+    
+    {
+        path:'AdminListTheloai',
+        component:TheloaiComponent
+    },
+    {
+        path:'AdminAddTheloai',
+        component:AddTheloaiComponent
     },
 
 ];

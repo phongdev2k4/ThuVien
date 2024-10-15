@@ -34,6 +34,7 @@ export class AuthorsComponent implements OnInit{
       }
     );
   }
+  
 
   editTacGia(tacgiaf: any): void {
     this.tacgiaService.tacGia =tacgiaf; // Sao chép dữ liệu của tác giả vào newTacGia

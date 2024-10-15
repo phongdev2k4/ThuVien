@@ -24,16 +24,18 @@
                              <label>Tác giả sách:</label>
                              <select class="form-control" [(ngModel)]="sachService.sach.tacGia.maTacGia" name="tacGia" required>
                               <option value="" disabled selected>Tác giả sách</option>
-                              <option value="TG01">Jhone Steben</option>
-                              <option value="TG02">John Klok</option>
+                              <option *ngFor="let tacGia of tacgiaList" [value]="tacGia.maTacGia">
+                                 {{ tacGia.tenTacGia }} 
+                               </option>
                              </select>
                           </div>
                           <div class="form-group">
                            <label>Thể loại:</label>
                            <select class="form-control" [(ngModel)]="sachService.sach.theLoai.maTheLoai" name="theLoai" required>
                             <option value="" disabled selected>Thể loại sách</option>
-                            <option value="TL001">Tiểu Thuyết</option>
-                            <option value="TL002">Khoa Học</option>
+                            <option *ngFor="let theLoai of theloaiList" [value]="theLoai.maTheLoai">
+                              {{ theLoai.tenTheLoai }} 
+                            </option>
                            </select>
                         </div>
                           <div class="form-group">
