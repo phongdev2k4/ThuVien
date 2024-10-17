@@ -6,12 +6,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "Sach")
-@NoArgsConstructor
 public class Sach {
 	@Id
 	@Column(name = "MaSach", length = 30)
@@ -32,11 +30,7 @@ public class Sach {
 	
 	@Column(name = "HinhAnhSach", columnDefinition = "nvarchar(255)")
 	private String hinhAnhSach;
-     
-	@ManyToOne
-	@JoinColumn(name = "MaTheLoai")
-	private TheLoai theLoai;
-	
+
 	@Column(name = "MoTa", columnDefinition = "nvarchar(max)")
 	private String moTa;
 	
@@ -44,11 +38,11 @@ public class Sach {
     @OneToMany(mappedBy = "sach")
     private List<ChiTietSachNhanVien> chiTietSachNhanVienList;
     
+	@JsonIgnore
+    @OneToMany(mappedBy = "sach")
+    private List<SachTheLoai> sachTheLoaiList;
     
 	@JsonIgnore
     @OneToMany(mappedBy = "sach")
     private List<BanSaoSach> banSaoSachList;
-
-
-	
 }

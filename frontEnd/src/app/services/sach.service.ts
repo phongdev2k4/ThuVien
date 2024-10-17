@@ -27,7 +27,7 @@ export class SachService {
         tenTheLoai: '',
     },
     moTa: '',
-};
+};    
 addSach(sach: any, file: File | null): Observable<any> {
   const formData = new FormData();
   formData.append('sach', JSON.stringify(sach));

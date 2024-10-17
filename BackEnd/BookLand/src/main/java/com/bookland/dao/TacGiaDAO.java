@@ -1,4 +1,4 @@
-package com.bookland.dao;
+package com.bookland.DAO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

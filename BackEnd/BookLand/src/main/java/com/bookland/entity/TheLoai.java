@@ -18,7 +18,10 @@ public class TheLoai {
 	@Column(name = "TenTheLoai",columnDefinition = "nvarchar(150)")
 	private String tenTheLoai;
 
-	@Column(name = "MoTa", columnDefinition = "nvarchar(max)")
+	@Column(name = "MoTa", columnDefinition = "text")
 	private String moTa;
 	
+	@JsonIgnore
+    @OneToMany(mappedBy = "theLoai")
+    private List<SachTheLoai> sachTheLoaiList;
 }
