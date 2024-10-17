@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookland.DAO.TheLoaiDAO;
-import com.bookland.Service.TheLoaiService;
+import com.bookland.dao.TheLoaiDAO;
+import com.bookland.service.TheLoaiService;
 import com.bookland.entity.TheLoai;
 
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookland.Service.TheLoaiService;
+import com.bookland.service.TheLoaiService;
 import com.bookland.entity.TacGia;
 import com.bookland.entity.TheLoai;
 

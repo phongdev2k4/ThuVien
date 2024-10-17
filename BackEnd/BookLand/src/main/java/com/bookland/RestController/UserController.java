@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookland.DAO.hoiVienDAO;
+import com.bookland.dao.hoiVienDAO;
 import com.bookland.entity.HoiVien;
 
 

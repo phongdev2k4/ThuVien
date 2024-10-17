@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.bookland.DAO.authorityDAO;
-import com.bookland.DAO.chucVuDAO;
-import com.bookland.DAO.hoiVienDAO;
-import com.bookland.DAO.taiKhoanDAO;
-import com.bookland.Service.taiKhoanService;
+import com.bookland.dao.authorityDAO;
+import com.bookland.dao.chucVuDAO;
+import com.bookland.dao.hoiVienDAO;
+import com.bookland.dao.taiKhoanDAO;
+import com.bookland.service.taiKhoanService;
 import com.bookland.dto.SignupRequest;
 import com.bookland.dto.SignupResponse;
 import com.bookland.entity.Authority;

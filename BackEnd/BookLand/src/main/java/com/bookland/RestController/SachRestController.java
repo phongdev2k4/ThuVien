@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bookland.Service.SachService;
+import com.bookland.service.SachService;
 import com.bookland.entity.*;
 import com.bookland.utils.ImageUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;

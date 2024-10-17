@@ -1,4 +1,4 @@
-package com.bookland.Service;
+package com.bookland.service;
 
 import org.springframework.stereotype.Service;
 

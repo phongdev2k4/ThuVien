@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookland.DAO.TacGiaDAO;
-import com.bookland.Service.TacGiaService;
+import com.bookland.dao.TacGiaDAO;
+import com.bookland.service.TacGiaService;
 import com.bookland.entity.TacGia;
 
 

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.bookland.DAO.taiKhoanDAO;
+import com.bookland.dao.taiKhoanDAO;
 import com.bookland.entity.Authority;
 import com.bookland.entity.TaiKhoan;
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookland.DAO.SachDAO;
-import com.bookland.Service.SachService;
+import com.bookland.dao.SachDAO;
+import com.bookland.service.SachService;
 import com.bookland.entity.Sach;
 
 
