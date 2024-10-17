@@ -1,0 +1,66 @@
+<app-aside-admin></app-aside-admin>
+   <!-- Page Content  -->
+   <div id="content-page" class="content-page">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-sm-12">
+             <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                   <div class="iq-header-title">
+                      <h4 class="card-title">Danh sách sách</h4>
+                   </div>
+                   <div class="iq-card-header-toolbar d-flex align-items-center">
+                      <a  routerLink="../addBookadmin" class="btn btn-primary">Thêm sách</a>
+                   </div>
+                </div>
+                <div class="iq-card-body">
+                   <div class="table-responsive">
+                      <table class="data-tables table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width: 1%;">STT</th>
+                                <th style="width: 12%;">Hình ảnh</th>
+                                <th style="width: 9%;">Mã Sách</th>
+                                <th style="width: 15%;">Tên sách</th>
+                                <th style="width: 15%;">Thể loại sách</th>
+                                <th style="width: 15%;">Tác giả sách</th>
+                                <th style="width: 18%;">Mô tả sách</th>
+                                <th style="width: 15%;">Hoạt động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  *ngFor="let sach of sachList ;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>
+                                 <img class="img-fluid rounded" 
+                                      [src]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach"
+                                      [srcset]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1920w, ' +
+                                                'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 640w, ' +
+                                                'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1280w'"
+                                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                      alt="{{ sach.tenSach }}" 
+                                      loading="eager">
+                                 </td>
+                                <td>{{sach.maSach}}</td>
+                                <td>{{sach.tenSach}}</td>
+                                <td>{{sach.theLoai.tenTheLoai}}</td>
+                                <td>{{sach.tacGia.tenTacGia}}</td>
+                                <td>
+                                  <p class="mb-0">{{sach.moTa}}</p>
+                                </td>                                    
+                                <td>
+                                   <div class="flex align-items-center list-user-action">
+                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editSach(sach)"><i class="ri-pencil-line"></i></a>
+                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" (click)="deleteSach(sach.maSach)"><i class="ri-delete-bin-line"></i></a>
+                                  </div>
+                                </td>
+                            </tr>          
+                        </tbody>
+                    </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

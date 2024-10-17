@@ -1,0 +1,69 @@
+<app-aside-admin></app-aside-admin>
+       <!-- Page Content  -->
+       <div id="content-page" class="content-page">
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-sm-12">
+                 <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                       <div class="iq-header-title">
+                          <h4 class="card-title">Thêm sách</h4>
+                       </div>
+                    </div>
+                    <div class="iq-card-body">
+                       <form (ngSubmit)="onSubmit()">
+                          <div class="form-group">
+                             <label>Mã Sách:</label>
+                             <input type="text" class="form-control" [(ngModel)]="sachService.sach.maSach" name="maSach" required >
+                          </div>
+                          <div class="form-group">
+                             <label>Tên Sách:</label>
+                             <input type="text" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
+                          </div>
+                          <div class="form-group">
+                             <label>Tác giả sách:</label>
+                             <select class="form-control" [(ngModel)]="sachService.sach.tacGia.maTacGia" name="tacGia" required>
+                              <option value="" disabled selected>Tác giả sách</option>
+                              <option *ngFor="let tacGia of tacgiaList" [value]="tacGia.maTacGia">
+                                 {{ tacGia.tenTacGia }} 
+                               </option>
+                             </select>
+                          </div>
+                          <div class="form-group">
+                           <label>Thể loại:</label>
+                           <select class="form-control" [(ngModel)]="sachService.sach.theLoai.maTheLoai" name="theLoai" required>
+                            <option value="" disabled selected>Thể loại sách</option>
+                            <option *ngFor="let theLoai of theloaiList" [value]="theLoai.maTheLoai">
+                              {{ theLoai.tenTheLoai }} 
+                            </option>
+                           </select>
+                        </div>
+                          <div class="form-group">
+                           <label>Nhà xuất bản:</label>
+                           <input type="text" class="form-control" [(ngModel)]="sachService.sach.nxb" name="nxb" required>
+                        </div>
+                        <div class="form-group">
+                           <label>Năm xuất bản:</label>
+                           <input type="number" class="form-control" [(ngModel)]="sachService.sach.namXB" name="namXB" required>
+                        </div>
+                          <div class="form-group">
+                             <label>Hình ảnh:</label>
+                             <div class="custom-file">
+                              <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/gif, image/bmp, image/webp">
+                                <label class="custom-file-label" for="fileInput">{{ selectedFileName || 'Choose file' }}</label>
+                             </div>
+                          </div>
+                          <div class="form-group">
+                             <label>Nội dung:</label>
+                             <textarea class="form-control" rows="4" [(ngModel)]="sachService.sach.moTa" name="moTa" required></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Gửi</button>
+                          <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
+                          <!-- <button type="reset" class="btn btn-danger">Trở lại</button> -->
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>

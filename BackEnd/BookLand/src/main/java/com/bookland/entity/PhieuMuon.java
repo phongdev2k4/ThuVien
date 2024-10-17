@@ -17,13 +17,6 @@ public class PhieuMuon {
 	@Column(name = "MaPM")
 	private int maPM;
 
-    @ManyToOne
-    @JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
-    private HoiVien hoiVien;
-
-    @ManyToOne
-    @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
-    private NhanVien nhanVien;
 
 	@Column(name = "HanTraSach")
 	private Date hanTraSach;
@@ -31,11 +24,13 @@ public class PhieuMuon {
 	@Column(name = "NgayLapPhieu")
 	private Date ngayLapPhieu;
 	
-	@JsonIgnore
-    @OneToMany(mappedBy = "phieuMuon")
-    private List<ChiTietPhieuMuon> chiTietPhieuMuonList;
-    
-	@JsonIgnore
-    @OneToMany(mappedBy = "phieuMuon")
-    private List<PhieuTra> phieuTraList;
+	 @ManyToOne
+	    @JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
+	    private HoiVien hoiVien;
+
+	    @ManyToOne
+	    @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
+	    private NhanVien nhanVien;
+	
+
 }
