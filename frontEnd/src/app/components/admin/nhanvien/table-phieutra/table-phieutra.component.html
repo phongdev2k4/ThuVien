@@ -1,1 +1,51 @@
-<p>table-phieutra works!</p>
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu trả</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a routerLink="../PhieuTra" class="btn btn-primary">Thêm phiếu trả</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã Phiếu Trả</th>
+                                        <th>Mã Phiếu Mượn</th>
+                                        <th>Mã Hội Viên</th>
+                                        <th>Mã Nhân Viên</th>
+                                        <th>Ngày Lập Phiếu Trả</th>
+                                        <th>Hành Động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phieuTra of phieuTraList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieuTra.maPT }}</td>
+                                        <td>{{ phieuTra.phieuMuon.maPM }}</td>
+                                        <td>{{ phieuTra.hoiVien.maHV }}</td>
+                                        <td>{{ phieuTra.nhanVien.maNV }}</td>
+                                        <td>{{ phieuTra.ngayLapPhieuTra | date: 'dd/MM/yyyy' }}</td>
+                                        <td>
+                                            <button class="btn btn-danger" (click)="deletePhieuTra(phieuTra.maPT)">Xóa</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

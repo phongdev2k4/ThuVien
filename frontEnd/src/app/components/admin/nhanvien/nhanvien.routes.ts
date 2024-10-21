@@ -3,6 +3,10 @@ import { NhanvienComponent } from './nhanvien/nhanvien.component';
 import { PhieumuonComponent } from './phieumuon/phieumuon.component';
 import { PhieuphatComponent } from './phieuphat/phieuphat.component';
 import { PhieutraComponent } from './phieutra/phieutra.component';
+import { TableNhanvienComponent } from './table-nhanvien/table-nhanvien.component';
+import { TablePhieumuonComponent } from './table-phieumuon/table-phieumuon.component';
+import { TablePhieuphatComponent } from './table-phieuphat/table-phieuphat.component';
+import { TablePhieutraComponent } from './table-phieutra/table-phieutra.component';
 
 
 
@@ -25,18 +29,18 @@ export const routesNhanvien: Routes = [
     },
     {
         path:'tableNhanVien',
-        component:PhieumuonComponent
+        component:TableNhanvienComponent
     },
     {
         path:'tablePhieuMuon',
-        component:PhieumuonComponent
+        component:TablePhieumuonComponent
     },
     {
         path:'tablePhieuPhat',
-        component:PhieumuonComponent
+        component:TablePhieuphatComponent
     },
     {
         path:'tablePhieuTra',
-        component:PhieumuonComponent
+        component:TablePhieutraComponent
     },
 ];

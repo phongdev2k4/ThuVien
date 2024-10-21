@@ -38,7 +38,7 @@ public class NhanVien {
     @Temporal(TemporalType.DATE)
     private Date ngaySinh;
 
-    @Column(name = "TinhTrang", columnDefinition = "nvarchar(20)  DEFAULT 'Đang làm' " )
+    @Column(name = "TinhTrang", columnDefinition = "nvarchar(20) " )
     private String tinhTrang ;
     
     @ManyToOne

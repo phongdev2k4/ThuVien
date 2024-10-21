@@ -11,28 +11,38 @@
                        </div>
                     </div>
                     <div class="iq-card-body">
-                       <form action="admin-author.html">
+                       <form >
+                        <div class="form-group">
+                           <label>Mã Tác Giả::</label>
+                           <input class="form-control" type="text" id="maTacGia" [(ngModel)]="tacgiaService.tacGia.maTacGia" name="maTacGia" required >
+                           <div *ngIf="!tacgiaService.tacGia.maTacGia " class="text-danger">
+                              Mã Tác Giả không được để trống
+                            </div>
+                        </div>
                           <div class="form-group">
                              <label>Tên tác giả:</label>
-                             <input type="text" class="form-control">
-                          </div>
+                             <input  class="form-control" type="text" id="tenTacGia" [(ngModel)]="tacgiaService.tacGia.tenTacGia" name="tenTacGia" required>
+                             <div *ngIf="!tacgiaService.tacGia.tenTacGia " class="text-danger">
+                              Tên tác giả không được để trống
+                            </div>
+                           </div>
                           <div class="form-group">
-                             <label>Hồ sơ tác giả:</label>
-                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Chọn tập tin</label>
+                             <label>Ngày Sinh:</label>
+                             <input class="form-control" type="date" id="ngaySinh" [(ngModel)]="tacgiaService.tacGia.ngaySinh" name="ngaySinh" required>
+                             <div *ngIf="!tacgiaService.tacGia.ngaySinh " class="text-danger">
+                              Vui lòng chọn ngày sinh
                              </div>
                           </div>
                           <div class="form-group">
-                             <label>Email tác giả:</label>
-                             <input type="email" class="form-control">
-                          </div>
-                          <div class="form-group">
-                             <label>Nội dung:</label>
-                             <textarea class="form-control" rows="4"></textarea>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Gửi</button>
-                          <button type="reset" class="btn btn-danger">Trở lại</button>
+                           <label for="quocGia">Quốc Gia:</label>
+                           <input class="form-control" type="text" id="quocGia" [(ngModel)]="tacgiaService.tacGia.quocGia" name="quocGia" required>
+                           <div *ngIf="!tacgiaService.tacGia.quocGia " class="text-danger">
+                              Quốc Gia không được để trống
+                            </div>
+                        </div>
+                          <button type="submit" class="btn btn-primary " (click)="addTacGia()">Thêm Tác Giả</button>
+                          <button type="submit" class="btn btn-primary ml-2"  (click)=" UpdateTacGia()">Cập nhật</button>
+                          <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
                        </form>
                     </div>
                  </div>
