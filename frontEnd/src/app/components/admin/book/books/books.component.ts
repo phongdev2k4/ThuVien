@@ -22,6 +22,7 @@ export class BooksComponent {
 
   ngOnInit(): void {
     this.loadSach();
+    console.log("cc")
   }
 
   loadSach(): void {
