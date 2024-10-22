@@ -1,0 +1,74 @@
+
+    <div class="signup-card">
+        <h1>
+            @if ({msg}) {
+            {{msg}}
+            }
+        </h1>
+      
+        <div class="card-title">
+            <h1>Tạo Tài Khoản</h1>
+        </div>
+      
+        <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      
+            <div class="input-box">
+                  <input type="text" name="name" placeholder="Name" formControlName="name">
+      
+                  <div class="text-danger">
+                      @if (signupForm.controls['name'].touched && signupForm.controls['name'].errors?.['required']) {
+                      <span>Mời nhập không được để trống</span>
+                  }
+                  </div>
+            </div>
+      
+            <div class="input-box">
+                  <input type="username" name="username" placeholder="Tên tài khoản" formControlName="username">
+      
+                  <div class="text-danger">
+                      @if (signupForm.controls['username'].touched && signupForm.controls['username'].errors?.['required']) {
+                      <span>Mời nhập không được để trống</span>
+                  }
+              </div>
+            </div>
+      
+              <div class="input-box">
+                  <input type="password" formControlName="password" placeholder="Mật khẩu">
+                  <i class='bx bx-lock-alt'></i>
+          
+                  <div class="text-danger">
+                      @if (signupForm.controls['password'].touched && signupForm.controls['password'].errors?.['minlength']) {
+                      <span>Tối đa trên 4 kí tự</span>
+                      }
+                  </div>
+              </div>
+          
+              <div class="input-box">
+                  <input type="text" name="address" placeholder="Địa chỉ" formControlName="address">
+      
+                  <div class="text-danger">
+                      @if (signupForm.controls['address'].touched && signupForm.controls['address'].errors?.['required']) {
+                      <span>Mời nhập không được để trống</span>
+                      }
+                  </div>
+              </div>
+      
+            <div class="input-box">
+                  <input type="text" name="mobileno" placeholder="Số điện thoại" formControlName="mobileno">
+      
+                  <div class="text-danger">
+                      @if (signupForm.controls['mobileno'].touched && signupForm.controls['mobileno'].errors?.['required']) {
+                      <span>Mời nhập không được để trống</span>
+                      }
+                  </div>
+            </div>
+      
+            <button class="input-a" [disabled]="!signupForm.valid" value="Signup">Tạo tài khoản</button>
+        </form>
+      
+        <div class="card-terms">
+            <input type="checkbox"> <span style="color: aliceblue;">I have read and agree to the <a href="">Terms of Service</a></span>
+        </div>
+        <span style="color: aliceblue;">Already have an account? <a routerLink="/login">Sign In</a></span>
+      
+      </div>

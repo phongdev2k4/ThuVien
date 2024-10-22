@@ -1,0 +1,27 @@
+.iq-top-navbar {
+    background-color: #007bff; /* Màu nền chính */
+    background-image: url('img/background2.jpg'); /* Hình nền */
+    background-size: cover; /* Đảm bảo hình nền phủ kín */
+    background-position: center; /* Căn giữa hình nền */
+    background-repeat: no-repeat; /* Không lặp lại hình nền */
+}
+
+.navbar-breadcrumb h5 {
+    color:white; /* Màu chữ trắng để tương phản với nền */
+    font-size: 24px; /* Kích thước chữ lớn hơn */
+    font-weight: bold; /* Đậm chữ */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Hiệu ứng bóng cho chữ */
+    margin: 0; /* Bỏ margin mặc định */
+}
+.btn-danger {
+    border-color: #007bff;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    border-color: #0056b3;
+    color: white; /* Giữ màu chữ trắng khi hover */
+}
+
+

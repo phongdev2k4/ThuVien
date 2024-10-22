@@ -6,11 +6,19 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @Table(name = "NhanVien")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NhanVien {
     @Id
     @Column(name = "MaNV", length = 30)
@@ -38,19 +46,16 @@ public class NhanVien {
     @Temporal(TemporalType.DATE)
     private Date ngaySinh;
 
-    @Column(name = "TinhTrang", columnDefinition = "nvarchar(20) " )
+    @Column(name = "TinhTrang", columnDefinition = "nvarchar(20)  " )
     private String tinhTrang ;
     
-    @ManyToOne
-    @JoinColumn(name = "ChucVu", referencedColumnName = "MaCV")
-    private ChucVu chucVu;
 
     @Column(name = "HinhAnhNV", columnDefinition = "nvarchar(255)")
     private String hinhAnhNV;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "nhanVien")
-    private List<ChiTietSachNhanVien> chiTietSachNhanVienList;
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private TaiKhoan taiKhoanNV;
     
     @JsonIgnore
     @OneToMany(mappedBy = "nhanVien")
@@ -63,4 +68,9 @@ public class NhanVien {
     @JsonIgnore
     @OneToMany(mappedBy = "nhanVien")
     private List<PhieuTra> phieuTraList;
+
+    
+   
+    
+ 
 }

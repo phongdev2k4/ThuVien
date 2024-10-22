@@ -1,3 +1,13 @@
+.content-page {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
 .container-fluid {
     max-width: 1200px; /* Giới hạn chiều rộng của container */
     margin: 0 auto; /* Căn giữa container */

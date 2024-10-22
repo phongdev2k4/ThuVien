@@ -1,0 +1,40 @@
+<div class="parent">
+    <div class="container">
+        <form [formGroup]="userForm">
+            <h1>Đăng Nhập</h1>
+            <div class="input-box">
+                <input type="email" formControlName="userName" placeholder="Tên tài khoản">
+                <i class='bx bx-envelope'></i>
+
+                <div class="text-danger">
+                @if (userForm.controls['userName'].touched && userForm.controls['userName'].errors?.['required']) {
+                <span>Mời nhập tên tài khoản</span>
+                }
+            </div>
+
+            <div class="input-box">
+                <input type="password" formControlName="password" placeholder="Mật khẩu">
+                <i class='bx bx-lock-alt'></i>
+
+                <div class="text-danger">
+                    @if (userForm.controls['password'].touched && userForm.controls['password'].errors?.['minlength']) {
+                    <span>Mật khẩu chưa phù hợp </span>
+                    }
+            </div>
+            </div>
+
+    </div>
+    <div class="remember">
+        <div class="card-terms">
+            <input type="checkbox"> <span style="color: white;"> Remember me</span>
+        </div>
+        <a href="#">Forgot password?</a>
+    </div>
+    <button class="btn" (click)="login()">Đăng Nhập</button>
+    <div class="register">
+        <p>Don't have an account? <br> <a routerLink="/register">Tạo tài khoản</a></p>
+        <p><a routerLink="/trangChu">Website Thư Viện</a></p>
+    </div>
+    </form>
+</div>
+</div>
