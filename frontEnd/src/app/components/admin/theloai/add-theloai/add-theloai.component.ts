@@ -33,6 +33,8 @@ export class AddTheloaiComponent {
           console.log(' thành công:', response);
           alert("thành công");
           this.router.navigateByUrl("/AdminListTheloai"); 
+          this.resetTheLoai();
+         
         },
         error => {
           console.error('Có lỗi xảy ra :', error);
@@ -42,5 +44,12 @@ export class AddTheloaiComponent {
   }
 goBack(): void {
   this.router.navigate(['/AdminListTheloai']); 
+}
+resetTheLoai() {
+  this.theloaiService.theLoai = { 
+      maTheLoai: "",
+      tenTheLoai: "",
+      moTa: ""
+  };
 }
 }

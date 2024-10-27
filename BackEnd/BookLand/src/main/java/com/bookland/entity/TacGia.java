@@ -28,4 +28,6 @@ public class TacGia {
 	@JsonIgnore
     @OneToMany(mappedBy = "tacGia")
     private List<Sach> sachList;
+	
+	
 }

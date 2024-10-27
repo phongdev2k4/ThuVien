@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bookland.service.SachService;
+import com.bookland.dto.SachDTO;
 import com.bookland.entity.*;
 import com.bookland.utils.ImageUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @RestController
 @RequestMapping("/rest/sach")
@@ -36,13 +36,17 @@ public class SachRestController {
 		List<Sach> sachs = sachService.finAll();
 		return ResponseEntity.ok(sachs); // 200 OK
 	}
+	@GetMapping("/sachdto")
+	public List<SachDTO> getAllSachs() {
+		return sachService.getAllSachDTOs();
+	}
 
 	@PostMapping
 	public ResponseEntity<Sach> addSach(@RequestParam("sach") String sachJson,
 			@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
 		if (file != null && !file.isEmpty()) {
 			try {
-				String nameImg = ImageUtils.saveImage(file, "book"); // tên hình 
+				String nameImg = ImageUtils.saveImage(file, "book"); // tên hình
 				// Chuyển đổi JSON thành đối tượng Sach
 				Sach sach = new ObjectMapper().readValue(sachJson, Sach.class);
 				sach.setHinhAnhSach(nameImg); // lưu tên ảnh vào đối tượng
@@ -70,9 +74,24 @@ public class SachRestController {
 
 	}
 
+	@PostMapping("/sachdto")
+	public ResponseEntity<Sach> addSach2(@RequestParam("sach") String sachJson,
+			@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+		SachDTO sachDTO = new ObjectMapper().readValue(sachJson, SachDTO.class);
+		
+		Sach createdSach = sachService.create2(sachDTO, file);
+		return ResponseEntity.ok(createdSach);
+	}
+
 	@DeleteMapping("{masach}")
 	public ResponseEntity<Void> delete(@PathVariable("masach") String masach) {
 		sachService.delete(masach);
+		return ResponseEntity.noContent().build(); // 204 No Content
+	}
+
+	@DeleteMapping("/sachdto/{masach}")
+	public ResponseEntity<Void> delete2(@PathVariable("masach") String masach) {
+		sachService.deleteSachdto(masach);
 		return ResponseEntity.noContent().build(); // 204 No Content
 	}
 }

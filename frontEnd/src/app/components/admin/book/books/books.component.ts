@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
-import { SachService } from '../../../../services/sach.service';
 import { CommonModule } from '@angular/common';
+import { SachService } from '../../../../services/sach.service';
 
 @Component({
   selector: 'app-books',
@@ -16,19 +16,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
-  sachList: any[] = [];
-
   constructor(private sachService:SachService, private router: Router) {}
-
+  sachList: any[] = [];
   ngOnInit(): void {
     this.loadSach();
+    this.sachService.resetSach();
   }
-
   loadSach(): void {
     this.sachService.findAll().subscribe(
       (data: any[]) => {
         this.sachList = data;
-        console.log('Danh sách sách:', this.sachList);
       },
       error => {
         console.error('Có lỗi xảy ra khi tải dữ liệu sách:', error);
@@ -37,10 +34,8 @@ export class BooksComponent {
   }
   editSach(sach: any): void {
     this.sachService.sach =sach; 
-    console.log(sach);
     this.router.navigateByUrl("/addBookadmin"); 
   }
-
   deleteSach(maSach: string): void {
     if (confirm('Bạn có chắc chắn muốn xóa sách này?')) {
       this.sachService.deleteSach(maSach).subscribe(
@@ -49,9 +44,11 @@ export class BooksComponent {
           this.loadSach(); 
         },
         error => {
+          alert("Có lỗi xảy ra khi xóa sách có thể liên kết khóa ngoại")
           console.error('Có lỗi xảy ra khi xóa sách:', error);
         }
       );
     }
   }
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import project12.entity.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

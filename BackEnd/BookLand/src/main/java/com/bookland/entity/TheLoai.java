@@ -18,7 +18,7 @@ public class TheLoai {
 	@Column(name = "TenTheLoai",columnDefinition = "nvarchar(150)")
 	private String tenTheLoai;
 
-	@Column(name = "MoTa", columnDefinition = "text")
+	@Column(name = "MoTa", columnDefinition = "nvarchar(max)")
 	private String moTa;
 	
 	@JsonIgnore

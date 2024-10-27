@@ -1,0 +1,5 @@
+.checkbox-container {
+    display: inline-flex; /* Hoặc inline-block */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-right: 15px; /* Khoảng cách giữa các checkbox */
+}

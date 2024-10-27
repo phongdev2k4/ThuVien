@@ -10,24 +10,26 @@ import { Sach } from '../models/sach.model';
 export class SachService {
   private apiUrl = 'http://localhost:8080/rest/sach';
   constructor(private http: HttpClient) {}
-  public sach: Sach = { 
-    maSach: '', 
-    tenSach: '', 
-    nxb: '', 
-    namXB: 0, 
-    tacGia: { 
-        maTacGia: '',
-        tenTacGia: '',
-        ngaySinh: new Date(), 
-        quocGia: '',
+  public sach = {
+    maSach: '', // Mã sách
+    tenSach: '', // Tên sách
+    nxb: '', // Nhà xuất bản
+    namXB: 0, // Năm xuất bản
+    tacGia: {
+        maTacGia: '', // Mã tác giả
+        tenTacGia: '', // Tên tác giả
+        ngaySinh: new Date(), // Ngày sinh
+        quocGia: '', // Quốc gia
     },
-    hinhAnhSach: '', 
-    theLoai: { 
-        maTheLoai: '',
-        tenTheLoai: '',
-    },
-    moTa: '',
-};    
+    hinhAnhSach: '', // Hình ảnh sách
+    moTa: '', // Mô tả sách
+    theLoais: [
+      {
+        maTheLoai:''
+      }
+    ], 
+};  
+
 addSach(sach: any, file: File | null): Observable<any> {
   const formData = new FormData();
   formData.append('sach', JSON.stringify(sach));
@@ -36,13 +38,30 @@ addSach(sach: any, file: File | null): Observable<any> {
   if (file) {
       formData.append('file', file);
   }
-  return this.http.post(this.apiUrl, formData);
+  return this.http.post(this.apiUrl+'/sachdto', formData);
 }
 
   findAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUrl+'/sachdto');
   }
   deleteSach(maSach: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${maSach}`);
+    return this.http.delete(`${this.apiUrl+'/sachdto'}/${maSach}`);
+  }
+  resetSach(): void{
+    this.sach = {
+      maSach: '', // Mã sách
+      tenSach: '', // Tên sách
+      nxb: '', // Nhà xuất bản
+      namXB: 0, // Năm xuất bản
+      tacGia: {
+          maTacGia: '', // Mã tác giả
+          tenTacGia: '', // Tên tác giả
+          ngaySinh: new Date(), // Ngày sinh
+          quocGia: '', // Quốc gia
+      },
+      hinhAnhSach: '', // Hình ảnh sách
+      moTa: '', // Mô tả sách
+      theLoais: [] 
+  };
   }
 }

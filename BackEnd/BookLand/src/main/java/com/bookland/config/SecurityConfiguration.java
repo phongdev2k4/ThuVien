@@ -41,6 +41,8 @@ public class SecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			return http.cors(Customizer.withDefaults()).csrf(c -> c.disable())
 					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai").permitAll()
+					.requestMatchers("/uploads/**").permitAll() // Cho phép truy cập vào tài nguyên tĩnh // hảithêm chỗ này
+					.requestMatchers("/**").permitAll()
 					.requestMatchers("/api/trangChu").authenticated())
 					.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.authenticationProvider(authenticationProvider())
@@ -64,4 +66,6 @@ public class SecurityConfiguration {
 	AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
+
+
 }

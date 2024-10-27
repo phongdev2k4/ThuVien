@@ -21,7 +21,7 @@ export function tokenGetter() {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(combinedRoutes),
     importProvidersFrom(
       JwtModule.forRoot({
         config: {

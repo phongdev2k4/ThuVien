@@ -10,9 +10,5 @@ export interface Sach {
         quocGia: string;    // Quốc gia
     };
     hinhAnhSach: string;  // Hình ảnh sách
-    theLoai: {             // Đối tượng thể loại
-        maTheLoai: string;  // Mã thể loại
-        tenTheLoai: string; // Tên thể loại
-    };
     moTa: string;         // Mô tả sách
 }

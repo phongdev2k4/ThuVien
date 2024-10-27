@@ -29,32 +29,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  *ngFor="let sach of sachList ;let i = index">
-                                <td>{{i+1}}</td>
-                                <td>
-                                 <img class="img-fluid rounded" 
-                                      [src]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach"
-                                      [srcset]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1920w, ' +
-                                                'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 640w, ' +
-                                                'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1280w'"
-                                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                      alt="{{ sach.tenSach }}" 
-                                      loading="eager">
-                                 </td>
-                                <td>{{sach.maSach}}</td>
-                                <td>{{sach.tenSach}}</td>
-                                <td>{{sach.theLoai.tenTheLoai}}</td>
-                                <td>{{sach.tacGia.tenTacGia}}</td>
-                                <td>
-                                  <p class="mb-0">{{sach.moTa}}</p>
-                                </td>                                    
-                                <td>
-                                   <div class="flex align-items-center list-user-action">
-                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editSach(sach)"><i class="ri-pencil-line"></i></a>
-                                     <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" (click)="deleteSach(sach.maSach)"><i class="ri-delete-bin-line"></i></a>
-                                  </div>
-                                </td>
-                            </tr>          
+                           <tr  *ngFor="let sach of sachList ;let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                               <img class="img-fluid rounded" 
+                                    [src]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach"
+                                    [srcset]="'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1920w, ' +
+                                              'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 640w, ' +
+                                              'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1280w'"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                    alt="{{ sach.tenSach }}" 
+                                    loading="eager">
+                               </td>
+                              <td>{{sach.maSach}}</td>
+                              <td>{{sach.tenSach}}</td>
+                              <td> <span *ngFor="let theloai of sach.theLoais ;let last = last"> {{ theloai.tenTheLoai }}<span *ngIf="!last">, </span></span></td>
+                              <td>{{sach.tacGia.tenTacGia}}</td>
+                              <td>
+                                <p class="mb-0">{{sach.moTa}}</p>
+                              </td>                                    
+                              <td>
+                                 <div class="flex align-items-center list-user-action">
+                                   <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editSach(sach)"><i class="ri-pencil-line"></i></a>
+                                   <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" (click)="deleteSach(sach.maSach)"><i class="ri-delete-bin-line"></i></a>
+                                </div>
+                              </td>
+                          </tr>           
                         </tbody>
                     </table>
                    </div>
