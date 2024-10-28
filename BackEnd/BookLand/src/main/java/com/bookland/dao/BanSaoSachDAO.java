@@ -9,4 +9,6 @@ import com.bookland.entity.BanSaoSach;
 public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     @Query("SELECT MAX(b.maBanSaoSach) FROM BanSaoSach b")
     Integer findMaxMaBanSaoSach();
+    
+    BanSaoSach findByMaVach(String maVach);
 }

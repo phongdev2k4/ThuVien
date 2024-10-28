@@ -35,7 +35,7 @@ public class BanSaoSachRestController {
 		List<BanSaoSach> bansaosachs = banSaoSachService.finAll();
 		return ResponseEntity.ok(bansaosachs); // 200 OK
 	}
-
+    
 	@PostMapping("/update")
 	public ResponseEntity<BanSaoSach> post(@RequestBody BanSaoSach banSaoSach) {
 		BanSaoSach createdbansaosach = banSaoSachService.update(banSaoSach);
@@ -56,6 +56,17 @@ public class BanSaoSachRestController {
 	public ResponseEntity<Void> delete(@PathVariable("mabansaosach") int mabansaosach) {
 		banSaoSachService.delete(mabansaosach);
 		return ResponseEntity.noContent().build(); // 204 No Content
+	}
+	
+	@GetMapping("/mavach/{maVach}")
+	public ResponseEntity<BanSaoSach> findByMaVach(@PathVariable String maVach) {
+	    BanSaoSach banSaoSach = banSaoSachService.findByMaVach(maVach);
+	    
+	    if (banSaoSach == null) {
+	        return ResponseEntity.notFound().build(); // 404 Not Found nếu không tìm thấy
+	    }
+	    
+	    return ResponseEntity.ok(banSaoSach); // 200 OK với bản sao sách
 	}
 
 }

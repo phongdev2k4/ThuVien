@@ -16,6 +16,7 @@ import { UpdateBansaosachComponent } from './bansaosach/update-bansaosach/update
 import { KholistComponent } from './kho/kholist/kholist.component';
 import { AddkhoComponent } from './kho/addkho/addkho.component';
 import { UpdateKhoComponent } from './kho/update-kho/update-kho.component';
+import { BarcodeScannerComponent } from './testbarcode/barcode-scanner/barcode-scanner.component';
 
 
 export const routesAdmin: Routes = [
@@ -87,5 +88,9 @@ export const routesAdmin: Routes = [
     {
         path:'updateKhoAdmin',
         component:UpdateKhoComponent
+    },
+    {
+        path:'testBarcode',
+        component:BarcodeScannerComponent
     },
 ];

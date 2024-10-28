@@ -52,4 +52,11 @@ export class BansaosachService {
   updateBanSaoSach(bansaosach: any): Observable<any> {  
     return this.http.post<any>(this.apiUrl+'/update',bansaosach);
   }
+  findByMaVach(maVach: string): Observable<BanSaoSach> {
+      return this.http.get<BanSaoSach>(`${this.apiUrl+'/mavach'}/${maVach}`);
+    }
+  getWeather(lat: number, lon: number): Observable<any> {
+const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a90de1345e7b168d5a751c70bb1be027&units=metric&lang=vi`
+      return this.http.get(url);
+    }
 }

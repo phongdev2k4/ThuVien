@@ -60,4 +60,10 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 	}
 
 
+	@Override
+	public BanSaoSach findByMaVach(String maVach) {	
+		return banSaoSachDAO.findByMaVach(maVach);
+	}
+
+
 }

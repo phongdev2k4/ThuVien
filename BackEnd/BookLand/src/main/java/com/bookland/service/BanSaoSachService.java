@@ -10,4 +10,5 @@ public interface BanSaoSachService {
 	public List<BanSaoSach> create(BanSaoSach bansaosach,int soluong);
     public BanSaoSach update(BanSaoSach banSaoSach);
 	public void delete(int mabansaosach);
+	public BanSaoSach findByMaVach(String maVach);
 }
