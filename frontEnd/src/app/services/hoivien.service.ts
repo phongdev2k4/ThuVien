@@ -10,13 +10,15 @@ import { HoiVien } from '../models/hoivien.model';
   
     constructor(private http: HttpClient) {}
     public hoiVien: HoiVien = {  // Sử dụng interface HoiVien
-        maHV: "",
-        hoTen:"",
-       email:"",
-       soDienThoai: "",
-        matKhau: "",
-        diaChi: "",
-        tienNap: 0
+        maHV: '',
+        hoTen:'',
+       email:'',
+       soDienThoai: '',
+        matKhau: '',
+        diaChi: '',
+        tienNap: 0,
+        thoiGianDangky: new Date(),
+        taiKhoanHV: ''
     };
   
     getHoiVien(): Observable<HoiVien[]> {  // Sử dụng HoiVien[]
@@ -25,7 +27,7 @@ import { HoiVien } from '../models/hoivien.model';
     findAll(): Observable<any[]> {
       return this.http.get<any[]>(this.apiUrl);
     }
-    addHoiVien(hoivien: HoiVien): Observable<HoiVien> {  // Sử dụng TacGia
+    addHoiVien(hoivien: HoiVien): Observable<HoiVien> {  // Sử dụng 
       return this.http.post<HoiVien>(this.apiUrl, hoivien);
     }
   

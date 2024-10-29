@@ -1,0 +1,32 @@
+.content-page {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+.container-fluid {
+    max-width: 1200px; /* Giới hạn chiều rộng của container */
+    margin: 0 auto; /* Căn giữa container */
+}
+
+.iq-card {
+    border-radius: 10px; /* Bo góc cho card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho card */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9; /* Màu nền cho các hàng lẻ */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Màu nút "Thêm Sách" */
+    border-color: #6c757d; /* Màu viền cho nút "Thêm Sách" */
+}
+
+.btn-danger {
+    margin-top: 15px; /* Tạo khoảng cách trên nút xóa */
+}

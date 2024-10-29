@@ -6,4 +6,6 @@ export interface HoiVien {
     matKhau: string; // mk
     diaChi: string;
     tienNap: number;
+    thoiGianDangky: Date;
+    taiKhoanHV : String;
 }

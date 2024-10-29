@@ -1,0 +1,68 @@
+<app-aside-admin></app-aside-admin>
+<app-aside-admin></app-aside-admin>
+<!-- Page Content -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu mượn</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a routerLink="../PhieuMuon" class="btn btn-primary">Thêm phiếu mượn</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">STT</th>
+                                        <th style="width: 10%;">Mã Phiếu Mượn</th>
+                                        <th style="width: 10%;">Mã Hội Viên</th>
+                                        <th style="width: 10%;">Mã Nhân Viên</th>
+                                        <th style="width: 10%;">Ngày Lập Phiếu</th>
+                                        <th style="width: 10%;">Hạn Mã Sách</th>
+                                        <th style="width: 10%;">Mã Sách</th>
+                                        <th style="width: 10%;">Tên Sách</th>
+                                        <th style="width: 10%;">Tác Giả</th>
+                                        <th style="width: 10%;">Ngày Mượn</th>
+                                        <th style="width: 10%;">Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phieu of phieuMuonList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieu.maPM }}</td>
+                                        <td>{{ phieu.hoiVien.maHV }}</td>
+                                        <td>{{ phieu.nhanVien.maNV }}</td>
+                                        <td>{{ phieu.ngayLapPhieu | date:'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieu.hanTraSach | date:'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieu.chiTietPhieuMuonList[0]?.maSach }}</td>
+                                        <td>{{ phieu.chiTietPhieuMuonList[0]?.tenSach }}</td>
+                                        <td>{{phieu.tacgia}}</td>
+                                        <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                        <td>
+                                            <div class="flex align-items-center list-user-action">
+                                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa" (click)="editPhieuMuon(phieu)">
+                                                    <i class="ri-pencil-line"></i>
+                                                </a>
+                                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Xoá" (click)="deletePhieuMuon(phieu.maPM)">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

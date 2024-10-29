@@ -1,0 +1,65 @@
+<app-aside-admin></app-aside-admin>
+<!-- Page Content -->
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách nhân viên</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a routerLink="../NhanVien" class="btn btn-primary">Thêm nhân viên</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th style="width: 5%;">STT</th>
+                                    <th style="width: 10%;">Mã Nhân Viên</th>
+                                    <th style="width: 9%;">Họ Tên</th>
+                                    <th style="width: 10%;">Mật Khẩu</th>
+                                    <th style="width: 8%;">Số ĐT</th>
+                                    <th style="width: 7%;">Email</th>
+                                    <th style="width: 9%;">Địa Chỉ</th>
+                                    <th style="width: 10%;">Ngày Sinh</th>
+                                    <th style="width: 10%;">Giới Tính</th>
+                                    <th style="width: 11%;">Tình Trạng</th>
+                                    <th style="width: 12%;">Chức Vụ</th>
+                                    <th style="width: 14%;">Hình Ảnh NV</th>
+                                    <th>Hành động</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let nhanvien of nhanVienList; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ nhanvien.maNV }}</td>
+                                    <td>{{ nhanvien.hoTen }}</td>
+                                    <td>{{ nhanvien.matKhau }}</td>
+                                    <td>{{ nhanvien.soDienThoai }}</td>
+                                    <td>{{ nhanvien.email }}</td>
+                                    <td>{{ nhanvien.diaChi }}</td>
+                                    <td>{{ nhanvien.ngaySinh | date: 'dd/MM/yyyy' }}</td> <!-- Format ngày sinh -->
+                                    <td>{{ nhanvien.gioiTinh }}</td>
+                                    <td>{{ nhanvien.tinhTrang }}</td>
+                                    <td>{{ nhanvien.chucVu?.tenCV }}</td> <!-- Sử dụng ?. để tránh lỗi nếu chucVu null -->
+                                    <td>
+                                      <img *ngIf="nhanvien.hinhAnhNV" [src]="nhanvien.hinhAnhNV" alt="Hình ảnh" width="50" height="50">
+                                      <span *ngIf="!nhanvien.hinhAnhNV">Không có</span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

@@ -1,0 +1,17 @@
+.content-page {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+h4 {
+    text-align: center;
+    background-color: #4a6c91; /* Màu xanh dương */
+    color: white; /* Màu chữ trắng để dễ nhìn trên nền xanh */
+    padding: 10px; /* Tạo khoảng cách giữa chữ và viền thẻ */
+    border-radius: 15px; /* Tạo góc bo mềm mại cho thẻ */
+}

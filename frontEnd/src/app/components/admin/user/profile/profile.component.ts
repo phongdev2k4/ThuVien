@@ -26,7 +26,7 @@ export class ProfileComponent {
   }
 
   loadhoivien(): void {
-    this.hoiVienService.findAll().subscribe(
+    this.hoiVienService.getHoiVien().subscribe(
       (data: any[]) => {
         this.hoivienList = data;
         console.log('Danh sách sách:', this.hoivienList.length);

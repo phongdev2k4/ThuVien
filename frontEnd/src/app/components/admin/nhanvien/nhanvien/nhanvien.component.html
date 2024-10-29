@@ -1,0 +1,95 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="container-form">
+            <h3>Thông Tin Nhân Viên</h3>
+            <form #nhanVienForm="ngForm" (ngSubmit)="onSubmit()" class="form-group">
+                <div class="form-row">
+                    <!-- Mã Nhân Viên -->
+                    <div class="form-group col-6">
+                        <label for="maNV">Mã Nhân Viên</label>
+                        <input class="form-control" id="maNV" name="maNV" [(ngModel)]="nhanVien.maNV" placeholder="Nhập mã nhân viên" required />
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group col-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="nhanVien.email" placeholder="Nhập email" required />
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Mật Khẩu -->
+                    <div class="form-group col-6">
+                        <label for="matKhau">Mật Khẩu</label>
+                        <input type="password" class="form-control" id="matKhau" name="matKhau" [(ngModel)]="nhanVien.matKhau" placeholder="Nhập mật khẩu" required />
+                    </div>
+                    <!-- Số Điện Thoại -->
+                    <div class="form-group col-6">
+                        <label for="soDienThoai">Số Điện Thoại</label>
+                        <input class="form-control" id="soDienThoai" name="soDienThoai" [(ngModel)]="nhanVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Họ Tên -->
+                    <div class="form-group col-6">
+                        <label for="hoTen">Họ Tên</label>
+                        <input class="form-control" id="hoTen" name="hoTen" [(ngModel)]="nhanVien.hoTen" placeholder="Nhập họ tên" required />
+                    </div>
+                    <!-- Ngày Sinh -->
+                    <div class="form-group col-6">
+                        <label for="ngaySinh">Ngày Sinh</label>
+                        <input class="form-control" type="date" id="ngaySinh" name="ngaySinh" [(ngModel)]="nhanVien.ngaySinh" />
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Giới Tính -->
+                    <div class="form-group col-6">
+                        <label for="gioiTinh">Giới Tính</label>
+                        <select class="form-control" id="gioiTinh" name="gioiTinh" [(ngModel)]="nhanVien.gioiTinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <!-- Tình Trạng -->
+                    <div class="form-group col-6">
+                        <label for="tinhTrang">Tình Trạng</label>
+                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="nhanVien.tinhTrang">
+                            <option value="Đang làm việc">Đang làm việc</option>
+                            <option value="Nghỉ việc">Nghỉ việc</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Địa Chỉ -->
+                    <div class="form-group col-12">
+                        <label for="diaChi">Địa Chỉ</label>
+                        <input class="form-control" id="diaChi" name="diaChi" [(ngModel)]="nhanVien.diaChi" placeholder="Nhập địa chỉ" />
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Chức Vụ -->
+                    <div class="form-group col-6">
+                        <label for="chucVu">Chức Vụ</label>
+                        <select class="form-control" id="chucVu" name="chucVu" [(ngModel)]="nhanVien.chucVu">
+                            <option *ngFor="let cv of chucVuList" [ngValue]="cv">{{ cv.tenChucVu }}</option>
+                        </select>
+                    </div>
+                    <!-- Hình Ảnh Nhân Viên -->
+                    <div class="form-group col-6">
+                        <label for="hinhAnhNV">Hình Ảnh Nhân Viên</label>
+                        <input type="file" id="hinhAnhNV" name="hinhAnhNV" (change)="onFileSelected($event)" />
+                    </div>
+                </div>
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu Thông Tin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

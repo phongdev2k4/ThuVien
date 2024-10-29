@@ -11,7 +11,7 @@ public class ChiTietPhieuMuon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private int id;
-
+ 
     @ManyToOne
     @JoinColumn(name = "MaPM", referencedColumnName = "MaPM")
     private PhieuMuon phieuMuon;

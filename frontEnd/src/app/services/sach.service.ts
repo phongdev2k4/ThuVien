@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sach } from '../models/sach.model';
 
-
 @Injectable({
   providedIn: 'root'
 })

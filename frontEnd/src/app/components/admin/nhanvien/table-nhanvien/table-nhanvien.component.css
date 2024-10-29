@@ -1,0 +1,40 @@
+.content-page {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+
+.iq-card {
+    max-width: 1600px; /* Tăng chiều rộng tối đa của thẻ iq-card */
+    margin: 0 auto; /* Canh giữa phần tử */
+    padding: 20px;
+}
+
+.table-responsive {
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng của container */
+}
+
+.table {
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng bên trong phần tử */
+    font-size: 14px; /* Giữ kích thước chữ vừa phải */
+}
+
+.table th, .table td {
+    padding: 12px; /* Tăng kích thước padding để làm bảng rộng hơn */
+    text-align: center; /* Canh giữa văn bản trong bảng */
+    vertical-align: middle; /* Canh giữa nội dung theo chiều dọc */
+}
+
+.table img {
+    border-radius: 5px; /* Làm mềm các góc của ảnh */
+}
+
+.iq-card-header .btn {
+    margin-left: 10px;
+    padding: 8px 15px; /* Tăng padding cho nút thêm nhân viên */
+}

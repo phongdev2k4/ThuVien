@@ -4,7 +4,7 @@
            <a href="index.html" class="header-logo">
               <img src="images/logo.png" class="img-fluid rounded-normal" alt="">
               <div class="logo-title">
-                 <span class="text-primary text-uppercase">Booksto</span>
+                 <span class="text-primary text-uppercase">BookLand</span>
               </div>
            </a>
            <div class="iq-menu-bt-sidebar">
@@ -19,7 +19,7 @@
            <nav class="iq-sidebar-menu">
               <ul id="iq-sidebar-toggle" class="iq-menu">
                  <li>
-                    <a href="#dashboard" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Shop</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#dashboard" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span class="menu-text">Shop</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="dashboard" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                        <li><a href="index.html"><i class="las la-house-damage"></i>Home Page</a></li>
                        <li><a href="#"><i class="ri-function-line"></i>Category Page</a></li>
@@ -30,26 +30,41 @@
                     </ul>
                  </li>
                  <li class=" active-menu">
-                    <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Admin</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#admin" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span class="menu-text">Admin</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="admin" class="iq-submenu collapse " data-parent="#iq-sidebar-toggle">
                        <li class=""><a  routerLink="../DashboardAdmin"><i class="las la-house-damage"></i>Bảng điều khiển</a></li>
                        <li><a href="#"><i class="ri-function-line"></i>Danh sách danh mục</a></li>
                        <li ><a routerLink="../AuthorsAdmin"><i class="ri-book-line"></i>Tác giả</a></li>
+                       <li ><a routerLink="../AdminListTheloai"><i class="ri-file-pdf-line"></i>Thể Loại</a></li>
                        <li ><a routerLink="../bookadmin"><i class="ri-file-pdf-line"></i>Sách</a></li>
                        <li ><a routerLink="../AdminListTheloai"><i class="ri-file-pdf-line"></i>Thể loại</a></li>
                     </ul>
                  </li>
+
+                 <li class=" active-menu">
+                  <a href="#nhanvien" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span class="menu-text">Nhân Viên</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                  <ul id="nhanvien" class="iq-submenu collapse " data-parent="#iq-sidebar-toggle"> 
+                     <li ><a routerLink="../tableNhanVien"><i class="las la-house-damage"></i>Quản Lý Nhân Viên</a></li>
+                     <li ><a routerLink="../tablePhieuMuon"><i class="ri-function-line"></i>Phiếu Mượn</a></li>
+                     <li ><a routerLink="../tablePhieuTra"><i class="ri-book-line"></i>Phiếu Trả</a></li>
+                     <li ><a routerLink="../tablePhieuPhat"><i class="ri-file-pdf-line"></i>Phiếu Phạt</a></li>
+                     <li><a routerLink="../UserListadmin"><i class="las la-plus-circle"></i>Danh sách người dùng</a></li>
+                     <li><a routerLink="../AddUserComponentadmin"><i class="las la-plus-circle"></i>Thêm Người dùng</a></li>
+                  </ul>
+                  </li>
+
                  <li>
-                    <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-user-tie iq-arrow-left"></i><span>User</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-user-tie iq-arrow-left"></i><span class="menu-text">User</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" >
                        <li><a routerLink="../Profile" ><i class="las la-id-card-alt"></i>Profile</a></li>
                     
-                       <li><a routerLink="../AddUserComponentadmin"><i class="las la-plus-circle"></i>Cập nhật hồ sơ</a></li>
                       
+                      
+                       
                     </ul>
                  </li>
                  <li>
-                    <a href="#ui-elements" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="lab la-elementor iq-arrow-left"></i><span>UI Elements</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#ui-elements" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="lab la-elementor iq-arrow-left"></i><span class="menu-text">UI Elements</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="ui-elements" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                        <li class="elements">
                           <a href="#sub-menu" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-play-circle-line"></i><span>UI Kit</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
@@ -124,7 +139,7 @@
                     </ul>
                  </li>
                  <li>
-                    <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-file-alt iq-arrow-left"></i><span>Pages</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-file-alt iq-arrow-left"></i><span class="menu-text">Pages</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                        <li>
                           <a href="#authentication" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-pages-line"></i><span>Authentication</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
@@ -154,7 +169,7 @@
                     </ul>
                  </li>
                  <li>
-                    <a href="#menu-level" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-record-circle-line iq-arrow-left"></i><span>Menu Level</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                    <a href="#menu-level" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-record-circle-line iq-arrow-left"></i><span class="menu-text">Menu Level</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="menu-level" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                        <li><a href="#"><i class="ri-record-circle-line"></i>Menu 1</a></li>
                        <li>

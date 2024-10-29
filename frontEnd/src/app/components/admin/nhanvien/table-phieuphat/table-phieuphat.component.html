@@ -1,0 +1,52 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu phạt</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a routerLink="../PhieuPhat" class="btn btn-primary">Thêm phiếu phạt</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã Phiếu Phạt</th>
+                                        <th>Mã Hội Viên</th>
+                                        <th>Mã Phiếu Trả</th>
+                                        <th>Số Ngày Quá Hạn</th>
+                                        <th>Tiền Phạt</th>
+                                        <th>Mã Nhân Viên</th>
+                                        <th>Hành Động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phieuPhat of phieuPhatList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieuPhat.maPhieuPhat }}</td>
+                                        <td>{{ phieuPhat.hoiVien.maHV }}</td>
+                                        <td>{{ phieuPhat.phieuTra.maPT }}</td>
+                                        <td>{{ phieuPhat.soNgayQuaHan }}</td>
+                                        <td>{{ phieuPhat.tienPhat | number:'1.2-2' }} VND</td>
+                                        <td>{{ phieuPhat.nhanVien.maNV }}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" (click)="editPhieuPhat(phieuPhat)">Sửa</button>
+                                            <button class="btn btn-danger btn-sm" (click)="deletePhieuPhat(phieuPhat.maPhieuPhat)">Xóa</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

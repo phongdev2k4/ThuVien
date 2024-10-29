@@ -18,14 +18,15 @@ import { HoiVienService } from '../../../../services/hoivien.service';
 })
 export class AddUserComponent {
   
+  
   constructor(public hoiVienService: HoiVienService, private router: Router) {}
-  addhoivien(): void {
+  addHoiVien(): void {
     if (this.isFormValid()) {
       this.hoiVienService.addHoiVien(this.hoiVienService.hoiVien).subscribe(
         response => {
-          console.log('Thông Tin đã được thêm thành công:', response);
-          alert("Thong Tin đã được thêm thành công");
-          this.router.navigateByUrl("/Profile"); 
+          console.log('Thông tin đã được thêm thành công:', response);
+          alert("Thông tin đã được thêm thành công");
+          this.router.navigateByUrl("/UserListadmin"); 
         },
         error => {
           console.error('Có lỗi xảy ra ', error);
@@ -34,7 +35,7 @@ export class AddUserComponent {
       );
     } else {
       console.error('Form không hợp lệ, không thể thêm ');
-      alert("Không được trống các trường dữ liệu");
+      alert("Không được để trống các trường dữ liệu");
     }
   }
   
@@ -42,17 +43,17 @@ export class AddUserComponent {
     if (this.isFormValid()) {
       this.hoiVienService.addHoiVien(this.hoiVienService.hoiVien).subscribe(
         response => {
-          console.log('Tác giả đã được cập nhật thành công:', response);
-          alert("Tác giả đã được cập nhật thành công");
-          this.router.navigateByUrl("/Profile"); // Điều hướng về danh sách tác giả
+          console.log('đã được cập nhật thành công:', response);
+          alert("đã được cập nhật thành công");
+          this.router.navigateByUrl("/UserListComponent"); // Điều hướng về danh sách 
         },
         error => {
-          console.error('Có lỗi xảy ra khi cập nhật tác giả:', error);
-          alert("Có lỗi xảy ra khi cập nhật tác giả");
+          console.error('Có lỗi xảy ra khi cập nhật :', error);
+          alert("Có lỗi xảy ra khi cập nhật ");
         }
       );
     }else{
-      console.error('Form không hợp lệ, không thể cập nhật tác giả.');
+      console.error('Form không hợp lệ, không thể cập nhật .');
       alert("Không được trống các trường dữ liệu");
     }
 
@@ -63,13 +64,15 @@ export class AddUserComponent {
     this.router.navigate(['/']); // Điều hướng về AuthorsAdmin
   }
   isFormValid(): boolean {
-    return !!this.hoiVienService.hoiVien.maHV && // Kiểm tra maTacGia không rỗng
+    return !!this.hoiVienService.hoiVien.maHV && // Kiểm tra ma không rỗng
+          !!this.hoiVienService.hoiVien.taiKhoanHV && 
            !!this.hoiVienService.hoiVien.hoTen && 
            !!this.hoiVienService.hoiVien.email && 
            !!this.hoiVienService.hoiVien.soDienThoai && 
            !!this.hoiVienService.hoiVien.matKhau && 
            !!this.hoiVienService.hoiVien.diaChi && 
-           !!this.hoiVienService.hoiVien.tienNap
+           !!this.hoiVienService.hoiVien.tienNap&&
+           !!this.hoiVienService.hoiVien.thoiGianDangky
 
   }
 }
