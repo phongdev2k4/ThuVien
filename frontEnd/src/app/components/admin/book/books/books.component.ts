@@ -3,6 +3,7 @@ import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { SachService } from '../../../../services/sach.service';
 import { CommonModule } from '@angular/common';
+import { AddBookRes } from '../../../../models/add-book-res';
 
 @Component({
   selector: 'app-books',
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
-  sachList: any[] = [];
+  sachList: AddBookRes[] = [];
 
   constructor(private sachService:SachService, private router: Router) {}
 

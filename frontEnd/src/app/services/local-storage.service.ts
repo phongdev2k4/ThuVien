@@ -17,4 +17,17 @@ export class LocalStorageService {
   remove(key: string) {
     localStorage.removeItem(key);
   }
+  public setRoles(roles: string[]): void {
+    localStorage.setItem('roles', JSON.stringify(roles));
+  }
+  
+  public getRoles(): string[] {
+    const roles = localStorage.getItem('roles');
+    return roles ? JSON.parse(roles) : []; // Handle null case by returning an empty array
+  }
+  public clear() {
+    localStorage.clear();
+  }
+
+  
 }

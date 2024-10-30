@@ -1,0 +1,19 @@
+.image-link {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.image-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.image-preview {
+    display: none; /* Initially hidden */
+  }
+  
+  a:hover + .image-preview {
+    display: block; /* Show preview on hover */
+  }
+  

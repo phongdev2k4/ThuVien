@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -26,6 +27,7 @@ public class TacGia {
 	private String quocGia;
 	
 	@JsonIgnore
-    @OneToMany(mappedBy = "tacGia")
+    @OneToMany(mappedBy = "tacGia",cascade = CascadeType.ALL)
+	@ToString.Exclude
     private List<Sach> sachList;
 }

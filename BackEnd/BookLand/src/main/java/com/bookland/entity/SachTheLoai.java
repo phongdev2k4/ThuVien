@@ -1,7 +1,6 @@
 package com.bookland.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
@@ -10,11 +9,14 @@ import lombok.Data;
 //@IdClass(SachTheLoaiId.class)
 public class SachTheLoai {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@ManyToOne
 	@JoinColumn(name = "MaSach")
 	private Sach sach;
 
-	@Id
+
 	@ManyToOne
 	@JoinColumn(name = "MaTheLoai")
 	private TheLoai theLoai;

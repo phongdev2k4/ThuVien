@@ -54,7 +54,10 @@ export class AuthService {
 
   handleLoginResponse(res: any): void {
     console.log("Received Response:", res.token);
+    console.log("Received Response:", res.roles);
     this.storage.set('auth-key', res.token);
+    this.storage.setRoles(res.roles);
+
     const decoded = this.helper.decodeToken(res.token);
     this.decodedTokenSubject.next(decoded); 
 
@@ -68,6 +71,18 @@ export class AuthService {
     this.storage.remove('auth-key');
     this.decodedTokenSubject.next(null); // Reset decodedToken on error
   }
+  public roleMatch(allowedRoles: string[]): boolean {
+    const userRoles: string[] = this.storage.getRoles();
+  
+    if (!userRoles || userRoles.length === 0) {
+      return false; // User has no roles, deny access
+    }
+  
+    // Check if at least one user role is in the allowed roles
+    return userRoles.some(role => allowedRoles.includes(role));
+  }
+ 
+  
  
   
 

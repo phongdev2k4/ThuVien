@@ -14,6 +14,7 @@ import { AddUserComponent } from './components/admin/user/add-user/add-user.comp
 import { UserListComponent } from './components/admin/user/user-list/user-list.component';
 import { TheloaiComponent } from './components/admin/theloai/theloai/theloai.component';
 import { AddTheloaiComponent } from './components/admin/theloai/add-theloai/add-theloai.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'trangChu', pathMatch: 'full' },
@@ -23,6 +24,7 @@ export const routes: Routes = [
         component: HomeComponent,
        
     },
+
     { 
         path: 'login', 
         component: LoginComponent
@@ -41,7 +43,8 @@ export const routes: Routes = [
 },
 {
     path:'DashboardAdmin',
-    component:DashboardComponent
+    component:DashboardComponent,
+    canActivate: [authGuard] 
 },
 {
     path:'bookadmin',
@@ -80,4 +83,5 @@ export const routes: Routes = [
     path:'AdminAddTheloai',
     component:AddTheloaiComponent
 },
+
 ];

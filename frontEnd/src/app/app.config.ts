@@ -1,18 +1,18 @@
 
-import { routesAdmin } from './components/admin/admin.routes';
+
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authKeyInterceptor } from './interceptors/auth-key.interceptor';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
 
 
-const combinedRoutes = [...routes, ...routesAdmin];
+const combinedRoutes = [...routes];
 
 export function tokenGetter() {
   return localStorage.getItem('auth-key');
@@ -31,6 +31,6 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    provideHttpClient(withInterceptors([authKeyInterceptor])),
+    provideHttpClient(withInterceptors([authKeyInterceptor]),withFetch()),
   ],
 };

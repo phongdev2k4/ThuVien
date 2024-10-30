@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
 import { TheloaiService } from '../../../../services/theloai.service';
 import { TacgiaService } from '../../../../services/tacgia.service';
+import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-book',
@@ -15,19 +17,23 @@ import { TacgiaService } from '../../../../services/tacgia.service';
     CommonModule,
     FormsModule,
     AsideComponent,
+    NgxSpinnerModule
     
   ],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css'
 })
 export class AddBookComponent implements OnInit {
-   
+  imagesToUpload: File[] = []; // Store multiple selected files
+  imagePreviews: string[] = []; // Store preview URLs for selected images
   theloaiList: any[] = [];
   tacgiaList: any[] = [];
+  selectedTheLoaiIds: string[] = [];
+  loading: boolean = false; // Loading state
 
-  selectedFile: File | null = null; // Khởi tạo với giá trị null file 
 
-  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router){} 
+
+  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router,private notificationService: SweetAlertServiceService){} 
   
   ngOnInit(): void {
     this.loadTheLoai();
@@ -54,33 +60,60 @@ loadTacGia(): void {
     }
   )
 }
-  selectedFileName: string | null = null; // ten file
-  onFileSelected(event: any): void {
-    const fileList: FileList = event.target.files; // Lấy danh sách các tệp
-    if (fileList.length > 0) {
-      this.selectedFile= fileList[fileList.length - 1]; // Lấy tệp cuối cùng
-      this.selectedFileName = this.selectedFile.name; // Cập nhật tên tệp
+onFileChange(event: any): void {
+  const selectedFiles = Array.from(event.target.files) as File[];
+
+  this. imagesToUpload = [...this. imagesToUpload, ...selectedFiles]; // Add to existing files
+  this.updatePreviews(selectedFiles); // Generate previews for new files
+}
+
+// Generate image previews
+private updatePreviews(files: File[]): void {
+  files.forEach((file) => {
+    const reader = new FileReader();
+    reader.onload = (e: any) => this.imagePreviews.push(e.target.result); // Store preview URLs
+    reader.readAsDataURL(file);
+  });
+}
+ 
+onSubmit(): void {
+  this.loading = true; 
+  this.sachService.addSach(this.sachService.sach, this.imagesToUpload).subscribe(
+    (response) => {
+      console.log('Book added successfully:', response);
+      this.notificationService.success("Complete", () => {
+        // Any additional action after success
+      });
+      this.goBack(); // Navigate back after success
+    },
+    (error) => {
+      console.error('Error adding book:', error);
+      this.loading = false; // Reset loading state on error
+    },
+    () => {
+      this.loading = false; // Reset loading state on completion
     }
-  }
-  onSubmit(): void {
-      this.sachService.addSach(this.sachService.sach, this.selectedFile ).subscribe(
-        response => {
-          console.log('Sách đã được thêm thành công:', response);
-          alert("Sách đã được thêm thành công");
-          this.router.navigate(['/bookadmin']); 
-        },
-        error => {
-          console.error('Có lỗi xảy ra khi thêm sách:', error);
-          alert("Có lỗi xảy ra khi thêm sách");
-        }
-      );
-    
-    console.log(this.sachService.sach,this.selectedFile)
-  }
+  );
+}
+
+  
 
   goBack(): void {
     this.router.navigate(['/bookadmin']); // Điều hướng về AuthorsAdmin
   }
+  onCheckboxChange(event: any): void {
+    const theLoaiId = String(event.target.value);
+    const isChecked = event.target.checked;
 
+    if (isChecked) {
+      // Add ID to the selected IDs array
+      this. sachService.sach.theLoaiIds.push(theLoaiId);
+    } else {
+      // Remove ID if unchecked
+      this.selectedTheLoaiIds = this.selectedTheLoaiIds.filter(
+        (id) => id !== theLoaiId
+      );
+    }
+  }
   
 }
