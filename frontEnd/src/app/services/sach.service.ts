@@ -21,7 +21,7 @@ export class SachService {
         tenTacGia: '',
         ngaySinh: new Date(), 
         quocGia: '',
-    },
+    }, 
     hinhAnhSach: '', 
     theLoai: { 
         maTheLoai: '',

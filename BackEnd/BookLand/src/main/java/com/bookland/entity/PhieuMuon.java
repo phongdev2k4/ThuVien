@@ -17,7 +17,6 @@ public class PhieuMuon {
 	@Column(name = "MaPM")
 	private int maPM;
 
-
 	@Column(name = "HanTraSach")
 	private Date hanTraSach;
 
@@ -26,11 +25,11 @@ public class PhieuMuon {
 	
 	 @ManyToOne
 	    @JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
-	    private HoiVien hoiVien;
+	private HoiVien hoiVien;
 
 	    @ManyToOne
 	    @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
-	    private NhanVien nhanVien;
+	private NhanVien nhanVien;
 	
 
 }

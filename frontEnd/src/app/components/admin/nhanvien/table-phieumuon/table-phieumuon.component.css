@@ -8,25 +8,35 @@
     background-attachment: fixed;
     font-family: Arial, sans-serif;
 }
-.container-fluid {
-    max-width: 1200px; /* Giới hạn chiều rộng của container */
-    margin: 0 auto; /* Căn giữa container */
+.table {
+    margin-top: 20px;
 }
 
-.iq-card {
-    border-radius: 10px; /* Bo góc cho card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho card */
+h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f9f9f9; /* Màu nền cho các hàng lẻ */
+.btn-sm {
+    margin-right: 5px;
+}
+.iq-card-header {
+    background-color: #7091c4; /* Màu nền xanh dương nổi bật */
+    color: white; /* Màu chữ trắng */
+    padding: 15px; /* Khoảng cách trong để tiêu đề rõ ràng hơn */
+    border-radius: 5px; /* Bo góc nhẹ cho khung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng để nổi bật */
 }
 
-.btn-secondary {
-    background-color: #6c757d; /* Màu nút "Thêm Sách" */
-    border-color: #6c757d; /* Màu viền cho nút "Thêm Sách" */
+.iq-header-title {
+    display: flex;
+    align-items: center;
 }
 
-.btn-danger {
-    margin-top: 15px; /* Tạo khoảng cách trên nút xóa */
+.card-title {
+    font-weight: bold; /* Tăng độ đậm cho tiêu đề */
+    font-size: 1.5rem; /* Tăng kích thước chữ */
+    margin: 0; /* Loại bỏ khoảng trống mặc định */
+    text-transform: uppercase; /* Viết hoa tất cả chữ */
 }

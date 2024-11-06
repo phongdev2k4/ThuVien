@@ -19,7 +19,7 @@ export class TablePhieutraComponent {
 
   phieuTra: any = {
     maPT: '',
-    phieuMuon:{maPM:""},
+    phieuMuon:{maPM:''},
     hoiVien: { maHV: '' },
     nhanVien: { maNV: '' },
     ngayLapPhieuTra: '',

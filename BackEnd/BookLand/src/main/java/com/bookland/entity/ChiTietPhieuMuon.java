@@ -19,5 +19,5 @@ public class ChiTietPhieuMuon {
     @ManyToOne
     @JoinColumn(name = "MaBanSaoSach", referencedColumnName = "MaBanSaoSach")
     private BanSaoSach banSaoSach;
-
+    
 }

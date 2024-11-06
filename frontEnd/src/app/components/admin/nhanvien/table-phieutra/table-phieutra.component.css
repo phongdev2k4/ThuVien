@@ -21,3 +21,22 @@ h3 {
 .btn-sm {
     margin-right: 5px;
 }
+.iq-card-header {
+    background-color: #7091c4; /* Màu nền xanh dương nổi bật */
+    color: white; /* Màu chữ trắng */
+    padding: 15px; /* Khoảng cách trong để tiêu đề rõ ràng hơn */
+    border-radius: 5px; /* Bo góc nhẹ cho khung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng để nổi bật */
+}
+
+.iq-header-title {
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    font-weight: bold; /* Tăng độ đậm cho tiêu đề */
+    font-size: 1.5rem; /* Tăng kích thước chữ */
+    margin: 0; /* Loại bỏ khoảng trống mặc định */
+    text-transform: uppercase; /* Viết hoa tất cả chữ */
+}

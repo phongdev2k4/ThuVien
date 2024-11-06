@@ -7,6 +7,7 @@ import { TableNhanvienComponent } from './table-nhanvien/table-nhanvien.componen
 import { TablePhieumuonComponent } from './table-phieumuon/table-phieumuon.component';
 import { TablePhieuphatComponent } from './table-phieuphat/table-phieuphat.component';
 import { TablePhieutraComponent } from './table-phieutra/table-phieutra.component';
+import { ThongtinphieutraComponent } from './thongtinphieutra/thongtinphieutra.component';
 
 
 
@@ -43,4 +44,8 @@ export const routesNhanvien: Routes = [
         path:'tablePhieuTra',
         component:TablePhieutraComponent
     },
+    {
+        path:'thongtinphieutra',
+        component: ThongtinphieutraComponent
+    }
 ];

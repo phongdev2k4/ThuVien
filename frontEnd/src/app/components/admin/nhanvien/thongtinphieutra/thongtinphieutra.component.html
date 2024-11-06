@@ -1,0 +1,77 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Thông Tin Phiếu Trả</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="iq-card-height">
+                        <div class="row"  >
+                            <div class="col-sm-4">
+                               <span>Mã Phiếu Mượn : </span>
+                            </div>
+                            <div class="col-sm-4">
+                                <span>Mã Hội Viên : </span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span>Mã Nhân Viên : </span>
+                             </div>
+                             <div class="col-sm-4">
+                                <span>Ngày Mượn Sách : </span>
+                             </div>
+                             <div class="col-sm-4">
+                                 <span>Hạn Trả Sách : </span>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <h4>Sách đặt mượn</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên Sách</th>
+                                        <th>Tác Giả</th>
+                                        <th>Hạn Trả Sách</th>
+                                        <th>Hành Động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr *ngFor="let phieuTra of phieuTraList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieuTra.maPT }}</td>
+                                        <td>{{ phieuTra.phieuMuon.maPM }}</td>
+                                        <td>{{ phieuTra.hoiVien.maHV }}</td>
+                                        <td>{{ phieuTra.nhanVien.maNV }}</td>
+                                        <td>{{ phieuTra.ngayLapPhieuTra | date: 'dd/MM/yyyy' }}</td>
+                                        <td>
+                                            <div class="flex align-items-center list-user-action">
+                                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Trả Sách" (click)="">
+                                                    
+                                                </a>
+                                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Xoá" (click)="">
+                                                    
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                    
+                                </tbody>
+                            </table>
+                            <div class="form-group d-flex justify-content-between">
+                                <button type="button" class="btn btn-warning" (click)="goback()">Quay lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

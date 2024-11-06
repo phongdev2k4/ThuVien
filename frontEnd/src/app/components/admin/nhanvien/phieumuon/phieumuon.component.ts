@@ -45,7 +45,7 @@ export class PhieumuonComponent {
   }
 
   goBack() {
-    this.router.navigate(['/tablePhieuMuon']); 
+    this.router.navigate(['/tablePhieuTra']); 
   }
 
   // Hàm xử lý submit form (nếu cần)
