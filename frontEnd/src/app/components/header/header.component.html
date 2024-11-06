@@ -234,6 +234,7 @@
                 <button class="btn btn-danger mt-1" (click)="goToLogin()">Login</button>
               </ng-template>
             </a>
+            
             <div *ngIf="decodedToken?.sub" class="iq-sub-dropdown iq-user-dropdown">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
@@ -289,6 +290,7 @@
                 </div>
               </div>
             </div>
+
           </li>
         </ul>
       </div>

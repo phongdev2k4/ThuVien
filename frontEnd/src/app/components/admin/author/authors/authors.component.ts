@@ -16,6 +16,7 @@ import { TacgiaService } from '../../../../services/tacgia.service';
   styleUrl: './authors.component.css'
 })
 export class AuthorsComponent implements OnInit{
+  
   tacgiaList: any[] = [];
 
   constructor(private tacgiaService: TacgiaService, private router: Router) {}
@@ -40,6 +41,7 @@ export class AuthorsComponent implements OnInit{
     this.tacgiaService.tacGia =tacgiaf; // Sao chép dữ liệu của tác giả vào newTacGia
     this.router.navigateByUrl("/AddAuthorsAdmin"); // Điều hướng về danh sách tác giả
   }
+
   deleteTacGia(maTacGia: string): void {
     if (confirm('Bạn có chắc chắn muốn xóa tác giả này?')) {
       this.tacgiaService.deleteTacGia(maTacGia).subscribe(

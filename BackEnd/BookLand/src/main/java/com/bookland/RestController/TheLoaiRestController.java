@@ -25,6 +25,7 @@ import com.bookland.entity.TheLoai;
 public class TheLoaiRestController {
 	@Autowired
 	TheLoaiService theLoaiService;
+	
 	@GetMapping
 	public ResponseEntity<List<TheLoai>> findAll() {
 		List<TheLoai> theloais = theLoaiService.finAll();

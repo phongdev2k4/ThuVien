@@ -1,5 +1,4 @@
 package com.bookland.entity;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +21,8 @@ import lombok.Setter;
 public class HoiVien {
 	@Id
     @Column(name = "MaHV", length = 30)
-    private String maHV;	 
+    private String maHV;	
+	
     @Column(name = "Email", length = 255, unique = true)
     private String email;
 
@@ -59,8 +59,4 @@ public class HoiVien {
     @OneToMany(mappedBy = "hoiVien")
     private List<PhieuTra> phieuTraList;
     
-    
-   
-    
-  
 }

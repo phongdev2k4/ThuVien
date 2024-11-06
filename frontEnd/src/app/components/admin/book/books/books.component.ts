@@ -16,9 +16,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './books.component.css'
 })
 export class BooksComponent {
+  
   sachList: any[] = [];
 
-  constructor(private sachService:SachService, private router: Router) {}
+  constructor(private sachService:SachService, private router: Router) {
+    
+  }
 
   ngOnInit(): void {
     this.loadSach();
@@ -35,6 +38,7 @@ export class BooksComponent {
       }
     );
   }
+
   editSach(sach: any): void {
     this.sachService.sach =sach; 
     console.log(sach);
@@ -54,4 +58,5 @@ export class BooksComponent {
       );
     }
   }
+
 }

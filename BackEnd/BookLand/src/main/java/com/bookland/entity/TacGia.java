@@ -31,7 +31,7 @@ public class TacGia {
 	private Date ngaySinh;
 
 	@Column(name = "QuocGia",columnDefinition = "nvarchar(150)")
-	 @NotBlank(message = "Quốc gia không được để trống")
+	@NotBlank(message = "Quốc gia không được để trống")
 	private String quocGia;
 	
 	@JsonIgnore

@@ -10,13 +10,13 @@ import { HoiVien } from '../models/hoivien.model';
   
     constructor(private http: HttpClient) {}
     public hoiVien: HoiVien = {  // Sử dụng interface HoiVien
-        maHV: "",
-        hoTen:"",
-       email:"",
-       soDienThoai: "",
-        matKhau: "",
-        diaChi: "",
-        tienNap: 0
+      maHV: "",
+      hoTen:"",
+     email:"",
+     soDienThoai: "",
+      matKhau: "",
+      diaChi: "",
+      tienNap: 0
     };
   
     getHoiVien(): Observable<HoiVien[]> {  // Sử dụng HoiVien[]

@@ -17,7 +17,11 @@ import { TheloaiComponent } from './components/admin/theloai/theloai/theloai.com
 import { AddTheloaiComponent } from './components/admin/theloai/add-theloai/add-theloai.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'trangChu', pathMatch: 'full' },
+    {   
+        path: '',
+        redirectTo: 'trangChu', 
+        pathMatch: 'full'
+     },
 
     {
         path: 'trangChu',

@@ -41,6 +41,7 @@ public class SecurityConfiguration {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			return http.cors(Customizer.withDefaults()).csrf(c -> c.disable())
 					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai").permitAll()
+				    .requestMatchers("/**").permitAll()
 					.requestMatchers("/api/trangChu").authenticated())
 					.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.authenticationProvider(authenticationProvider())
