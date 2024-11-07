@@ -19,12 +19,12 @@
                         <thead>
                             <tr>
                                 <th style="width: 1%;">STT</th>
-                                <th style="width: 12%;">Hình ảnh</th>
+                                <th style="width: 18%;">Hình ảnh</th>
                                 <th style="width: 9%;">Mã Sách</th>
                                 <th style="width: 15%;">Tên sách</th>
                                 <th style="width: 15%;">Thể loại sách</th>
                                 <th style="width: 15%;">Tác giả sách</th>
-                                <th style="width: 18%;">Mô tả sách</th>
+                                <th style="width: 12%;">Mô tả sách</th>
                                 <th style="width: 15%;">Hoạt động</th>
                             </tr>
                         </thead>
@@ -38,7 +38,6 @@
                                                 'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 640w, ' +
                                                 'http://localhost:8080/uploads/images/book/' + sach.hinhAnhSach + ' 1280w'"
                                       sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                      alt="{{ sach.tenSach }}" 
                                       loading="eager">
                                  </td>
                                 <td>{{sach.maSach}}</td>

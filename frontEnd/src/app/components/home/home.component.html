@@ -36,21 +36,16 @@
                 <a href="#pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="las la-file-alt iq-arrow-left"></i><span class="menu-text">Admin Dashboard</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                 <ul id="pages" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                    <li><a routerLink="/DashboardAdmin"><i class="ri-question-answer-line"></i><span class="menu-text">Dashboard</span></a></li>
-
-                   <li>
-                      <a href="#extra-pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-pantone-line"></i><span class="menu-text">Extra Pages</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
-                      <ul id="extra-pages" class="iq-submenu collapse" data-parent="#pages">
-                         <li><a href="pages-invoice.html"><i class="ri-question-answer-line"></i>Invoice</a></li>
-                         <li><a href="pages-comingsoon.html"><i class="ri-mastercard-line"></i>Login</a></li>
-                         <li><a href="pages-faq.html"><i class="ri-compasses-line"></i>Register</a></li>
-                      </ul>
-                   </li>
                 </ul>
              </li>
-             <li><a href="book-page.html"><i class="ri-book-line"></i><span class="menu-text">Yêu Thích</span></a></li>
              <li><a href="book-pdf.html"><i class="ri-book-line"></i><span class="menu-text">Sách PDF</span></a></li>
-             <li><a href="sign-in.html"><i class="ri-book-line"></i><span class="menu-text">Logout</span></a></li>
-
+             <li>
+               <a href="#extra-pages" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-pantone-line"></i><span class="menu-text">Tài khoản</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul id="extra-pages" class="iq-submenu collapse" data-parent="#pages">
+                  <li><a routerLink="../login" ><i class="ri-mastercard-line"></i><span class="menu-text">Login</span></a></li>
+                  <li><a routerLink="../login"><i class="ri-book-line"></i><span class="menu-text">Logout</span></a></li>
+               </ul>
+            </li>
           </ul>
        </nav>
     </div>

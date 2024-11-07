@@ -23,5 +23,141 @@
     border-color: #0056b3;
     color: white; /* Giữ màu chữ trắng khi hover */
 }
-
+/* Tổng quan */
+.iq-top-navbar {
+    background-color: #a19595;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0 1rem;
+  }
+  
+  .iq-navbar-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  .iq-menu-bt, .navbar-breadcrumb, .iq-search-bar, .navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iq-menu-bt {
+    gap: 10px;
+  }
+  
+  /* Navbar Logo */
+  .iq-navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iq-navbar-logo .logo-title {
+    margin-left: 5px;
+  }
+  
+  /* Breadcrumb */
+  .navbar-breadcrumb h5 {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Dropdowns */
+  .iq-dropdown .form-control {
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-top: 15px;
+  }
+  
+  .iq-search-filter .search-menu-opt {
+    margin: 0 10px;
+  }
+  
+  .iq-sub-dropdown .iq-sub-card {
+    padding: 10px 15px;
+  }
+  
+  .iq-sub-dropdown .iq-sub-card:hover {
+    background-color: #a79494;
+    border-radius: 10px;
+  }
+  
+  /* Search bar */
+  .iq-search-bar .searchbox {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .iq-search-bar .search-input {
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #eee9e9;
+  }
+  
+  .iq-search-bar .search-input::placeholder {
+    color: #a5d3db;
+  }
+  
+  .iq-search-bar .search-link i {
+    color: #333;
+    padding-left: 5px;
+  }
+  
+  .iq-search-bar .search-book {
+    display: flex;
+    align-items: center;
+  }
+  
+  .iq-search-bar button {
+    background: none;
+    border: none;
+    color: #888;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  
+  /* Notification, Message, Cart Icons */
+  .navbar-nav .nav-icon {
+    position: relative;
+    padding: 0 10px;
+  }
+  
+  .navbar-nav .nav-icon .dots {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background: red;
+  }
+  
+  /* User Profile Section */
+  .iq-user-dropdown .iq-sub-card {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+  }
+  
+  .iq-user-dropdown .iq-sub-card .media-body {
+    margin-left: 10px;
+  }
+  
+  .iq-user-dropdown .iq-sub-card i {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  /* General Styling */
+  .text-gray {
+    color: #888;
+  }
+  
+  .text-primary {
+    color: #0056b3;
+  }
+  
 
