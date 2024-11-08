@@ -21,7 +21,7 @@ export class AddAuthorComponent {
 
 
   constructor(public tacgiaService: TacgiaService, private router: Router) {}
-  
+
   addTacGia(): void {
     if (this.isFormValid()) {
       this.tacgiaService.addTacGia(this.tacgiaService.tacGia).subscribe(
@@ -65,7 +65,7 @@ export class AddAuthorComponent {
   goBack(): void {
     this.router.navigate(['/AuthorsAdmin']); // Điều hướng về AuthorsAdmin
   }
-  
+
   isFormValid(): boolean {
     return !!this.tacgiaService.tacGia.maTacGia && // Kiểm tra maTacGia không rỗng
            !!this.tacgiaService.tacGia.tenTacGia && // Kiểm tra tenTacGia không rỗng

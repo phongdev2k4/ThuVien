@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { SachService } from '../../../../services/sach.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-books',
@@ -41,10 +41,9 @@ export class BooksComponent {
 
   editSach(sach: any): void {
     this.sachService.sach =sach; 
-    console.log(sach);
     this.router.navigateByUrl("/addBookadmin"); 
   }
-
+  
   deleteSach(maSach: string): void {
     if (confirm('Bạn có chắc chắn muốn xóa sách này?')) {
       this.sachService.deleteSach(maSach).subscribe(

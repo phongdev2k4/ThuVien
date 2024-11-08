@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { IntergrationService } from '../../services/intergration.service';
 import { LocalStorageService } from '../../services/local-storage.service';
-
 import { CommonModule } from '@angular/common';
 import { SignupRequest } from '../../models/signup-request';
 
@@ -17,7 +16,7 @@ import { SignupRequest } from '../../models/signup-request';
 })
 export class RegisterComponent {
 
-  constructor(private  integrationService: IntergrationService, private storage: LocalStorageService, private router: Router ) { }
+  constructor(private  integrationService: IntergrationService, private storage: LocalStorageService, private router: Router ) {}
 
   request: SignupRequest = new SignupRequest;
   msg: string | undefined;
@@ -59,7 +58,7 @@ export class RegisterComponent {
     }
   }
 
-  oToLogin() {
+  goToLogin() {
     this.router.navigate(['/login']); // Programmatically navigate to the login route
   }
 }

@@ -3,3 +3,4 @@ export interface TheLoai {
     tenTheLoai: string;
     moTa: string;
 }
+

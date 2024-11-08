@@ -1,0 +1,8 @@
+.box-shadow-inner {
+    background-color: #8c9898; /* Màu nền nhẹ hơn nữa */
+    padding: 1px;
+    border-radius: 25px; /* Bo góc */
+    color: white; /* Màu chữ (tùy chọn) */
+    height: 100%;
+   
+}

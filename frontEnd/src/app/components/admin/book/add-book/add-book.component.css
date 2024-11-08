@@ -1,3 +1,4 @@
+
 .content-page {
     justify-content: center;
     align-items: center;
@@ -22,7 +23,6 @@
 .iq-card label {
     font-weight: bold;
 }
-
 
 .card-title {
     text-align: center; /* Căn giữa theo chiều ngang */

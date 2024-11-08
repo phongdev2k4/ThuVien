@@ -28,10 +28,12 @@ export const routes: Routes = [
         component: HomeComponent,
        
     },
+
     {
         path:'chitiet',
         component:ChitietComponent
     },
+
     { 
         path: 'login', 
         component: LoginComponent
@@ -61,6 +63,7 @@ export const routes: Routes = [
     component:AddBookComponent
 },
 {
+
     path:'AuthorsAdmin',
     component:AuthorsComponent
 },
@@ -89,4 +92,5 @@ export const routes: Routes = [
     path:'AdminAddTheloai',
     component:AddTheloaiComponent
 },
-]
+];
+

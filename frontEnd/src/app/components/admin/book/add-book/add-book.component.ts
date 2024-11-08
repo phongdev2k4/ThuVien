@@ -21,30 +21,17 @@ import { TacgiaService } from '../../../../services/tacgia.service';
   styleUrl: './add-book.component.css'
 })
 export class AddBookComponent implements OnInit {
-   
+  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router){} 
   theloaiList: any[] = [];
   tacgiaList: any[] = [];
-
-  selectedFile: File | null = null; // Khởi tạo với giá trị null file 
-
-  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router){} 
   
   ngOnInit(): void {
     this.loadTheLoai();
     this.loadTacGia();
+    
  }
 
- loadTheLoai(): void {
-  this.theloaiService.getTheLoai().subscribe(
-    data => {
-      this.theloaiList= data;
-    },
-    error => {
-      console.error('Có lỗi xảy ra khi gọi API:', error);
-    }
-  );
-}
-loadTacGia(): void {
+ loadTacGia(): void {
   this.tacgiaService.getTacGia().subscribe(
     data => {
       this.tacgiaList = data;
@@ -54,19 +41,38 @@ loadTacGia(): void {
     }
   )
 }
+loadTheLoai(): void {
+  this.theloaiService.getTheLoai().subscribe(
+    data => {
+      this.theloaiList= data;
+    },
+    error => {
+      console.error('Có lỗi xảy ra khi gọi API:', error);
+    }
+  );
+}
+
+  selectedFile: File | null = null; // Khởi tạo với giá trị null file 
   selectedFileName: string | null = null; // ten file
   onFileSelected(event: any): void {
-    const fileList: FileList = event.target.files; // Lấy danh sách các tệp
-    if (fileList.length > 0) {
-      this.selectedFile= fileList[fileList.length - 1]; // Lấy tệp cuối cùng
-      this.selectedFileName = this.selectedFile.name; // Cập nhật tên tệp
-    }
+  const fileList: FileList = event.target.files; // Lấy danh sách các tệp
+  if (fileList.length > 0) {
+    this.selectedFile= fileList[fileList.length - 1]; // Lấy tệp cuối cùng
+    this.selectedFileName = this.selectedFile.name; // Cập nhật tên tệp
   }
-  onSubmit(): void {
+}
+ goBack(): void {
+  this.router.navigate(['/bookadmin']); // Điều hướng về AuthorsAdmin
+}
+isChecked(maTheLoai: string): boolean {
+  return this.sachService.sach.theLoais.some(tl => tl.maTheLoai === maTheLoai);
+}
+    onSubmit(): void {
       this.sachService.addSach(this.sachService.sach, this.selectedFile ).subscribe(
         response => {
           console.log('Sách đã được thêm thành công:', response);
           alert("Sách đã được thêm thành công");
+          console.log(this.sachService.sach.theLoais)
           this.router.navigate(['/bookadmin']); 
         },
         error => {
@@ -76,11 +82,15 @@ loadTacGia(): void {
       );
     
     console.log(this.sachService.sach,this.selectedFile)
+  }  
+  onTheLoaiChange(maTheLoai: string) {
+    const index = this.sachService.sach.theLoais.findIndex(tl => tl.maTheLoai === maTheLoai);
+    if (index === -1) {
+      // Nếu thể loại chưa có trong danh sách, thêm vào
+      this.sachService.sach.theLoais.push({ maTheLoai });
+    } else {
+      // Nếu thể loại đã có trong danh sách, xóa khỏi danh sách
+      this.sachService.sach.theLoais.splice(index, 1);
+    }
   }
-  
-  goBack(): void {
-    this.router.navigate(['/bookadmin']); // Điều hướng về AuthorsAdmin
-  }
- 
-  
 }

@@ -23,13 +23,12 @@ public class PhieuMuon {
 	@Column(name = "NgayLapPhieu")
 	private Date ngayLapPhieu;
 	
-	 @ManyToOne
-	    @JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
+	@ManyToOne
+	@JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
 	private HoiVien hoiVien;
 
-	    @ManyToOne
-	    @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
+	@ManyToOne
+	@JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
 	private NhanVien nhanVien;
-	
 
 }

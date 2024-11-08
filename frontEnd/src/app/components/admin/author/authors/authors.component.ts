@@ -16,7 +16,7 @@ import { TacgiaService } from '../../../../services/tacgia.service';
   styleUrl: './authors.component.css'
 })
 export class AuthorsComponent implements OnInit{
-  
+
   tacgiaList: any[] = [];
 
   constructor(private tacgiaService: TacgiaService, private router: Router) {}

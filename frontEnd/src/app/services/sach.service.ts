@@ -3,53 +3,67 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sach } from '../models/sach.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class SachService {
+
   private apiUrl = 'http://localhost:8080/rest/sach';
-
+  
   constructor(private http: HttpClient) {}
-
-  public sach: Sach = { 
-    maSach: '', 
-    tenSach: '', 
-    nxb: '', 
-    namXB: 0, 
-    tacGia: { 
-        maTacGia: '',
-        tenTacGia: '',
-        ngaySinh: new Date(), 
-        quocGia: '',
-    }, 
-    hinhAnhSach: '', 
-    theLoai: { 
-        maTheLoai: '',
-        tenTheLoai: '',
+  public sach = {
+    maSach: '', // Mã sách
+    tenSach: '', // Tên sách
+    nxb: '', // Nhà xuất bản
+    namXB: 0, // Năm xuất bản
+    tacGia: {
+        maTacGia: '', // Mã tác giả
+        tenTacGia: '', // Tên tác giả
+        ngaySinh: new Date(), // Ngày sinh
+        quocGia: '', // Quốc gia
     },
-    moTa: '',
-  };
+    hinhAnhSach: '', // Hình ảnh sách
+    moTa: '', // Mô tả sách
+    theLoais: [
+      {
+        maTheLoai:''
+      }
+    ], 
+};  
 
-  // Phương thức thêm sách
-  addSach(sach: Sach, file: File | null): Observable<any> {
-    const formData = new FormData();
-    formData.append('sach', JSON.stringify(sach));
+addSach(sach: any, file: File | null): Observable<any> {
+  const formData = new FormData();
+  formData.append('sach', JSON.stringify(sach));
 
-    // Chỉ thêm file vào formData nếu nó không phải là null
-    if (file) {
+  // Chỉ thêm file vào formData nếu nó không phải là null
+  if (file) {
       formData.append('file', file);
-    }
-
-    return this.http.post(this.apiUrl, formData);
   }
+  return this.http.post(this.apiUrl+'/sachdto', formData);
+}
 
-  // Phương thức tìm tất cả sách
-  findAll(): Observable<Sach[]> {
-    return this.http.get<Sach[]>(this.apiUrl);
+  findAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl+'/sachdto');
   }
-
-  // Phương thức xóa sách theo mã
   deleteSach(maSach: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${maSach}`);
+    return this.http.delete(`${this.apiUrl+'/sachdto'}/${maSach}`);
+  }
+  resetSach(): void{
+    this.sach = {
+      maSach: '', // Mã sách
+      tenSach: '', // Tên sách
+      nxb: '', // Nhà xuất bản
+      namXB: 0, // Năm xuất bản
+      tacGia: {
+          maTacGia: '', // Mã tác giả
+          tenTacGia: '', // Tên tác giả
+          ngaySinh: new Date(), // Ngày sinh
+          quocGia: '', // Quốc gia
+      },
+      hinhAnhSach: '', // Hình ảnh sách
+      moTa: '', // Mô tả sách
+      theLoais: [] 
+  };
   }
 }

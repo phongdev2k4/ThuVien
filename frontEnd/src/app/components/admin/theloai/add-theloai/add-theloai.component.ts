@@ -40,7 +40,7 @@ export class AddTheloaiComponent {
         }
       );
   }
-goBack(): void {
-  this.router.navigate(['/AdminListTheloai']); 
-}
+  goBack(): void {
+      this.router.navigate(['/AdminListTheloai']); 
+  }
 }

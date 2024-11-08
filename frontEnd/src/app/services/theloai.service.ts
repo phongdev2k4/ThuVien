@@ -10,13 +10,12 @@ export class TheloaiService {
   private apiUrl = 'http://localhost:8080/rest/theloai';
 
   constructor(private http: HttpClient) {}
-
+  
   public theLoai: TheLoai = { 
     maTheLoai:"",
     tenTheLoai:"",
     moTa:""
   };
-  
   getTheLoai(): Observable<TheLoai[]> {  
     return this.http.get<TheLoai[]>(this.apiUrl);
   }

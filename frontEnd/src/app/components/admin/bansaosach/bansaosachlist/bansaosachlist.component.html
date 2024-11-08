@@ -1,0 +1,76 @@
+<app-aside-admin></app-aside-admin>
+ <!-- Page Content  -->
+ <div id="content-page" class="content-page">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-sm-12">
+             <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                   <div class="iq-header-title">
+                      <h4 class="card-title">Danh sách bản sao sách</h4>
+                   </div>
+                   <div class="iq-card-header-toolbar d-flex align-items-center">
+                      <a routerLink="../AddBanSaoSach" class="btn btn-primary">Thêm bản sao sách</a>
+                   </div>
+                </div>
+                <div class="iq-card-body">
+                   <div class="table-responsive">
+                      <table class="data-tables table table-striped table-bordered" style="width:100%">
+                         <thead>
+                            <tr>
+                               <th style="width: 3%;">STT</th>
+                               <th style="width: 5%;">Mã BSS</th>
+                               <th style="width: 10%;">Ảnh sách</th>
+                               <th style="width: 15%;"  class="text-center">Mã vạch</th>
+                               <th style="width: 7%;">Mã Sách</th> 
+                               <th style="width: 10%;">Tên sách</th>
+                               <th style="width: 7%;">Trạng Thái bảo quản</th>
+                               <th style="width: 7%;">Trạng Thái mượn</th>
+                               <th style="width: 5%;">Mã Kho</th>
+                               <th style="width: 10%;">Hoạt động</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                           <tr *ngFor="let bansaosachf of bansaosachList;let i = index">
+                              <td>{{i+1}}</td>
+                              <td>{{ bansaosachf.maBanSaoSach}}</td>
+                              <td>
+                                 <img class="img-fluid rounded" 
+                                 [src]="'http://localhost:8080/uploads/images/book/' + bansaosachf.sach.hinhAnhSach"
+                                 [srcset]="'http://localhost:8080/uploads/images/book/' + bansaosachf.sach.hinhAnhSach + ' 1920w, ' +
+                                           'http://localhost:8080/uploads/images/book/' + bansaosachf.sach.hinhAnhSach + ' 640w, ' +
+                                           'http://localhost:8080/uploads/images/book/' + bansaosachf.sach.hinhAnhSach + ' 1280w'"
+                                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                 alt="{{ bansaosachf.sach.hinhAnhSach }}" 
+                                 loading="eager"></td>
+                              <td>
+                                    <img class="img-fluid rounded" 
+                                    [src]="'http://localhost:8080/uploads/images/BarCodeBook/' + bansaosachf.hinhAnhMaVach"
+                                    [srcset]="'http://localhost:8080/uploads/images/BarCodeBook/' + bansaosachf.hinhAnhMaVach + ' 1920w, ' +
+                                              'http://localhost:8080/uploads/images/BarCodeBook/' + bansaosachf.hinhAnhMaVach + ' 640w, ' +
+                                              'http://localhost:8080/uploads/images/BarCodeBook/' + bansaosachf.hinhAnhMaVach + ' 1280w'"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                    alt="{{ bansaosachf.hinhAnhMaVach }}" 
+                                 loading="eager"></td>   
+                              <td>{{ bansaosachf.sach.maSach}}</td>
+                              <td>{{ bansaosachf.sach.tenSach}}</td>
+                              <td>{{ bansaosachf.trangThaiBaoQuan}}</td>
+                              <td>{{ bansaosachf.trangThaiMuon}}</td>
+                              <td>{{ bansaosachf.kho.maKho}}</td>
+                              <td>
+                                 <div class="flex align-items-center list-user-action">
+                                    <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editBanSaoSach(bansaosachf)"><i class="ri-pencil-line"></i></a>
+                                    <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá"  (click)="deleteBanSaoSach(bansaosachf.maBanSaoSach)"><i class="ri-delete-bin-line"></i></a>
+                                 </div>
+                              </td>
+                              </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+

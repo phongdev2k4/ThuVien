@@ -51,6 +51,7 @@ public class HoiVien {
     @JsonIgnore 
     @OneToMany(mappedBy = "hoiVien",cascade = CascadeType.ALL)
     private List<PhieuMuon> phieuMuonList;
+    
     @JsonIgnore 
     @OneToMany(mappedBy = "hoiVien")
     private List<PhieuPhat> phieuPhatList;
@@ -58,5 +59,5 @@ public class HoiVien {
     @JsonIgnore 
     @OneToMany(mappedBy = "hoiVien")
     private List<PhieuTra> phieuTraList;
-    
+
 }

@@ -1,11 +1,7 @@
 package com.bookland.entity;
 
 import java.util.List;
-
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaiKhoan {
-	
+
     @Id
     @Column(name = "UserName", length = 30)
     private String userName;
