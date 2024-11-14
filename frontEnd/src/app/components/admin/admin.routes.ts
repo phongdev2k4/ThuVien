@@ -17,6 +17,9 @@ import { KholistComponent } from './kho/kholist/kholist.component';
 import { AddkhoComponent } from './kho/addkho/addkho.component';
 import { UpdateKhoComponent } from './kho/update-kho/update-kho.component';
 import { BarcodeScannerComponent } from './testbarcode/barcode-scanner/barcode-scanner.component';
+import { NhanvienComponent } from './nhanviens/nhanvien/nhanvien.component';
+import { AddNhanvienComponent } from './nhanviens/add-nhanvien/add-nhanvien.component';
+import { UpdateNhanvienComponent } from './nhanviens/update-nhanvien/update-nhanvien.component';
 
 
 export const routesAdmin: Routes = [
@@ -92,5 +95,17 @@ export const routesAdmin: Routes = [
     {
         path:'testBarcode',
         component:BarcodeScannerComponent
+    },
+    {
+        path:'quanlynhanvien',
+        component:NhanvienComponent
+    },
+    {
+        path:'addNhanVien',
+        component:AddNhanvienComponent
+    },
+    {
+        path:'updateNhanVien',
+        component:UpdateNhanvienComponent
     },
 ];

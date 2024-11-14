@@ -14,6 +14,7 @@ import lombok.Data;
 public class ChucVu {
 	@Id
 	private String id;
+	@Column(name = "tenChucVu", columnDefinition = "nvarchar(255)")
 	private String tenChucVu;
 	@JsonIgnore
 	@OneToMany(mappedBy = "chucVu")

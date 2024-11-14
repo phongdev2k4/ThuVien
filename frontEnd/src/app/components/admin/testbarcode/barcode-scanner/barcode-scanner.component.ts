@@ -25,8 +25,8 @@ export class BarcodeScannerComponent implements OnInit{
 
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>; // Tham chiếu đến phần tử video
   ngOnInit() {
-    // this.getCurrentLocation();
-    this.getWeatherData(10.242983,105.635677);
+    this.getCurrentLocation();
+    // this.getWeatherData(10.242983,105.635677);
   }
   BanSaoList: any[] = [];
    

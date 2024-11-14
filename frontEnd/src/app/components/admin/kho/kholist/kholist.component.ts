@@ -18,6 +18,22 @@ import { KhoService } from '../../../../services/kho.service';
 export class KholistComponent implements OnInit{
   constructor(private khoService:KhoService, private router: Router) {}
   KhoList: any[] = [];
+  public nhanVien = {
+    maNV: '',
+    email: '',
+    hoTen: '',
+    soDienThoai: '',
+    gioiTinh: '',
+    diaChi: '',
+    ngaySinh: '',
+    tinhTrang: '',
+    hinhAnhNV: '',
+    taiKhoanNV: {
+      userName: '',
+      password: '',
+      authorities: [] 
+    }
+  };
   ngOnInit(): void {
     this.loadListKho();
   }

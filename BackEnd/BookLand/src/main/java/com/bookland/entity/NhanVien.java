@@ -27,9 +27,6 @@ public class NhanVien {
     @Column(name = "Email", length = 255, unique = true)
     private String email;
 
-    @Column(name = "MatKhau", length = 100, nullable = false)
-    private String matKhau;
-
     @Column(name = "HoTen", columnDefinition = "nvarchar(150)")
     private String hoTen;
 

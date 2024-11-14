@@ -82,6 +82,7 @@ public class SachServiceLmpl implements SachService {
 		sach.setNamXB(sachDto.getNamXB());
 		sach.setTacGia(sachDto.getTacGia());
 		sach.setMoTa(sachDto.getMoTa());
+
 		// Xử lý lưu hình ảnh
 		if (file != null && !file.isEmpty()) {
 			String nameImg;
