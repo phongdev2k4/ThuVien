@@ -108,9 +108,10 @@ onSubmit(): void {
     if (isChecked) {
       // Add ID to the selected IDs array
       this. sachService.sach.theLoaiIds.push(theLoaiId);
+      console.log()
     } else {
       // Remove ID if unchecked
-      this.selectedTheLoaiIds = this.selectedTheLoaiIds.filter(
+      this. sachService.sach.theLoaiIds = this. sachService.sach.theLoaiIds.filter(
         (id) => id !== theLoaiId
       );
     }

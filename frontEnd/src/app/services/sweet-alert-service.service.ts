@@ -33,4 +33,13 @@ export class SweetAlertServiceService {
       confirmButtonText: 'OK',
     });
   }
+  confirm(message: string): Promise<boolean> {
+    return Swal.fire({
+      title: message,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => result.isConfirmed);
+  }
 }

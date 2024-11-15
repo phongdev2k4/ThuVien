@@ -38,13 +38,13 @@ public class SachRestController {
 		List<addBookResponse> sachs = sachService.finAll();
 		return ResponseEntity.ok(sachs); // 200 OK
 	}
+	  @GetMapping("/searchByName")
+	    public List<addBookResponse> getBookDetailsByName(@RequestParam("tenSach") String tenSach123) {
+	    	System.out.println(tenSach123);
+	        return sachService.findBookDetailsByName(tenSach123);
+	    }
 
-//	@PostMapping
-//	public ResponseEntity<addBookResponse> addSach(@RequestBody addBookRequest request) throws IOException {
-//		addBookResponse sach = sachService.create(request); // Delegate to service layer
-//		return ResponseEntity.ok(sach);
-//
-//	}
+
 	  @PostMapping(consumes = "multipart/form-data")
 	    public ResponseEntity<addBookResponse> addSach(
 	            @RequestPart("book") addBookRequest request,  

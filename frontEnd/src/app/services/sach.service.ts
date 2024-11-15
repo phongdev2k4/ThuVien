@@ -38,4 +38,7 @@ export class SachService {
   deleteSach(maSach: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${maSach}`);
   }
+  findBooksByName(name: string): Observable<AddBookRes[]> {
+    return this.http.get<AddBookRes[]>(`${this.apiUrl}/searchByName?tenSach=${encodeURIComponent(name)}`);
+  }
 }

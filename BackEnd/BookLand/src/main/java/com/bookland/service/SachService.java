@@ -15,4 +15,10 @@ public interface SachService {
 	public addBookResponse create(addBookRequest request,MultipartFile[] files);
 
 	public void delete(String masach);
+
+	public List<Sach> findAllBooks();
+
+	public List<addBookResponse> findBookDetailsByName(String tenSach);
+
+	
 }

@@ -66,16 +66,14 @@ public class SachServiceLmpl implements SachService{
 	}
 	   private addBookResponse mapToAddBookResponse(Object[] row) {
 	        String maSach = (String) row[0];
-	        String ImageUrl = (String) row[1];
-	        String tenSach = (String) row[2];
-	        String tenTheLoaiStr = (String) row[3];  // Comma-separated genres
+	        String tenSach = (String) row[2]; // Comma-separated genres
 	        String tenTacGia = (String) row[4];
 	        String moTa = (String) row[5];
 	        
 
 	        // Convert the comma-separated string to a List<String>
-	        List<String> tenTheLoai = Arrays.asList(tenTheLoaiStr.split(", "));
-	        List<String> Images = Arrays.asList(ImageUrl.split(", "));
+	        List<String> Images = Arrays.asList(((String) row[1]).split(", "));
+	        List<String> tenTheLoai = Arrays.asList(((String) row[3]).split(", "));
 
 	        return new addBookResponse(
 	            maSach,Images , tenSach,tenTheLoai, tenTacGia, moTa
@@ -163,5 +161,19 @@ public class SachServiceLmpl implements SachService{
 		response.setImageUrl(UrlImage);
 		return response;
 	}
+	@Override
+	public List<Sach> findAllBooks() {
+		return sachDAO.findAll();
+	}
+	@Override
+	public List<addBookResponse> findBookDetailsByName(String tenSach) {
+		 List<Object[]> results = sachDAO.findBookDetailsByName(tenSach);
+	        return results.stream()
+	            .map(this::mapToAddBookResponse)
+	            .collect(Collectors.toList());
+		
+
+	}
+	
 
 }

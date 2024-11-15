@@ -17,6 +17,16 @@ export class LocalStorageService {
   remove(key: string) {
     localStorage.removeItem(key);
   }
+  setIdUser(key:string){
+    localStorage.setItem('idUser',key);
+  }
+  getIdUser(): string {
+    // Retrieve the idUser from localStorage
+    const idUser = localStorage.getItem('idUser');
+    
+    // If it's a string, return it directly, or return an empty string if not found
+    return idUser ? idUser : '';
+  }
   public setRoles(roles: string[]): void {
     localStorage.setItem('roles', JSON.stringify(roles));
   }

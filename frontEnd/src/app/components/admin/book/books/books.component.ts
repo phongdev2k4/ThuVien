@@ -22,6 +22,7 @@ export class BooksComponent {
   constructor(private sachService:SachService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log( "wtf " + this.sachList)
     this.loadSach();
   }
 
@@ -29,6 +30,7 @@ export class BooksComponent {
     this.sachService.findAll().subscribe(
       (data: any[]) => {
         this.sachList = data;
+        console.log('Danh sách sách123:' , data)
         console.log('Danh sách sách:', this.sachList);
       },
       error => {

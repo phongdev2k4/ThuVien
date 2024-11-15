@@ -44,6 +44,7 @@ public class HoiVien {
     @Column(name = "TienNap")
     private double tienNap;
     
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "account_id",nullable =false, unique = true)
     private TaiKhoan taiKhoanHV;

@@ -1,0 +1,46 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="container-form">
+            <h3> Phiếu Trả </h3>
+            <form #phieuTraForm="ngForm">
+                <div class="row align-items-center">
+                    <!-- Mã Hội Viên Input Section -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="maHV">Mã Hội Viên</label>
+                            <input class="form-control" id="maHV" name="maHV" [(ngModel)]="maHV"
+                                (input)="onSearch($event)" [ngClass]="{ 'text-red': isSuggestionSelected }" required
+                                placeholder="Mời Nhập" />
+                            <ul *ngIf="suggestions.length > 0" class="suggestion-list">
+                                <li *ngFor="let suggestion of suggestions" (click)="onSelect(suggestion)">
+                                    {{ suggestion.maHV }} - {{ suggestion.hoTen }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Video Scanning Section -->
+                    <div class="col-md-6">
+                        <div class="video-container">
+                            <video #videoElement class="video-display" autoplay></video>
+                            <div class="scan-controls">
+                                <p class="result-display">Trả {{ scannedResults.length }} quyển </p>
+                                <button class="btn btn-primary scan-button" (click)="startScanning()">Quét Mã
+                                    Vạch</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                </div>
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn btn-warning" (click)="checkAndProcessPhieuTra('ps71337','000000000130')">Quay lại</button>
+                    <button type="button" class="btn btn-danger btn-block">Báo Lỗi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

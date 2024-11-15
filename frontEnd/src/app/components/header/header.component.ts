@@ -20,12 +20,15 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.authService.decodedToken$.subscribe((token) => {
-      this.decodedToken = token; // Update the token when it changes
+      this.decodedToken = token;
+      this.storage.setIdUser(  this.decodedToken.sub);
+       // Update the token when it changes
     });
   }
 
   signOut(){
     this.storage.remove('auth-key');
+    this.storage.clear();
     this.decodedToken = null; 
     this.router.navigateByUrl('login')
   }
