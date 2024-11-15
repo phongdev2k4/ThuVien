@@ -21,7 +21,7 @@ import {
   PDF417Reader_default,
   QRCodeReader_default
 } from "./chunk-AKB7HHIX.js";
-import "./chunk-WDMUDEB6.js";
+import "./chunk-EIB7IA3J.js";
 
 // node_modules/@zxing/browser/esm/common/HTMLCanvasElementLuminanceSource.js
 var __extends = /* @__PURE__ */ function() {

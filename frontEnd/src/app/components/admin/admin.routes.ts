@@ -20,6 +20,8 @@ import { BarcodeScannerComponent } from './testbarcode/barcode-scanner/barcode-s
 import { NhanvienComponent } from './nhanviens/nhanvien/nhanvien.component';
 import { AddNhanvienComponent } from './nhanviens/add-nhanvien/add-nhanvien.component';
 import { UpdateNhanvienComponent } from './nhanviens/update-nhanvien/update-nhanvien.component';
+import { VnpayThanhcongComponent } from './ThongBao/vnpay-thanhcong/vnpay-thanhcong.component';
+import { VnpayThatbaiComponent } from './ThongBao/vnpay-thatbai/vnpay-thatbai.component';
 
 
 export const routesAdmin: Routes = [
@@ -107,5 +109,13 @@ export const routesAdmin: Routes = [
     {
         path:'updateNhanVien',
         component:UpdateNhanvienComponent
+    },
+
+    { path: 'paymenSuccess',
+     component: VnpayThanhcongComponent
+    },
+
+    { path: 'paymenFailure',
+     component: VnpayThatbaiComponent  
     },
 ];
