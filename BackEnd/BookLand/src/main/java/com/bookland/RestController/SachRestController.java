@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bookland.service.SachService;
+import com.bookland.service.sachHinhAnhService;
 import com.bookland.dto.addBookRequest;
 import com.bookland.dto.addBookResponse;
 import com.bookland.entity.*;
@@ -32,6 +33,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SachRestController {
 	@Autowired
 	SachService sachService;
+	@Autowired
+	sachHinhAnhService imageBookService;
 
 	@GetMapping
 	public ResponseEntity<List<addBookResponse>> findAll() {
@@ -59,5 +62,9 @@ public class SachRestController {
 		sachService.delete(masach);
 		return ResponseEntity.noContent().build(); // 204 No Content
 	}
+	  @GetMapping("/cover")
+	    public List<hinhAnhSach> getCoverImages() {
+	        return imageBookService.getCoverImages();
+	    }
 	
 }

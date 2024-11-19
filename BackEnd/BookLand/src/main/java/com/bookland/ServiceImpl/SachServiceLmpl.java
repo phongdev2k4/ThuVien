@@ -76,7 +76,7 @@ public class SachServiceLmpl implements SachService{
 	        List<String> tenTheLoai = Arrays.asList(((String) row[3]).split(", "));
 
 	        return new addBookResponse(
-	            maSach,Images , tenSach,tenTheLoai, tenTacGia, moTa
+	            maSach,Images ,tenSach,tenTheLoai, tenTacGia, moTa
 	        );
 	    }
 
@@ -132,21 +132,46 @@ public class SachServiceLmpl implements SachService{
 //		/////>>>>them hinh anh vao database + cloudinary 
 		List<String> UrlImage  = new ArrayList<>();
 		  List<String> failedUploads = new ArrayList<>();
-	        for (MultipartFile multipartFile : files) {
-	            try {
-	                Map result = cloudinaryService.upload(multipartFile);
-	                hinhAnhSach image = new hinhAnhSach(
-	                        (String) result.get("original_filename"),
-	                        (String) result.get("url"),
-	                        (String) result.get("public_id"),
-	                        s
-	                );
-	                imgService.save(image);  // Save image metadata to the database
-	                UrlImage.add(image.getImageUrl());
-	            } catch (Exception e) {
-	                failedUploads.add(multipartFile.getOriginalFilename());
-	            }
-	        }
+		  for (int i = 0; i < files.length; i++) {
+			    MultipartFile multipartFile = files[i];
+			    try {
+			        // Upload the image to Cloudinary
+			        Map result = cloudinaryService.upload(multipartFile);
+
+			        // Determine the image type based on its position
+			        String imageType;
+			        switch (i) {
+			            case 0:
+			                imageType = "COVER";
+			                break;
+			            case 1:
+			                imageType = "BACKSIDE";
+			                break;
+			            case 2:
+			                imageType = "FRONTSIDE";
+			                break;
+			            default:
+			                imageType = "OTHER";
+			                break;
+			        }
+
+			        // Create the HinhAnhSach entity
+			        hinhAnhSach image = new hinhAnhSach(
+			            (String) result.get("original_filename"),
+			            (String) result.get("url"),
+			            (String) result.get("public_id"),
+			            s // The associated Sach entity
+			        );
+			        image.setImageType(imageType); // Set the image type
+
+			        // Save the image metadata to the database
+			        imgService.save(image);
+			        UrlImage.add(image.getImageUrl());
+			    } catch (Exception e) {
+			        failedUploads.add(multipartFile.getOriginalFilename());
+			    }
+			}
+
 
 //	       
 		

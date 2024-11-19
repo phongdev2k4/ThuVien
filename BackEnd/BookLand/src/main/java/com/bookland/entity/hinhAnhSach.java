@@ -28,6 +28,9 @@ public class hinhAnhSach {
 	private String name;
 	private String imageUrl;
 	private String imageId;
+	// COVER, BACKSIDE, FRONTSIDE
+	private String imageType;
+
 
 	public hinhAnhSach(String name, String imageUrl, String imageId,Sach sach) {
 		this.name = name;

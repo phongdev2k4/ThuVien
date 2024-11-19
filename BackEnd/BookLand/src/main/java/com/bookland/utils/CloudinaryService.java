@@ -35,6 +35,14 @@ public class CloudinaryService {
         return result;
     }
 
+    public Map upload2(File file) throws IOException {
+        Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        if (!Files.deleteIfExists(file.toPath())) {
+            throw new IOException("Failed to delete temporary file: " + file.getAbsolutePath());
+        }
+        return result;
+    }
+
     public Map delete(String id) throws IOException {
         return cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
     }
