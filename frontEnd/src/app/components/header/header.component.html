@@ -16,13 +16,64 @@
         </div>
       </div>
       <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Trang Chủ</h5>
+        <h5 class="mb-0" style="color: aqua;">Trang Chủ</h5>
       </div>
       <div class="iq-search-bar">
-        <form action="#" class="searchbox">
-          <input type="text" class="text search-input" placeholder="Tìm kiếm sản phẩm...">
-          <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-        </form>
+        <div class="w-100 iq-search-filter">
+          <ul class="list-inline p-0 m-0 row justify-content-center search-menu-options">
+             <li class="search-menu-opt">
+                <div class="iq-dropdown">
+                   <div class="form-group mb-0">
+                      <select class="form-control form-search-control bg-white border-0" id="exampleFormControlSelect1">
+                         <option selected="">NXB</option>
+                         <option>A Books</option>
+                         
+                      </select>
+                   </div>
+                </div>
+             </li>
+             <li class="search-menu-opt">
+                <div class="iq-dropdown">
+                   <div class="form-group mb-0">
+                      <select class="form-control form-search-control bg-white border-0" id="exampleFormControlSelect2">
+                         <option selected="">Thể loại</option>
+                         <option>General</option>
+                         
+                      </select>
+                   </div>
+                </div>
+             </li>
+             <li class="search-menu-opt">
+                <div class="iq-dropdown">
+                   <div class="form-group mb-0">
+                      <select class="form-control form-search-control bg-white border-0" id="exampleFormControlSelect3">
+                         <option selected="">Năm</option>
+                         <option>2015</option>
+                        
+                      </select>
+                   </div>
+                </div>
+             </li>
+             <li class="search-menu-opt">
+                <div class="iq-dropdown">
+                   <div class="form-group mb-0">
+                      <select class="form-control form-search-control bg-white border-0" id="exampleFormControlSelect4">
+                         <option selected="">Tác giả</option>
+                         <option>Milesiy Yor</option>
+                        
+                      </select>
+                   </div>
+                </div>
+             </li>
+             <li class="search-menu-opt">
+                <div class="iq-search-bar search-book d-flex align-items-center">
+                   <form action="#" class="searchbox">
+                      <input type="text" class="text search-input" placeholder="Tìm Kiếm..."   name="searchSach">
+                   </form>
+                </div>
+             </li>
+          </ul>
+       </div>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
@@ -41,7 +92,7 @@
           </li>
           <li class="nav-item nav-icon">
             <a href="#" class="search-toggle iq-waves-effect text-gray rounded">
-              <i class="ri-notification-2-line"></i>
+              <i class="ri-notification-2-line" style="color: blue;"></i>
               <span class="bg-primary dots"></span>
             </a>
             <div class="iq-sub-dropdown">
@@ -105,7 +156,7 @@
           </li>
           <li class="nav-item nav-icon dropdown">
             <a href="#" class="search-toggle iq-waves-effect text-gray rounded">
-              <i class="ri-mail-line"></i>
+              <i class="ri-mail-line" style="color: blue;"></i>
               <span class="bg-primary dots"></span>
             </a>
             <div class="iq-sub-dropdown">
@@ -176,7 +227,7 @@
           </li>
           <li class="nav-item nav-icon dropdown">
             <a href="#" class="search-toggle iq-waves-effect text-gray rounded">
-              <i class="ri-shopping-cart-2-line"></i>
+              <i class="ri-shopping-cart-2-line" style="color: blue;"></i>
               <span class="badge badge-danger count-cart rounded-circle">2</span>
             </a>
             <div class="iq-sub-dropdown">
@@ -220,18 +271,17 @@
           </li>
           <li class="line-height pt-3">
             <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-              <img *ngIf="decodedToken?.sub" src="./assets/images/user/1.jpg" class="img-fluid rounded-circle mr-3"
-                alt="user" />
+             
 
               <div *ngIf="decodedToken?.sub; else loginBlock" class="caption">
-                <h6 class="mb-1 line-height">
-                 {{decodedToken?.sub}}
+                <h6 class="mb-1 line-height " style="color: aqua;">
+                 Welcome {{decodedToken?.sub}}
                 </h6>
                 <p class="mb-0 text-primary">Tài Khoản</p>
               </div>
 
               <ng-template #loginBlock>
-                <button class="btn btn-primary mt-1" (click)="goToLogin()">Login</button>
+                <button class="btn btn-danger mb-4" (click)="goToLogin()">Login</button>
               </ng-template>
             </a>
             <div *ngIf="decodedToken?.sub" class="iq-sub-dropdown iq-user-dropdown">

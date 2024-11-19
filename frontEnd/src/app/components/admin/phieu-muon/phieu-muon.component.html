@@ -26,6 +26,10 @@
                 <label>Ngày tạo:</label>
                 <input type="date" class="form-control" name="namXB" [value]="currentDate" disabled>
               </div>
+              <div class="form-group">
+                <label for="hanTra">Ngày Hạn Trả:</label>
+                <input type="date" class="form-control" [(ngModel)]="hanTra" name="hanTra" required>
+              </div>
             </form>
           </div>
           <!-- ending           -->
@@ -72,7 +76,7 @@
 
               <!-- Button Container -->
               <div class="button-container" style="text-align: right; margin-top: 10px;">
-                <button class="btn btn-success"(click)="finalizeBorrowing()">Hoàn tất</button>
+                <button class="btn btn-success" (click)="finalizeBorrowing()">Hoàn tất</button>
                 <button class="btn btn-secondary">Huỷ</button>
               </div>
 
@@ -125,7 +129,7 @@
               <th style="width: 5%;">Mã Kho</th>
               <th style="width: 10%;">Số lượng còn lại trong kho</th>
               <th style="width: 10%;">Hoạt động</th>
-             
+
             </tr>
           </thead>
           <tbody>

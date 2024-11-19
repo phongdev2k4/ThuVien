@@ -6,16 +6,17 @@
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Danh sách phiếu trả</h4>
+                            <h4 class="card-title">Tìm Kiếm Thông Tin Sách Đã Mượn Theo Người Dùng </h4>
                         </div>
 
                         <div class="search-bar d-flex align-items-center">
-                            <input type="text" class="form-control" placeholder="Nhập mã phiếu" />
-                            <button class="btn btn-primary ml-1 w-50"><a routerLink="../thongtinphieutra" style="color: black;">Tìm Kiếm</a></button>
+                            <input type="text" class="form-control" placeholder="Nhập mã hội viên" [(ngModel)]="maHV" />
+                            <button class="btn btn-primary ml-1 w-50" (click)="searchPhieuTra()">Tìm Kiếm</button>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
                             <a href="LapPhieuTra" class="btn btn-primary">Thêm phiếu trả</a>
                         </div>
+
                     </div>
                     <div class="iq-card-body">
                         <div class="table-responsive">
@@ -23,25 +24,32 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Mã Phiếu Trả</th>
                                         <th>Mã Phiếu Mượn</th>
-                                        <th>Mã Hội Viên</th>
-                                        <th>Mã Nhân Viên</th>
-                                        <th>Ngày Lập Phiếu Trả</th>
-                                        <th>Hành Động</th>
+                                        <th>Tên Sách Muợn </th>
+                                        <th>Ngày Mượn</th>
+                                        <th>Ngày Hẹn Trả</th>
+                                        <th>Mã HV </th>
+                                        <th>Mã NV lập phiếu mượn </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr></tr>
-                                
+                                    <tr *ngFor="let phieuTra of phieuTraList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieuTra.phieuMuon.maPM }}</td>
+                                        <td>{{ phieuTra.banSaoSach.sach.tenSach}}</td>
+                                        <td>{{ phieuTra.phieuMuon.ngayLapPhieu | date: 'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieuTra.phieuMuon.hanTraSach | date: 'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieuTra.phieuMuon.hoiVien.maHV }}</td>
+                                        <td>{{ phieuTra.phieuMuon.nhanVien.maNV }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            
+
                         </div>
                     </div>
+                   
                 </div>
             </div>
         </div>
     </div>
 </div>
-

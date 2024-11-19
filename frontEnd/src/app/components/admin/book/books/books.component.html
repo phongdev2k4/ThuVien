@@ -34,11 +34,13 @@
                               <td>{{ sach.maSach }}</td>
                               <td>
                                  <ng-container *ngFor="let imgUrl of sach.imageUrl">
-                                    <a [href]="imgUrl" target="_blank">
-                                       {{ imgUrl }}
-                                    </a>
-                                    <br /> <!-- To separate the links -->
-                                 </ng-container>
+                                    <!-- Display the image -->
+                                    <img [src]="imgUrl" alt="Image" style="max-width: 100px; margin: 5px;" />
+                                  
+                                    <!-- Link to the full image -->
+                                    <a [href]="imgUrl" target="_blank">View Full</a>
+                                    <br /> <!-- To separate each image block -->
+                                  </ng-container>
                                
                               </td>
                               <td>{{ sach.tenSach }}</td>

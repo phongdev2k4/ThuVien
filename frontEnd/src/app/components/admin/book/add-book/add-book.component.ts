@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import {Router,RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
 import { TheloaiService } from '../../../../services/theloai.service';
@@ -24,20 +24,28 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   styleUrl: './add-book.component.css'
 })
 export class AddBookComponent implements OnInit {
-  imagesToUpload: File[] = []; // Store multiple selected files
-  imagePreviews: string[] = []; // Store preview URLs for selected images
+  // imagesToUpload: File[] = []; // Store multiple selected files
+  // imagePreviews: string[] = []; // Store preview URLs for selected images
   theloaiList: any[] = [];
   tacgiaList: any[] = [];
   selectedTheLoaiIds: string[] = [];
+  imagesToUpload: { [key: number]: File | null } = { 1: null, 2: null, 3: null };
+  imagePreviews: { [key: number]: string | null } = { 1: null, 2: null, 3: null };
   loading: boolean = false; // Loading state
 
 
 
-  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router,private notificationService: SweetAlertServiceService){} 
+  constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router,private notificationService: SweetAlertServiceService,@Inject(PLATFORM_ID) private platformId: Object){} 
   
   ngOnInit(): void {
-    this.loadTheLoai();
-    this.loadTacGia();
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.loadTheLoai();
+      this.loadTacGia();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
  }
 
  loadTheLoai(): void {
@@ -60,25 +68,40 @@ loadTacGia(): void {
     }
   )
 }
-onFileChange(event: any): void {
-  const selectedFiles = Array.from(event.target.files) as File[];
-
-  this. imagesToUpload = [...this. imagesToUpload, ...selectedFiles]; // Add to existing files
-  this.updatePreviews(selectedFiles); // Generate previews for new files
-}
+// onFileChange(event: any): void {
+//   const selectedFiles = Array.from(event.target.files) as File[];
+//   this.imagesToUpload = [...this.imagesToUpload, ...selectedFiles]; // Add to existing files
+//   this.updatePreviews(selectedFiles); // Generate previews for new files
+// }
 
 // Generate image previews
-private updatePreviews(files: File[]): void {
-  files.forEach((file) => {
+// private updatePreviews(files: File[]): void {
+//   files.forEach((file) => {
+//     const reader = new FileReader();
+//     reader.onload = (e: any) => this.imagePreviews.push(e.target.result); // Store preview URLs
+//     reader.readAsDataURL(file);
+//   });
+// }
+   // Handle file selection
+   onFileChange(event: any, fieldNumber: number): void {
+    const file = event.target.files[0]; // Only one file is allowed per field
+    if (file) {
+      this.imagesToUpload[fieldNumber] = file; // Store the file
+      this.updatePreview(file, fieldNumber); // Generate preview
+    }
+  }
+
+  // Generate an  image preview
+  private updatePreview(file: File, fieldNumber: number): void {
     const reader = new FileReader();
-    reader.onload = (e: any) => this.imagePreviews.push(e.target.result); // Store preview URLs
+    reader.onload = (e: any) => (this.imagePreviews[fieldNumber] = e.target.result); // Store preview URL
     reader.readAsDataURL(file);
-  });
-}
- 
+  }
 onSubmit(): void {
   this.loading = true; 
-  this.sachService.addSach(this.sachService.sach, this.imagesToUpload).subscribe(
+  const images: File[] = Object.values(this.imagesToUpload).filter((img): img is File => img !== null);
+  console.log(images); 
+  this.sachService.addSach(this.sachService.sach,images).subscribe(
     (response) => {
       console.log('Book added successfully:', response);
       this.notificationService.success("Complete", () => {
@@ -95,6 +118,7 @@ onSubmit(): void {
     }
   );
 }
+
 
   
 

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
 import { BansaosachService } from '../../../../services/bansaosach.service';
@@ -22,7 +22,7 @@ import { KhoService } from '../../../../services/kho.service';
 export class AddBansaosachComponent implements OnInit{
   SachList: any[] = [];
   khoList: any[] = [];
-  constructor(public bansaosachService: BansaosachService,public sachService: SachService,public khoService: KhoService,private router: Router){} 
+  constructor(public bansaosachService: BansaosachService,public sachService: SachService,public khoService: KhoService,private router: Router,@Inject(PLATFORM_ID) private platformId: Object){} 
   public bansaosach ={
     sach: {
       maSach: "" 
@@ -37,8 +37,14 @@ export class AddBansaosachComponent implements OnInit{
 public soLuong = 1;
 
   ngOnInit(): void {
-    this.loadSach();
-    this.loadKho();
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.loadSach();
+      this.loadKho();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
     
  }
 

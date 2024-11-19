@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { Router,RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-bansaosachlist',
@@ -16,10 +16,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './bansaosachlist.component.css'
 })
 export class BansaosachlistComponent implements OnInit{
-  constructor(private bansaosachService:BansaosachService, private router: Router) {}
+  constructor(private bansaosachService:BansaosachService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object ) {}
   bansaosachList: any[] = [];
   ngOnInit(): void {
-    this.loadBanSaoSach();
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.loadBanSaoSach();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
   }
   loadBanSaoSach(): void {
     this.bansaosachService.findAll().subscribe(

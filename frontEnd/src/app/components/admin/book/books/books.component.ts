@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { SachService } from '../../../../services/sach.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AddBookRes } from '../../../../models/add-book-res';
 
 @Component({
@@ -19,11 +19,17 @@ import { AddBookRes } from '../../../../models/add-book-res';
 export class BooksComponent {
   sachList: AddBookRes[] = [];
 
-  constructor(private sachService:SachService, private router: Router) {}
+  constructor(private sachService:SachService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object  ) {}
 
   ngOnInit(): void {
     console.log( "wtf " + this.sachList)
-    this.loadSach();
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.loadSach();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
   }
 
   loadSach(): void {

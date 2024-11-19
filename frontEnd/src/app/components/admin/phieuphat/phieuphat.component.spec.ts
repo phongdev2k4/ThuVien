@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhieuTraComponent } from './phieu-tra.component';
+import { PhieuphatComponent } from './phieuphat.component';
 
-describe('PhieuTraComponent', () => {
-  let component: PhieuTraComponent;
-  let fixture: ComponentFixture<PhieuTraComponent>;
+describe('PhieuphatComponent', () => {
+  let component: PhieuphatComponent;
+  let fixture: ComponentFixture<PhieuphatComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhieuTraComponent]
+      imports: [PhieuphatComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PhieuTraComponent);
+    fixture = TestBed.createComponent(PhieuphatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -38,7 +38,7 @@ export class PhieuMuonComponent {
   borrowedBooks: any[] = [];
   phieuMuon:PhieuMuon = new PhieuMuon();
   result: string | null = null;
-  
+  hanTra:Date = new Date();
   finalBorrowedBooks: FinalBorrowedBook[] = [];
   private codeReader = new BrowserMultiFormatReader();
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
@@ -148,13 +148,13 @@ export class PhieuMuonComponent {
     nextMonthDate.setMonth(currentDate.getMonth() + 1);
 
     const ngayMuon = currentDate.toISOString().split('T')[0];
-    const hanTra = nextMonthDate.toISOString().split('T')[0];
+    // const hanTra = nextMonthDate.toISOString().split('T')[0];
 
     this.borrowedBooks = this.BanSaoList.map(bansaosachf => {
       return {
         tenSach: bansaosachf.sach.tenSach,
         ngayMuon: ngayMuon,
-        hanTra: hanTra,
+        hanTra: this.hanTra,
         maSach:bansaosachf.maBanSaoSach
       };
     });
@@ -168,8 +168,8 @@ export class PhieuMuonComponent {
     return; // Stop the function if validation fails
   }
     const ngayMuon = new Date(); // Today's date (Date object)
-    const ngayTra = new Date(); // Create a new Date object for "ngayTra"
-    ngayTra.setMonth(ngayTra.getMonth() + 1); 
+// Create a new Date object for "ngayTra"
+
     const tenSachArray = this.borrowedBooks.map(book => book.maSach);
     const maNV = this.storage.getIdUser();
     const finalBook = new FinalBorrowedBook(
@@ -177,7 +177,7 @@ export class PhieuMuonComponent {
       this.searchTerm,
       tenSachArray,
       ngayMuon,
-      ngayTra,
+      this.hanTra,
       maNV
     );
     this.phieuMuonService.postPhieuMuon(finalBook).subscribe({

@@ -1,1 +1,47 @@
-<p>bao-loi-phieu-tra works!</p>
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="container-form">
+            <h3> Tạo Phiếu Phạt </h3>
+            <form #phieuPhatForm="ngForm" (ngSubmit)="onSubmit()">
+                
+                <!-- Mã Hội Viên -->
+                <div class="form-group">
+                    <label for="maHV">Mã Hội Viên</label>
+                    <input class="form-control" id="maHV" name="maHV" [(ngModel)]="phieuPhat.hoiVien.maHV" placeholder="Nhập mã hội viên" required />
+                </div>
+                
+                <!-- Mã Phiếu Trả -->
+                <div class="form-group">
+                    <label for="maPT">Mã Phiếu Trả</label>
+                    <input class="form-control" id="maPT" name="maPT" [(ngModel)]="phieuPhat.phieuTra.maPT" placeholder="Nhập mã phiếu trả" required />
+                </div>
+                
+                <!-- Số Ngày Quá Hạn -->
+                <div class="form-group">
+                    <label for="soNgayQuaHan">Số Ngày Quá Hạn</label>
+                    <input class="form-control" type="number" id="soNgayQuaHan" name="soNgayQuaHan" [(ngModel)]="phieuPhat.soNgayQuaHan" placeholder="Nhập số ngày quá hạn" required />
+                </div>
+                
+                <!-- Tiền Phạt -->
+                <div class="form-group">
+                    <label for="tienPhat">Tiền Phạt</label>
+                    <input class="form-control" type="number" step="0.01" id="tienPhat" name="tienPhat" [(ngModel)]="phieuPhat.tienPhat" placeholder="Nhập số tiền phạt" required />
+                </div>
+                
+                <!-- Mã Nhân Viên -->
+                <div class="form-group">
+                    <label for="maNV">Mã Nhân Viên</label>
+                    <input class="form-control" id="maNV" name="maNV" [(ngModel)]="phieuPhat.nhanVien.maNV" placeholder="Nhập mã nhân viên" required />
+                </div>
+
+                <!-- Nút Submit và Quay lại -->
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu Phiếu Phạt</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>

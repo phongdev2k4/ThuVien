@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError, timeout } from 'rxjs';
 import { Sach } from '../models/sach.model';
 import { AddBookRes } from '../models/add-book-res';
 import { BookDTO } from '../models/book-dto';
@@ -40,5 +40,17 @@ export class SachService {
   }
   findBooksByName(name: string): Observable<AddBookRes[]> {
     return this.http.get<AddBookRes[]>(`${this.apiUrl}/searchByName?tenSach=${encodeURIComponent(name)}`);
+  }
+  // getCoverImages(): Observable<any> {
+  //   return this.http.get<any>(`${this.apiUrl}/cover`);
+  // }
+  getCoverImages(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/cover`).pipe(
+      timeout(5000), // Set a 5-second timeout
+      catchError((error) => {
+        console.error('Error fetching cover images:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

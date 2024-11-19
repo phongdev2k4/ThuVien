@@ -1,0 +1,75 @@
+.content-page {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+.container-form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Nền mờ trắng với độ mờ 80% */
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+    backdrop-filter: blur(5px); /* Làm mờ nền phía sau */
+    margin-bottom: 30px;
+}
+
+h3 {
+    text-align: center; /* Căn giữa theo chiều ngang */
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin: 20px 0; /* Giảm margin-bottom để tạo khoảng cách đồng đều */
+    text-transform: uppercase;
+    border-bottom: 2px solid #007bff;
+    padding: 10px; /* Thêm padding để tạo khoảng cách với nội dung */
+    letter-spacing: 1px;
+    background-color: aqua;
+    display: flex; /* Sử dụng flexbox */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 60px; /* Đặt chiều cao nếu cần */
+    border-radius: 10px;
+}
+
+.form-group label{
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px;       /* Khoảng cách giữa các trường form */
+}
+
+.form-control {
+    width: 100%;               /* Độ rộng tối đa cho input */
+    padding: 10px;             /* Thêm khoảng trống bên trong input */
+    border: 1px solid #ccc;    /* Đường viền nhẹ cho input */
+    border-radius: 5px;        /* Bo góc input */
+}
+
+
+.table {
+    margin-top: 20px;          /* Khoảng cách trên cho bảng */
+}
+.button-row {
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.btn-block {
+    width: 20%;
+}
+
+.btn-sm {
+    font-size: 12px;
+    padding: 5px 10px;
+}

@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-lap-phieu-tra',
   standalone: true,
-  imports: [AsideComponent,CommonModule,FormsModule],
+  imports: [AsideComponent, CommonModule, FormsModule],
   templateUrl: './lap-phieu-tra.component.html',
   styleUrl: './lap-phieu-tra.component.css'
 })
@@ -32,16 +32,16 @@ export class LapPhieuTraComponent {
   maHV: string = '';
   maHV123: string = ''; // The value of the input
   suggestions: any[] = [];
-  isSuggestionSelected: boolean = false; 
+  isSuggestionSelected: boolean = false;
   scannedResults: string[] = [];
-  maNV:string = '';
-  hanTra:Date = new Date();
-  
+  maNV: string = '';
+  hanTra: Date = new Date();
 
-  constructor(private router : Router,private phieuMuonService:PhieuMuonService,public bansaosachService: BansaosachService,private hoiVienService: HoivienService,private phieuTraService : PhieuTraService,private storage:LocalStorageService,private sweetAlertService:SweetAlertServiceService){}
+
+  constructor(private router: Router, private phieuMuonService: PhieuMuonService, public bansaosachService: BansaosachService, private hoiVienService: HoivienService, private phieuTraService: PhieuTraService, private storage: LocalStorageService, private sweetAlertService: SweetAlertServiceService) { }
 
   goBack() {
-    this.router.navigate(['/tablePhieuTra']); 
+    this.router.navigate(['/tablePhieuTra']);
   }
   // startScanning(): void {
   //   this.codeReader.decodeFromVideoDevice(undefined, this.videoElement.nativeElement, (result, err) => {
@@ -68,18 +68,16 @@ export class LapPhieuTraComponent {
           console.error('maHV or result is null.');
           alert('Mã hội viên hoặc mã vạch không hợp lệ.');
         }
-        const returnDate = new Date(); 
-       
+        const returnDate = new Date();
 
-      
       } else if (err && !(err instanceof NotFoundException)) {
         console.error(err); // Handle error if it occurs
       }
     });
   }
- 
-  
-  
+
+
+
 
   stopScanning(): void {
     const stream = this.videoElement.nativeElement.srcObject as MediaStream;
@@ -89,6 +87,13 @@ export class LapPhieuTraComponent {
     }
   }
   checkAndProcessPhieuTra(maHV: string, maVach: string): void {
+    if (this.scannedResults.includes(maVach)) {
+      console.log(`Mã vạch ${maVach} đã được quét.`);
+      alert(`Mã vạch ${maVach} đã được quét. Vui lòng quét mã khác.`);
+      return;
+    // Exit the method if maVach is already scanned
+    }
+  
     this.phieuMuonService.getPhieuMuonByHoiVienId(maHV, maVach).subscribe({
       next: (response) => {
         // Get the due date (hanTraSach) from the response and convert it to a Date object
@@ -96,70 +101,19 @@ export class LapPhieuTraComponent {
           console.error('No data found for the given maNV and maVach.');
           alert('Không tìm thấy dữ liệu cho mã hoi viên hoặc mã vạch này.');
           return; // Exit the method if response is empty
-        }    
-        this.scannedResults.push(maVach); // Save to scanned results
-        const hanTra = new Date(response[0].hanTraSach);
-      
-        console.log(this.scannedResults);
-        
-
-        // Get the current date (return date)
-        const returnDate = new Date();
-        console.log(returnDate);
-  
-        // Check if the book is overdue by comparing the due date with the current date
-        const isOverdue = this.checkIfOverdue(returnDate, hanTra);
-  
-        if (isOverdue) {
-          // If overdue, return true (indicating an overdue book)
-         alert("Sach da het han")
-         this.sweetAlertService.confirm('Sách này đã quá hạn mượn.Bạn có muốn lập phiếu phạt không ?')
-         .then((willAddMore) => {
-           if (willAddMore) {
-             // If user selects "OK," continue scanning
-             this.startScanning();
-           } else {
-             // If user selects "Cancel," process the scanned results
-             this.sweetAlertService.confirm('Bạn có muốn scan thêm sách không ?')
-             .then((willAddMore) => {
-               if (willAddMore) {
-                 // If user selects "OK," continue scanning
-                 this.startScanning();
-               } else {
-                 // If user selects "Cancel," process the scanned results
-                 this.LapPhieuMuon(this.maNV, this.scannedResults);
-                 this.stopScanning();
-                 this.result = '';
-                 this.maHV123= '';
-                 this.maHV= '';
-                 this.scannedResults = [];
-                
-               }
-             });
-            
-           }
-         });
-        } else {
-          // If not overdue, return false (indicating the book is not overdue)
-          alert("sach chua het han")
-          this.sweetAlertService.confirm('Bạn có muốn scan thêm sách không ?')
-          .then((willAddMore) => {
-            if (willAddMore) {
-              // If user selects "OK," continue scanning
-              this.startScanning();
-            } else {
-              // If user selects "Cancel," process the scanned results
-              this.LapPhieuMuon(this.maNV, this.scannedResults);
-              this.stopScanning();
-              this.result = '';
-              this.maHV123= '';
-              this.maHV= '';
-              this.scannedResults = [];
-             
-            }
-          });
-         
         }
+        this.scannedResults.push(maVach); // Save to scanned results
+          this.sweetAlertService.confirm('Bạn có muốn scan thêm sách không ?')
+            .then((willAddMore) => {
+              if (willAddMore) {
+                this.startScanning();
+              } else {
+                // If user selects "Cancel," process the scanned results
+                this.LapPhieuMuon(this.maNV, this.scannedResults);
+               
+
+              }
+            });
       },
       error: (error) => {
         console.error('Error checking PhieuMuon:', error);
@@ -167,22 +121,65 @@ export class LapPhieuTraComponent {
       }
     });
   }
-  
+
   // Helper function to check if the return date is past the due date
   checkIfOverdue(returnDate: Date, hanTra: Date): boolean {
     return returnDate > hanTra;
   }
-  
-  
-  
 
-  
-  
-  LapPhieuMuon(maNV: string, maVach: string[]):void{
+
+
+
+
+
+  LapPhieuMuon(maNV: string, maVach: string[]): void {
     this.phieuTraService.createPhieuTra(maNV, maVach).subscribe({
       next: (response) => {
         console.log('PhieuTra created:', response);
-        this.sweetAlertService.success("Thêm Thành Công")
+        const hanTra = new Date(response.phieuMuon.hanTraSach);
+        const returnDate = new Date(response.ngayLapPhieuTra);
+        const differenceInMilliseconds = returnDate.getTime() - hanTra.getTime();
+        const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+        console.log(this.maHV123)
+         // Check if the book is overdue by comparing the due date with the current date
+         const isOverdue = this.checkIfOverdue(returnDate, hanTra);
+
+         if (isOverdue) {         
+          this.sweetAlertService.confirm('Phiếu này đã quá hạn mượn.Bạn có muốn lập phiếu phạt không ??')
+          .then((willAddMore) => {
+            if (willAddMore) {
+              this.router.navigate(['/PhieuPhat'], {
+                          queryParams: {  
+                            maHV: this.maHV123,
+                            maNV: this.maNV,
+                            maVach: this.result,
+                            ngayQuaHan: differenceInDays,
+                            maPT:response.maPT
+
+                          }
+                        });
+             
+            } else {
+              this.result = '';
+              this.maHV123 = '';
+              this.maHV = '';
+              this.scannedResults = [];
+              this.sweetAlertService.success("Thêm Thành Công");
+            }
+          });
+              
+                
+          
+         }
+         else{
+          this.result = '';
+              this.maHV123 = '';
+              this.maHV = '';
+              this.scannedResults = [];
+              this.sweetAlertService.success("Thêm Thành Công");
+         }
+
+
       },
       error: (error) => {
         console.error('Error creating PhieuTra:', error);
@@ -212,14 +209,14 @@ export class LapPhieuTraComponent {
       this.suggestions = []; // Clear suggestions if input is empty
     }
   }
-  
+
 
   // Method to handle the selection of a suggestion
   onSelect(suggestion: any) {
-    this.maHV =  suggestion.maHV + "-" + suggestion.hoTen ;
-    this.maHV123 = suggestion.maHV ; // Set the selected maHV to the input field
+    this.maHV = suggestion.maHV + "-" + suggestion.hoTen;
+    this.maHV123 = suggestion.maHV; // Set the selected maHV to the input field
     this.suggestions = []; // Clear suggestions after selection
-    this.isSuggestionSelected = true; 
+    this.isSuggestionSelected = true;
   }
 
 

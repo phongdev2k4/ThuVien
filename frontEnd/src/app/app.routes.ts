@@ -22,9 +22,11 @@ import { UpdateKhoComponent } from './components/admin/kho/update-kho/update-kho
 import { BansaosachlistComponent } from './components/admin/bansaosach/bansaosachlist/bansaosachlist.component';
 import { AddBansaosachComponent } from './components/admin/bansaosach/add-bansaosach/add-bansaosach.component';
 import { UpdateBansaosachComponent } from './components/admin/bansaosach/update-bansaosach/update-bansaosach.component';
-import { PhieuTraComponent } from './components/admin/phieu-tra/phieu-tra.component';
+
 import { ListPhieuTraComponent } from './components/admin/phieu-tra/list-phieu-tra/list-phieu-tra.component';
 import { LapPhieuTraComponent } from './components/admin/phieu-tra/lap-phieu-tra/lap-phieu-tra.component';
+import { PhieuphatComponent } from './components/admin/phieuphat/phieuphat.component';
+// import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
 export const routes: Routes = [
@@ -122,10 +124,7 @@ export const routes: Routes = [
     path:'updatebansaosach',
     component:UpdateBansaosachComponent
 },
-{
-    path:'PhieuTra',
-    component:PhieuTraComponent
-},
+
 {
     path:'TablePhieuTra',
     component: ListPhieuTraComponent
@@ -133,6 +132,10 @@ export const routes: Routes = [
 {
     path:'LapPhieuTra',
     component:LapPhieuTraComponent
+},
+{
+    path:'PhieuPhat',
+    component:PhieuphatComponent
 },
 
 
