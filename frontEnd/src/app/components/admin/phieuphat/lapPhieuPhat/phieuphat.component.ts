@@ -31,6 +31,7 @@ export class PhieuphatComponent {
   TongTienPhat: number = 0; // Total fine amount
   TongTienPhatSach: number = 0; // Total fine amount
 
+
   constructor(private router: Router, private route: ActivatedRoute,private phieuPhatService: PhieuPhatService,private phieuTraService: PhieuTraService,@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
@@ -86,6 +87,7 @@ export class PhieuphatComponent {
         return 0; // No fine for other statuses
     }
   }
+  
   
 
   onSubmit(): void {

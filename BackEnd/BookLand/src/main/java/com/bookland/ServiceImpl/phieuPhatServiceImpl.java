@@ -19,9 +19,6 @@ import com.bookland.dao.nhanVienDAO;
 import com.bookland.dao.phieuPhatDAO;
 import com.bookland.dao.phieuTraDAO;
 import com.bookland.dto.phieuPhatDTO;
-import com.bookland.entity.HoiVien;
-import com.bookland.entity.NhanVien;
-import com.bookland.entity.PhieuPhat;
 import com.bookland.entity.*;
 import com.bookland.service.phieuPhatService;
 
@@ -110,5 +107,15 @@ public class phieuPhatServiceImpl implements phieuPhatService {
         }
         return phieuTraList;
     }
+	@Override
+	public List<PhieuPhat> findAll() {
+		// TODO Auto-generated method stub
+		return  ppDao.findAll();
+	}
+	@Override
+	public List<ChiTietPhieuPhat> findAllChiTietSachPhat(Integer maPP) {
+		// TODO Auto-generated method stub
+		return ctppDao.findAllByPhieuPhatId(maPP);
+	}
 
 }

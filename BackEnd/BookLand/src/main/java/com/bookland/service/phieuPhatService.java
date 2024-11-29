@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bookland.dto.phieuPhatDTO;
+import com.bookland.entity.ChiTietPhieuPhat;
 import com.bookland.entity.PhieuPhat;
 import com.bookland.entity.PhieuTra;
 
@@ -14,5 +15,9 @@ public interface phieuPhatService {
 	PhieuPhat create(phieuPhatDTO ppRequest);
 
 	List<PhieuTra> findAllPhieuTraViPham();
+
+	List<PhieuPhat> findAll();
+
+	List<ChiTietPhieuPhat> findAllChiTietSachPhat(Integer maPP);
 
 }

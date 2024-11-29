@@ -14,7 +14,8 @@ import { PhieuTraService } from '../../../../services/phieu-tra.service';
   styleUrl: './table-phieuphat.component.css'
 })
 export class TablePhieuphatComponent {
-  phieuPhatList: any[] = [];  // Danh sách phiếu phạt
+  phieuPhatList: any[] = []; 
+  phieuPhatTableList: any[] = []; // Danh sách phiếu phạt
 
   constructor(private phieuPhatService: PhieuPhatService,private phieuTraService: PhieuTraService,@Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -22,6 +23,7 @@ export class TablePhieuphatComponent {
     if (isPlatformBrowser(this.platformId)) {
       // Only fetch cover images if we are in the browser (not server-side)
       this.getPhieuPhatList();
+      this.loadPhieuPhat()
 
     } else {
       console.log('Not running in the browser, skipping API call');
@@ -112,5 +114,38 @@ export class TablePhieuphatComponent {
     });
     return count;
   }
- 
+  loadPhieuPhat(){
+    this.phieuPhatService.findAll().subscribe(
+      data => {
+        this.phieuPhatTableList = data;
+        console.log(data);
+      },
+      error => {
+        console.error('Có lỗi xảy ra khi gọi API:', error);
+      }
+    );
+  }
+  loadChiTietPhieuPhat(){
+    this.phieuPhatService.findAll().subscribe(
+      data => {
+        this.phieuPhatTableList = data;
+        console.log(data);
+      },
+      error => {
+        console.error('Có lỗi xảy ra khi gọi API:', error);
+      }
+    );
+  }
+  selectedPhieuTra: any = null;
+  openModal(phieuPhat: any): void {
+    this.phieuPhatService.getChiTietPhieuPhatById(phieuPhat.maPhieuPhat).subscribe({
+      next: (data) => {
+        this.selectedPhieuTra = data;
+        console.log('Chi Tiết Phiếu Trả:', this.selectedPhieuTra );
+      },
+      error: (err) => {
+        console.error('Error fetching Chi Tiết Phiếu Trả:', err);
+      }
+    });  
+  }
 }

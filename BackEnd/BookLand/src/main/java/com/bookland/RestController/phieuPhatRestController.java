@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookland.dto.addPhieuMuondto;
 import com.bookland.dto.phieuPhatDTO;
+import com.bookland.entity.ChiTietPhieuPhat;
 import com.bookland.entity.ChiTietPhieuTra;
 import com.bookland.entity.PhieuMuon;
 import com.bookland.entity.PhieuPhat;
@@ -38,6 +39,18 @@ public class phieuPhatRestController {
 		
 	}
 
-
+	@GetMapping
+	public ResponseEntity<List<PhieuPhat>>findAll() {
+		List<PhieuPhat> pm = ppService.findAll();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+		
+	}
+	
+	@GetMapping("/findAllChiTietPhieuPhatSachByPhieuPhat")
+	public ResponseEntity<List<ChiTietPhieuPhat>>findAllChiTietSachPhatByPhieuPhat(@RequestParam Integer maPP) {
+		List<ChiTietPhieuPhat> ctpp =  ppService.findAllChiTietSachPhat(maPP);
+		return ResponseEntity.status(HttpStatus.CREATED).body(ctpp);
+		
+	}
 
 }

@@ -50,3 +50,22 @@ h3 {
     margin: 0; /* Loại bỏ khoảng trống mặc định */
     text-transform: uppercase; /* Viết hoa tất cả chữ */
 }
+.custom-tabs .nav-item {
+    flex: 1 1 50%; /* Each tab takes 50% width */
+    text-align: center; /* Center align the text */
+    border: 1px solid #ddd; /* Optional: Add a border for clarity */
+}
+
+.custom-tabs .nav-link {
+    width: 100%;
+    border-radius: 0; /* Make tabs rectangular */
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px 0; /* Adjust padding for equal height */
+    font-weight: 600; /* Slightly bolder text */
+}
+
+.custom-tabs .nav-link.active {
+    background-color: #ff0055; /* Active tab background */
+    color: #fff; /* Active tab text color */
+    border-color: #ff0051; /* Match border with active color */
+}
