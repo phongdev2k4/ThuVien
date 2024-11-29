@@ -85,6 +85,33 @@ public class phieuMuonServiceImpl implements phieuMuonService {
 	}
 
 
+	@Override
+	public List<PhieuMuon> findAll() {	
+		return pmDao.findAll();
+	}
+
+
+	@Override
+	public List<ChiTietPhieuMuon> findAllChiTiet() {
+		// TODO Auto-generated method stub
+		return ctmDao.findAll();
+	}
+
+
+	@Override
+	public List<PhieuMuon> findAllDangMuon() {
+		// TODO Auto-generated method stub
+		return pmDao.findByAllPhieuMuon();
+	}
+
+
+	@Override
+	public List<ChiTietPhieuMuon> findAllChiTietByIdPm(Integer maPM) {
+		// TODO Auto-generated method stub
+		return ctmDao.findAllByPhieuMuonId(maPM);
+	}
+
+
 
 
 

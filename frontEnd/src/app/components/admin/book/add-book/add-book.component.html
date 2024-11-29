@@ -31,6 +31,10 @@
                   <input type="text" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
                 </div>
                 <div class="form-group">
+                  <label>Tiền:</label>
+                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.tienSach" name="tienSach" required>
+                </div>
+                <div class="form-group">
                   <label>Tác giả sách:</label>
                   <select class="form-control" [(ngModel)]="sachService.sach.maTacGia" name="tacGia" required>
                     <option value="" disabled selected>Tác giả sách</option>

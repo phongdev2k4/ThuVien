@@ -41,6 +41,10 @@ public class BanSaoSach {
 	private List<ChiTietPhieuMuon> chiTietPhieuMuonList;
 	
 	@JsonIgnore 
+	@OneToMany(mappedBy = "banSaoSach")
+	private List<ChiTietPhieuPhat> chiTietPhieuPhatList;
+	
+	@JsonIgnore 
     @OneToMany(mappedBy = "banSaoSach")
     private List<ChiTietPhieuTra> chiTietPhieuTraList;
 	

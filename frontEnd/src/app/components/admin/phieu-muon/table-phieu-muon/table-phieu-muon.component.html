@@ -1,0 +1,99 @@
+
+<app-aside-admin></app-aside-admin>
+<!-- Page Content -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu mượn</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a routerLink="../PhieuMuon" class="btn btn-primary">Thêm phiếu mượn</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">STT</th>
+                                        <th style="width: 12%;">Mã Phiếu Mượn</th>
+                                        <th style="width: 10%;">Người Mượn</th>
+                                        <th style="width: 10%;">Người Lập Phiếu </th>
+                                        <th style="width: 10%;">Ngày Lập </th>
+                                        <th style="width: 10%;">Hạn Trả</th>
+                                        <th style="width: 12%;">Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phieu of phieuMuonList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieu.maPM }}</td>
+                                        <td>{{ phieu.hoiVien.maHV }}</td>
+                                        <td>{{ phieu.nhanVien.maNV }}</td>
+                                        <td>{{ phieu.ngayLapPhieu | date:'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieu.hanTraSach | date:'dd/MM/yyyy' }}</td>
+                                        <td>
+                                            <div class="flex align-items-center list-user-action">
+                                                <div class="flex align-items-center list-user-action">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" 
+                                                     (click)="openModal(phieu)">
+                                                      Chi Tiết
+                                                    </button>
+                                                      
+                                                 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Chi Tiết Phiếu Mượn</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add form or data here for editing -->
+          <table class="data-tables table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">STT</th>
+                    <th style="width: 12%;">Mã Phiếu Mượn</th>
+                    <th style="width: 10%;">Tên Sách</th>
+                    <th style="width: 10%;">Người Mượn  </th>
+                    <th style="width: 10%;">Người Lập Phiếu </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let phieu of  selectedPhieuMuon; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ phieu.phieuMuon.maPM }}</td>       
+                    <td>{{ phieu.banSaoSach.sach.tenSach }}</td> 
+                    <td>{{ phieu.phieuMuon.hoiVien.maHV }}</td>
+                    <td>{{ phieu.phieuMuon.nhanVien.maNV }}</td> 
+                </tr>
+            </tbody>
+        </table>
+          <!-- Add more fields as required -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

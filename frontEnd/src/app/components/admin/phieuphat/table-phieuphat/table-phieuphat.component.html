@@ -1,0 +1,55 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu trả đang vi phạm : </h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>STT</th>
+                                    <th>Mã Phiếu Trả</th>
+                                    <th>Mã Hội Viên</th>
+                                    <th>Mã Nhân Viên</th>
+                                    <th>Số Ngày Quá Hạn</th>
+                                    <th>Số Sách Gặp Vấn Đề</th>
+                                    <th>Ngày Hẹn Trả </th>
+                                    <th>Ngay Trả  </th>
+                                    <th>Hành Động</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let phieuPhat of phieuPhatList; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ phieuPhat.maPT }}</td>
+                                    <td>{{ phieuPhat.hoiVien.maHV }}</td>
+                                    <td>{{ phieuPhat.nhanVien.maNV }}</td>
+                                    <td>{{ phieuPhat.soNgayQuaHan }}</td>
+                                    <td>{{ phieuPhat.soSachGapVanDe }}</td>
+                                    <td>{{ phieuPhat.phieuMuon.hanTraSach | date: 'dd/MM/yyyy' }}</td>
+                                    <td>{{ phieuPhat.ngayLapPhieuTra | date: 'dd/MM/yyyy' }}</td>
+                                    <td>
+                                      <div class="flex align-items-center list-user-action">
+                                        <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa" 
+                                           [routerLink]="['/PhieuPhat']" [queryParams]="{ maPT: phieuPhat.maPT,soNgayQuaHan: phieuPhat.soNgayQuaHan }">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                    </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

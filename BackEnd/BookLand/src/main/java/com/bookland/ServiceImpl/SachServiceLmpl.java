@@ -98,6 +98,7 @@ public class SachServiceLmpl implements SachService{
 		s.setTenSach(request.getTenSach());
 		s.setMoTa(request.getMoTa());
 		s.setMaSach(request.getMaSach());
+		s.setTienSach(request.getTienSach());
 		
 		
 		//tao tacGia

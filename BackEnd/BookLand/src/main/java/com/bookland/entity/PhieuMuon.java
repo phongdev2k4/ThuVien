@@ -20,7 +20,8 @@ public class PhieuMuon {
 
 	@Column(name = "HanTraSach")
 	private Date hanTraSach;
-
+	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "NgayLapPhieu")
 	private Date ngayLapPhieu;
 

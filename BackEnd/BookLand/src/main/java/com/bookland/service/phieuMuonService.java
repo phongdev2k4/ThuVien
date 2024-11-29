@@ -17,4 +17,12 @@ public interface phieuMuonService {
 
 	List<PhieuMuon> findPhieuMuonByHvID(String maHV,String maVach);
 
+	List<PhieuMuon> findAll();
+
+	List<ChiTietPhieuMuon> findAllChiTiet();
+
+	List<PhieuMuon> findAllDangMuon();
+
+	List<ChiTietPhieuMuon> findAllChiTietByIdPm(Integer maPM);
+
 }

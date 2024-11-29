@@ -25,6 +25,10 @@ public class Sach {
 	@Column(name = "NamXB")
 	private int namXB;
 	
+
+    @Column(name = "tienSach")
+    private double tienSach;
+	
 	@ManyToOne
 	@JoinColumn(name = "MaTacGia", referencedColumnName = "MaTacGia")
 	@ToString.Exclude

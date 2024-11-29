@@ -3,7 +3,8 @@ export class PhieuPhat { // Unique identifier for the penalty slip
     maPT: string;         // Return slip ID (Mã Phiếu Trả)
     soNgayQuaHan: number; // Number of overdue days
     tienPhat: number;     // Fine amount
-    maNV: string;         // Staff ID (Mã Nhân Viên)
+    maNV: string;
+    moTa: string;         // Staff ID (Mã Nhân Viên)
   
     constructor(
       maPhieuPhat: number = 0,
@@ -11,13 +12,15 @@ export class PhieuPhat { // Unique identifier for the penalty slip
       maPT: string = '',
       soNgayQuaHan: number = 0,
       tienPhat: number = 0.0,
-      maNV: string = ''
+      maNV: string = '',
+      moTa: string = ''
     ) {
       this.maHV = maHV;
       this.maPT = maPT;
       this.soNgayQuaHan = soNgayQuaHan;
       this.tienPhat = tienPhat;
       this.maNV = maNV;
+      this.moTa = moTa;
     }
   }
   

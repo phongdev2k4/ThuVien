@@ -4,6 +4,7 @@ export class BookDTO {
     tenSach: string="";
     nxb: string="";
     namXB: number=0;
+    tienSach:number = 0;
     maTacGia: string="";  // ID of TacGia
     moTa: string="";
     theLoaiIds:string[]=[];

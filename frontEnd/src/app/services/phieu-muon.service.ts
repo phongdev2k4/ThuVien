@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PhieuMuonService {
+  
 
   constructor(private http: HttpClient) { }
   private apiUrl = 'http://localhost:8080/phieuMuon';
@@ -23,6 +24,19 @@ export class PhieuMuonService {
     
     return this.http.get<any>(`${this.apiUrl}/findPhieuMuon`, { params });
 }
+findAll(): Observable<any[]> {
+  return this.http.get<any[]>(this.apiUrl);
+}
+findAllDangMuon(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/findAllPhieuMuonDangMuon`);
+}
+getAllChiTietPhieuMuon(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/getAllChiTietPhieuMuon`);
+}
 
-
+findChiTietPhieuMuonById(maPM: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/findChiTietPhieuMuonByPmId`, {
+    params: { maPM: maPM.toString() }
+  });
+}
 }

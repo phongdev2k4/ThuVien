@@ -18,6 +18,6 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
 
     @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.sach.maSach = :sachId AND b.trangThaiMuon='Có sẵn'")
     long countBySachIdAndTrangThaiBaoQuan(@Param("sachId") String sachId);
-    @Query(value = "SELECT COUNT(*) FROM ban_sao_sach b WHERE b.ma_sach = :maSach AND b.trang_thai_muon = :trangThaiMuon", nativeQuery = true)
-    long countByMaSachAndTrangThaiMuon(@Param("maSach") String maSach, @Param("trangThaiMuon") String trangThaiMuon);
+    @Query(value = "SELECT COUNT(*) FROM ban_sao_sach b WHERE b.ma_sach = :maSach AND b.trang_thai_muon = :trangThaiMuon AND b.trang_thai_bao_quan = :trangBaoQuan ", nativeQuery = true)
+    long countByMaSachAndTrangThaiMuon(@Param("maSach") String maSach, @Param("trangThaiMuon") String trangThaiMuon,@Param("trangBaoQuan") String trangBaoQuan);
 }

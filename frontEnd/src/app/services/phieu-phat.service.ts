@@ -14,4 +14,7 @@ export class PhieuPhatService {
   createPhieuPhat(ppRequest: PhieuPhat): Observable<PhieuPhat> {
     return this.http.post<PhieuPhat>(this.apiUrl, ppRequest)
 }
+getAllPhieuTraViPham(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/PhieuTraViPham`);
+}
 }

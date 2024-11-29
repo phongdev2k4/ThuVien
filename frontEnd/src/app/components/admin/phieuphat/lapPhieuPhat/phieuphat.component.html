@@ -1,0 +1,123 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+  <div class="container">
+    <div class="container-form">
+      <h3>Tạo Phiếu Phạt</h3>
+      <form #phieuPhatForm="ngForm">
+
+        <!-- Mã Hội Viên -->
+        <div class="form-group">
+          <label for="maHV">Mã Hội Viên</label>
+          <input class="form-control" id="maHV" name="maHV" [(ngModel)]="maHV" readonly />
+        </div>
+        
+        <!-- Mã Phiếu Trả -->
+        <div class="form-group">
+          <label for="maPT">Mã Phiếu Trả</label>
+          <input class="form-control" id="maPT" name="maPT" [(ngModel)]="maPT" readonly />
+        </div>
+
+        <!-- Mã Nhân Viên -->
+        <div class="form-group">
+          <label for="maNV">Mã Nhân Viên</label>
+          <input class="form-control" id="maNV" name="maNV" [(ngModel)]="maNV" readonly />
+        </div>
+
+        <!-- Tiền Phạt -->
+        <label for="tienPhat" class="mr-2"><strong>Tổng Tiền Phạt</strong></label>
+        <div class="form-group d-flex align-items-center">
+          <input
+            class="form-control"
+            type="text"
+            id="tienPhat"
+            name="tienPhat"
+            [value]="tienPhatTong"
+            readonly
+            style="width: 200px;"
+          />
+          <button
+            type="button"
+            class="btn btn-info ml-3"
+            data-toggle="modal"
+            data-target="#tienPhatModal"
+          >
+            Xem Chi Tiết
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Lỗi Vi Phạm : </label>
+          <textarea 
+            id="exampleTextarea" 
+            name="moTa" 
+            class="form-control" 
+            [(ngModel)]="moTa"
+            rows="4" 
+            placeholder="Type your message here...">
+          </textarea>
+        </div>
+        
+        
+        
+
+        <!-- Nút Submit và Quay lại -->
+        <div class="form-group d-flex justify-content-between">
+          <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Lưu Phiếu Phạt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Tổng Tiền Phạt -->
+<div class="modal fade" id="tienPhatModal" tabindex="-1" role="dialog" aria-labelledby="tienPhatModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tienPhatModalLabel">Thông Tin Tổng Tiền Phạt</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Mã Hội Viên:</strong> {{ maHV }}</p>
+        <p><strong>Mã Phiếu Trả:</strong> {{ maPT }}</p>
+        <p><strong>Số Ngày Quá Hạn:</strong> {{ soNgayQuaHan }}  ngày</p>
+        <p><strong>Tiền Phạt Quá Hạn:</strong> {{ tienPhat }}</p>
+
+        <table class="data-tables table table-striped table-bordered" style="width:100%">
+          <thead>
+            <tr>
+              <th style="width: 5%;">STT</th>
+              <th style="width: 10%;">Tên Sách</th>
+              <th style="width: 10%;">Trạng Thái Sách</th>
+              <th style="width: 10%;">Tiền Phạt Sách</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let phieu of phieuTraTableList; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ phieu.banSaoSach.sach.tenSach }}</td> 
+              <td>{{ phieu.banSaoSach.trangThaiBaoQuan }}</td> 
+              <!-- Calculate the fine based on the book's condition -->
+              <td>{{ calculateTienPhatSach(phieu.banSaoSach.trangThaiBaoQuan,phieu.banSaoSach.sach.tienSach) | currency:'VND':true }}</td>
+            </tr>
+            <!-- Add the Total Fine Row -->
+            <tr>
+              <td colspan="3" class="text-right"><strong>Tổng Tiền: </strong></td>
+              <td><strong>{{ TongTienPhatSach | currency:'VND':true }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        
+        <!-- Add Total Fine Row -->
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

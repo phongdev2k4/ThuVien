@@ -17,4 +17,8 @@ public interface phieuMuonDAO extends JpaRepository <PhieuMuon,Integer> {
            "WHERE pm.maPM IN (SELECT ctp.phieuMuon.maPM FROM ChiTietPhieuMuon ctp WHERE ctp.banSaoSach.maBanSaoSach = :maBanSaoSach AND ctp.isReturned = false) " +
            "AND pm.hoiVien.maHV = :maHV ")
     List<PhieuMuon> findByMaBanSaoSachAndMaHV(@Param("maBanSaoSach") Integer maBanSaoSach, @Param("maHV") String maHV);
+    
+    @Query("SELECT pm FROM PhieuMuon pm " +
+            "WHERE pm.maPM IN (SELECT ctp.phieuMuon.maPM FROM ChiTietPhieuMuon ctp WHERE ctp.isReturned = false) ")
+     List<PhieuMuon> findByAllPhieuMuon();
 }

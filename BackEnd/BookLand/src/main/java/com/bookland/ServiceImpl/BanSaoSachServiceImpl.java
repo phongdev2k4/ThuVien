@@ -66,7 +66,7 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 	public BanSaoSach findByMaVach(String maVach) {	
 		BanSaoSach bss =  banSaoSachDAO.findByMaVach(maVach);
 		long sl = 0 ;
-		sl =banSaoSachDAO.countByMaSachAndTrangThaiMuon(bss.getSach().getMaSach(),"Có sẵn");
+		sl =banSaoSachDAO.countByMaSachAndTrangThaiMuon(bss.getSach().getMaSach(),"Có sẵn","Mới");
 		bss.setSoLuong123(sl);//
 		return bss;
 	}

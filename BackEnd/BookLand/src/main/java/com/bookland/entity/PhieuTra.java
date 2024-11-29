@@ -28,7 +28,8 @@ public class PhieuTra {
     @ManyToOne
     @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
     private NhanVien nhanVien;
-
+    
+    @Temporal(TemporalType.DATE)
 	@Column(name = "NgayLapPhieuTra")
 	private Date ngayLapPhieuTra;
     
@@ -39,4 +40,7 @@ public class PhieuTra {
 	@JsonIgnore
     @OneToMany(mappedBy = "phieuTra")
     private List<ChiTietPhieuTra> chiTietPhieuTraList;
+	
+	@Column(name = "isFine")
+	private String isFine;
 }

@@ -44,5 +44,30 @@ public class phieuMuonRestController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
 		
 	}
+	@GetMapping
+	public ResponseEntity<List<PhieuMuon>>findAll() {
+		List<PhieuMuon> pm = pmService.findAll();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+		
+	}
+	@GetMapping("/findAllPhieuMuonDangMuon")
+	public ResponseEntity<List<PhieuMuon>>findAllDangMuon() {
+		List<PhieuMuon> pm = pmService.findAllDangMuon();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+		
+	}
+	@GetMapping("/getAllChiTietPhieuMuon")
+	public ResponseEntity<List<ChiTietPhieuMuon>>findAllChiTietPhieuMuon() {
+		List<ChiTietPhieuMuon> pm = pmService.findAllChiTiet();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+		
+	}
+	@GetMapping("/findChiTietPhieuMuonByPmId")
+	public ResponseEntity<List<ChiTietPhieuMuon>>findAllChiTietPhieuMuonByIdPm(@RequestParam("maPM") Integer maPM) {
+		List<ChiTietPhieuMuon> pm = pmService.findAllChiTietByIdPm(maPM);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+		
+	}
+	
 
 }

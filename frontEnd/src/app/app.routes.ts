@@ -15,7 +15,6 @@ import { UserListComponent } from './components/admin/user/user-list/user-list.c
 import { TheloaiComponent } from './components/admin/theloai/theloai/theloai.component';
 import { AddTheloaiComponent } from './components/admin/theloai/add-theloai/add-theloai.component';
 import { authGuard } from './guards/auth.guard';
-import { PhieuMuonComponent } from './components/admin/phieu-muon/phieu-muon.component';
 import { KholistComponent } from './components/admin/kho/kholist/kholist.component';
 import { AddkhoComponent } from './components/admin/kho/addkho/addkho.component';
 import { UpdateKhoComponent } from './components/admin/kho/update-kho/update-kho.component';
@@ -25,7 +24,10 @@ import { UpdateBansaosachComponent } from './components/admin/bansaosach/update-
 
 import { ListPhieuTraComponent } from './components/admin/phieu-tra/list-phieu-tra/list-phieu-tra.component';
 import { LapPhieuTraComponent } from './components/admin/phieu-tra/lap-phieu-tra/lap-phieu-tra.component';
-import { PhieuphatComponent } from './components/admin/phieuphat/phieuphat.component';
+import { PhieuphatComponent } from './components/admin/phieuphat/lapPhieuPhat/phieuphat.component';
+import { PhieuMuonComponent } from './components/admin/phieu-muon/lapPhieuMuon/phieu-muon.component';
+import { TablePhieuMuonComponent } from './components/admin/phieu-muon/table-phieu-muon/table-phieu-muon.component';
+import { TablePhieuphatComponent } from './components/admin/phieuphat/table-phieuphat/table-phieuphat.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -101,6 +103,10 @@ export const routes: Routes = [
     component:PhieuMuonComponent
 },
 {
+    path:'PhieuMuonList',
+    component:TablePhieuMuonComponent
+},
+{
     path:'ListkhoAdmin',
     component:KholistComponent
 },
@@ -136,6 +142,10 @@ export const routes: Routes = [
 {
     path:'PhieuPhat',
     component:PhieuphatComponent
+},
+{
+    path:'TablePhieuPhat',
+    component:TablePhieuphatComponent
 },
 
 
