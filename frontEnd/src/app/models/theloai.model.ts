@@ -1,5 +1,5 @@
 export interface TheLoai {
-    maTheLoai: string;
+    maTheLoai:string ;
     tenTheLoai: string;
     moTa: string;
   }

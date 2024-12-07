@@ -11,7 +11,7 @@ public class ChiTietPhieuMuon {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private int id;
-//aaaaaaaaaaa 
+
     @ManyToOne
     @JoinColumn(name = "MaPM", referencedColumnName = "MaPM")
     private PhieuMuon phieuMuon;
@@ -19,5 +19,8 @@ public class ChiTietPhieuMuon {
     @ManyToOne
     @JoinColumn(name = "MaBanSaoSach", referencedColumnName = "MaBanSaoSach")
     private BanSaoSach banSaoSach;
+    
+	@Column(name = "isReturned")
+	private boolean isReturned = false;
 
 }

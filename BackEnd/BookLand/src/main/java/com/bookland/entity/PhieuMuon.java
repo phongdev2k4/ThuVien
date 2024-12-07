@@ -3,6 +3,7 @@ package com.bookland.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.bookland.service.hoiVienService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -17,20 +18,19 @@ public class PhieuMuon {
 	@Column(name = "MaPM")
 	private int maPM;
 
-
 	@Column(name = "HanTraSach")
 	private Date hanTraSach;
-
+	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "NgayLapPhieu")
 	private Date ngayLapPhieu;
-	
-	 @ManyToOne
-	    @JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
-	    private HoiVien hoiVien;
 
-	    @ManyToOne
-	    @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
-	    private NhanVien nhanVien;
-	
+	@ManyToOne
+	@JoinColumn(name = "MaHV", referencedColumnName = "MaHV")
+	private HoiVien hoiVien;
+
+	@ManyToOne
+	@JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
+	private NhanVien nhanVien;
 
 }

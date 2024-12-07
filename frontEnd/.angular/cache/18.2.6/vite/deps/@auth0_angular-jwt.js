@@ -1,9 +1,9 @@
 import {
   HTTP_INTERCEPTORS
-} from "./chunk-IJD72WNW.js";
+} from "./chunk-IJDVPSPJ.js";
 import {
   DOCUMENT
-} from "./chunk-ZKJLMIWG.js";
+} from "./chunk-U426TETJ.js";
 import {
   Inject,
   Injectable,
@@ -16,13 +16,14 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-KJZSCXEF.js";
+} from "./chunk-OCQQPHNC.js";
 import {
   defer,
   map,
   mergeMap,
   of
-} from "./chunk-2CVCC5YH.js";
+} from "./chunk-FDESMX7I.js";
+import "./chunk-WDMUDEB6.js";
 
 // node_modules/@auth0/angular-jwt/fesm2020/auth0-angular-jwt.mjs
 var JWT_OPTIONS = new InjectionToken("JWT_OPTIONS");

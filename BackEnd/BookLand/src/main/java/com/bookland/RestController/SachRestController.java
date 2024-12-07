@@ -16,63 +16,55 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bookland.service.SachService;
+import com.bookland.service.sachHinhAnhService;
+import com.bookland.dto.addBookRequest;
+import com.bookland.dto.addBookResponse;
 import com.bookland.entity.*;
 import com.bookland.utils.ImageUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @RestController
 @RequestMapping("/rest/sach")
 public class SachRestController {
 	@Autowired
 	SachService sachService;
+	@Autowired
+	sachHinhAnhService imageBookService;
 
 	@GetMapping
-	public ResponseEntity<List<Sach>> findAll() {
-		List<Sach> sachs = sachService.finAll();
+	public ResponseEntity<List<addBookResponse>> findAll() {
+		List<addBookResponse> sachs = sachService.finAll();
 		return ResponseEntity.ok(sachs); // 200 OK
 	}
+	  @GetMapping("/searchByName")
+	    public List<addBookResponse> getBookDetailsByName(@RequestParam("tenSach") String tenSach123) {
+	    	System.out.println(tenSach123);
+	        return sachService.findBookDetailsByName(tenSach123);
+	    }
 
-	@PostMapping
-	public ResponseEntity<Sach> addSach(@RequestParam("sach") String sachJson,
-			@RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
-		if (file != null && !file.isEmpty()) {
-			try {
-				String nameImg = ImageUtils.saveImage(file, "book"); // tên hình 
-				// Chuyển đổi JSON thành đối tượng Sach
-				Sach sach = new ObjectMapper().readValue(sachJson, Sach.class);
-				sach.setHinhAnhSach(nameImg); // lưu tên ảnh vào đối tượng
 
-				// Gọi service để lưu sách
-				Sach createdSach = sachService.create(sach);
-				return ResponseEntity.status(HttpStatus.CREATED).body(createdSach);
-			} catch (Exception e) {
-				e.printStackTrace(); // In ra stack trace để debug
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
-
-		} else {
-			try {
-				// Chuyển đổi JSON thành đối tượng Sach
-				Sach sach = new ObjectMapper().readValue(sachJson, Sach.class);
-				// Gọi service để lưu sách
-				Sach createdSach = sachService.create(sach);
-				return ResponseEntity.status(HttpStatus.CREATED).body(createdSach);
-			} catch (Exception e) {
-				e.printStackTrace(); // In ra stack trace để debug
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			}
-		}
-
-	}
+	  @PostMapping(consumes = "multipart/form-data")
+	    public ResponseEntity<addBookResponse> addSach(
+	            @RequestPart("book") addBookRequest request,  
+	            @RequestPart("files") MultipartFile[] files) throws IOException {
+	        
+	        addBookResponse response = sachService.create(request, files);  // Delegate to service layer
+	        return ResponseEntity.ok(response);
+	    }
 
 	@DeleteMapping("{masach}")
 	public ResponseEntity<Void> delete(@PathVariable("masach") String masach) {
 		sachService.delete(masach);
 		return ResponseEntity.noContent().build(); // 204 No Content
 	}
+	  @GetMapping("/cover")
+	    public List<hinhAnhSach> getCoverImages() {
+	        return imageBookService.getCoverImages();
+	    }
+	
 }

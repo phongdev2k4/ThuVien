@@ -36,9 +36,11 @@ public class TaiKhoan {
     private String userName;
     private String password; 
     
+    @JsonIgnore
     @OneToOne(mappedBy = "taiKhoanHV", cascade = CascadeType.ALL, optional = true)
     private HoiVien hoiVien;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "taiKhoanNV",cascade = CascadeType.ALL)
     private NhanVien nv;
     

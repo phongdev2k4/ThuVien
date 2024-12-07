@@ -1,0 +1,131 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="container-form">
+            <h3> Phiếu Trả </h3>
+            <form #phieuTraForm="ngForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="maPT">Mã Phiếu Mượn</label>
+                            <input class="form-control" id="maPM" name="maPM" [(ngModel)]="phieuTra.maPM" required
+                                placeholder="Mời Nhập" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="maHV">Mã Hội Viên</label>
+                            <input class="form-control" id="maHV" name="maHV" [(ngModel)]="phieuTra.hoiVien.maHV"
+                                required placeholder="Mời Nhập" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="maNV">Mã Nhân Viên</label>
+                            <input class="form-control" id="maNV" name="maNV" [(ngModel)]="phieuTra.nhanVien.maNV"
+                                required placeholder="Mời Nhập" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="ngayLapPhieuTra">Ngày Lập Phiếu Trả</label>
+                    <input class="form-control" type="date" id="ngayLapPhieuTra" name="ngayLapPhieuTra"
+                        [(ngModel)]="phieuTra.ngayLapPhieuTra" required />
+                </div>
+                <p>Sách đã mượn:</p>
+                <div class="form-group">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>STT</th>
+                            <th>Tên Sách Mượn</th>
+                            <th>Tác giả</th>
+                            <th>Ngày Mượn</th>
+                            <th>Ngày Hẹn Trả</th>
+                            <!-- <th>Hạn Trả</th> -->
+                            <th>Hành Động</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let phieuTra of phieuTraList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ phieuTra.banSaoSach.sach.tenSach }}</td>
+                            <td>{{ phieuTra.banSaoSach.sach.tacGia.tenTacGia }}</td>
+                            <td>{{ phieuTra.phieuMuon.ngayLapPhieu | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{ phieuTra.phieuMuon.hanTraSach | date: 'dd/MM/yyyy' }}</td>
+                            <td>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phieuTraModal" 
+                              [disabled]="isBookHandled(phieuTra.banSaoSach.maVach)  || phieuTra.returned" (click)="openModal(phieuTra)">
+                                 Xử Lí 
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+
+
+                </div>
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+                    <button type="button" class="btn btn-primary btn-block"(click)="submitPhieuTra()" >
+                        Tạo Phiếu Trả ({{ handledBooks.length }})
+                      </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="phieuTraModal" tabindex="-1" role="dialog" aria-labelledby="phieuTraModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="phieuTraModalLabel">Chi Tiết Phiếu Trả</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Tên Sách:</strong> {{ selectedPhieuTra?.banSaoSach.sach.tenSach }}</p>
+            
+            <!-- Table with Select Inputs -->
+            <table class="table table-bordered mt-3">
+                <thead>
+                  <tr>
+                    <th>Mã Vạch</th>
+                    <th>Trạng Thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ selectedPhieuTra?.banSaoSach.maVach }}</td>
+                    <td>
+                      <select class="form-control" [(ngModel)]="selectedStatus">
+                        <option value="">Chọn trạng thái</option>
+                        <option value="Mới">Mới</option>
+                        <option value="Mất">Mất</option>
+                        <option value="Hỏng">Hỏng</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary" (click)="saveStatuses()">Lưu Thay Đổi</button>
+          </div>
+        </div>
+      </div>
+      
+</div>
+
+

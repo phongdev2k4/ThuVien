@@ -1,0 +1,49 @@
+<app-aside-admin></app-aside-admin>
+ <!-- Page Content  -->
+ <div id="content-page" class="content-page">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-sm-12">
+             <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                   <div class="iq-header-title">
+                      <h4 class="card-title">Danh sách Kho</h4>
+                   </div>
+                   <div class="iq-card-header-toolbar d-flex align-items-center">
+                      <a routerLink="../addKhoAdmin" class="btn btn-primary">Thêm Kho</a>
+                   </div>
+                </div>
+                <div class="iq-card-body">
+                   <div class="table-responsive">
+                      <table class="data-tables table table-striped table-bordered" style="width:100%">
+                         <thead>
+                            <tr>
+                               <th style="width: 5%;">STT</th>
+                               <th style="width: 10%;">Mã Kho</th>
+                               <th style="width: 15%;">Tên Kho</th>
+                               <th style="width: 25%;">Địa điểm</th>
+                               <th style="width: 15%;">Hoạt động</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                          <tr *ngFor="let khof of KhoList;let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{khof.maKho}}</td>
+                            <td>{{khof.tenKho}}</td>
+                            <td>{{khof.diaDiem}}</td>
+                            <td>
+                                <div class="flex align-items-center list-user-action">
+                                   <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" (click)="editKho(khof)"><i class="ri-pencil-line"></i></a>
+                                   <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá"  (click)="deleteKho(khof.maKho)"><i class="ri-delete-bin-line"></i></a>
+                                </div>
+                             </td>
+                          </tr>
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

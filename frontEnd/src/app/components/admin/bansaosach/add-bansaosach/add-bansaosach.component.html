@@ -1,0 +1,62 @@
+<app-aside-admin></app-aside-admin>
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-sm-12">
+                 <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                       <div class="iq-header-title">
+                          <h4 class="card-title">Thêm bản sao sách</h4>
+                       </div>
+                    </div>
+                    <div class="iq-card-body">
+                       <form (ngSubmit)="addBanSaoSach()">
+                        <div class="form-group">
+                            <label>Mã Sách:</label>
+                            <select class="form-control"  name="maSach" [(ngModel)]="bansaosach.sach.maSach" required>
+                             <option value="" disabled selected>Mã sách</option>
+                             <option *ngFor="let sach of SachList" [value]="sach.maSach">
+                                 {{ sach.maSach}} - ({{ sach.tenSach }})
+                              </option>
+                            </select>
+                         </div>
+                         <div class="form-group">
+                           <label>Số lượng (số lượng muốn thêm 1 lần):</label>
+                           <input class="form-control" type="number" [(ngModel)]="soLuong" name="soLuong" min="1" required>
+                         </div>                         
+                         <div class="form-group">
+                            <label>Mã Kho:</label>
+                            <select class="form-control"  name="maKho" [(ngModel)]="bansaosach.kho.maKho" required>
+                             <option value="" disabled selected>Mã kho</option>
+                             <option *ngFor="let khof of khoList" [value]="khof.maKho">
+                              {{ khof.maKho}} - ({{ khof.tenKho }})
+                             </option>
+                            </select>
+                         </div>
+                         <div class="form-group">
+                            <label>Trạng thái mượn:</label>
+                            <select class="form-control" name="trangThaiMuon" [(ngModel)]="bansaosach.trangThaiMuon" required>
+                                <option value="" disabled selected>Trạng thái mượn</option>
+                                <option [value]="'Có sẵn'">Có sẵn</option>
+                                <option [value]="'Đang mượn'">Đang mượn</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Trạng thái bảo quản:</label>
+                            <select class="form-control" name="trangThaiBaoQuan" [(ngModel)]="bansaosach.trangThaiBaoQuan" required>
+                                <option value="" disabled selected>Trạng thái bảo quản</option>
+                                <option [value]="'Mới'">Mới</option>
+                                <option [value]="'Mất'">Cũ</option>
+                                <option [value]="'Hỏng'">Hỏng</option>
+                            </select>
+                        </div>
+                          <button type="submit" class="btn btn-primary " >Thêm bán sao sach</button>
+                          <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>

@@ -19,7 +19,13 @@ public class BanSaoSach {
 	@ManyToOne
 	@JoinColumn(name = "MaSach", referencedColumnName = "MaSach")
 	private Sach sach;
-
+	
+    @Column(name = "MaVach", unique = true, nullable = false ,columnDefinition = "varchar(12)")
+    private String maVach; 
+    
+    @Column(name = "HinhAnhMaVach", columnDefinition = "nvarchar(255)")
+    private String hinhAnhMaVach; 
+    
 	@ManyToOne
 	@JoinColumn(name = "MaKho", referencedColumnName = "MaKho")
 	private Kho kho;
@@ -35,6 +41,13 @@ public class BanSaoSach {
 	private List<ChiTietPhieuMuon> chiTietPhieuMuonList;
 	
 	@JsonIgnore 
+	@OneToMany(mappedBy = "banSaoSach")
+	private List<ChiTietPhieuPhat> chiTietPhieuPhatList;
+	
+	@JsonIgnore 
     @OneToMany(mappedBy = "banSaoSach")
     private List<ChiTietPhieuTra> chiTietPhieuTraList;
+	
+	@Transient // This makes JPA ignore the field
+	private long soLuong123;
 }

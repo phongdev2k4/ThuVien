@@ -1,69 +1,149 @@
 <app-aside-admin></app-aside-admin>
-       <!-- Page Content  -->
-       <div id="content-page" class="content-page">
-        <div class="container-fluid">
-           <div class="row">
-              <div class="col-sm-12">
-                 <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                       <div class="iq-header-title">
-                          <h4 class="card-title">Thêm sách</h4>
-                       </div>
-                    </div>
-                    <div class="iq-card-body">
-                       <form (ngSubmit)="onSubmit()">
-                          <div class="form-group">
-                             <label>Mã Sách:</label>
-                             <input type="text" class="form-control" [(ngModel)]="sachService.sach.maSach" name="maSach" required >
-                          </div>
-                          <div class="form-group">
-                             <label>Tên Sách:</label>
-                             <input type="text" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
-                          </div>
-                          <div class="form-group">
-                             <label>Tác giả sách:</label>
-                             <select class="form-control" [(ngModel)]="sachService.sach.tacGia.maTacGia" name="tacGia" required>
-                              <option value="" disabled selected>Tác giả sách</option>
-                              <option *ngFor="let tacGia of tacgiaList" [value]="tacGia.maTacGia">
-                                 {{ tacGia.tenTacGia }} 
-                               </option>
-                             </select>
-                          </div>
-                          <div class="form-group">
-                           <label>Thể loại:</label>
-                           <select class="form-control" [(ngModel)]="sachService.sach.theLoai.maTheLoai" name="theLoai" required>
-                            <option value="" disabled selected>Thể loại sách</option>
-                            <option *ngFor="let theLoai of theloaiList" [value]="theLoai.maTheLoai">
-                              {{ theLoai.tenTheLoai }} 
-                            </option>
-                           </select>
-                        </div>
-                          <div class="form-group">
-                           <label>Nhà xuất bản:</label>
-                           <input type="text" class="form-control" [(ngModel)]="sachService.sach.nxb" name="nxb" required>
-                        </div>
-                        <div class="form-group">
-                           <label>Năm xuất bản:</label>
-                           <input type="number" class="form-control" [(ngModel)]="sachService.sach.namXB" name="namXB" required>
-                        </div>
-                          <div class="form-group">
-                             <label>Hình ảnh:</label>
-                             <div class="custom-file">
-                              <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/gif, image/bmp, image/webp">
-                                <label class="custom-file-label" for="fileInput">{{ selectedFileName || 'Choose file' }}</label>
-                             </div>
-                          </div>
-                          <div class="form-group">
-                             <label>Nội dung:</label>
-                             <textarea class="form-control" rows="4" [(ngModel)]="sachService.sach.moTa" name="moTa" required></textarea>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Gửi</button>
-                          <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
-                          <!-- <button type="reset" class="btn btn-danger">Trở lại</button> -->
-                       </form>
-                    </div>
-                 </div>
+<div class="container mt-5">
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden"><i class="fa-solid fa-spinner"></i></span>
+    </div>
+    <p class="loading-message">Please wait, loading...</p>
+  </div>
+
+</div>
+  
+  <!-- Page Content  -->
+  <div id="content-page" class="content-page">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                <h4 class="card-title">Thêm sách</h4>
               </div>
-           </div>
+            </div>
+            <div class="iq-card-body">
+              <form>
+                <div class="form-group">
+                  <label>Mã Sách:</label>
+                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.maSach" name="maSach" required>
+                </div>
+                <div class="form-group">
+                  <label>Tên Sách:</label>
+                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
+                </div>
+                <div class="form-group">
+                  <label>Tiền:</label>
+                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.tienSach" name="tienSach" required>
+                </div>
+                <div class="form-group">
+                  <label>Tác giả sách:</label>
+                  <select class="form-control" [(ngModel)]="sachService.sach.maTacGia" name="tacGia" required>
+                    <option value="" disabled selected>Tác giả sách</option>
+                    <option *ngFor="let tacGia of tacgiaList" [value]="tacGia.maTacGia">
+                      {{ tacGia.tenTacGia }} 
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Thể loại:</label>
+                  <div *ngFor="let theLoai of theloaiList" class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="theLoai.maTheLoai"
+                      [checked]="sachService.sach.theLoaiIds.includes(theLoai.maTheLoai)"
+                      (change)="onCheckboxChange($event)"
+                      id="theLoai{{ theLoai.maTheLoai }}"
+                    />
+                    <label class="form-check-label" for="theLoai{{ theLoai.maTheLoai }}">
+                      {{ theLoai.tenTheLoai }}
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Nhà xuất bản:</label>
+                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.nxb" name="nxb" required>
+                </div>
+                <div class="form-group">
+                  <label>Năm xuất bản:</label>
+                  <input type="number" class="form-control" [(ngModel)]="sachService.sach.namXB" name="namXB" required>
+                </div>
+                <div class="form-group">
+                  <label>Chọn hình ảnh:</label>
+                  <!-- <input
+                    type="file"
+                    id="image"
+                    class="form-control"
+                    (change)="onFileChange($event)"
+                    multiple
+                    accept="image/png, image/jpeg, image/jpg, image/gif"
+                  /> -->
+                  <div>
+                    <label for="image1">Chọn hình ảnh bìa (COVER) :</label>
+                    <input
+                      type="file"
+                      id="image1"
+                      class="form-control"
+                      (change)="onFileChange($event, 1)"
+                      accept="image/png, image/jpeg, image/jpg, image/gif"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label for="image2">Chọn hình ảnh mặt sau (BACKSIDE):</label>
+                    <input
+                      type="file"
+                      id="image2"
+                      class="form-control"
+                      (change)="onFileChange($event, 2)"
+                      accept="image/png, image/jpeg, image/jpg, image/gif"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label for="image3">Chọn hình ảnh mặt trước (FRONTSIDE) :</label>
+                    <input
+                      type="file"
+                      id="image3"
+                      class="form-control"
+                      (change)="onFileChange($event, 3)"
+                      accept="image/png, image/jpeg, image/jpg, image/gif"
+                    />
+                  </div>
+                  
+                  <div class="preview">
+                    <p>Hình ảnh 1:</p>
+                    <img *ngIf="imagePreviews[1]" [src]="imagePreviews[1]" alt="Preview 1" />
+                  </div>
+                  
+                  <div class="preview">
+                    <p>Hình ảnh 2:</p>
+                    <img *ngIf="imagePreviews[2]" [src]="imagePreviews[2]" alt="Preview 2" />
+                  </div>
+                  
+                  <div class="preview">
+                    <p>Hình ảnh 3:</p>
+                    <img *ngIf="imagePreviews[3]" [src]="imagePreviews[3]" alt="Preview 3" />
+                  </div>
+                  
+                </div>
+                <div class="form-group">
+                  <div class="d-flex flex-wrap">
+                    <!-- <div *ngFor="let preview of imagePreviews" class="me-2 mb-2">
+                      <img [src]="preview" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                    </div> -->
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Nội dung:</label>
+                  <textarea class="form-control" rows="4" [(ngModel)]="sachService.sach.moTa" name="moTa" required></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Gửi</button>
+                <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
+              </form>
+            </div>
+          </div>
         </div>
-     </div>
+      </div>
+    </div>
+  </div>
+
