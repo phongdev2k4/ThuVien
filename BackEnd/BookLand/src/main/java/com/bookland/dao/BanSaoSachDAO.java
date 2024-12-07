@@ -20,4 +20,14 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     long countBySachIdAndTrangThaiBaoQuan(@Param("sachId") String sachId);
     @Query(value = "SELECT COUNT(*) FROM ban_sao_sach b WHERE b.ma_sach = :maSach AND b.trang_thai_muon = :trangThaiMuon AND b.trang_thai_bao_quan = :trangBaoQuan ", nativeQuery = true)
     long countByMaSachAndTrangThaiMuon(@Param("maSach") String maSach, @Param("trangThaiMuon") String trangThaiMuon,@Param("trangBaoQuan") String trangBaoQuan);
+    
+    @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.trangThaiBaoQuan = :condition")
+    Integer countByCondition(@Param("condition") String condition);
+    
+    @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.trangThaiBaoQuan != 'Mới'")
+    long countBooksWithConditionNotMới();
+
+    // Count all Sach
+    @Query("SELECT COUNT(s) FROM Sach s")
+    long countAllSach();
 }

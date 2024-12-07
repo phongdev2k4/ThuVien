@@ -15,6 +15,7 @@ public interface hoiVienDAO extends JpaRepository<HoiVien,String> {
 	
 	  @Query("SELECT h FROM HoiVien h WHERE h.hoTen LIKE %:name%")
 	    List<HoiVien> findByHoTenContaining(@Param("name") String name);
+	  long count();
 
 
 }
