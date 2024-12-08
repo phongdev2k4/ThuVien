@@ -67,4 +67,15 @@ public class reportRestController {
 	    public List<Object[]> getDailyReport(@RequestParam Integer year,@RequestParam Integer month) {
 	        return reportService.getDailyReport(year,month);
 	    }
+	    @GetMapping("/borrowing-trends-by-genre")
+	    public ResponseEntity<List<Map<String, Object>>> getBorrowingTrendsByGenre() {
+	        List<Map<String, Object>> data = reportService.getBorrowingTrendsByGenre();
+	        return ResponseEntity.ok(data);
+	    }
+	    
+	    @GetMapping("/inventory-health")
+	    public ResponseEntity<Map<String, Long>> getInventoryHealthReport() {
+	        return ResponseEntity.ok(reportService.getInventoryHealthReport());
+	    }
+
 }

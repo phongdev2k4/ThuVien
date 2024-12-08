@@ -1,5 +1,6 @@
 package com.bookland.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -102,6 +103,30 @@ public class RepostServiceImpl implements ReportService{
 	public List<Object[]> getDailyReport(Integer year,Integer month) {
 		// TODO Auto-generated method stub
 		return pmDao.getWeeklyReport(year,month);
+	}
+
+	@Override
+	public List<Map<String, Object>> getBorrowingTrendsByGenre() {
+		 List<Object[]> rawData = pmDao.findBorrowingTrendsByGenre();
+	        List<Map<String, Object>> results = new ArrayList<>();
+	        
+	        for (Object[] row : rawData) {
+	            Map<String, Object> map = new HashMap<>();
+	            map.put("genre", row[0]); // Genre name
+	            map.put("borrowCount", row[1]); // Borrow count
+	            results.add(map);
+	        }
+	        return results;
+	}
+
+	@Override
+	public Map<String, Long> getInventoryHealthReport() {
+		Long availableBooks = pmDao.countAvailableBooks("Có sẵn","Mới");
+	    Long borrowedBooks = pmDao.countBorrowedBooks();
+	    Map<String, Long> report = new HashMap<>();
+	    report.put("Available Books", availableBooks);
+	    report.put("Borrowed Books", borrowedBooks);
+	    return report;
 	}
 
 

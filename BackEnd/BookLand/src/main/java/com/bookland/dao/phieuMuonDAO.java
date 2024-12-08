@@ -23,6 +23,8 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
 	@Query("SELECT pm FROM PhieuMuon pm "
 			+ "WHERE pm.maPM IN (SELECT ctp.phieuMuon.maPM FROM ChiTietPhieuMuon ctp WHERE ctp.isReturned = false) ")
 	List<PhieuMuon> findByAllPhieuMuon();
+	
+	//////////report ////////////////////////////////////////
 
 	@Query("SELECT new com.bookland.report.BorrowReport(\n" + "    CAST(p.ngayLapPhieu AS date), \n"
 			+ "    COUNT(DISTINCT p.maPM), \n" + "    COUNT(c)\n" + ")\n" + "FROM PhieuMuon p \n"
@@ -97,5 +99,24 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
 
 				""", nativeQuery = true)
 	List<Object[]> getWeeklyReport(@Param("year") Integer year, @Param("month") Integer month);
+	
+	
+
+    @Query("SELECT stl.theLoai.tenTheLoai, COUNT(ctpm.id) " +
+           "FROM ChiTietPhieuMuon ctpm " +
+           "JOIN ctpm.banSaoSach bss " +
+           "JOIN bss.sach s " +
+           "JOIN s.sachTheLoaiList stl " +
+           "GROUP BY stl.theLoai.tenTheLoai")
+    List<Object[]> findBorrowingTrendsByGenre();
+    
+    
+    @Query("SELECT COUNT(bs) FROM BanSaoSach bs WHERE bs.trangThaiMuon = :available and bs.trangThaiBaoQuan =:ttbq")
+    Long countAvailableBooks(@Param("available") String available,@Param("ttbq") String ttbq);
+    
+    @Query("SELECT COUNT(c) FROM ChiTietPhieuMuon c WHERE c.isReturned = false")
+    Long countBorrowedBooks();
+
+
 
 }
