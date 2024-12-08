@@ -40,5 +40,10 @@ export class ReportsService {
   getWeeklyReport(year: number, month: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/daily?year=${year}&month=${month}`);
   }
-  
+  getBorrowingTrendsByGenre(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/borrowing-trends-by-genre`);
+  }
+  getInventoryHealthReport(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/inventory-health`);
+  }
 }

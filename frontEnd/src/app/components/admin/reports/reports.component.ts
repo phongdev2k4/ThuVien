@@ -22,6 +22,10 @@ Chart.register(...registerables)
   styleUrl: './reports.component.css'
 })
 export class ReportsComponent {
+  inventoryHealth: { 'Available Books': number; 'Borrowed Books': number } = {
+    'Available Books': 0,
+    'Borrowed Books': 0,
+  };
   borrowReports: BorrowReport[] = [];
   reportCounts: any = {
     HoiVien: 0,
@@ -58,6 +62,8 @@ export class ReportsComponent {
       this.month = this.currentMonth;
       this.year = this.currentYear;
       this.fetchMonthlyReport();
+      this.loadBorrowingTrends();
+      this.getInventoryHealthReport();
 
     
 
@@ -65,6 +71,81 @@ export class ReportsComponent {
       console.log('Not running in the browser, skipping API call');
     }  // Lấy danh sách phiếu phạt khi component khởi tạo
   }
+  getInventoryHealthReport():void {
+    this.reportService.getInventoryHealthReport().subscribe((data) => {
+      this.inventoryHealth = data;
+      console.log(data)
+      this.renderChart();  // { "Available Books": 500, "Borrowed Books": 200 }
+    });
+  }
+  renderChart(): void {
+  const ctx = document.getElementById('inventoryChart') as HTMLCanvasElement;
+  new Chart(ctx, {
+    type: 'doughnut', // Dynamic type: 'pie' or 'doughnut'
+    data: {
+      labels: ['Available Books', 'Borrowed Books'],
+      datasets: [
+        {
+          data: [
+            this.inventoryHealth['Available Books'],
+            this.inventoryHealth['Borrowed Books'],
+          ],
+          backgroundColor: ['#519962', '#41c7c7'],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      },
+    },
+  });
+}
+
+  loadBorrowingTrends(): void {
+    this.reportService.getBorrowingTrendsByGenre().subscribe(data => {
+      console.log(data);
+      const labels = data.map((item: any) => item.genre);
+      const counts = data.map((item: any) => item.borrowCount);
+      this.createPolarAreaChart(labels, counts);
+    });
+  }
+  
+  createPolarAreaChart(labels: string[], data: number[]): void {
+    const ctx = document.getElementById('myChartGenres') as HTMLCanvasElement;
+  
+    new Chart(ctx, {
+      type: 'pie', // Changed to polarArea
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            data: data,
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#66BB6A',
+              '#42A5F5'
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+  }
+  
   
   fetchReportCounts(): void {
     this.reportService.getReportCounts().subscribe({
@@ -93,7 +174,7 @@ export class ReportsComponent {
     // Create a new chart with updated data
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'pie',  // Set chart type to 'pie'
+      type: 'polarArea',  // Set chart type to 'pie'
       data: {
         labels: labels,  // Use book names as labels
         datasets: [
