@@ -5,15 +5,15 @@ import { TheloaiService } from '../../../../services/theloai.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-theloai',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './theloai.component.html',
-  styleUrl: './theloai.component.css'
+    selector: 'app-theloai',
+    standalone: true,
+    imports: [
+        CommonModule,
+        AsideComponent,
+        RouterLink
+    ],
+    templateUrl: './theloai.component.html',
+    styleUrl: './theloai.component.css'
 })
 export class TheloaiComponent implements OnInit{
   theloaiList: any[] = [];

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../aside/aside.component';
+
 import{Chart,ChartData,ChartOptions,registerables} from 'chart.js';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ReportsService } from '../../../services/reports.service';
@@ -8,20 +8,57 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MostBorrowedBook } from '../../../models/most-borrowed-book';
 import { FormsModule } from '@angular/forms';
 import { BaseChartDirective } from 'ng2-charts';
+import { AsideComponent } from '../aside/aside.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from 'ng-apexcharts';
 
 
 
+export type ChartOptions123 = {
+  series: {
+    name: string;
+    data: number[];
+  }[]; // Array of objects, each with a series name and numeric data for the bars
+  chart: ApexChart; // Configuration for chart type and behavior
+  xaxis: ApexXAxis; // Configuration for the X-axis, including categories
+  title: ApexTitleSubtitle; // Title for the chart
+  plotOptions: ApexPlotOptions; // Optional: Customization for bar chart visuals
+  colors: string[]; // Optional: Custom colors for the bars
+  legend: ApexLegend; // Optional: Legend settings for the chart
+  dataLabels: ApexDataLabels; // Optional: Enable or disable data labels
+};
 
-Chart.register(...registerables)
+
 
 @Component({
   selector: 'app-reports',
-  standalone: true,
-  imports: [ AsideComponent,CommonModule,FormsModule,BaseChartDirective],
+  standalone: true,  // Add this line to make the component standalone
+  imports: [AsideComponent, CommonModule, FormsModule,BaseChartDirective,NgApexchartsModule], // Valid in standalone components
   templateUrl: './reports.component.html',
-  styleUrl: './reports.component.css'
+  styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent {
+  chartOptions: ChartOptions123 = {
+    series: [],
+    chart: { type: 'bar', height: 400, stacked: true },
+    xaxis: { categories: [] },
+    title: { text: '' },
+    plotOptions: {
+      bar: {
+        horizontal: false,
+        dataLabels: { position: 'top' },
+      },
+    },
+    dataLabels: { enabled: true },
+    colors: [], // Optional custom colors
+    legend: { position: 'top' },
+  };
+  
+  
+  inventoryHealth: { 'Available Books': number; 'Borrowed Books': number } = {
+    'Available Books': 0,
+    'Borrowed Books': 0,
+  };
   borrowReports: BorrowReport[] = [];
   reportCounts: any = {
     HoiVien: 0,
@@ -57,7 +94,11 @@ export class ReportsComponent {
       Chart.register(...registerables);
       this.month = this.currentMonth;
       this.year = this.currentYear;
+      this.loadChartData();
       this.fetchMonthlyReport();
+      this.loadBorrowingTrends();
+      this.getInventoryHealthReport();
+
 
     
 
@@ -65,6 +106,81 @@ export class ReportsComponent {
       console.log('Not running in the browser, skipping API call');
     }  // Lấy danh sách phiếu phạt khi component khởi tạo
   }
+  getInventoryHealthReport():void {
+    this.reportService.getInventoryHealthReport().subscribe((data) => {
+      this.inventoryHealth = data;
+      console.log(data)
+      this.renderChart();  // { "Available Books": 500, "Borrowed Books": 200 }
+    });
+  }
+  renderChart(): void {
+  const ctx = document.getElementById('inventoryChart') as HTMLCanvasElement;
+  new Chart(ctx, {
+    type: 'doughnut', // Dynamic type: 'pie' or 'doughnut'
+    data: {
+      labels: ['Available Books', 'Borrowed Books'],
+      datasets: [
+        {
+          data: [
+            this.inventoryHealth['Available Books'],
+            this.inventoryHealth['Borrowed Books'],
+          ],
+          backgroundColor: ['#519962', '#41c7c7'],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      },
+    },
+  });
+}
+
+  loadBorrowingTrends(): void {
+    this.reportService.getBorrowingTrendsByGenre().subscribe(data => {
+      console.log(data);
+      const labels = data.map((item: any) => item.genre);
+      const counts = data.map((item: any) => item.borrowCount);
+      this.createPolarAreaChart(labels, counts);
+    });
+  }
+  
+  createPolarAreaChart(labels: string[], data: number[]): void {
+    const ctx = document.getElementById('myChartGenres') as HTMLCanvasElement;
+  
+    new Chart(ctx, {
+      type: 'pie', // Changed to polarArea
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            data: data,
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#66BB6A',
+              '#42A5F5'
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+  }
+  
   
   fetchReportCounts(): void {
     this.reportService.getReportCounts().subscribe({
@@ -93,7 +209,7 @@ export class ReportsComponent {
     // Create a new chart with updated data
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'pie',  // Set chart type to 'pie'
+      type: 'polarArea',  // Set chart type to 'pie'
       data: {
         labels: labels,  // Use book names as labels
         datasets: [
@@ -247,5 +363,60 @@ export class ReportsComponent {
       };
     }
   }
+  
+ 
+  loadChartData(): void {
+    this.reportService.getHighDemandBooks()
+      .subscribe(data => {
+        // Extracting the data to map it into chart format
+        const tenSach = data.map(item => item.bookName); // Book names
+        const soLuotMuon = data.map(item => item.borrowCount); // Borrow counts
+        const sachConTrongKho = data.map(item => item.availableCopies); // Unavailable copies
+        const sachLoi = data.map(item => item.damagedCopies); // Damaged copies
+  
+        // Setting up the chart options
+        this.chartOptions = {
+          series: [
+            {
+              name: 'Số lượt mượn sách ',
+              data: soLuotMuon
+            },
+            {
+              name: 'Sách còn mượn  được trong kho ',
+              data: sachConTrongKho
+            },
+          ],
+          chart: {
+            type: 'bar', // Bar chart
+            height: 350 // Chart height
+          },
+          xaxis: {
+            categories: tenSach // X-axis categories (Book names)
+          },
+          title: {
+            text: 'High-Demand Books Report' // Chart title
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false, // Set to true if you want horizontal bars
+              columnWidth: '55%', // Column width, you can adjust it based on preference
+              borderRadius: 5 // Optional, for rounded corners in bars
+            }
+          },
+          colors: ['#FF5733', '#33FF57', '#3357FF'], // Custom colors for each series
+          legend: {
+            position: 'top', // Position of the legend
+            horizontalAlign: 'center', // Center-align legend horizontally
+          },
+          dataLabels: {
+            enabled: true // Show data labels on bars
+          }
+        };
+      });
+  }
+  
+  
+  
+  
   
 }

@@ -23,6 +23,8 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
 	@Query("SELECT pm FROM PhieuMuon pm "
 			+ "WHERE pm.maPM IN (SELECT ctp.phieuMuon.maPM FROM ChiTietPhieuMuon ctp WHERE ctp.isReturned = false) ")
 	List<PhieuMuon> findByAllPhieuMuon();
+	
+	//////////report ////////////////////////////////////////
 
 	@Query("SELECT new com.bookland.report.BorrowReport(\n" + "    CAST(p.ngayLapPhieu AS date), \n"
 			+ "    COUNT(DISTINCT p.maPM), \n" + "    COUNT(c)\n" + ")\n" + "FROM PhieuMuon p \n"
@@ -31,7 +33,7 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
 	List<BorrowReport> getBorrowReport();
 
 	@Query("SELECT new com.bookland.report.MostBorrowedBook(bs.sach.tenSach, COUNT(c)) " + "FROM ChiTietPhieuMuon c "
-			+ "JOIN c.banSaoSach bs " + "WHERE c.isReturned = false " + // Optional: if you only want to count books
+			+ "JOIN c.banSaoSach bs " + // Optional: if you only want to count books
 																		// that haven't been returned
 			"GROUP BY bs.sach.tenSach " + "ORDER BY COUNT(c) DESC")
 	List<MostBorrowedBook> findTop5MostBorrowedBooks(@Param("limit") int limit);
@@ -97,5 +99,50 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
 
 				""", nativeQuery = true)
 	List<Object[]> getWeeklyReport(@Param("year") Integer year, @Param("month") Integer month);
+	
+	
+
+    @Query("SELECT stl.theLoai.tenTheLoai, COUNT(ctpm.id) " +
+           "FROM ChiTietPhieuMuon ctpm " +
+           "JOIN ctpm.banSaoSach bss " +
+           "JOIN bss.sach s " +
+           "JOIN s.sachTheLoaiList stl " +
+           "GROUP BY stl.theLoai.tenTheLoai")
+    List<Object[]> findBorrowingTrendsByGenre();
+    
+    
+    @Query("SELECT COUNT(bs) FROM BanSaoSach bs WHERE bs.trangThaiMuon = :available and bs.trangThaiBaoQuan =:ttbq")
+    Long countAvailableBooks(@Param("available") String available,@Param("ttbq") String ttbq);
+    
+    @Query("SELECT COUNT(c) FROM ChiTietPhieuMuon c WHERE c.isReturned = false")
+    Long countBorrowedBooks();
+    
+    
+    @Query("SELECT b.sach.tenSach AS bookName, COUNT(c.id) AS borrowCount, COUNT(b) AS unavailableCopies " +
+            "FROM BanSaoSach b " +
+            "LEFT JOIN ChiTietPhieuMuon c ON b.maBanSaoSach = c.banSaoSach.maBanSaoSach " +
+            "WHERE b.trangThaiMuon != :available " +
+            "GROUP BY b.sach.tenSach " +
+            "HAVING COUNT(b) < :insufficientThreshold")
+     List<Object[]> findHighDemandBooksWithInsufficientCopies(@Param("insufficientThreshold") int insufficientThreshold,@Param("available") String available);
+     
+     @Query("SELECT b.sach.tenSach AS bookName, " +
+    	       "       COUNT(c.id) AS borrowCount, " +
+    	       "       COUNT(CASE WHEN b.trangThaiMuon = :available AND b.trangThaiBaoQuan = :new123 THEN 1 END) AS availableCopies, " +
+    	       "       COUNT(CASE WHEN b.trangThaiBaoQuan != :new123 THEN 1 END) AS damagedCopies " +
+    	       "FROM BanSaoSach b " +
+    	       "LEFT JOIN ChiTietPhieuMuon c ON b.maBanSaoSach = c.banSaoSach.maBanSaoSach " +
+    	       "GROUP BY b.sach.tenSach " +
+    	       "HAVING  COUNT(c.id) > 5 AND COUNT(CASE WHEN b.trangThaiMuon = :available AND b.trangThaiBaoQuan = :new123 THEN 1 END) < :insufficientThreshold " +
+    	       "   OR COUNT(CASE WHEN b.trangThaiBaoQuan != :new123 THEN 1 END) > :insufficientThreshold " +
+    	       "ORDER BY borrowCount DESC " + // Order by borrow count in descending order
+    	       "LIMIT 3") // Limit the result to the top 3 rows
+    	List<Object[]> findTop3HighDemandBooksWithInsufficientOrDamagedCopies(
+    	        @Param("insufficientThreshold") int insufficientThreshold, 
+    	        @Param("available") String available, 
+    	        @Param("new123") String new123);
+
+
+
 
 }

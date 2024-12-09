@@ -3,11 +3,11 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth-service.service';
 
 @Component({
-  selector: 'app-aside-admin',
-  standalone: true,
-  imports: [ RouterLink],
-  templateUrl: './aside.component.html',
-  styleUrl: './aside.component.css'
+    selector: 'app-aside-admin',
+    standalone: true,
+    imports: [RouterLink],
+    templateUrl: './aside.component.html',
+    styleUrl: './aside.component.css'
 })
 export class AsideComponent {
   constructor(private authService: AuthService) {}

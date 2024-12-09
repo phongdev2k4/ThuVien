@@ -6,15 +6,15 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AddBookRes } from '../../../../models/add-book-res';
 
 @Component({
-  selector: 'app-books',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+    selector: 'app-books',
+    standalone: true,
+    imports: [
+        CommonModule,
+        AsideComponent,
+        RouterLink
+    ],
+    templateUrl: './books.component.html',
+    styleUrl: './books.component.css'
 })
 export class BooksComponent {
   sachList: AddBookRes[] = [];

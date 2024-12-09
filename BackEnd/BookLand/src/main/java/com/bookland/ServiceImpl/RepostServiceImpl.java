@@ -1,5 +1,6 @@
 package com.bookland.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.bookland.dao.BanSaoSachDAO;
 import com.bookland.dao.hoiVienDAO;
 import com.bookland.dao.phieuMuonDAO;
+import com.bookland.dto.HighDemandBookReport;
 import com.bookland.report.BorrowReport;
 import com.bookland.report.BorrowReport123;
 import com.bookland.report.MostBorrowedBook;
@@ -62,12 +64,15 @@ public class RepostServiceImpl implements ReportService{
         long sachCount = bssDao.countAllSach();
         
         // Count number of Sach with TrangThaiBaoQuan != 'Mới'
-        long sachWithNonNewConditionCount = bssDao.countBooksWithConditionNotMới();
+        long sachWithNonNewConditionCount = bssDao.countBooksWithConditionNotMới("Mới");
+        
+        long sachWithNewConditionCount = bssDao.countByCondition("Mới");
 
         // Add values to the report map
         report.put("HoiVien", hoiVienCount);
         report.put("Sach", sachCount);
         report.put("SachNonNewCondition", sachWithNonNewConditionCount);
+        report.put("sachWithNewConditionCount",sachWithNewConditionCount);
 
         return report;
 	}
@@ -102,6 +107,44 @@ public class RepostServiceImpl implements ReportService{
 	public List<Object[]> getDailyReport(Integer year,Integer month) {
 		// TODO Auto-generated method stub
 		return pmDao.getWeeklyReport(year,month);
+	}
+
+	@Override
+	public List<Map<String, Object>> getBorrowingTrendsByGenre() {
+		 List<Object[]> rawData = pmDao.findBorrowingTrendsByGenre();
+	        List<Map<String, Object>> results = new ArrayList<>();
+	        
+	        for (Object[] row : rawData) {
+	            Map<String, Object> map = new HashMap<>();
+	            map.put("genre", row[0]); // Genre name
+	            map.put("borrowCount", row[1]); // Borrow count
+	            results.add(map);
+	        }
+	        return results;
+	}
+
+	@Override
+	public Map<String, Long> getInventoryHealthReport() {
+		Long availableBooks = pmDao.countAvailableBooks("Có sẵn","Mới");
+	    Long borrowedBooks = pmDao.countBorrowedBooks();
+	    Map<String, Long> report = new HashMap<>();
+	    report.put("Available Books", availableBooks);
+	    report.put("Borrowed Books", borrowedBooks);
+	    return report;
+	}
+
+	@Override
+	public List<HighDemandBookReport> getHighDemandBooksWithInsufficientCopies() {
+		List<Object[]> results = pmDao.findTop3HighDemandBooksWithInsufficientOrDamagedCopies(4,"Có sẵn","Mới");
+
+		 return results.stream()
+                 .map(r -> new HighDemandBookReport(
+                         (String) r[0],    // bookName
+                         (Long) r[1],      // borrowCount
+                         (Long) r[2],      // unavailableCopies
+                         (Long) r[3]       // damagedCopies
+                 ))
+                 .collect(Collectors.toList());
 	}
 
 

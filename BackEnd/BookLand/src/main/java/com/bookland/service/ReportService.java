@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.bookland.dto.HighDemandBookReport;
 import com.bookland.report.BorrowReport;
 import com.bookland.report.BorrowReport123;
 import com.bookland.report.MostBorrowedBook;
@@ -27,6 +28,12 @@ public interface ReportService {
 	List<Object[]> getMonthlyReport(Integer year);
 
 	List<Object[]> getDailyReport(Integer year,Integer month);
+
+	List<Map<String, Object>> getBorrowingTrendsByGenre();
+
+	Map<String, Long> getInventoryHealthReport();
+
+	List<HighDemandBookReport> getHighDemandBooksWithInsufficientCopies();
 
 	
 

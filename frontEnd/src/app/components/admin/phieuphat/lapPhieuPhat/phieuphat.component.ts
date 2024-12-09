@@ -10,11 +10,11 @@ import { PhieuTraService } from '../../../../services/phieu-tra.service';
 
 
 @Component({
-  selector: 'app-phieuphat',
-  standalone: true,
-  imports: [CommonModule, FormsModule, AsideComponent],
-  templateUrl: './phieuphat.component.html',
-  styleUrl: './phieuphat.component.css'
+    selector: 'app-phieuphat',
+    imports: [CommonModule, FormsModule, AsideComponent],
+    standalone: true,
+    templateUrl: './phieuphat.component.html',
+    styleUrl: './phieuphat.component.css'
 })
 export class PhieuphatComponent {
   maHV: string = ''; // Initialized with an empty string

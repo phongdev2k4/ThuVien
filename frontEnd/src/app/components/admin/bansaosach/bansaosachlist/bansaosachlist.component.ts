@@ -5,15 +5,15 @@ import { Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-bansaosachlist',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './bansaosachlist.component.html',
-  styleUrl: './bansaosachlist.component.css'
+    selector: 'app-bansaosachlist',
+    standalone: true,
+    imports: [
+        CommonModule,
+        AsideComponent,
+        RouterLink
+    ],
+    templateUrl: './bansaosachlist.component.html',
+    styleUrl: './bansaosachlist.component.css'
 })
 export class BansaosachlistComponent implements OnInit{
   constructor(private bansaosachService:BansaosachService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object ) {}

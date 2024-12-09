@@ -23,11 +23,11 @@ import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 
 
 @Component({
-  selector: 'app-phieu-muon',
-  standalone: true,
-  imports: [  AsideComponent,CommonModule,FormsModule,RouterLink],
-  templateUrl: './phieu-muon.component.html',
-  styleUrl: './phieu-muon.component.css'
+    selector: 'app-phieu-muon',
+    standalone: true,
+    imports: [AsideComponent, CommonModule, FormsModule, RouterLink],
+    templateUrl: './phieu-muon.component.html',
+    styleUrl: './phieu-muon.component.css'
 })
 export class PhieuMuonComponent {
   searchTerm: string = '';

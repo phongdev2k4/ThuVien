@@ -24,10 +24,10 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.trangThaiBaoQuan = :condition")
     Integer countByCondition(@Param("condition") String condition);
     
-    @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.trangThaiBaoQuan != 'Mới'")
-    long countBooksWithConditionNotMới();
+    @Query("SELECT COUNT(b) FROM BanSaoSach b WHERE b.trangThaiBaoQuan !=:condition")
+    long countBooksWithConditionNotMới(@Param("condition") String condition);
 
     // Count all Sach
-    @Query("SELECT COUNT(s) FROM Sach s")
+    @Query("SELECT COUNT(s) FROM BanSaoSach s")
     long countAllSach();
 }

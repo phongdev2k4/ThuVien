@@ -5,15 +5,15 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TacgiaService } from '../../../../services/tacgia.service';
 
 @Component({
-  selector: 'app-authors',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './authors.component.html',
-  styleUrl: './authors.component.css'
+    selector: 'app-authors',
+    standalone: true,
+    imports: [
+        CommonModule,
+        AsideComponent,
+        RouterLink
+    ],
+    templateUrl: './authors.component.html',
+    styleUrl: './authors.component.css'
 })
 export class AuthorsComponent implements OnInit{
   tacgiaList: any[] = [];

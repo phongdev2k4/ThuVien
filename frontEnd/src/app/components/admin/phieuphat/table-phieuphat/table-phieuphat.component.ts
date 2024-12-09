@@ -7,11 +7,11 @@ import { PhieuPhatService } from '../../../../services/phieu-phat.service';
 import { PhieuTraService } from '../../../../services/phieu-tra.service';
 
 @Component({
-  selector: 'app-table-phieuphat',
-  standalone: true,
-  imports: [AsideComponent,FormsModule,CommonModule,RouterLink],
-  templateUrl: './table-phieuphat.component.html',
-  styleUrl: './table-phieuphat.component.css'
+    selector: 'app-table-phieuphat',
+    standalone: true,
+    imports: [AsideComponent, FormsModule, CommonModule, RouterLink],
+    templateUrl: './table-phieuphat.component.html',
+    styleUrl: './table-phieuphat.component.css'
 })
 export class TablePhieuphatComponent {
   phieuPhatList: any[] = []; 

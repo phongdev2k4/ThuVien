@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { AsideComponent } from '../../aside/aside.component';
 
 @Component({
-  selector: 'app-bao-loi-phieu-tra',
-  standalone: true,
-  imports: [CommonModule, FormsModule, AsideComponent],
-  templateUrl: './bao-loi-phieu-tra.component.html',
-  styleUrl: './bao-loi-phieu-tra.component.css'
+    selector: 'app-bao-loi-phieu-tra',
+    imports: [CommonModule, FormsModule, AsideComponent],
+    standalone: true,
+    templateUrl: './bao-loi-phieu-tra.component.html',
+    styleUrl: './bao-loi-phieu-tra.component.css'
 })
 export class BaoLoiPhieuTraComponent {
     // Object phiếu phạt để lưu dữ liệu

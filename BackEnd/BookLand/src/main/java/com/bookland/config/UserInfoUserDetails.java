@@ -27,11 +27,8 @@ public class UserInfoUserDetails implements UserDetails {
 	public UserInfoUserDetails(TaiKhoan userInfo) {
 		name = userInfo.getUserName();
 		password = userInfo.getPassword();
-
 		authorities = new ArrayList<>();
-//		authorities = Arrays.stream("USER".split(","))
-//		.map(SimpleGrantedAuthority::new)
-//		.collect(Collectors.toList());
+
 		for (Authority authority : userInfo.getAuthorities()) {
             // Add each role (chucVu.tenChucVu) to the list of granted authorities
             String roleName = authority.getChucVu().getTenChucVu();
