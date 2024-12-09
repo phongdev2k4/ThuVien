@@ -8,16 +8,15 @@ import { response } from 'express';
 import { error } from 'console';
 
 @Component({
-  selector: 'app-add-theloai',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    FormsModule,
-    AsideComponent
-  ],
-  templateUrl: './add-theloai.component.html',
-  styleUrl: './add-theloai.component.css'
+    selector: 'app-add-theloai',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        AsideComponent
+    ],
+    templateUrl: './add-theloai.component.html',
+    styleUrl: './add-theloai.component.css'
 })
 export class AddTheloaiComponent {
 

@@ -19,11 +19,11 @@ import { PhieuTraDTO } from '../../../../models/phieu-tra-dto';
 
 
 @Component({
-  selector: 'app-lap-phieu-tra',
-  standalone: true,
-  imports: [AsideComponent, CommonModule, FormsModule],
-  templateUrl: './lap-phieu-tra.component.html',
-  styleUrl: './lap-phieu-tra.component.css'
+    selector: 'app-lap-phieu-tra',
+    standalone: true,
+    imports: [AsideComponent, CommonModule, FormsModule],
+    templateUrl: './lap-phieu-tra.component.html',
+    styleUrl: './lap-phieu-tra.component.css'
 })
 export class LapPhieuTraComponent {
   constructor(private router: Router, private phieuMuonService: PhieuMuonService, public bansaosachService: BansaosachService, private hoiVienService: HoivienService, private phieuTraService: PhieuTraService, private storage: LocalStorageService, private sweetAlertService: SweetAlertServiceService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute) { }

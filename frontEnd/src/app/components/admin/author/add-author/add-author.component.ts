@@ -6,16 +6,16 @@ import { CommonModule } from '@angular/common';
 import { TacgiaService } from '../../../../services/tacgia.service';
 
 @Component({
-  selector: 'app-add-author',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    FormsModule,
-    AsideComponent
-  ],
-  templateUrl: './add-author.component.html',
-  styleUrl: './add-author.component.css'
+    selector: 'app-add-author',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterLink,
+        FormsModule,
+        AsideComponent
+    ],
+    templateUrl: './add-author.component.html',
+    styleUrl: './add-author.component.css'
 })
 export class AddAuthorComponent {
 

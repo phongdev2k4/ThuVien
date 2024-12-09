@@ -8,16 +8,16 @@ import { SachService } from '../../../../services/sach.service';
 import { KhoService } from '../../../../services/kho.service';
 
 @Component({
-  selector: 'app-update-bansaosach',
-  standalone: true,
-  imports: [
-    AsideComponent,
-    RouterLink,
-    CommonModule,
-    FormsModule
-  ],
-  templateUrl: './update-bansaosach.component.html',
-  styleUrl: './update-bansaosach.component.css'
+    selector: 'app-update-bansaosach',
+    standalone: true,
+    imports: [
+        AsideComponent,
+        RouterLink,
+        CommonModule,
+        FormsModule
+    ],
+    templateUrl: './update-bansaosach.component.html',
+    styleUrl: './update-bansaosach.component.css'
 })
 export class UpdateBansaosachComponent {
   SachList: any[] = [];

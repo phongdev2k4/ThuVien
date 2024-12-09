@@ -46,4 +46,7 @@ export class ReportsService {
   getInventoryHealthReport(): Observable<any> {
     return this.http.get(`${this.apiUrl}/inventory-health`);
   }
+  getHighDemandBooks(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/high-demand-books`);
+  }
 }

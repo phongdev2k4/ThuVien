@@ -6,11 +6,11 @@ import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 
 
 @Component({
-  selector: 'app-table-phieu-muon',
-  standalone: true,
-  imports: [AsideComponent,CommonModule,RouterLink],
-  templateUrl: './table-phieu-muon.component.html',
-  styleUrl: './table-phieu-muon.component.css'
+    selector: 'app-table-phieu-muon',
+    standalone: true,
+    imports: [AsideComponent, CommonModule, RouterLink],
+    templateUrl: './table-phieu-muon.component.html',
+    styleUrl: './table-phieu-muon.component.css'
 })
 export class TablePhieuMuonComponent {
   phieuMuonList: any[] = []; // Mảng chứa danh sách phiếu mượn

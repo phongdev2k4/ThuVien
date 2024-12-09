@@ -9,9 +9,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { BooksComponent } from './components/admin/book/books/books.component';
 import { AddBookComponent } from './components/admin/book/add-book/add-book.component';
 import { AuthorsComponent } from './components/admin/author/authors/authors.component';
-import { ProfileComponent } from './components/admin/user/profile/profile.component';
-import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
-import { UserListComponent } from './components/admin/user/user-list/user-list.component';
+
 import { TheloaiComponent } from './components/admin/theloai/theloai/theloai.component';
 import { AddTheloaiComponent } from './components/admin/theloai/add-theloai/add-theloai.component';
 import { authGuard } from './guards/auth.guard';
@@ -74,22 +72,12 @@ export const routes: Routes = [
     path:'AuthorsAdmin',
     component:AuthorsComponent
 },
-{
-    path:'Profileadmin',
-    component:ProfileComponent
-},
+
 {
     path:'ProfileEditadmin',
     component:ProfileEditComponent
 },
-{
-    path:'AddUserComponentadmin',
-    component:AddUserComponent
-},
-{
-    path:'UserListadmin',
-    component:UserListComponent
-},
+
 
 {
     path:'AdminListTheloai',

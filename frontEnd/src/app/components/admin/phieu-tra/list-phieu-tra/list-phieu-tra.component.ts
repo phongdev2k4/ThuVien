@@ -8,11 +8,11 @@ import { Router, RouterModule } from '@angular/router';
 import { PhieuTraService } from '../../../../services/phieu-tra.service';
 
 @Component({
-  selector: 'app-list-phieu-tra',
-  standalone: true,
-  imports: [AsideComponent,CommonModule, FormsModule,RouterModule],
-  templateUrl: './list-phieu-tra.component.html',
-  styleUrl: './list-phieu-tra.component.css'
+    selector: 'app-list-phieu-tra',
+    standalone: true,
+    imports: [AsideComponent, CommonModule, FormsModule, RouterModule],
+    templateUrl: './list-phieu-tra.component.html',
+    styleUrl: './list-phieu-tra.component.css'
 })
 export class ListPhieuTraComponent {
   maHV: string = ''; // Bound to the input field
