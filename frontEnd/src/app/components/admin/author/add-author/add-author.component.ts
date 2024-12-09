@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,7 +11,6 @@ import { TacgiaService } from '../../../../services/tacgia.service';
     CommonModule,
     RouterLink,
     FormsModule,
-    AsideComponent
   ],
   templateUrl: './add-author.component.html',
   styleUrl: './add-author.component.css'

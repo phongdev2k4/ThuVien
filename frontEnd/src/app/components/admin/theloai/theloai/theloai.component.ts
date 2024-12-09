@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,RouterLink } from '@angular/router';
-import { AsideComponent } from '../../aside/aside.component';
 import { TheloaiService } from '../../../../services/theloai.service';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +8,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    AsideComponent,
     RouterLink
   ],
   templateUrl: './theloai.component.html',

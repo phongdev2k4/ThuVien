@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { Router,RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { KhoService } from '../../../../services/kho.service';
-import { AsideComponent } from '../../aside/aside.component';
 
 
 
@@ -13,7 +12,6 @@ import { AsideComponent } from '../../aside/aside.component';
   standalone: true,
   imports: [
     CommonModule,
-    AsideComponent,
     FormsModule,
     RouterLink
   ],

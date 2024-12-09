@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,7 +8,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    AsideComponent,
     RouterLink
   ],
   templateUrl: './bansaosachlist.component.html',

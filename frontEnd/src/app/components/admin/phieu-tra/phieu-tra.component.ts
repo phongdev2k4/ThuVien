@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { AsideComponent } from '../aside/aside.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PhieuMuonService } from '../../../services/phieu-muon.service';
@@ -11,7 +10,7 @@ import { BansaosachService } from '../../../services/bansaosach.service';
 @Component({
   selector: 'app-phieu-tra',
   standalone: true,
-  imports: [CommonModule, AsideComponent, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './phieu-tra.component.html',
   styleUrl: './phieu-tra.component.css'
 })

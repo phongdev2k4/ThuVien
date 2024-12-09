@@ -86,6 +86,7 @@ public class taiKhoanServiceImpl implements taiKhoanService{
 		
 		
 		HoiVien user = new HoiVien();
+		user.setTinhTrang(true);
 		user.setDiaChi(request.getAddress());
 		user.setSoDienThoai(request.getMobileno());
 		user.setHoTen(request.getName());
@@ -99,6 +100,27 @@ public class taiKhoanServiceImpl implements taiKhoanService{
 		return response;
 
 	}
+	@Override
+	public boolean changePassword(String username, String oldPassword, String newPassword) {
+		 // Lấy người dùng từ cơ sở dữ liệu
+        Optional<TaiKhoan> userOptional = dao.findById(username);
+        if (userOptional.isEmpty()) {
+            return false;  // Người dùng không tồn tại
+        }
+
+        TaiKhoan tk = userOptional.get();
+        
+        // Kiểm tra mật khẩu cũ
+        if (!passwordEncoder.matches(oldPassword, tk.getPassword())) {
+            return false;  // Mật khẩu cũ không đúng
+        }
+
+        // Cập nhật mật khẩu mới
+        tk.setPassword(passwordEncoder.encode(newPassword));
+        dao.save(tk);
+        return true;  // Thay đổi mật khẩu thành công
+      }
+	
 	
 
 }

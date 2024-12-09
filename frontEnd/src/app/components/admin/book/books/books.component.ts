@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { SachService } from '../../../../services/sach.service';
 import { CommonModule } from '@angular/common';
@@ -10,7 +9,6 @@ import { AddBookRes } from '../../../../models/add-book-res';
   standalone: true,
   imports: [
     CommonModule,
-    AsideComponent,
     RouterLink
   ],
   templateUrl: './books.component.html',

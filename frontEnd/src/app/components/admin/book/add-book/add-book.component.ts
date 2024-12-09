@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import {Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +15,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     RouterLink,
     CommonModule,
     FormsModule,
-    AsideComponent,
     NgxSpinnerModule
     
   ],

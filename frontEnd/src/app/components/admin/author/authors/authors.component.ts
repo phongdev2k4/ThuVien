@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TacgiaService } from '../../../../services/tacgia.service';
@@ -9,7 +8,6 @@ import { TacgiaService } from '../../../../services/tacgia.service';
   standalone: true,
   imports: [
     CommonModule,
-    AsideComponent,
     RouterLink
   ],
   templateUrl: './authors.component.html',
@@ -45,9 +43,11 @@ export class AuthorsComponent implements OnInit{
       this.tacgiaService.deleteTacGia(maTacGia).subscribe(
         response => {
           console.log('Tác giả đã được xóa thành công:', response);
+          alert("Tác giả đã được xóa thành công")
           this.loadTacGia(); // Tải lại danh sách tác giả
         },
         error => {
+          alert('Có lỗi xảy ra khi xóa tác giả')
           console.error('Có lỗi xảy ra khi xóa tác giả:', error);
         }
       );

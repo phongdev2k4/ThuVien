@@ -40,7 +40,7 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			return http.cors(Customizer.withDefaults()).csrf(c -> c.disable())
-					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai","/hoiVien/*","/rest/sach/*","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuTra/create","/phieuMuon/findPhieuMuon/*").permitAll()
+					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/tacgia/*","/rest/theloai","/hoiVien/*","/rest/sach/*","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuTra/create","/phieuMuon/findPhieuMuon/*","/api/paymen/vnpay/naptien","/api/paymen/callback","/hoiVien","/hoiVien/*","/hoiVien/username/*","/rest/taikhoan/*","/rest/thanhtoan/**","/rest/thanhtoan/*","/rest/nhavien","/rest/nhavien/*","/rest/nhavien/**").permitAll()
 					.requestMatchers("/api/trangChu").authenticated())
 					.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.authenticationProvider(authenticationProvider())

@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ProfileEditComponent } from './components/user/profile-edit/profile-edit.component';
 import { AddAuthorComponent } from './components/admin/author/add-author/add-author.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { BooksComponent } from './components/admin/book/books/books.component';
@@ -25,6 +24,19 @@ import { UpdateBansaosachComponent } from './components/admin/bansaosach/update-
 import { PhieuTraComponent } from './components/admin/phieu-tra/phieu-tra.component';
 import { ListPhieuTraComponent } from './components/admin/phieu-tra/list-phieu-tra/list-phieu-tra.component';
 import { LapPhieuTraComponent } from './components/admin/phieu-tra/lap-phieu-tra/lap-phieu-tra.component';
+import { ProfilecusEditComponent } from './components/user/profilecus-edit/profilecus-edit.component';
+import { ThanhtoanComponent } from './components/user/thanhtoan/thanhtoan/thanhtoan.component';
+import { VnpayThanhcongComponent } from './components/user/ThongBao/vnpay-thanhcong/vnpay-thanhcong.component';
+import { VnpayThatbaiComponent } from './components/user/ThongBao/vnpay-thatbai/vnpay-thatbai.component';
+import { NhanvienComponent } from './components/admin/nhanviens/nhanvien/nhanvien.component';
+import { UpdateNhanvienComponent } from './components/admin/nhanviens/update-nhanvien/update-nhanvien.component';
+import { AddNhanvienComponent } from './components/admin/nhanviens/add-nhanvien/add-nhanvien.component';
+import { ProfilestaffEditComponent } from './components/user/profilestaff-edit/profilestaff-edit.component';
+import { HoivienListComponent } from './components/admin/hoivien/hoivien-list/hoivien-list.component';
+import { AddhoivienComponent } from './components/admin/hoivien/addhoivien/addhoivien.component';
+import { UpdatehoivienComponent } from './components/admin/hoivien/updatehoivien/updatehoivien.component';
+import { TuychonComponent } from './components/admin/hoivien/tuychon/tuychon.component';
+import { ThanhtoanThucongComponent } from './components/user/thanhtoan/thanhtoan-thucong/thanhtoan-thucong.component';
 
 
 export const routes: Routes = [
@@ -43,10 +55,6 @@ export const routes: Routes = [
  { 
     path: 'register', 
     component: RegisterComponent
-},
-{ 
-    path: 'editUser', 
-    component: ProfileEditComponent
 },
 {
     path:'AddAuthorsAdmin',
@@ -72,10 +80,6 @@ export const routes: Routes = [
 {
     path:'Profileadmin',
     component:ProfileComponent
-},
-{
-    path:'ProfileEditadmin',
-    component:ProfileEditComponent
 },
 {
     path:'AddUserComponentadmin',
@@ -135,6 +139,56 @@ export const routes: Routes = [
     component:LapPhieuTraComponent
 },
 
-
-
+{
+    path:'NapTien',
+    component:ThanhtoanComponent 
+},
+{
+    path:'Profilecus',
+    component:ProfilecusEditComponent
+},
+{
+    path:'Profilestaff',
+    component: ProfilestaffEditComponent
+},
+{
+    path:'paymenSuccess',
+    component:VnpayThanhcongComponent
+},
+{
+    path:'paymenFailure',
+    component:VnpayThatbaiComponent
+},
+{
+    path:'quanlynhanvien',
+    component:NhanvienComponent
+},
+{
+    path:'updateNhanVien',
+    component:UpdateNhanvienComponent
+},
+{
+    path:'addNhanVien',
+    component:AddNhanvienComponent
+},
+{
+    path:'hoivienlist',
+    component:HoivienListComponent
+},
+{
+    path:'addhoivien',
+    component:AddhoivienComponent
+},
+{
+    path:'capnhathoivien',
+    component:UpdatehoivienComponent
+},
+{
+    path:'tuychonHoiVien',
+    component:TuychonComponent
+},
+{
+    path:'thanhtoan-thucong',
+    component:ThanhtoanThucongComponent
+},
 ];

@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { AsideComponent } from '../aside/aside.component';
 import { HoivienService } from '../../../services/hoivien.service';
 import { debounceTime } from 'rxjs';
 import { CommonModule, formatDate } from '@angular/common';
@@ -23,7 +22,7 @@ import { PhieuMuonService } from '../../../services/phieu-muon.service';
 @Component({
   selector: 'app-phieu-muon',
   standalone: true,
-  imports: [  AsideComponent,CommonModule,FormsModule,RouterLink],
+  imports: [CommonModule,FormsModule,RouterLink],
   templateUrl: './phieu-muon.component.html',
   styleUrl: './phieu-muon.component.css'
 })
