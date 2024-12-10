@@ -105,24 +105,12 @@
                   <li ><a routerLink="/Report"><i class="ri-file-pdf-line"></i>Reports</a></li>
                </ul>
             </li>
-            <li *ngIf="authService.roleMatch(['ADMIN', 'EMPLOYEE'])">
-               <a href="#userinfo" 
-               class="iq-waves-effect" 
-               (click)="toggleCollapse($event)" 
-               aria-expanded="false">
-               <span class="ripple rippleEffect"></span>
-               <i class="las la-user-tie iq-arrow-left"></i>
-               <span>Nhân Viên</span>
-               <i class="ri-arrow-right-s-line iq-arrow-right"></i>
-            </a>
-            <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-               <li><a routerLink="/hoivienlist"><i class="las la-th-list"></i>Hội Viên List</a></li>
-               <li><a routerLink="/Profileadmin"><i class="las la-id-card-alt"></i>Nhân Viên Profile</a></li>
-               <li><a routerLink="/ProfileEditadmin"><i class="las la-edit"></i>Nhân Viên Edit</a></li>
-               <li><a routerLink="/AddUserComponentadmin"><i class="las la-plus-circle"></i>Nhân Viên Add</a></li>
-               <li><a routerLink="/UserListadmin"><i class="las la-th-list"></i>Nhân Viên List</a></li>
-            </ul>
-              </li>
+            <li class=" active-menu" *ngIf="authService.roleMatch(['ADMIN', 'EMPLOYEE'])">
+               <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><span class="ripple rippleEffect"></span><i class="las la-home iq-arrow-left"></i><span>Chức năng của nhân viên</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+               <ul id="userinfo" class="iq-submenu collapse " data-parent="#iq-sidebar-toggle">
+                  <li><a routerLink="/hoivienlist"><i class="las la-th-list"></i>Hội Viên List</a></li>
+               </ul>
+            </li>
              <li *ngIf="authService.roleMatch(['CUS'])"><a routerLink="/NapTien"><i class="ri-book-line"></i>Nạp Tiền</a></li>
             <li><a href="book-page.html"><i class="ri-book-line"></i>Yêu Thích</a></li>
             <li><a href="book-pdf.html"><i class="ri-book-line"></i>Sách PDF</a></li>
