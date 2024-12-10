@@ -7,18 +7,18 @@ import {
   sequence,
   style,
   ɵPRE_STYLE
-} from "./chunk-J6TOXJM7.js";
+} from "./chunk-Y2OOGROV.js";
 import {
   BrowserDomAdapter,
   BrowserModule,
   DomRendererFactory2,
   EVENT_MANAGER_PLUGINS,
   EventManagerPlugin
-} from "./chunk-DYMCNZ5J.js";
+} from "./chunk-BS5HOPEX.js";
 import {
   HTTP_ROOT_INTERCEPTOR_FNS,
   HttpClientModule
-} from "./chunk-5YX3YOCG.js";
+} from "./chunk-MLLVBCXW.js";
 import {
   DOCUMENT,
   NullViewportScroller,
@@ -28,7 +28,7 @@ import {
   XhrFactory,
   getDOM,
   setRootDomAdapter
-} from "./chunk-VYMNQ5T5.js";
+} from "./chunk-ZT4RKTKN.js";
 import {
   ALLOW_MULTIPLE_PLATFORMS,
   ANIMATION_MODULE_TYPE,
@@ -65,10 +65,10 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-H6F6Z4C2.js";
+} from "./chunk-IIRQQ5BE.js";
 import {
   require_cjs
-} from "./chunk-VDZEJD3D.js";
+} from "./chunk-CF6L2PRI.js";
 import {
   __async,
   __objRest,
@@ -76,7 +76,7 @@ import {
   __toESM
 } from "./chunk-NQ4HTGF6.js";
 
-// node_modules/@angular/animations/fesm2022/browser.mjs
+// ../../../node_modules/@angular/animations/fesm2022/browser.mjs
 var LINE_START = "\n - ";
 function invalidTimingValue(exp) {
   return new RuntimeError(3e3, ngDevMode && `The provided timing value "${exp}" is invalid.`);
@@ -3996,7 +3996,7 @@ var AnimationRendererFactory = class {
   }
 };
 
-// node_modules/@angular/platform-browser/fesm2022/animations.mjs
+// ../../../node_modules/@angular/platform-browser/fesm2022/animations.mjs
 var InjectableAnimationEngine = class _InjectableAnimationEngine extends AnimationEngine {
   // The `ApplicationRef` is injected here explicitly to force the dependency ordering.
   // Since the `ApplicationRef` should be created earlier before the `AnimationEngine`, they
@@ -4147,7 +4147,7 @@ function provideNoopAnimations() {
   return [...BROWSER_NOOP_ANIMATIONS_PROVIDERS];
 }
 
-// node_modules/@angular/platform-server/fesm2022/platform-server.mjs
+// ../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs
 var import_rxjs = __toESM(require_cjs(), 1);
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __commonJS = (cb, mod) => function __require() {
@@ -20485,7 +20485,7 @@ var ServerXhr = class _ServerXhr {
       if (!this.xhrImpl) {
         const {
           default: xhr
-        } = yield import("./xhr2-JDAPKF6S.js");
+        } = yield import("./xhr2-BHABRBGE.js");
         this.xhrImpl = xhr;
       }
     });

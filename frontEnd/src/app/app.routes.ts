@@ -26,6 +26,7 @@ import { UpdateBansaosachComponent } from './components/admin/bansaosach/update-
 import { ListPhieuTraComponent } from './components/admin/phieu-tra/list-phieu-tra/list-phieu-tra.component';
 import { LapPhieuTraComponent } from './components/admin/phieu-tra/lap-phieu-tra/lap-phieu-tra.component';
 import { PhieuphatComponent } from './components/admin/phieuphat/phieuphat.component';
+import { ChitietsanphamComponent } from './components/chitietsanpham/chitietsanpham.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -137,7 +138,7 @@ export const routes: Routes = [
     path:'PhieuPhat',
     component:PhieuphatComponent
 },
-
-
-
+{   path: 'ChiTiet/:tenSach', 
+    component: ChitietsanphamComponent 
+}  // Route với tham số id
 ];

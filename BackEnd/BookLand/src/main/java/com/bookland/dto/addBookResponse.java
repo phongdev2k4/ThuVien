@@ -23,7 +23,6 @@ public class addBookResponse {
     private List<String> tenTheLoai;
     private String tenTacGia;
     private String moTa;
-
     
     
 }

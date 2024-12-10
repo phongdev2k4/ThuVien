@@ -68,5 +68,7 @@ public interface SachDAO extends JpaRepository<Sach, String> {
                 a2.ma_sach, a2.ten_sach, a4.ten_tac_gia, a2.mo_ta
         """, nativeQuery = true)
         List<Object[]> findBookDetailsByName(@Param("tenSach") String tenSach);
+        
+        
 
 }

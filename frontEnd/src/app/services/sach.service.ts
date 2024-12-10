@@ -11,7 +11,9 @@ import { BookDTO } from '../models/book-dto';
 })
 export class SachService {
   private apiUrl = 'http://localhost:8080/rest/sach';
+  
   constructor(private http: HttpClient) { }
+  
   sach: BookDTO = new BookDTO();
 
 
@@ -32,25 +34,40 @@ export class SachService {
     // Send the multipart request
     return this.http.post<AddBookRes>(this.apiUrl, formData);
   }
+
   findAll(): Observable<AddBookRes[]> {
     return this.http.get<AddBookRes[]>(this.apiUrl);
   }
+
   deleteSach(maSach: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${maSach}`);
   }
+
   findBooksByName(name: string): Observable<AddBookRes[]> {
     return this.http.get<AddBookRes[]>(`${this.apiUrl}/searchByName?tenSach=${encodeURIComponent(name)}`);
   }
+
   // getCoverImages(): Observable<any> {
   //   return this.http.get<any>(`${this.apiUrl}/cover`);
   // }
+
   getCoverImages(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/cover`).pipe(
-      timeout(5000), // Set a 5-second timeout
+      timeout(5000), // Đặt thời gian chờ 5 giây
       catchError((error) => {
-        console.error('Error fetching cover images:', error);
+        console.error('Lỗi khi tải ảnh bìa:', error);
         return throwError(() => error);
       })
     );
   }
+
+  getImagesByMaSach(maSach: string): Observable<AddBookRes[]> {
+    return this.http.get<AddBookRes[]>(`${this.apiUrl}/${maSach}`).pipe(
+      catchError((error) => {
+        console.error('Lỗi khi tải ảnh:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
 }

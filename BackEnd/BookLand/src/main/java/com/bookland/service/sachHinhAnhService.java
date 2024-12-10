@@ -12,5 +12,7 @@ public interface sachHinhAnhService {
 	void save(hinhAnhSach image);
 
 	List<hinhAnhSach> getCoverImages();
+	
+	List<hinhAnhSach> getImagesByMaSach(String maSach);
 
 }

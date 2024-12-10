@@ -12,22 +12,25 @@ import { SachService } from '../../services/sach.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+ 
   coverImages: any[] = [];
+ 
   isDataLoaded = false;
+ 
   constructor(public authService: AuthService,private sachService:SachService,private zone: NgZone,@Inject(PLATFORM_ID) private platformId: Object  ) {}
+  
   ngOnInit(): void {
     console.log('Component initialization started');
 
     if (isPlatformBrowser(this.platformId)) {
-      // Only fetch cover images if we are in the browser (not server-side)
+      // Chỉ lấy ảnh bìa nếu chúng ta đang ở trong trình duyệt (không phải phía máy chủ)
         this.fetchCoverImages();
-
     } else {
       console.log('Not running in the browser, skipping API call');
     }
-
     console.log('ngOnInit completed');
   }
+  
   fetchCoverImages(): void {
     this.sachService.getCoverImages().subscribe({
       next: (images) => {

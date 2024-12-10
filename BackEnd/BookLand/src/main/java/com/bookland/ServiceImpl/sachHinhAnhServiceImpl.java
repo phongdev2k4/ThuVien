@@ -14,16 +14,23 @@ public class sachHinhAnhServiceImpl implements sachHinhAnhService {
 	
 	@Autowired
 	hinhAnhSachDAO dao;
+	
 	@Override
 	public void save(hinhAnhSach image) {
 		dao.save(image);
 		
 	}
+	
 	@Override
 	public List<hinhAnhSach> getCoverImages() {
-		// TODO Auto-generated method stub
 		return dao.findByImageType("COVER");
 	}
+	
+	@Override
+	public List<hinhAnhSach> getImagesByMaSach(String maSach) {
+        return dao.findBySach_MaSach(maSach);
+    }
+    
 	
 
 }

@@ -1,4 +1,4 @@
-package com.bookland.service;
+ package com.bookland.service;
 
 import java.util.List;
 
@@ -19,6 +19,9 @@ public interface SachService {
 	public List<Sach> findAllBooks();
 
 	public List<addBookResponse> findBookDetailsByName(String tenSach);
+	
+//	public addBookResponse findBookDetailsByMaSach(String maSach);
+
 
 	
 }

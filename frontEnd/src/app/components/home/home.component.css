@@ -1,7 +1,7 @@
 .content-page {
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+    backdrop-filter: blur(20px); /* Làm mờ nhẹ nền */
     background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
     background-size: cover;
     background-position: center;
@@ -33,5 +33,24 @@
 .menu-text {
     color:aquamarine;
 }
-  
-  
+
+  /* Đảm bảo hình ảnh có cùng kích thước */
+.img-fluid {
+    width: 400px; /* Chiều rộng cố định */
+    height: 250px; /* Chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh để phù hợp vùng chứa mà không méo */
+    border-radius: 8px; /* Bo góc ảnh, nếu cần */
+  }
+  /* Căn chỉnh khoảng cách giữa các dòng chữ */
+.col-6 h6, 
+.col-6 p, 
+.col-6 .price {
+    margin-top: 10px; /* Nới khoảng cách phía trên */
+    margin-bottom: 10px; /* Nới khoảng cách phía dưới */
+    line-height: 1.2; /* Tăng khoảng cách dòng */
+}
+
+/* Đảm bảo khoảng cách đồng đều giữa các phần */
+.col-6 div {
+    margin-bottom: 10px; /* Khoảng cách dưới mỗi khối nội dung */
+}
