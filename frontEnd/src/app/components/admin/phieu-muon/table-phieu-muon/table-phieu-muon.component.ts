@@ -1,5 +1,4 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { PhieuMuonService } from '../../../../services/phieu-muon.service';
@@ -8,7 +7,7 @@ import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 @Component({
     selector: 'app-table-phieu-muon',
     standalone: true,
-    imports: [AsideComponent, CommonModule, RouterLink],
+    imports: [ CommonModule, RouterLink],
     templateUrl: './table-phieu-muon.component.html',
     styleUrl: './table-phieu-muon.component.css'
 })

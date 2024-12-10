@@ -2,14 +2,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { AsideComponent } from "../../aside/aside.component";
 import { PhieuPhatService } from '../../../../services/phieu-phat.service';
 import { PhieuTraService } from '../../../../services/phieu-tra.service';
 
 @Component({
     selector: 'app-table-phieuphat',
     standalone: true,
-    imports: [AsideComponent, FormsModule, CommonModule, RouterLink],
+    imports: [ FormsModule, CommonModule, RouterLink],
     templateUrl: './table-phieuphat.component.html',
     styleUrl: './table-phieuphat.component.css'
 })

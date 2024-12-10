@@ -1,0 +1,10 @@
+
+<div id="content-page" class="content-page">
+  <div class="container-fluid d-flex justify-content-center">
+    <div class="payment-success">
+      <h1>Giao dịch thành công</h1>
+      <p><strong>Mã giao dịch:</strong> {{ txnRef }}</p>
+      <p><strong>Số tiền:</strong> {{ (amount) | number:'1.0-0' }} VND</p> <!-- Định dạng số tiền và thêm VND sau -->
+    </div>
+   </div>
+  </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink } from '@angular/router';
 import { KhoService } from '../../../../services/kho.service';
@@ -9,7 +8,6 @@ import { KhoService } from '../../../../services/kho.service';
     standalone: true,
     imports: [
         CommonModule,
-        AsideComponent,
         RouterLink
     ],
     templateUrl: './kholist.component.html',

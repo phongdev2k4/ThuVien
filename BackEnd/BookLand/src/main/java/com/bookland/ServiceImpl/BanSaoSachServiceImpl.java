@@ -37,7 +37,7 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 		    int number = (maxMaBanSaoSach != null) ? maxMaBanSaoSach + 1 : 1; 
 			String formatted = String.format("%011d", number);
 			String machecksum = BarcodeGeneratorUtils.generateFullUPC(formatted);
-			String nameimae=BarcodeGeneratorUtils.generateBarcode(machecksum, "BarCodeBook");  
+			String nameimae=BarcodeGeneratorUtils.generateBarcode(machecksum, "Bookland/Barcode");  
 			bansaosach.setHinhAnhMaVach(nameimae);
 			bansaosach.setMaVach(machecksum);
 			

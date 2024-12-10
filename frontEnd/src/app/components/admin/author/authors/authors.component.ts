@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TacgiaService } from '../../../../services/tacgia.service';
@@ -9,7 +8,6 @@ import { TacgiaService } from '../../../../services/tacgia.service';
     standalone: true,
     imports: [
         CommonModule,
-        AsideComponent,
         RouterLink
     ],
     templateUrl: './authors.component.html',

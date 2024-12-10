@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AsideComponent } from '../../aside/aside.component';
 
 @Component({
     selector: 'app-bao-loi-phieu-tra',
-    imports: [CommonModule, FormsModule, AsideComponent],
+    imports: [CommonModule, FormsModule],
     standalone: true,
     templateUrl: './bao-loi-phieu-tra.component.html',
     styleUrl: './bao-loi-phieu-tra.component.css'

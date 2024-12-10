@@ -1,7 +1,7 @@
 <!-- TOP Nav Bar -->
-<div class="iq-top-navbar">
+<div class="iq-top-navbar mb-">
   <div class="iq-navbar-custom">
-    <nav class="navbar navbar-expand-lg navbar-light p-0">
+    <nav class="navbar navbar-expand-lg navbar-light p-0 ">
       <div class="iq-menu-bt d-flex align-items-center">
         <div class="wrapper-menu">
           <div class="main-circle"><i class="las la-bars"></i></div>
@@ -271,7 +271,8 @@
           </li>
           <li class="line-height pt-3">
             <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
-             
+              <img *ngIf="decodedToken?.sub" src="{{ getImageUrl()}}" class="img-fluid rounded-circle mr-3"
+              alt="user" />
 
               <div *ngIf="decodedToken?.sub; else loginBlock" class="caption">
                 <h6 class="mb-1 line-height " style="color: aqua;">
@@ -290,7 +291,7 @@
                   <div class="bg-primary p-3">
                     <h5 class="mb-0 text-white line-height">Xin Chào Ông Trần Thuận</h5>
                   </div>
-                  <a href="editUser" class="iq-sub-card iq-bg-primary-hover">
+                  <a href="{{getLinkProfile()}}" class="iq-sub-card iq-bg-primary-hover">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-primary">
                         <i class="ri-file-user-line"></i>

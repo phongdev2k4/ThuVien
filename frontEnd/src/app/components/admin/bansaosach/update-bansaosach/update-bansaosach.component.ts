@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +10,6 @@ import { KhoService } from '../../../../services/kho.service';
     selector: 'app-update-bansaosach',
     standalone: true,
     imports: [
-        AsideComponent,
         RouterLink,
         CommonModule,
         FormsModule

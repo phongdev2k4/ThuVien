@@ -1,5 +1,5 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
+
 import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -10,7 +10,7 @@ import { PhieuTraService } from '../../../../services/phieu-tra.service';
 @Component({
     selector: 'app-list-phieu-tra',
     standalone: true,
-    imports: [AsideComponent, CommonModule, FormsModule, RouterModule],
+    imports: [CommonModule, FormsModule, RouterModule],
     templateUrl: './list-phieu-tra.component.html',
     styleUrl: './list-phieu-tra.component.css'
 })

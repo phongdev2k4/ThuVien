@@ -6,7 +6,7 @@ import java.util.List;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import project12.entity.*;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -45,7 +45,6 @@ public class TaiKhoan {
     private NhanVien nv;
     
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
 	private List<Authority> authorities;
 }

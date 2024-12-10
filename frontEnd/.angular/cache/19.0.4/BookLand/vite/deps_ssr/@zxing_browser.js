@@ -21,7 +21,7 @@ import {
   NotFoundException_default,
   PDF417Reader_default,
   QRCodeReader_default
-} from "./chunk-DUBADN6W.js";
+} from "./chunk-STPJUTLG.js";
 import "./chunk-YHCV7DAQ.js";
 
 // node_modules/@zxing/browser/esm/common/HTMLCanvasElementLuminanceSource.js

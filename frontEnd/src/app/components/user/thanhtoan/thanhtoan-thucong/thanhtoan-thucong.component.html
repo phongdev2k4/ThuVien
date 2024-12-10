@@ -1,0 +1,75 @@
+
+<div id="content-page" class="content-page">
+    <div class="container">
+        <div class="container-form">
+            <h3>Thanh Toán</h3>
+            <form  class="form-group" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    
+                    <div class="form-group col-6">
+                        <label for="maNV">Mã hội viên</label>
+                        <input class="form-control" id="maNV" name="userName"  [(ngModel)]="thanhToan.hoiVien.maHV" disabled/>
+                    </div>
+                   
+                    <div class="form-group col-6">
+                        <label for="email">Tên hội viên</label>
+                        <input class="form-control" id="email" name="email" [(ngModel)]="thanhToan.hoiVien.hoTen"  disabled/>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                   
+                    <div class="form-group col-6">
+                        <label for="matKhau">Số tiền</label>
+                        <input type="number" class="form-control" id="matKhau" name="password"  min="10000" step="1000" [(ngModel)]="thanhToan.soTien" />
+                    </div>
+                    
+                    <div class="form-group col-6">
+                        <label >Loại thanh toán</label>
+                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="thanhToan.loaiThanhToan">
+                            <option value="Nạp Tiền">Nạp Tiền</option>
+                            <option value="Rút Tiền">Rút Tiền</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Họ Tên -->
+                    <div class="form-group col-6">
+                        <label for="tinhTrang">Trạng thái thanh toán</label>
+                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="thanhToan.trangThaiThanhToan">
+                            <option value="Thủ công">Thủ công</option>
+                        </select>
+                    </div>
+                                       <!-- Tình Trạng -->
+                                       <div class="form-group col-6">
+                                         <label for="tinhTrang">Hình thức thanh toán</label>
+                                         <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="thanhToan.hinhThucThanhToan">
+                                             <option value="Tiền mặt">Tiền mặt</option>
+                                             <option value="Chuyển khoản">Chuyển khoản</option>
+                                             <option value="Thẻ ATM">Thẻ ATM</option>
+                                             <option value="Thẻ tín dụng">Thẻ tín dụng</option>
+                                             <option value="Ví điện tử">Ví điện tử</option>
+                                         </select>
+                                     </div>
+                </div>
+    
+                <div class="form-row">
+                    <!-- Địa Chỉ -->
+                    <div class="form-group col-12">
+                        <label for="diaChi">Ghi chú</label>
+                        <textarea name="" id="" class="form-control" [(ngModel)]="thanhToan.ghiChu"></textarea>
+                    </div>
+                </div>
+    
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+                    <button type="submit" class="btn btn-primary">Lưu Thông Tin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ </div>
+ 
+ 
+ 

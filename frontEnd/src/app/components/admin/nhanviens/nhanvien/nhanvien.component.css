@@ -1,0 +1,31 @@
+/* Tạo kiểu đẹp cho ô input */
+#example-search-input {
+    background-color: #f8f9fa; /* Nền sáng */
+    color: #495057; /* Màu chữ tối */
+    border: 1px solid #ced4da; /* Viền sáng */
+    border-radius: 15px 0 0 15px; /* Bo góc trái */
+    padding-left: 20px; /* Khoảng cách từ bên trái */
+    font-size: 16px; /* Kích thước chữ */
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi hover */
+}
+
+/* Tạo kiểu cho nút search */
+.input-group .btn {
+    background-color: #6c757d; /* Màu nền xanh dương */
+    color: white; /* Màu chữ trắng */
+    border: 1px solid #007bff; /* Viền đồng bộ với nền */
+    border-radius:0 15px 15px 0; /* Bo góc phải */
+    padding: 10px 20px; /* Padding giúp nút đẹp */
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi hover */
+}
+
+/* Hiệu ứng hover cho button */
+.input-group .btn:hover {
+    background-color: #0056b3; /* Tối màu nền khi hover */
+    border-color: #0056b3; /* Viền thay đổi khi hover */
+}
+
+/* Đảm bảo input và button nối liền nhau */
+.input-group {
+    display: flex;
+}

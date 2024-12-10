@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { LoginRequest } from '../models/login-request';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NhanvienService } from './nhanvien.service';
+import { HoivienService } from './hoivien.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,9 @@ export class AuthService {
   constructor(
     private storage: LocalStorageService,
     private integration: IntergrationService,
-    private router: Router
+    private router: Router,
+    private hoivienService: HoivienService,
+    private nhanvienService:NhanvienService
   ) {  this.loadToken(); }
 
   private loadToken(): void {
@@ -61,6 +65,8 @@ export class AuthService {
     const decoded = this.helper.decodeToken(res.token);
     this.decodedTokenSubject.next(decoded); 
 
+    this.TimThongTinNguoiDung();
+
     const redirectUrl = localStorage.getItem('redirectUrl') || 'trangChu';
     localStorage.removeItem('redirectUrl');
     this.router.navigateByUrl(redirectUrl);
@@ -83,7 +89,26 @@ export class AuthService {
   }
  
   
- 
+  TimThongTinNguoiDung(): void {
+    if(this.roleMatch(['ADMIN', 'EMPLOYEE'])){
+      this.nhanvienService.findByUsername(this.storage.getIdUser()).subscribe(
+        (data: any) => {
+          this.storage.setTTNguoiDung(data);
+        },
+        (error) => {
+        }
+      )
+    }else if(this.roleMatch(['CUS'])){
+      this.hoivienService.findByUsername(this.storage.getIdUser()).subscribe(
+        (data: any) => {
+          this.storage.setTTNguoiDung(data);
+        },
+        (error) => {
+        }
+      );
+    }
+   
+  }
   
 
 }

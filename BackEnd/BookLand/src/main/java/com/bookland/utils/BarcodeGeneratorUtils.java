@@ -21,7 +21,6 @@ import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-
 public class BarcodeGeneratorUtils {
 	@Autowired
 	CloudinaryService cloudService;
@@ -48,14 +47,13 @@ public class BarcodeGeneratorUtils {
             // Lưu hình ảnh vào tệp
             File outputFile = new File("barcode.png");
             ImageIO.write(finalImage, "png", outputFile);
-            
-            return BarcodeGeneratorUtils.saveImage2(outputFile, uploadDir);
+            return CloudinaryUtils.uploadImage2(outputFile, uploadDir);
         } catch (Exception e) {
             System.err.println("Lỗi khi tạo mã vạch: " + e.getMessage());
         }
         return null;
     }
-	
+
 	public static String saveImage2(File imgFile, String uploadDir) throws IOException {
 	    if (imgFile != null && imgFile.exists() && imgFile.length() > 0) {
 	        try {
