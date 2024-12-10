@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -15,8 +16,9 @@ import { CommonModule } from '@angular/common';
     styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService,public router:Router,private storage:LocalStorageService) {}
+  constructor(public authService: AuthService,public router:Router,private storage:LocalStorageService,private cartService: CartService) {}
   decodedToken: any = null;// Add decodedToken here
+  cartItems: any[] = [];
 
   ngOnInit(): void {
     this.authService.decodedToken$.subscribe((token) => {
@@ -24,6 +26,10 @@ export class HeaderComponent {
       this.storage.setIdUser(  this.decodedToken.sub);
        // Update the token when it changes
     });
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartItems = items;
+    });
+  
   }
 
   signOut(){
@@ -36,4 +42,9 @@ export class HeaderComponent {
     this.router.navigate(['/login']); // Programmatically navigate to the login route
   }
 
+
+  removeFromCart(item: any,event: Event): void {
+    event.stopPropagation(); 
+    this.cartService.removeFromCart(item);
+  }
 }

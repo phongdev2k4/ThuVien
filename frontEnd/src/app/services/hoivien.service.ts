@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HoiVien } from '../models/hoi-vien';
@@ -15,5 +15,52 @@ export class HoivienService {
   findById(maHV: string): Observable<HoiVien> {
     return this.http.get<HoiVien>(`${this.apiUrl}/${maHV}`);
   }
+  findByUsername(username: string): Observable<any> {
+    return this.http.get<HoiVien>(`${this.apiUrl+'/username'}/${username}`);
+  }
+  updateHoiVien(hoivien: any,  file: File | null): Observable<any> {  
+    const formData = new FormData();
+    formData.append('hoivien', JSON.stringify(hoivien));
+        // Chỉ thêm file vào formData nếu nó không phải là null
+        if (file) {
+          formData.append('file', file);
+      }
+    return this.http.put(this.apiUrl, formData);
+  }
+  capnhatHoiVien(userName:string,hoiVien: any, file: File | null): Observable<any> {
+    const formData = new FormData();
+    formData.append('hoivien', JSON.stringify(hoiVien));
+    formData.append('userName', userName);
+    // Chỉ thêm file vào formData nếu nó không phải là null
+    if (file) {
+        formData.append('file', file);
+    }
+    return this.http.put(this.apiUrl+'/update', formData);
+  }
+  getHoiVien(): Observable<any[]> {  
+    return this.http.get<any[]>(this.apiUrl);
+  }
+  addHoiVien(hoivien: any,  file: File | null): Observable<any> {  
+    const formData = new FormData();
+    formData.append('hoivien', JSON.stringify(hoivien));
+        // Chỉ thêm file vào formData nếu nó không phải là null
+        if (file) {
+          formData.append('file', file);
+      }
+    return this.http.post(this.apiUrl, formData);
+  }
+
+  deleteHoiVien(mahoivien: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${mahoivien}`);
+  }
+      // Hàm gọi API để tìm kiếm với phân trang
+      searchHoiViens(keyword: string, page: number, size: number): Observable<any> {
+        let params = new HttpParams()
+          .set('keyword', keyword || '')  // Nếu không có keyword, gửi chuỗi rỗng
+          .set('page', page.toString())
+          .set('size', size.toString());
+    
+        return this.http.get<any>(this.apiUrl+"/searchPage", { params });
+      }
   
 }

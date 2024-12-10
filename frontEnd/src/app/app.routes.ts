@@ -27,6 +27,8 @@ import { PhieuMuonComponent } from './components/admin/phieu-muon/lapPhieuMuon/p
 import { TablePhieuMuonComponent } from './components/admin/phieu-muon/table-phieu-muon/table-phieu-muon.component';
 import { TablePhieuphatComponent } from './components/admin/phieuphat/table-phieuphat/table-phieuphat.component';
 import { ReportsComponent } from './components/admin/reports/reports.component';
+import { LapPhieuMuonOnlineComponent } from './components/user/lap-phieu-muon-online/lap-phieu-muon-online.component';
+import { ProfilecusEditComponent } from './components/user/profilecus-edit/profilecus-edit.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -139,6 +141,14 @@ export const routes: Routes = [
 {
     path:'Report',
     component:ReportsComponent
+},
+{
+    path:'lapPhieuMuonOnline',
+    component:LapPhieuMuonOnlineComponent
+},
+{
+    path:'Profilecus',
+    component:ProfilecusEditComponent
 },
 
 

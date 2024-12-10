@@ -1,0 +1,16 @@
+.iq-sidebar {
+    background: rgb(70, 51, 51);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  .iq-sidebar-logo {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+  }

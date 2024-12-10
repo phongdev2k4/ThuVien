@@ -382,7 +382,7 @@ export class ReportsComponent {
               data: soLuotMuon
             },
             {
-              name: 'Sách còn mượn  được trong kho ',
+              name: 'Sách  mượn  được trong kho ',
               data: sachConTrongKho
             },
           ],

@@ -55,5 +55,8 @@ export class BansaosachService {
   findByMaVach(maVach: string): Observable<BanSaoSach> {
       return this.http.get<BanSaoSach>(`${this.apiUrl+'/mavach'}/${maVach}`);
     }
+    fetchHomeItems(): Observable<any> {
+      return this.http.get<BanSaoSach>(`${this.apiUrl+'/with-cover-images'}`);
+    }
 
 }

@@ -38,6 +38,12 @@ export class LocalStorageService {
   public clear() {
     localStorage.clear();
   }
-
+  getTTNguoiDung():any{
+    let ttnguoidung = localStorage.getItem('TTNguoiDung');
+    return ttnguoidung ? JSON.parse(ttnguoidung) : null;
+   }
+   setTTNguoiDung(value: any): void {
+    localStorage.setItem('TTNguoiDung', JSON.stringify(value));
+  }
   
 }
