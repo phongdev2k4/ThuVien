@@ -107,7 +107,7 @@ import {
   WhiteRectangleDetector_default,
   WriterException_default,
   createDecoder
-} from "./chunk-XW2ORUNA.js";
+} from "./chunk-IMSXBECP.js";
 import "./chunk-3OV72XIM.js";
 export {
   AbstractExpandedDecoder_default as AbstractExpandedDecoder,

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookland.dao.BanSaoSachDAO;
+import com.bookland.dto.BanSaoSachWithCoverImageDTO;
 import com.bookland.entity.BanSaoSach;
 import com.bookland.entity.TacGia;
 import com.bookland.service.BanSaoSachService;
@@ -68,5 +70,13 @@ public class BanSaoSachRestController {
 	    
 	    return ResponseEntity.ok(banSaoSach); // 200 OK với bản sao sách
 	}
+	 @GetMapping("/with-cover-images")
+	    public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages() {
+	        return banSaoSachService.getBanSaoSachWithCoverImages();
+	    }
+	  @GetMapping("/findBySachIds")
+	    public Map<String, BanSaoSach> findBanSaoSachBySachIds(@RequestParam List<String> sachIds) {
+	        return banSaoSachService.findBanSaoSachBySachIds(sachIds);
+	    }
 
 }

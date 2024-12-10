@@ -227,47 +227,40 @@
           </li>
           <li class="nav-item nav-icon dropdown">
             <a href="#" class="search-toggle iq-waves-effect text-gray rounded">
-              <i class="ri-shopping-cart-2-line" style="color: blue;"></i>
-              <span class="badge badge-danger count-cart rounded-circle">2</span>
+              <i class="ri-bank-card-line" style="color: blue;"></i>
+              <span class="badge badge-danger count-cart rounded-circle">{{ cartItems.length }}</span>
             </a>
             <div class="iq-sub-dropdown">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 toggle-cart-info">
                   <div class="bg-primary p-3">
-                    <h5 class="mb-0 text-white">Giỏ Hàng<small class="badge  badge-light float-right pt-1">2</small>
+                    <h5 class="mb-0 text-white">
+                      Giỏ Hàng
+                      <small class="badge badge-light float-right pt-1">{{ cartItems.length }}</small>
                     </h5>
                   </div>
-                  <a href="#" class="iq-sub-card">
+                  <div *ngFor="let item of cartItems" class="iq-sub-card">
                     <div class="media align-items-center">
-                      <div class="">
-                        <img class="rounded" src="./assets/images/cart/01.jpg" alt="">
+                      <div>
+                        <img class="rounded" [src]="item.imageUrl" alt="">
                       </div>
                       <div class="media-body ml-3">
-                        <h6 class="mb-0 ">Night People book</h6>
-                        <p class="mb-0">$32</p>
+                        <h6 class="mb-0">{{ item.sach.tenSach }}</h6>
+                        <p class="mb-0">{{ item.sach.nxb }}</p>
                       </div>
-                      <div class="float-right font-size-24 text-danger"><i class="ri-close-fill"></i></div>
+                      <div class="float-right font-size-24 text-danger">
+                        <i (click)="removeFromCart(item, $event)" class="ri-close-fill"></i>
+                      </div>
                     </div>
-                  </a>
-                  <a href="#" class="iq-sub-card">
-                    <div class="media align-items-center">
-                      <div class="">
-                        <img class="rounded" src="./assets/images/cart/02.jpg" alt="">
-                      </div>
-                      <div class="media-body ml-3">
-                        <h6 class="mb-0 ">The Sin Eater Book</h6>
-                        <p class="mb-0">$40</p>
-                      </div>
-                      <div class="float-right font-size-24 text-danger"><i class="ri-close-fill"></i></div>
-                    </div>
-                  </a>
+                  </div>
                   <div class="d-flex align-items-center text-center p-3">
-                    <a class="btn btn-primary mr-2 iq-sign-btn" href="checkout.html" role="button">Giỏ Hàng</a>
-                    <a class="btn btn-primary iq-sign-btn" href="checkout.html" role="button">Thanh Toán</a>
+                    <a class="btn btn-primary mr-2 iq-sign-btn" href="/cart" role="button">Chi Tiết </a>
+                    <a class="btn btn-primary iq-sign-btn" href="lapPhieuMuonOnline" role="button">Mượn</a>
                   </div>
                 </div>
               </div>
             </div>
+            
           </li>
           <li class="line-height pt-3">
             <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">

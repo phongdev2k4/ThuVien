@@ -1,12 +1,15 @@
 package com.bookland.ServiceImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookland.dao.BanSaoSachDAO;
+import com.bookland.dto.BanSaoSachWithCoverImageDTO;
 import com.bookland.entity.BanSaoSach;
 import com.bookland.service.BanSaoSachService;
 import com.bookland.utils.BarcodeGeneratorUtils;
@@ -69,6 +72,28 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 		sl =banSaoSachDAO.countByMaSachAndTrangThaiMuon(bss.getSach().getMaSach(),"Có sẵn","Mới");
 		bss.setSoLuong123(sl);//
 		return bss;
+	}
+	@Override
+	public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages() {
+		// TODO Auto-generated method stub
+		return banSaoSachDAO.findSachByBanSaoSachWithCoverImage("Có sẵn","Mới");
+	}
+
+
+	@Override
+	public Map<String, BanSaoSach> findBanSaoSachBySachIds(List<String> sachIds) {
+		// TODO Auto-generated method stub
+	    System.out.println("Received sachIds: " + sachIds);
+		Map<String, BanSaoSach> resultMap = new HashMap<>();
+
+        for (String sachId : sachIds) {
+            List<BanSaoSach> result =  banSaoSachDAO.findBanSaoSachBySachId(sachId,"Có sẵn","Mới");
+            if (!result.isEmpty()) {
+                resultMap.put(sachId, result.get(0));  // Add only the first result for each sachId
+            }
+        }
+//        System.out.print(resultMap);
+        return resultMap;
 	}
 
 

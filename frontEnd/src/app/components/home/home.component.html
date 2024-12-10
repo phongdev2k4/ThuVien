@@ -70,7 +70,7 @@
                </div>
                <div class="iq-card-body">
                   <div class="row">
-                     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let book of coverImages | slice:0:2">
+                     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let book of coverImages | slice:0:5">
                         <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
                            <div class="iq-card-body p-0">
                               <div class="d-flex align-items-center">
@@ -79,13 +79,14 @@
                                        <img class="img-fluid rounded w-100" [src]="book.imageUrl" alt="" />
                                     </a>
                                     <div class="view-book">
-                                       <a href="book-page.html" class="btn btn-sm btn-white">Mua Ngay</a>
-                                    </div>
+                                       <button class="btn btn-sm btn-white" (click)="addToCart(book, $event)">Mua Ngay</button>
+                                     </div>
                                  </div>
                                  <div class="col-6">
                                     <div class="mb-2">
                                        <h6 class="mb-1">{{ book.sach.tenSach }}</h6>
-                                       <p class="font-size-13 line-height mb-1">{{ book.sach.tacGia.tenTacGia}}</p>
+                                       <p class="font-size-13 line-height mb-1">{{book.sach.tacGia.tenTacGia}}</p>
+                                       <p class="font-size-13 line-height mb-1">Số Lượng : {{book.soLuong}}</p>
                                     </div>
                                     <div class="d-block line-height">
                                        <span class="font-size-11 text-warning">
@@ -97,7 +98,7 @@
                                        </span>                                             
                                     </div>
                                     <div class="price d-flex align-items-center">
-                                       <h6><b>NXB:{{ book.sach.nxb}}</b></h6>
+                                       <h6><b>NXB:{{book.sach.nxb}}</b></h6>
                                     </div>
                                     <div class="iq-product-action">
                                        <a href="javascript:void();"><i

@@ -1,9 +1,12 @@
 package com.bookland.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.bookland.dto.BanSaoSachWithCoverImageDTO;
 import com.bookland.entity.BanSaoSach;
 
 
@@ -30,4 +33,18 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     // Count all Sach
     @Query("SELECT COUNT(s) FROM BanSaoSach s")
     long countAllSach();
+    @Query("SELECT DISTINCT new com.bookland.dto.BanSaoSachWithCoverImageDTO(s,h.imageUrl, " +
+            "(SELECT COUNT(bs) FROM BanSaoSach bs WHERE bs.sach = b.sach AND bs.trangThaiMuon = :trangThaiMuon AND bs.trangThaiBaoQuan = :trangBaoQuan)) " +
+            "FROM BanSaoSach b " +
+            "JOIN b.sach s " +
+            "JOIN s.hinhAnhSach h " +
+            "WHERE h.imageType = 'COVER'")
+    List<BanSaoSachWithCoverImageDTO> findSachByBanSaoSachWithCoverImage(@Param("trangThaiMuon") String trangThaiMuon, @Param("trangBaoQuan") String trangBaoQuan);
+    
+    @Query("SELECT bs FROM BanSaoSach bs " +
+    	       "JOIN bs.sach s " +
+    	       "WHERE s.id = :sachId " +
+    	       "AND bs.trangThaiMuon = :trangThaiMuon " +
+    	       "AND bs.trangThaiBaoQuan = :trangBaoQuan")
+    	List<BanSaoSach> findBanSaoSachBySachId(@Param("sachId") String sachId,@Param("trangThaiMuon") String trangThaiMuon, @Param("trangBaoQuan") String trangBaoQuan);
 }

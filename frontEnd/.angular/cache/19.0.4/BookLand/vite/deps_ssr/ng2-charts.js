@@ -3,7 +3,7 @@ import {
   Chart,
   defaults,
   registerables
-} from "./chunk-EUQAPSVD.js";
+} from "./chunk-CLF6YFON.js";
 import {
   Directive,
   ElementRef,
@@ -21,7 +21,7 @@ import {
   ɵɵdefineDirective,
   ɵɵdefineInjectable,
   ɵɵdirectiveInject
-} from "./chunk-W3NXBFD5.js";
+} from "./chunk-CDYYZWIK.js";
 import {
   require_cjs
 } from "./chunk-T4XHMJL2.js";

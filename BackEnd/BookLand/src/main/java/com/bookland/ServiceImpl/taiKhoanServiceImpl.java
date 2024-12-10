@@ -93,6 +93,7 @@ public class taiKhoanServiceImpl implements taiKhoanService{
 		user.setTaiKhoanHV(tk);
 		user.setMaHV(generateUniqueMaHV());
 		user.setThoiGianDangKy(new Date());
+		user.setHinhAnhHV("");
 		hvdao.save(user);
 		
 		response.setResponse("User created with id ");
