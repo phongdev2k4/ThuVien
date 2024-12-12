@@ -135,7 +135,7 @@ public class RepostServiceImpl implements ReportService{
 
 	@Override
 	public List<HighDemandBookReport> getHighDemandBooksWithInsufficientCopies() {
-		List<Object[]> results = pmDao.findTop3HighDemandBooksWithInsufficientOrDamagedCopies(4,"Có sẵn","Mới");
+		List<Object[]> results = pmDao.findTop3HighDemandBooksWithInsufficientOrDamagedCopies(3,"Có sẵn","Mới");
 
 		 return results.stream()
                  .map(r -> new HighDemandBookReport(

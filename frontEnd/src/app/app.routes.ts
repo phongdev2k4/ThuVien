@@ -41,6 +41,9 @@ import { VnpayThanhcongComponent } from './components/user/ThongBao/vnpay-thanhc
 import { VnpayThatbaiComponent } from './components/user/ThongBao/vnpay-thatbai/vnpay-thatbai.component';
 import { ThanhtoanThucongComponent } from './components/user/thanhtoan/thanhtoan-thucong/thanhtoan-thucong.component';
 import { Timkiemsach1keyComponent } from './components/search/timkiemsach1key/timkiemsach1key.component';
+import { MuonOnlineComponent } from './components/admin/phieu-muon/muon-online/muon-online.component';
+import { XuLiMuonOnlineComponent } from './components/admin/phieu-muon/xu-li-muon-online/xu-li-muon-online.component';
+import { LapPhieuMuonOnlineComponent } from './components/user/lap-phieu-muon-online/lap-phieu-muon-online.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -209,5 +212,17 @@ export const routes: Routes = [
 {
     path:'timkiemsach',
     component:Timkiemsach1keyComponent
+},
+{
+    path:'MuonOnline',
+    component:MuonOnlineComponent
+},
+{
+    path:'xuLiMuonOnline',
+    component:XuLiMuonOnlineComponent
+},
+{
+    path:'lapPhieuMuonOnline',
+    component:LapPhieuMuonOnlineComponent
 },
 ];

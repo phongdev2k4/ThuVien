@@ -133,7 +133,7 @@ public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
     	       "FROM BanSaoSach b " +
     	       "LEFT JOIN ChiTietPhieuMuon c ON b.maBanSaoSach = c.banSaoSach.maBanSaoSach " +
     	       "GROUP BY b.sach.tenSach " +
-    	       "HAVING  COUNT(c.id) > 5 AND COUNT(CASE WHEN b.trangThaiMuon = :available AND b.trangThaiBaoQuan = :new123 THEN 1 END) < :insufficientThreshold " +
+    	       "HAVING  COUNT(c.id) >= 5 AND COUNT(CASE WHEN b.trangThaiMuon = :available AND b.trangThaiBaoQuan = :new123 THEN 1 END) < :insufficientThreshold " +
     	       "   OR COUNT(CASE WHEN b.trangThaiBaoQuan != :new123 THEN 1 END) > :insufficientThreshold " +
     	       "ORDER BY borrowCount DESC " + // Order by borrow count in descending order
     	       "LIMIT 3") // Limit the result to the top 3 rows

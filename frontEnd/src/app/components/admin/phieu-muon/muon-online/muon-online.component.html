@@ -1,0 +1,164 @@
+
+<div id="content-page" class="content-page mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+               <div class="iq-card">
+                  <div class="iq-card-body p-0">
+                     <div class="iq-edit-list">
+                        <ul class="iq-edit-profile d-flex nav nav-pills">
+                           <li class="col-md-6 p-0">
+                              <a class="nav-link active" data-toggle="pill" href="#personal-information">
+                                 Xử Lí Đặt Sách Trước
+                              </a>
+                           </li>
+                           <li class="col-md-6 p-0">
+                              <a class="nav-link" data-toggle="pill" href="#chang-pwd">
+                                 Thông Tin Đặt Sách Của Khách
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-12">
+               <div class="iq-edit-list-data">
+                  <div class="tab-content">
+                     <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
+                        <div class="iq-card">
+                           <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title"> Thông Tin Phiếu Đặt Trước  Online Của Khách <nav></nav></h4>
+                            </div>
+                            <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <a href="LapPhieuTra" class="btn btn-primary">Tìm Kiếm</a>
+                            </div>
+                           </div>
+                           <div class="iq-card-body">
+                            <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">STT</th>
+                                        <th style="width: 12%;">Id</th>
+                                        <th style="width: 10%;">Người Mượn</th>
+                                        <th style="width: 10%;">Ngày Hẹn Lấy</th>
+                                        <th style="width: 10%;">Ngày Mượn</th>
+                                        <th style="width: 10%;">Tình Trạng </th>
+                                        <th style="width: 12%;">Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let phieu of phieuDangMuonList; let i = index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ phieu.id }}</td>
+                                        <td>{{ phieu.hoiVien.maHV }}</td>
+                                        <td>{{ phieu.ngayHenLay | date:'dd/MM/yyyy' }}</td>
+                                        <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                        <td [ngClass]="{'tinhTrang-chua-tra': phieu.tinhTrang === false, 'tinhTrang-da-tra': phieu.tinhTrang === true}">
+                                            {{ phieu.tinhTrang === false ? 'Chưa Lấy' : 'Đã Lấy' }}
+                                          </td>
+                                        <td>
+                                            <div class="flex align-items-center list-user-action">
+                                                <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa" 
+                                                   [routerLink]="['/xuLiMuonOnline']" [queryParams]="{ maPM: phieu.id}">
+                                                    <i class="ri-pencil-line"></i>
+                                                </a>
+                                            </div>
+                                        </td>    
+                                    </tr>
+                                </tbody>
+                            </table>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                        <div class="iq-card">
+                            <div class="iq-card-header d-flex justify-content-between">
+                             <div class="iq-header-title">
+                                 <h4 class="card-title"> Thông Tin Phiếu Trả<nav></nav></h4>
+                             </div>
+                             <div class="iq-card-header-toolbar d-flex align-items-center">
+                                 <a  class="btn btn-primary">Tìm kiếm</a>
+                             </div>
+                            </div>
+                            <div class="iq-card-body">
+                                <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">STT</th>
+                                            <th style="width: 12%;">Id</th>
+                                            <th style="width: 10%;">Người Mượn</th>
+                                            <th style="width: 10%;">Ngày Hẹn Lấy</th>
+                                            <th style="width: 10%;">Ngày Mượn</th>
+                                            <th style="width: 10%;">Tình Trạng </th>
+                                            <th style="width: 12%;">Hoạt động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let phieu of phieuDaMuonList; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ phieu.id }}</td>
+                                            <td>{{ phieu.hoiVien.maHV }}</td>
+                                            <td>{{ phieu.ngayHenLay | date:'dd/MM/yyyy' }}</td>
+                                            <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                            <td [ngClass]="{'tinhTrang-chua-tra': phieu.tinhTrang === false, 'tinhTrang-da-tra': phieu.tinhTrang === true}">
+                                                {{ phieu.tinhTrang === false ? 'Chưa Lấy' : 'Đã Lấy' }}
+                                              </td>
+                                            <td>
+                                                <div class="flex align-items-center list-user-action">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" 
+                                                    (click)="openModal(phieu)">
+                                                     Chi Tiết
+                                                   </button>
+                                                </div>
+                                            </td>    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                         </div>
+                     </div>
+                    
+               </div>
+            </div>
+         </div>
+     
+    </div>
+</div>
+
+   <!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Chi Tiết Phiếu Trả</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add form or data here for editing -->
+          <table class="data-tables table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">STT</th>
+                    <th style="width: 10%;">Tên Sách</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let phieu of  selectedPhieuMuon; let i = index">
+                    <td>{{ i + 1 }}</td>      
+                    <td>{{ phieu.banSaoSach.sach.tenSach }}</td> 
+                </tr>
+            </tbody>
+        </table>
+          <!-- Add more fields as required -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

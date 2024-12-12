@@ -2,6 +2,7 @@ import { CommonModule ,isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { SachService } from '../../../services/sach.service';
 import { ActivatedRoute, Router,RouterLink } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-timkiemsach1key',
@@ -13,7 +14,7 @@ import { ActivatedRoute, Router,RouterLink } from '@angular/router';
   styleUrl: './timkiemsach1key.component.css'
 })
 export class Timkiemsach1keyComponent {
-  constructor(private sachService:SachService, private router: Router,private route: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object  ) {}
+  constructor(private sachService:SachService, private router: Router,private route: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object ,private cartService: CartService ) {}
  SachList:any[]=[];
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -89,4 +90,26 @@ export class Timkiemsach1keyComponent {
     formatTienNap(value: number): string {
       return value.toLocaleString('de-DE');
      }
+     addToCart(book: any,event: Event): void {
+      event.stopPropagation(); 
+      console.log('Cart Items:', this.cartService.getCartItems());
+      console.log('Book to Add:', book);
+  
+      const isBookInCart = this.cartService.getCartItems().some(
+        (cartItem: any) => cartItem.sach.maSach === book.sach.maSach
+      );
+      console.log('Is Book In Cart:', isBookInCart);
+      
+      
+    
+      if (isBookInCart) {
+        // Show alert if the book is already in the cart
+        alert('You cannot add the same book to the cart.');
+      } else {
+        // Add the book to the cart if not a duplicate
+        this.cartService.addToCart(book);
+        alert(`${book.sach.tenSach} has been added to the cart.`);
+      }
+     
+    }
 }

@@ -68,5 +68,7 @@ public class HoiVien {
     @OneToMany(mappedBy = "hoiVien") // Liên kết với bảng ThanhToan
     private List<ThanhToan> thanhToans; // Danh sách thanh toán của hội viên
     
-  
+    @JsonIgnore 
+    @OneToMany(mappedBy = "hoiVien",cascade = CascadeType.ALL)
+    private List<MuonOnline> MuonOnlineList;
 }
