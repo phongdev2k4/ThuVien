@@ -42,7 +42,7 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			return http.cors(Customizer.withDefaults()).csrf(c -> c.disable())
-					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai","/rest/sach/*","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuTra/create","/phieuMuon/findPhieuMuon/*","/phieuPhat","/phieuPhat/**","/phieuTra","/phieuTra/**","/report/**","/rest/nhavien","/rest/nhavien/*","/rest/nhavien/**","/rest/taikhoan/*","/hoiVien","/hoiVien/*","/hoiVien/**","/api/paymen/vnpay/naptien","/api/paymen/callback","/rest/thanhtoan/**","/rest/thanhtoan/*").permitAll()
+					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai","/rest/sach/*","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon/muonOnline/*","/phieuMuon","/phieuMuon/chiTietMuonOnline/*","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuTra/create","/phieuMuon/findPhieuMuon/*","/phieuPhat","/phieuPhat/**","/phieuTra","/phieuTra/**","/report/**","/rest/nhavien","/rest/nhavien/*","/rest/nhavien/**","/rest/taikhoan/*","/hoiVien","/hoiVien/*","/hoiVien/**","/api/paymen/vnpay/naptien","/api/paymen/callback","/rest/thanhtoan/**","/rest/thanhtoan/*").permitAll()
 					.requestMatchers("/api/trangChu").authenticated())
 					.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.authenticationProvider(authenticationProvider())

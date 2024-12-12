@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -62,6 +63,10 @@ public class HoiVien {
     @JsonIgnore 
     @OneToMany(mappedBy = "hoiVien")
     private List<PhieuTra> phieuTraList;
+    
+    @JsonIgnore 
+    @OneToMany(mappedBy = "hoiVien",cascade = CascadeType.ALL)
+    private List<MuonOnline> MuonOnlineList;
     
     
 	@JsonIgnore

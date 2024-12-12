@@ -24,7 +24,7 @@ import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 @Component({
     selector: 'app-phieu-muon',
     standalone: true,
-    imports: [ CommonModule, FormsModule, RouterLink],
+    imports: [ CommonModule, FormsModule],
     templateUrl: './phieu-muon.component.html',
     styleUrl: './phieu-muon.component.css'
 })
