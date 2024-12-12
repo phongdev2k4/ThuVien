@@ -57,5 +57,9 @@ export class HeaderComponent {
         }       
       }
       return "./assets/images/user/1.jpg";
-   }
+   }  
+
+  onSearch(searchKey: string) {
+     window.location.href = `/timkiemsach?key=${searchKey}`;
+    }
 }

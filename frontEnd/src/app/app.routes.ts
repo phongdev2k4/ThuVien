@@ -40,6 +40,7 @@ import { ThanhtoanComponent } from './components/user/thanhtoan/thanhtoan/thanht
 import { VnpayThanhcongComponent } from './components/user/ThongBao/vnpay-thanhcong/vnpay-thanhcong.component';
 import { VnpayThatbaiComponent } from './components/user/ThongBao/vnpay-thatbai/vnpay-thatbai.component';
 import { ThanhtoanThucongComponent } from './components/user/thanhtoan/thanhtoan-thucong/thanhtoan-thucong.component';
+import { Timkiemsach1keyComponent } from './components/search/timkiemsach1key/timkiemsach1key.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -204,5 +205,9 @@ export const routes: Routes = [
 {
     path:'thanhtoan-thucong',
     component:ThanhtoanThucongComponent
+},
+{
+    path:'timkiemsach',
+    component:Timkiemsach1keyComponent
 },
 ];

@@ -1,53 +1,30 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import {  Router,RouterLink } from '@angular/router';
-import { HoivienService } from '../../../../services/hoivien.service';
+import { CommonModule ,isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { SachService } from '../../../services/sach.service';
+import { ActivatedRoute, Router,RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-hoivien-list',
-  standalone: true,
-  imports: [    CommonModule,
-    RouterLink],
-  templateUrl: './hoivien-list.component.html',
-  styleUrl: './hoivien-list.component.css'
+  selector: 'app-timkiemsach1key',
+  imports: [
+    CommonModule,
+    RouterLink
+  ],
+  templateUrl: './timkiemsach1key.component.html',
+  styleUrl: './timkiemsach1key.component.css'
 })
-export class HoivienListComponent {
-  constructor(public hoivienService:HoivienService, private router: Router) {}
-  HoiVienList: any[] = [];
+export class Timkiemsach1keyComponent {
+  constructor(private sachService:SachService, private router: Router,private route: ActivatedRoute,@Inject(PLATFORM_ID) private platformId: Object  ) {}
+ SachList:any[]=[];
   ngOnInit(): void {
-    this.getHoiViens(0,this.pageSize);
+    if (isPlatformBrowser(this.platformId)) {
+      this.route.queryParams.subscribe(params => { 
+        this.keyword = params['key']; 
+       });
+       this.loadSachTimkiem(0,this.pageSize)
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
   }
-  loadListHoiVien(): void {
-    this.hoivienService.getHoiVien().subscribe(
-      data => {
-        this.HoiVienList = data;
-      },
-      error => {
-        console.error('Có lỗi xảy ra khi gọi API:', error);
-      }
-    );
-  }
-      // Hàm để tách chuỗi trước dấu ","
-      getImage(url: string): string {
-        return url.split(',')[0];
-      }
-
-      deleteHoiVien(mahv: string): void {
-        if (confirm('Bạn có chắc chắn muốn xóa hội viên này?')) {
-          this.hoivienService.deleteHoiVien(mahv).subscribe(
-            response => {
-              this.loadListHoiVien();
-            },
-            error => {
-              alert("Có lỗi xảy ra khi xóa hội viên có thể liên kết khóa ngoại")
-            }
-          );
-        }
-      }
-      editHoiVien(hoivien: any): void {
-        this.hoivienService.hoiVien =hoivien; 
-        this.router.navigate(['/tuychonHoiVien']); 
-      }
 
   currentPage: number = 0; // Trang hiện tại
   totalPages: number = 0; // Tổng số trang
@@ -55,13 +32,14 @@ export class HoivienListComponent {
   displayedPages: number[] = [];
   keyword: string = ''; 
     // Phương thức gọi API để lấy lịch sử thanh toán
-    getHoiViens(page: number, size: number): void {
-      this.hoivienService.searchHoiViens(this.keyword, page, size).subscribe(
+    loadSachTimkiem(page: number, size: number): void {
+      this.sachService.TimKiemSach1(this.keyword, page, size).subscribe(
         (data) => {
-          this.HoiVienList = data.content; // Dữ liệu của trang hiện tại
+          this.SachList = data.content; // Dữ liệu của trang hiện tại
           this.currentPage = data.number; // Trang hiện tại
           this.totalPages = data.totalPages; // Tổng số trang
           this.updateDisplayedPages(); // Cập nhật các nút trang
+          console.log(this.SachList)
         },
         (error) => {
           console.error('Lỗi khi gọi api:', error);
@@ -96,16 +74,19 @@ export class HoivienListComponent {
     // Chuyển trang
     changePage(page: number): void {
       if (page >= 0 && page < this.totalPages) {
-        this.getHoiViens(page, this.pageSize);
+        this.loadSachTimkiem(page, this.pageSize);
       }
     }
     search(): void {
       this.currentPage = 0; // Đặt lại trang về 0 khi tìm kiếm mới
-      this.getHoiViens( this.currentPage, this.pageSize); // Gọi lại API với keyword mới
+      this.loadSachTimkiem( this.currentPage, this.pageSize); // Gọi lại API với keyword mới
     }
     onSearch(keyword: string) {
       this.keyword=keyword;// Lấy giá trị của ô input khi nhấn nút
-      this.getHoiViens(0,this.pageSize);
+      this.loadSachTimkiem(0,this.pageSize);
     }
 
+    formatTienNap(value: number): string {
+      return value.toLocaleString('de-DE');
+     }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError, timeout } from 'rxjs';
 import { Sach } from '../models/sach.model';
@@ -53,4 +53,13 @@ export class SachService {
       })
     );
   }
+        // Hàm gọi API để tìm kiếm với phân trang
+  TimKiemSach1(keyword: string, page: number, size: number): Observable<any> {
+          let params = new HttpParams()
+            .set('searchKey', keyword || '')  // Nếu không có keyword, gửi chuỗi rỗng
+            .set('page', page.toString())
+            .set('size', size.toString());
+      
+          return this.http.get<any>(this.apiUrl+"/search", { params });
+    }
 }
