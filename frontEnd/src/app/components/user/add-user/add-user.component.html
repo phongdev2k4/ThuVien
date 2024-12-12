@@ -1,0 +1,89 @@
+<app-aside-admin></app-aside-admin>
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-lg-12">
+                <div class="iq-card">
+                   <div class="iq-card-header ">
+                      <div class="iq-header-title">
+                         <h4 class="card-title">Thêm người dùng</h4>
+                      </div>
+                   </div>
+                   <div class="iq-card-body">
+                     <form id="userForm">
+                        <div class="container">
+                            <div class="mb-3">
+                                <label for="maHV" class="form-label">Mã Hội Viên</label>
+                                <input type="text" class="form-control" id="maHV" name="maHV" placeholder="Mời nhập mã hội viên" required>
+                                <div class="text-danger"> 
+                                       <div *ngIf="!hoiVienService.hoiVien.maHV " class="text-danger">
+                                          Mã hội viên không được để trống
+                                        </div>
+                                 </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="hoTen" class="form-label">Họ và Tên</label>
+                                <input type="text" class="form-control" id="hoTen" name="hoTen" placeholder="Mời nhập tên hội viên" required>
+                                <div *ngIf="!hoiVienService.hoiVien.hoTen" class="text-danger">
+                                    Họ và tên hội viên không được để trống
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Mời nhập email hội viên" required>
+                                <div *ngIf="!hoiVienService.hoiVien.email" class="text-danger">
+                                    Email không viên được để trống
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="soDienThoai" class="form-label">Số Điện Thoại</label>
+                                <input type="text" class="form-control" id="soDienThoai" name="soDienThoai" placeholder="Mời nhập số điện thoại hội viên" required>
+                                <div *ngIf="!hoiVienService.hoiVien.soDienThoai" class="text-danger">
+                                    Số điện thoại không được để được trống
+                                </div>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="diaChi" class="form-label">Địa Chỉ</label>
+                                <input type="text" class="form-control" id="diaChi" name="diaChi" placeholder="Mời nhập địa chỉ hội viên" required>
+                                <div *ngIf="!hoiVienService.hoiVien.diaChi" class="text-danger">
+                                    Địa chỉ không được để trống
+                                </div>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="thoiGianDangKy" class="form-label">Thời Gian Đăng Ký</label>
+                                <input type="datetime-local" class="form-control" id="thoiGianDangKy" name="thoiGianDangKy" required>
+                            </div>
+                    
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="tinhTrang" name="tinhTrang">
+                                <label class="form-check-label" for="tinhTrang">Tình Trạng (Kích hoạt nếu còn hoạt động)</label>
+                                <div *ngIf="!hoiVienService.hoiVien.tinhTrang" class="text-danger" >
+                                    Chọn vào nếu tài khoản còn hoạt động
+                                </div>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="tienNap" class="form-label">Tiền Nạp</label>
+                                <input type="number" step="0.01" class="form-control" id="tienNap" name="tienNap" required>
+                            </div>
+                    
+                            <div class="mb-3">
+                                <label for="accountId" class="form-label">ID Tài Khoản</label>
+                                <input type="text" class="form-control" id="accountId" name="accountId" required>
+                            </div>
+                    
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                            <button type="button" class="btn btn-secondary" (click)="backForm()">Trở lại</button>
+                        </div>
+                    </form>          
+                   </div>
+                </div>
+          </div>
+       </div>
+    </div>
+ </div>

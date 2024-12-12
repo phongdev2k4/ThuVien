@@ -1,0 +1,94 @@
+.content-page {
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px); /* Làm mờ nhẹ nền */
+  background-image: url('img/background2.jpg'); /* Đường dẫn đến ảnh nền */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+.iq-sidebar {
+  background: rgb(70, 51, 51);
+position: fixed;
+top: 0;
+left: 0;
+height: 100%;
+width: 300px;
+overflow-y: auto;
+z-index: 1000;
+transition: all 0.3s ease;
+}
+.iq-sidebar-logo {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+}   
+
+.menu-text {
+  color: aqua;
+}
+
+
+
+
+/* Bố cục cột ảnh */
+.col-md-6 {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ảnh nhỏ (thumbnail) */
+  #description-slider-nav {
+    max-height: 400px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Thêm thanh cuộn nếu cần */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Khoảng cách giữa ảnh */
+  }
+  
+  #description-slider-nav img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s;
+  }
+  
+  #description-slider-nav img:hover {
+    transform: scale(1.1); /* Hiệu ứng phóng to */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ảnh lớn (main image) */
+  .col-9 img {
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+  }
+  .img-fluid {
+    width: 400px; /* Chiều rộng cố định */
+    height: 250px; /* Chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh để phù hợp vùng chứa mà không méo */
+    border-radius: 8px; /* Bo góc ảnh, nếu cần */
+  }
+  /* Căn chỉnh khoảng cách giữa các dòng chữ */
+.col-6 h6, 
+.col-6 p, 
+.col-6 .price {
+    margin-top: 10px; /* Nới khoảng cách phía trên */
+    margin-bottom: 10px; /* Nới khoảng cách phía dưới */
+    line-height: 1.2; /* Tăng khoảng cách dòng */
+}
+
+/* Đảm bảo khoảng cách đồng đều giữa các phần */
+.col-6 div {
+    margin-bottom: 10px; /* Khoảng cách dưới mỗi khối nội dung */
+}

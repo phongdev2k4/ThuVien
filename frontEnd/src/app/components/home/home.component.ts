@@ -35,6 +35,7 @@ export class HomeComponent {
     this.sachService.getCoverImages().subscribe({
       next: (images) => {
         this.coverImages = images;
+        this.sachService.sach2=images;
         this.isDataLoaded = true; // Mark as loaded
         console.log('Cover images fetched successfully:', this.coverImages);
       },

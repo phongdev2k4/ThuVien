@@ -3,18 +3,13 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ProfileEditComponent } from './components/user/profile-edit/profile-edit.component';
 import { AddAuthorComponent } from './components/admin/author/add-author/add-author.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { BooksComponent } from './components/admin/book/books/books.component';
 import { AddBookComponent } from './components/admin/book/add-book/add-book.component';
 import { AuthorsComponent } from './components/admin/author/authors/authors.component';
-import { ProfileComponent } from './components/admin/user/profile/profile.component';
-import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
-import { UserListComponent } from './components/admin/user/user-list/user-list.component';
 import { TheloaiComponent } from './components/admin/theloai/theloai/theloai.component';
 import { AddTheloaiComponent } from './components/admin/theloai/add-theloai/add-theloai.component';
-import { authGuard } from './guards/auth.guard';
 import { PhieuMuonComponent } from './components/admin/phieu-muon/phieu-muon.component';
 import { KholistComponent } from './components/admin/kho/kholist/kholist.component';
 import { AddkhoComponent } from './components/admin/kho/addkho/addkho.component';
@@ -22,11 +17,14 @@ import { UpdateKhoComponent } from './components/admin/kho/update-kho/update-kho
 import { BansaosachlistComponent } from './components/admin/bansaosach/bansaosachlist/bansaosachlist.component';
 import { AddBansaosachComponent } from './components/admin/bansaosach/add-bansaosach/add-bansaosach.component';
 import { UpdateBansaosachComponent } from './components/admin/bansaosach/update-bansaosach/update-bansaosach.component';
-
 import { ListPhieuTraComponent } from './components/admin/phieu-tra/list-phieu-tra/list-phieu-tra.component';
 import { LapPhieuTraComponent } from './components/admin/phieu-tra/lap-phieu-tra/lap-phieu-tra.component';
 import { PhieuphatComponent } from './components/admin/phieuphat/phieuphat.component';
 import { ChitietsanphamComponent } from './components/chitietsanpham/chitietsanpham.component';
+import { Component } from '@angular/core';
+import { AddUserComponent } from './components/user/add-user/add-user.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -46,10 +44,6 @@ export const routes: Routes = [
  { 
     path: 'register', 
     component: RegisterComponent
-},
-{ 
-    path: 'editUser', 
-    component: ProfileEditComponent
 },
 {
     path:'AddAuthorsAdmin',
@@ -72,23 +66,19 @@ export const routes: Routes = [
     path:'AuthorsAdmin',
     component:AuthorsComponent
 },
+
 {
-    path:'Profileadmin',
-    component:ProfileComponent
-},
-{
-    path:'ProfileEditadmin',
-    component:ProfileEditComponent
-},
-{
-    path:'AddUserComponentadmin',
+    path:'AddUser',
     component:AddUserComponent
 },
 {
-    path:'UserListadmin',
+    path:'UserList',
     component:UserListComponent
 },
-
+{
+    path:'ProfileList',
+    component:ProfileComponent
+},
 {
     path:'AdminListTheloai',
     component:TheloaiComponent
@@ -138,7 +128,11 @@ export const routes: Routes = [
     path:'PhieuPhat',
     component:PhieuphatComponent
 },
-{   path: 'ChiTiet/:tenSach', 
+{   path: 'ChiTiet/:maSach', 
     component: ChitietsanphamComponent 
-}  // Route với tham số id
+},  // Route với tham số id
+{
+    path:'userList',
+    component:AddUserComponent
+}
 ];

@@ -1,13 +1,11 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { AsideComponent } from '../aside/aside.component';
-import { HoivienService } from '../../../services/hoivien.service';
+
 import { debounceTime } from 'rxjs';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HoiVien } from '../../../models/hoi-vien';
 import { AddBookRes } from '../../../models/add-book-res';
 import { SachService } from '../../../services/sach.service';
-import bootstrap from '../../../../main.server';
 import { PhieuMuon } from '../../../models/phieu-muon';
 import { BansaosachService } from '../../../services/bansaosach.service';
 import { Router,RouterLink } from '@angular/router';
@@ -16,6 +14,8 @@ import { NotFoundException } from '@zxing/library';
 import { FinalBorrowedBook } from '../../../models/final-borrowed-book';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { PhieuMuonService } from '../../../services/phieu-muon.service';
+import { HoiVienService } from '../../../services/hoivien.service';
+import { HoiVien } from '../../../models/hoivien.model';
 
 
 
@@ -42,7 +42,8 @@ export class PhieuMuonComponent {
   finalBorrowedBooks: FinalBorrowedBook[] = [];
   private codeReader = new BrowserMultiFormatReader();
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
-  constructor(private hoiVienService: HoivienService,private bookService:SachService,public bansaosachService: BansaosachService,private router: Router,private storage:LocalStorageService,private phieuMuonService: PhieuMuonService) {}
+
+  constructor(private hoiVienService: HoiVienService,private bookService:SachService,public bansaosachService: BansaosachService,private router: Router,private storage:LocalStorageService,private phieuMuonService: PhieuMuonService) {}
  
 
   BanSaoList: any[] = [];
@@ -50,7 +51,7 @@ export class PhieuMuonComponent {
   onIdInput(event: any): void {
     const id = event.target.value;
     if (id.length > 0) {
-      this.hoiVienService.findById(id).subscribe((data: HoiVien) => {
+      this.hoiVienService.findById(id).subscribe((data: HoiVien  ) => {
         if (data) {
           // Set the Mã Thẻ
           this. searchTerm = data.hoTen

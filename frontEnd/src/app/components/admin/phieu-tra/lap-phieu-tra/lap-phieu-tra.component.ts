@@ -8,13 +8,14 @@ import { BrowserMultiFormatReader } from '@zxing/browser';
 import { NotFoundException } from '@zxing/library';
 import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 import { BansaosachService } from '../../../../services/bansaosach.service';
-import { HoivienService } from '../../../../services/hoivien.service';
-import { HoiVien } from '../../../../models/hoi-vien';
+
 import { PhieuTraService } from '../../../../services/phieu-tra.service';
 import { LocalStorageService } from '../../../../services/local-storage.service';
 import Swal from 'sweetalert2';
 import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
 import { Observable } from 'rxjs';
+import { HoiVienService } from '../../../../services/hoivien.service';
+import { HoiVien } from '../../../../models/hoivien.model';
 
 
 @Component({
@@ -38,7 +39,10 @@ export class LapPhieuTraComponent {
   hanTra: Date = new Date();
 
 
-  constructor(private router: Router, private phieuMuonService: PhieuMuonService, public bansaosachService: BansaosachService, private hoiVienService: HoivienService, private phieuTraService: PhieuTraService, private storage: LocalStorageService, private sweetAlertService: SweetAlertServiceService) { }
+  constructor(private router: Router, private phieuMuonService: PhieuMuonService,
+     public bansaosachService: BansaosachService, private hoiVienService: HoiVienService, 
+     private phieuTraService: PhieuTraService, private storage: LocalStorageService, 
+     private sweetAlertService: SweetAlertServiceService) { }
 
   goBack() {
     this.router.navigate(['/tablePhieuTra']);

@@ -15,8 +15,8 @@ export class SachService {
   constructor(private http: HttpClient) { }
   
   sach: BookDTO = new BookDTO();
-
-
+   
+  sach2 : any[] = [];
   // addSach(request:BookDTO,images: File[]): Observable<AddBookRes> {
   //   const formData = new FormData();
   //   images.forEach((image) => formData.append('files', image));
@@ -61,8 +61,8 @@ export class SachService {
     );
   }
 
-  getImagesByMaSach(maSach: string): Observable<AddBookRes[]> {
-    return this.http.get<AddBookRes[]>(`${this.apiUrl}/${maSach}`).pipe(
+  getImagesByMaSach(maSach: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${maSach}`).pipe(
       catchError((error) => {
         console.error('Lỗi khi tải ảnh:', error);
         return throwError(() => error);
