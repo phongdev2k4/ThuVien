@@ -29,9 +29,7 @@ export class XuLiMuonOnlineComponent {
     if (isPlatformBrowser(this.platformId)) {
       // Only fetch cover images if we are in the browser (not server-side)
       this.route.queryParams.subscribe(params => {
-        this.idMuonOnline = params['maPM'];
-       
-        
+        this.idMuonOnline = params['maPM'];   
       });
       this.loadMuonOnline();
 
@@ -52,7 +50,11 @@ export class XuLiMuonOnlineComponent {
       }
     );
   }
+  logHanTra(): void {
+    console.log('Current hanTra:', this.hanTra);
+  }
   finalizeBorrowing() {
+    console.log(this.hanTra)
     if (!this.maHV || !this.searchTerm || this.phieuDangMuonList.length === 0) {
   alert('Please fill in all required fields and add at least one book to the table before creating the record.');
   return; // Stop the function if validation fails
@@ -83,4 +85,5 @@ this.tenSachArray = this.phieuDangMuonList.details.map((borrowedBook: any) => bo
   
   console.log('Final Borrowed Books:', finalBook );
 }
-}
+  }
+

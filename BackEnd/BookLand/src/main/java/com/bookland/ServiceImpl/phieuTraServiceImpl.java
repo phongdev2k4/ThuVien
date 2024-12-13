@@ -62,10 +62,16 @@ public class phieuTraServiceImpl implements PhieuTraService {
 				pt.setHoiVien(phieuMuon.getHoiVien());
 				Date hanTraSach = phieuMuon.getHanTraSach(); // Due date for returning the book
 				Date getDate = new Date(); // Get the current date as the actual return date
-
+				System.out.print(getDate.compareTo(hanTraSach));
 				// Check if the book is overdue
 				if (!ptDTO.getStatus().equalsIgnoreCase("Mới")|| getDate.compareTo(hanTraSach) > 0) {
-					isFine = true; // If overdue or book condition is not "Mới", set fine
+					if( getDate.compareTo(hanTraSach) == 0) {
+						isFine = false;
+					}
+					else {
+						isFine = true;
+					}
+					 // If overdue or book condition is not "Mới", set fine
 				} 
 				  if (isFine) {
 				        pt.setIsFine("CHUA_PHAT");  // Set fine status if any book violates

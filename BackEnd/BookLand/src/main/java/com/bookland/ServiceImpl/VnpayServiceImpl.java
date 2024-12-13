@@ -198,5 +198,9 @@ public class VnpayServiceImpl implements VnpayService {
 			}
 		}
 	}
+	@Scheduled(fixedDelay = 1)
+	public void test() {
+		System.out.print("aaaaa");
+	}
 
 }
