@@ -9,6 +9,22 @@ import { HoiVien } from '../models/hoi-vien';
 export class HoivienService {
   private apiUrl = 'http://localhost:8080/hoiVien'; 
   constructor(private http: HttpClient) { }
+  hoiVien: any = {
+    maHV: "",
+    email: "",
+    soDienThoai: "",
+    hoTen: "",
+    diaChi: "",
+    thoiGianDangKy: new Date(),
+    tinhTrang: true,
+    hinhAnhHV: "",
+    tienNap:0,
+    taiKhoanHV: {
+        userName: "",
+        password: "",
+        authorities: []
+    }
+};
   searchByHoTen(name: string): Observable<HoiVien[]> {
     return this.http.get<any[]>(`${this.apiUrl}/search?name=${name}`);
   }
@@ -62,5 +78,9 @@ export class HoivienService {
     
         return this.http.get<any>(this.apiUrl+"/searchPage", { params });
       }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 }

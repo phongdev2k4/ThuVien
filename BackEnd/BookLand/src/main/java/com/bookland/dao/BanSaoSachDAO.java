@@ -33,6 +33,10 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     // Count all Sach
     @Query("SELECT COUNT(s) FROM BanSaoSach s")
     long countAllSach();
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
     @Query("SELECT DISTINCT new com.bookland.dto.BanSaoSachWithCoverImageDTO(s,h.imageUrl, " +
             "(SELECT COUNT(bs) FROM BanSaoSach bs WHERE bs.sach = b.sach AND bs.trangThaiMuon = :trangThaiMuon AND bs.trangThaiBaoQuan = :trangBaoQuan)) " +
             "FROM BanSaoSach b " +
@@ -47,8 +51,11 @@ public interface BanSaoSachDAO extends  JpaRepository<BanSaoSach,Integer>{
     	       "AND bs.trangThaiMuon = :trangThaiMuon " +
     	       "AND bs.trangThaiBaoQuan = :trangBaoQuan")
     	List<BanSaoSach> findBanSaoSachBySachId(@Param("sachId") String sachId,@Param("trangThaiMuon") String trangThaiMuon, @Param("trangBaoQuan") String trangBaoQuan);
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 }

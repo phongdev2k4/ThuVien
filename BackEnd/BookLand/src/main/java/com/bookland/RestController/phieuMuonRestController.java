@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookland.dto.addPhieuMuondto;
+import com.bookland.dto.muonOnlineDTO;
+import com.bookland.dto.xuLiMuonOnlineDTO;
+import com.bookland.entity.BorrowOnlineDetail;
 import com.bookland.entity.ChiTietPhieuMuon;
 import com.bookland.entity.HoiVien;
+import com.bookland.entity.MuonOnline;
 import com.bookland.entity.PhieuMuon;
 import com.bookland.entity.TacGia;
 import com.bookland.service.phieuMuonService;
@@ -68,6 +72,40 @@ public class phieuMuonRestController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
 		
 	}
+	@PostMapping("/muonOnline")
+	public ResponseEntity<MuonOnline> createMuonOnline(@RequestBody muonOnlineDTO dto) {
+		MuonOnline pm = pmService.createMuonOnline(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+	}
+	@GetMapping("/GetAllDangMuonOnline")
+	public ResponseEntity<List<MuonOnline>> findAllDangMuonOnline() {
+		List<MuonOnline> pm = pmService.findAllMuonOnline();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+	}
+	@GetMapping("/GetAllMuonOnline")
+	public ResponseEntity<List<MuonOnline>> findAllMuonOnline() {
+		List<MuonOnline> pm = pmService.findAllDaMuonOnline();
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm);
+	}
+	@GetMapping("/muonOnline/{id}")
+	public ResponseEntity<MuonOnline> getMuonOnlineById(@PathVariable Long id) {
+		Optional<MuonOnline> muonOnline = pmService.getMuonOnlineById(id);
+		if (muonOnline.isPresent()) {
+			return ResponseEntity.ok(muonOnline.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	@PostMapping("/createPhieuMuonByMuonOnline")
+	public ResponseEntity<PhieuMuon> postPhieuMuonOnline(@RequestBody xuLiMuonOnlineDTO pmRequest) {
+		PhieuMuon pm = pmService.createPhieuMuonOnline(pmRequest);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pm); // 201 Created
+	}
+	
+	  @GetMapping("/chiTietMuonOnline/{muonOnlineId}")
+	    public List<BorrowOnlineDetail> getBorrowOnlineDetails(@PathVariable Long muonOnlineId) {
+	        return pmService.getDetailsByMuonOnlineId(muonOnlineId);
+	    }
 	
 
 }

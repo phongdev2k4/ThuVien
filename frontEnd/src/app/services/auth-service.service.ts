@@ -21,11 +21,16 @@ export class AuthService {
     private storage: LocalStorageService,
     private integration: IntergrationService,
     private router: Router,
+<<<<<<< HEAD
     private nhanvienService:NhanvienService,
     private hoivienService: HoivienService
     
 
     
+=======
+    private hoivienService: HoivienService,
+    private nhanvienService:NhanvienService
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
   ) {  this.loadToken(); }
 
   private loadToken(): void {
@@ -68,6 +73,8 @@ export class AuthService {
     const decoded = this.helper.decodeToken(res.token);
     this.decodedTokenSubject.next(decoded); 
 
+    this.TimThongTinNguoiDung();
+
     const redirectUrl = localStorage.getItem('redirectUrl') || 'trangChu';
     localStorage.removeItem('redirectUrl');
     this.router.navigateByUrl(redirectUrl);
@@ -108,6 +115,11 @@ export class AuthService {
         }
       );
     }
+<<<<<<< HEAD
+=======
+   
+  }
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
   
 
 }

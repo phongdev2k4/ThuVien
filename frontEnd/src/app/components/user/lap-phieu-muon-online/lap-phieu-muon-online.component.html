@@ -8,6 +8,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+<<<<<<< HEAD
                             <label for="maPT">Mã Hội Viên</label>
                             <input class="form-control" id="maPT" name="maPT"  required
                                 placeholder="Mời Nhập" />
@@ -28,6 +29,48 @@
                     <input class="form-control" type="date" id="ngayLapPhieuTra" name="ngayLapPhieuTra"
                         required />
                 </div>
+=======
+                          <label for="maPT">Mã Hội Viên</label>
+                          <input
+                            class="form-control"
+                            id="maPT"
+                            name="maPT"
+                            placeholder="Mời Nhập"
+                            required
+                            [(ngModel)]="maHoiVien"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="maHV">Tên Hội Viên</label>
+                          <input
+                            class="form-control"
+                            id="maHV"
+                            name="maHV"
+                            placeholder="Mời Nhập"
+                            required
+                            [(ngModel)]="tenHoiVien"
+                          />
+                        </div>
+                      </div>
+                      
+
+                </div>
+                <div class="form-group">
+                  <label for="ngayLapPhieuTra">Thời Gian Nhận</label>
+                  <input
+                    class="form-control"
+                    type="date"
+                    id="ngayLapPhieuTra"
+                    name="ngayLapPhieuTra"
+                    required
+                    [(ngModel)]="ngayHenLay"
+                  />
+                </div>
+                
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
                 <hr style="border: 2px solid black; margin: 10px 0;">
                 <h5 class="mt-3 mb-3 ">SÁCH ĐĂNG KÝ MƯỢN:  </h5>
                 <div class="form-group">
@@ -41,13 +84,30 @@
                             </tr>
                         </thead>
                         <tbody>
+<<<<<<< HEAD
                           
+=======
+                            <tr *ngFor="let book of bookList; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ book.sach.maSach }}</td>
+                                <td>{{ book.sach.tenSach }}</td>
+                                <td>
+                                  <button class="btn btn-danger btn-sm">
+                                    Xóa
+                                  </button>
+                                </td>
+                              </tr>
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
                         </tbody>
                     </table>
                 </div>
                 <div class="form-group d-flex justify-content-between">
                     <button type="button" class="btn btn-warning" >Quay lại</button>
+<<<<<<< HEAD
                     <button type="submit" class="btn btn-primary btn-block">MƯỢN SÁCH</button>
+=======
+                    <button type="button" class="btn btn-primary btn-block"(click)="Post()">MƯỢN SÁCH</button>
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
                 </div>
             </form>
         </div>

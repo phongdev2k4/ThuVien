@@ -4,20 +4,23 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service.service';
 import { SachService } from '../../services/sach.service';
 import { CartService } from '../../services/cart.service';
-import { AsideComponent } from '../aside/aside.component';
+
+
 import { BansaosachService } from '../../services/bansaosach.service';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [AsideComponent,CommonModule],
+    imports: [CommonModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
 export class HomeComponent {
   coverImages: any[] = [];
   isDataLoaded = false;
-  constructor(public authService: AuthService,private cartService: CartService,private sachService:SachService,private bssService:BansaosachService,private zone: NgZone,@Inject(PLATFORM_ID) private platformId: Object  ) {}
+
+  constructor(public authService: AuthService,private bssService:BansaosachService,private sachService:SachService,private zone: NgZone,@Inject(PLATFORM_ID) private platformId: Object ,private cartService: CartService ) {}
+
   ngOnInit(): void {
     console.log('Component initialization started');
 
@@ -31,6 +34,18 @@ export class HomeComponent {
 
     console.log('ngOnInit completed');
   }
+  // fetchCoverImages(): void {
+  //   this.sachService.getCoverImages().subscribe({
+  //     next: (images) => {
+  //       this.coverImages = images;
+  //       this.isDataLoaded = true; // Mark as loaded
+  //       console.log('Cover images fetched successfully:', this.coverImages);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching cover images:', err);
+  //     },
+  //   });
+  // }
   fetchCoverImages(): void {
     this.bssService.fetchHomeItems().subscribe({
       next: (images) => {

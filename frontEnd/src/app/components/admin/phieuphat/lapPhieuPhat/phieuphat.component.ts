@@ -2,7 +2,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AsideComponent } from '../../aside/aside.component';
 import { PhieuPhat } from '../../../../models/phieu-phat';
 import { PhieuPhatService } from '../../../../services/phieu-phat.service';
 import { PhieuTraService } from '../../../../services/phieu-tra.service';
@@ -11,7 +10,7 @@ import { PhieuTraService } from '../../../../services/phieu-tra.service';
 
 @Component({
     selector: 'app-phieuphat',
-    imports: [CommonModule, FormsModule, AsideComponent],
+    imports: [CommonModule, FormsModule],
     standalone: true,
     templateUrl: './phieuphat.component.html',
     styleUrl: './phieuphat.component.css'

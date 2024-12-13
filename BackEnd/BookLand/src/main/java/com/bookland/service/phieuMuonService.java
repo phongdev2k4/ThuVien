@@ -1,11 +1,16 @@
 package com.bookland.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.bookland.dto.addPhieuMuondto;
+import com.bookland.dto.muonOnlineDTO;
+import com.bookland.dto.xuLiMuonOnlineDTO;
+import com.bookland.entity.BorrowOnlineDetail;
 import com.bookland.entity.ChiTietPhieuMuon;
+import com.bookland.entity.MuonOnline;
 import com.bookland.entity.PhieuMuon;
 
 @Service
@@ -24,5 +29,13 @@ public interface phieuMuonService {
 	List<PhieuMuon> findAllDangMuon();
 
 	List<ChiTietPhieuMuon> findAllChiTietByIdPm(Integer maPM);
+	
+	
+	MuonOnline createMuonOnline(muonOnlineDTO dto);
+	List<MuonOnline> findAllMuonOnline();
+	List<MuonOnline> findAllDaMuonOnline();
+	Optional<MuonOnline> getMuonOnlineById(Long id);
+	PhieuMuon createPhieuMuonOnline(xuLiMuonOnlineDTO pmRequest);
+	List<BorrowOnlineDetail> getDetailsByMuonOnlineId(Long muonOnlineId);
 
 }

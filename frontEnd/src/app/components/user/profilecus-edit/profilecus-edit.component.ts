@@ -8,7 +8,10 @@ import { HoivienService } from '../../../services/hoivien.service';
 import { SweetAlertServiceService } from '../../../services/sweet-alert-service.service';
 import { TaikhoanService } from '../../../services/taikhoan.service';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 @Component({
   selector: 'app-profilecus-edit',
   standalone: true,

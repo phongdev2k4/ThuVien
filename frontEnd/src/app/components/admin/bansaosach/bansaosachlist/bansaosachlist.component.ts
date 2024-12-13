@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -9,7 +8,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
     standalone: true,
     imports: [
         CommonModule,
-        AsideComponent,
         RouterLink
     ],
     templateUrl: './bansaosachlist.component.html',
@@ -55,4 +53,8 @@ export class BansaosachlistComponent implements OnInit{
       );
     }
   }
+        // Hàm để tách chuỗi trước dấu ","
+        getImage(url: string): string {
+          return url.split(',')[0];
+        }
 }

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
-import { AsideComponent } from '../../aside/aside.component';
 import { TheloaiService } from '../../../../services/theloai.service';
 import { response } from 'express';
 import { error } from 'console';
@@ -12,8 +11,7 @@ import { error } from 'console';
     standalone: true,
     imports: [
         CommonModule,
-        FormsModule,
-        AsideComponent
+        FormsModule
     ],
     templateUrl: './add-theloai.component.html',
     styleUrl: './add-theloai.component.css'

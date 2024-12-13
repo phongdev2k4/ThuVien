@@ -1,0 +1,4 @@
+.disabled-link {
+    pointer-events: none; /* Vô hiệu hóa click */
+    opacity: 0.6; /* Giảm độ sáng để trông như bị vô hiệu hóa */
+}

@@ -1,0 +1,106 @@
+
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-sm-12">
+             <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                   <div class="iq-header-title">
+                      <h4 class="card-title">Danh sách nhân viên</h4>
+                   </div>
+                   <div class="iq-card-header-toolbar d-flex align-items-center">
+                      <a class="btn btn-primary" routerLink="../addNhanVien">Thêm nhân viên</a>
+                   </div>
+                </div>
+                  <div class="container py-2 ">
+                     <div class="row d-flex justify-content-center">
+                         <div class="input-group col-md-4">
+                             <input class="form-control py-2" #inputKeyword type="search"  id="example-search-input">
+                             <span class="input-group-append">
+                                 <button class="btn btn-outline-secondary" type="button" (click)="onSearch(inputKeyword.value)">
+                                     <i class="fa fa-search"></i>
+                                 </button>
+                             </span>
+                         </div>
+                     </div>
+                <div class="iq-card-body">
+                   <div class="table-responsive">
+                      <table class="data-tables table table-striped table-bordered" style="width:100%">
+                         <thead>
+                            <tr>
+                               <th style="width: 2%;">STT</th>
+                               <th style="width: 10%;">Mã NV</th>
+                               <th style="width: 12%;">Ảnh NV</th>
+                               <th style="width: 10%;">Email</th>
+                               <th style="width: 10%;">Họ tên</th>
+                               <th style="width: 10%;">Số điện thoại</th>
+                               <th style="width: 6%;">Giới tính</th>
+                               <th style="width: 10%;">Ngày sinh</th>
+                               <th style="width: 10%;">Địa chỉ</th>
+                               <th style="width: 10%;">Tình Trạng</th>
+                               <th style="width: 10%;">Vai trò</th>
+                               <th style="width: 15%;">Hoạt động</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                           <tr *ngFor="let nhanvienf of NhaVienList;let i = index">
+                              <td>{{i+1}}</td>
+                              <td>{{nhanvienf.maNV}}</td>
+                              <td>
+                                 <img class="img-fluid rounded" 
+                                 [src]="getBeforeComma(nhanvienf.hinhAnhNV)"
+                                 [srcset]="getBeforeComma(nhanvienf.hinhAnhNV) + ' 1920w, ' +
+                                           getBeforeComma(nhanvienf.hinhAnhNV) + ' 640w, ' +
+                                           getBeforeComma(nhanvienf.hinhAnhNV) + ' 1280w'"
+                                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                 loading="eager">
+                                 </td>
+                                 <td>{{nhanvienf.email}}</td>
+                                 <td>{{nhanvienf.hoTen}}</td>
+                                 <td>{{nhanvienf.soDienThoai}}</td>
+                                 <td>{{nhanvienf.gioiTinh}}</td>
+                                 <td>{{nhanvienf.ngaySinh | date: 'dd/MM/yyyy' }}</td>
+                                 <td>{{nhanvienf.diaChi}}</td>
+                                 <td>{{nhanvienf.tinhTrang}}</td>
+                                 <td>
+                                    <span *ngFor="let vaitro of nhanvienf.taiKhoanNV.authorities; let last = last">
+                                      {{ vaitro.chucVu.tenChucVu }}
+                                      <span *ngIf="!last">, </span>
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <div class="flex align-items-center list-user-action">
+                                       <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"  (click)="editNhanVien(nhanvienf)"><i class="ri-pencil-line"></i></a>
+                                       <a class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá"  (click)="deleteNhanVien(nhanvienf.maNV)"><i class="ri-delete-bin-line"></i></a>
+                                    </div>
+                                  </td>
+                           </tr>
+                         </tbody>
+                      </table>
+                      <div class="d-flex justify-content-center mt-4">
+                        <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                 <!-- Nút Previous -->
+            <li class="page-item" [class.disabled]="currentPage === 0">
+              <a class="page-link" (click)="changePage(currentPage - 1)">Trước</a>
+            </li>
+            <!-- Hiển thị tối đa 3 nút số -->
+            <li class="page-item" *ngFor="let page of displayedPages" [class.active]="page === currentPage">
+              <a class="page-link" (click)="changePage(page)">{{ page + 1 }}</a>
+            </li>
+                                <!-- Nút Next -->
+            <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+              <a class="page-link" (click)="changePage(currentPage + 1)">Sau</a>
+            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ 

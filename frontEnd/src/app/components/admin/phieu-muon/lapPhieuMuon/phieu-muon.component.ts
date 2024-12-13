@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { NotFoundException } from '@zxing/library';
-import { AsideComponent } from '../../aside/aside.component';
 import { HoiVien } from '../../../../models/hoi-vien';
 import { AddBookRes } from '../../../../models/add-book-res';
 import { PhieuMuon } from '../../../../models/phieu-muon';
@@ -25,7 +24,7 @@ import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 @Component({
     selector: 'app-phieu-muon',
     standalone: true,
-    imports: [AsideComponent, CommonModule, FormsModule, RouterLink],
+    imports: [ CommonModule, FormsModule],
     templateUrl: './phieu-muon.component.html',
     styleUrl: './phieu-muon.component.css'
 })

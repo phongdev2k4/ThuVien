@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bookland.service.SachService;
 import com.bookland.service.sachHinhAnhService;
+import com.bookland.dao.SachDAO;
+import com.bookland.dto.SachDTO;
 import com.bookland.dto.addBookRequest;
 import com.bookland.dto.addBookResponse;
 import com.bookland.entity.*;
@@ -35,18 +40,26 @@ public class SachRestController {
 	SachService sachService;
 	@Autowired
 	sachHinhAnhService imageBookService;
-
+    @Autowired
+    SachDAO sachdao;
 	@GetMapping
 	public ResponseEntity<List<addBookResponse>> findAll() {
 		List<addBookResponse> sachs = sachService.finAll();
 		return ResponseEntity.ok(sachs); // 200 OK
 	}
+	@GetMapping("/search")
+	public ResponseEntity<Page<SachDTO>> findAllSearch(
+			@RequestParam(value = "searchKey", required = false) String searchKey,@PageableDefault(size = 5)Pageable pageable) {
+		Page<SachDTO> sachs = sachService.searchSachDTO(searchKey,pageable);
+		return ResponseEntity.ok(sachs); // 200 OK
+	}
+	
 	  @GetMapping("/searchByName")
 	    public List<addBookResponse> getBookDetailsByName(@RequestParam("tenSach") String tenSach123) {
 	    	System.out.println(tenSach123);
 	        return sachService.findBookDetailsByName(tenSach123);
 	    }
-
+ 
 
 	  @PostMapping(consumes = "multipart/form-data")
 	    public ResponseEntity<addBookResponse> addSach(

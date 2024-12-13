@@ -1,5 +1,4 @@
 
-import { AsideComponent } from '../../aside/aside.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +20,7 @@ import { PhieuTraDTO } from '../../../../models/phieu-tra-dto';
 @Component({
     selector: 'app-lap-phieu-tra',
     standalone: true,
-    imports: [AsideComponent, CommonModule, FormsModule],
+    imports: [ CommonModule, FormsModule],
     templateUrl: './lap-phieu-tra.component.html',
     styleUrl: './lap-phieu-tra.component.css'
 })

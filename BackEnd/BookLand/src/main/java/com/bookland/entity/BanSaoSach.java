@@ -49,6 +49,11 @@ public class BanSaoSach {
     @OneToMany(mappedBy = "banSaoSach")
     private List<ChiTietPhieuTra> chiTietPhieuTraList;
 	
+	@JsonIgnore 
+	@OneToMany(mappedBy = "banSaoSach")
+	private List<BorrowOnlineDetail> chiTietMuonOnlineList;
+	
 	@Transient // This makes JPA ignore the field
 	private long soLuong123;
+	
 }

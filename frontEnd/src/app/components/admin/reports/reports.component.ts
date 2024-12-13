@@ -8,7 +8,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MostBorrowedBook } from '../../../models/most-borrowed-book';
 import { FormsModule } from '@angular/forms';
 import { BaseChartDirective } from 'ng2-charts';
-import { AsideComponent } from '../aside/aside.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from 'ng-apexcharts';
 
@@ -33,7 +32,7 @@ export type ChartOptions123 = {
 @Component({
   selector: 'app-reports',
   standalone: true,  // Add this line to make the component standalone
-  imports: [AsideComponent, CommonModule, FormsModule,BaseChartDirective,NgApexchartsModule], // Valid in standalone components
+  imports: [ CommonModule, FormsModule,BaseChartDirective,NgApexchartsModule], // Valid in standalone components
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css']
 })

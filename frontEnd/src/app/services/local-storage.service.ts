@@ -38,6 +38,7 @@ export class LocalStorageService {
   public clear() {
     localStorage.clear();
   }
+<<<<<<< HEAD
   getTTNguoiDung():any{
     let ttnguoidung = localStorage.getItem('TTNguoiDung');
     return ttnguoidung ? JSON.parse(ttnguoidung) : null;
@@ -45,5 +46,14 @@ export class LocalStorageService {
    setTTNguoiDung(value: any): void {
     localStorage.setItem('TTNguoiDung', JSON.stringify(value));
   }
+=======
+  setTTNguoiDung(value: any): void {
+    localStorage.setItem('TTNguoiDung', JSON.stringify(value));
+  }
+  getTTNguoiDung():any{
+   let ttnguoidung = localStorage.getItem('TTNguoiDung');
+   return ttnguoidung ? JSON.parse(ttnguoidung) : null;
+  }
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
   
 }

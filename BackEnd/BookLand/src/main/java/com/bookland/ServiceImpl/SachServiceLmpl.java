@@ -1,15 +1,23 @@
 package com.bookland.ServiceImpl;
 
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +27,7 @@ import com.bookland.dao.SachDAO;
 import com.bookland.dao.SachTheLoaiDAO;
 import com.bookland.dao.TacGiaDAO;
 import com.bookland.dao.TheLoaiDAO;
+import com.bookland.dto.SachDTO;
 import com.bookland.dto.addBookRequest;
 import com.bookland.dto.addBookResponse;
 import com.bookland.service.SachService;
@@ -200,6 +209,191 @@ public class SachServiceLmpl implements SachService{
 		
 
 	}
+	@Override
+	public List<SachDTO> findAllSachDTO() {
+		 List<Object[]> results = sachDAO.finAllSachs();
+		 List<SachDTO> sachs = new ArrayList<>();
+		 for (Object[] result : results) {
+			 SachDTO sach=new SachDTO();
+			 result[7] = filterDuplicateresult(result[7]);
+			 result[8] = filterDuplicateresult(result[8]);
+			 
+			 sach.setMaSach((String) result[0]);
+			 sach.setTenSach((String) result[1]);
+			 sach.setNamXB((int) result[2]);
+			 sach.setNxb((String) result[3]);
+			 sach.setTienSach((double) result[4]);
+			 sach.setMoTa((String) result[5]);
+			 // lấy thông tin tác giả
+		        // Tách chuỗi theo dấu phẩy
+		     String[] thongtintacgia = splitStringByDelimiter(result[6],",");
+              TacGia tacGia =new TacGia();
+              tacGia.setMaTacGia(thongtintacgia[0]);
+              tacGia.setTenTacGia(thongtintacgia[1]);
+              // Gọi hàm convertStringToDate với chuỗi ngày sinh và định dạng tương ứng
+              Date ngaySinh = convertStringToDate(thongtintacgia[2], "yyyy-MM-dd HH:mm:ss.SSSSSS");
+
+              // Kiểm tra nếu chuyển đổi thành công và gán vào đối tượng tác giả
+              if (ngaySinh != null) {
+                  tacGia.setNgaySinh(ngaySinh);
+              }
+              tacGia.setQuocGia(thongtintacgia[3]);
+              sach.setTacGia(tacGia);
+              //  lấy thể loại 
+              // Tách thành danh sách các mảng
+              String[] theLoaiArray =((String) result[7]).split("\\|");
+              List<SachDTO.TheLoais> theloais=new ArrayList<>();
+              for(String tl:theLoaiArray) {
+            	  SachDTO.TheLoais theLoai = new SachDTO.TheLoais();
+                  String[] cttl=tl.split(",");
+                  theLoai.setMaTheLoai(cttl[0]);
+                  theLoai.setTenTheLoai(cttl[1]);
+                  theLoai.setMoTa(cttl[2]);
+                  theloais.add(theLoai);
+              }
+              sach.setTheloai(theloais);
+              // lấy ảnh 
+              String [] anhSach=((String) result[8]).split("\\|");
+              SachDTO.HinhAnhSach hinhAnhSach = new SachDTO.HinhAnhSach();
+              for(String as:anhSach) {
+            	  String[] ctas=as.split(",");
+            	  if(ctas[2].equals("COVER")) {
+            		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+            		 cover.setImageUrl(ctas[5]);
+            		 cover.setImageDescription(ctas[2]);
+            	      hinhAnhSach.setCover(cover);
+            	  }
+            	  if(ctas[2].equals("BACKSIDE")) {
+            		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+            		 cover.setImageUrl(ctas[5]);
+            		 cover.setImageDescription(ctas[2]);
+            	      hinhAnhSach.setBackside(cover);
+            	  }
+            	  if(ctas[2].equals("FRONTSIDE")) {
+            		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+            		 cover.setImageUrl(ctas[5]);
+            		 cover.setImageDescription(ctas[2]);
+            	      hinhAnhSach.setFrontside(cover);
+            	  } 
+            	  
+              }
+              sach.setHinhAnhSach(hinhAnhSach);
+              sach.setTongSoBanCung((int)result[9]);
+              sach.setSoBanCungCon((int)result[10]);
+             sachs.add(sach);
+		 }
+		return sachs;
+	}
 	
+    // Hàm lọc để loại bỏ các phần tử trùng lặp
+    public String filterDuplicateresult(Object result) {
+        // Tách chuỗi theo dấu '|'
+        String[] theLoaiArray = ((String) result).split("\\|");
+
+        // Sử dụng Set để loại bỏ các phần tử trùng lặp
+        Set<String> uniqueTheLoaiSet = new HashSet<>();
+        for (String item : theLoaiArray) {
+            uniqueTheLoaiSet.add(item);
+        }
+
+        // Kết hợp lại các phần tử duy nhất thành chuỗi
+        return String.join("|", uniqueTheLoaiSet);
+    }
+    public  String[] splitStringByDelimiter(Object result, String delimiter) {
+        // Kiểm tra nếu chuỗi input hoặc delimiter là null hoặc trống
+        if (result == null || delimiter == null || delimiter.isEmpty()) {
+            return new String[0];  // Trả về mảng rỗng nếu có vấn đề
+        }
+
+        // Dùng phương thức split() của String để tách chuỗi theo dấu phân cách
+        return ((String) result).split(delimiter);
+    }
+    public Date convertStringToDate(String dateString, String pattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern); // Khởi tạo đối tượng SimpleDateFormat với pattern
+        try {
+            // Chuyển đổi chuỗi thành đối tượng Date
+            return sdf.parse(dateString);
+        } catch (Exception e) {
+            // In lỗi nếu có
+            return null;
+        }
+    }
+	@Override
+	public Page<SachDTO> searchSachDTO(String searchKey, Pageable pageable) {
+		Page<Object[]> results = sachDAO.findAllSachsBySearchKey(searchKey, pageable);
+		 List<SachDTO> sachs = new ArrayList<>();
+		 for (Object[] result : results) {
+			 SachDTO sach=new SachDTO();
+			 result[7] = filterDuplicateresult(result[7]);
+			 result[8] = filterDuplicateresult(result[8]);
+			 
+			 sach.setMaSach((String) result[0]);
+			 sach.setTenSach((String) result[1]);
+			 sach.setNamXB((int) result[2]);
+			 sach.setNxb((String) result[3]);
+			 sach.setTienSach((double) result[4]);
+			 sach.setMoTa((String) result[5]);
+			 // lấy thông tin tác giả
+		        // Tách chuỗi theo dấu phẩy
+		     String[] thongtintacgia = splitStringByDelimiter(result[6],",");
+             TacGia tacGia =new TacGia();
+             tacGia.setMaTacGia(thongtintacgia[0]);
+             tacGia.setTenTacGia(thongtintacgia[1]);
+             // Gọi hàm convertStringToDate với chuỗi ngày sinh và định dạng tương ứng
+             Date ngaySinh = convertStringToDate(thongtintacgia[2], "yyyy-MM-dd HH:mm:ss.SSSSSS");
+
+             // Kiểm tra nếu chuyển đổi thành công và gán vào đối tượng tác giả
+             if (ngaySinh != null) {
+                 tacGia.setNgaySinh(ngaySinh);
+             }
+             tacGia.setQuocGia(thongtintacgia[3]);
+             sach.setTacGia(tacGia);
+             //  lấy thể loại 
+             // Tách thành danh sách các mảng
+             String[] theLoaiArray =((String) result[7]).split("\\|");
+             List<SachDTO.TheLoais> theloais=new ArrayList<>();
+             for(String tl:theLoaiArray) {
+           	  SachDTO.TheLoais theLoai = new SachDTO.TheLoais();
+                 String[] cttl=tl.split(",");
+                 theLoai.setMaTheLoai(cttl[0]);
+                 theLoai.setTenTheLoai(cttl[1]);
+                 theLoai.setMoTa(cttl[2]);
+                 theloais.add(theLoai);
+             }
+             sach.setTheloai(theloais);
+             // lấy ảnh 
+             String [] anhSach=((String) result[8]).split("\\|");
+             SachDTO.HinhAnhSach hinhAnhSach = new SachDTO.HinhAnhSach();
+             for(String as:anhSach) {
+           	  String[] ctas=as.split(",");
+           	  if(ctas[2].equals("COVER")) {
+           		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+           		 cover.setImageUrl(ctas[5]);
+           		 cover.setImageDescription(ctas[2]);
+           	      hinhAnhSach.setCover(cover);
+           	  }
+           	  if(ctas[2].equals("BACKSIDE")) {
+           		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+           		 cover.setImageUrl(ctas[5]);
+           		 cover.setImageDescription(ctas[2]);
+           	      hinhAnhSach.setBackside(cover);
+           	  }
+           	  if(ctas[2].equals("FRONTSIDE")) {
+           		 SachDTO.HinhAnh cover = new SachDTO.HinhAnh();
+           		 cover.setImageUrl(ctas[5]);
+           		 cover.setImageDescription(ctas[2]);
+           	      hinhAnhSach.setFrontside(cover);
+           	  } 
+           	  
+             }
+             sach.setHinhAnhSach(hinhAnhSach);
+             sach.setTongSoBanCung((int)result[9]);
+             sach.setSoBanCungCon((int)result[10]);
+            sachs.add(sach);
+		 }
+		return new PageImpl<>(sachs, pageable, results.getTotalElements());
+	}
+
+
 
 }

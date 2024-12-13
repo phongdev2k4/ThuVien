@@ -15,6 +15,6 @@ public interface taiKhoanService {
 
 	SignupResponse doRegister13(SignupRequest request);
 
-
+	public boolean changePassword(String username, String oldPassword, String newPassword);
 
 }

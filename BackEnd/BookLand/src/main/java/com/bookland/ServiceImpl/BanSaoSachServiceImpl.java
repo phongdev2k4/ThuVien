@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
 
+=======
+import java.util.HashMap;
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.bookland.dao.BanSaoSachDAO;
 import com.bookland.dto.BanSaoSachWithCoverImageDTO;
 import com.bookland.entity.BanSaoSach;
@@ -40,7 +43,7 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 		    int number = (maxMaBanSaoSach != null) ? maxMaBanSaoSach + 1 : 1; 
 			String formatted = String.format("%011d", number);
 			String machecksum = BarcodeGeneratorUtils.generateFullUPC(formatted);
-			String nameimae=BarcodeGeneratorUtils.generateBarcode(machecksum, "BarCodeBook");  
+			String nameimae=BarcodeGeneratorUtils.generateBarcode(machecksum, "Bookland/Barcode");  
 			bansaosach.setHinhAnhMaVach(nameimae);
 			bansaosach.setMaVach(machecksum);
 			
@@ -74,12 +77,29 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 		return bss;
 	}
 
+	@Override
+	public Map<String, BanSaoSach> findBanSaoSachBySachIds(List<String> sachIds) {
+		// TODO Auto-generated method stub
+	    System.out.println("Received sachIds: " + sachIds);
+		Map<String, BanSaoSach> resultMap = new HashMap<>();
+
+        for (String sachId : sachIds) {
+            List<BanSaoSach> result =  banSaoSachDAO.findBanSaoSachBySachId(sachId,"Có sẵn","Mới");
+            if (!result.isEmpty()) {
+                resultMap.put(sachId, result.get(0));  // Add only the first result for each sachId
+            }
+        }
+//        System.out.print(resultMap);
+        return resultMap;
+	}
+
 
 	@Override
 	public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages() {
 		// TODO Auto-generated method stub
 		return banSaoSachDAO.findSachByBanSaoSachWithCoverImage("Có sẵn","Mới");
 	}
+<<<<<<< HEAD
 
 
 	@Override
@@ -100,4 +120,6 @@ public class BanSaoSachServiceImpl implements BanSaoSachService {
 	
 
 
+=======
+>>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 }
