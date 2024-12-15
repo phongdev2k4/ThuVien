@@ -1,17 +1,18 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, NgZone, OnInit, PLATFORM_ID } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-service.service';
 import { SachService } from '../../services/sach.service';
 import { CartService } from '../../services/cart.service';
 
 
 import { BansaosachService } from '../../services/bansaosach.service';
+import { AsideComponent } from '../aside/aside.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule,AsideComponent,RouterModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
