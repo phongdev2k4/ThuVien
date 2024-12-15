@@ -15,13 +15,12 @@ public interface BanSaoSachService {
     public BanSaoSach update(BanSaoSach banSaoSach);
 	public void delete(int mabansaosach);
 	public BanSaoSach findByMaVach(String maVach);
-<<<<<<< HEAD
+
 
 	public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages();
 
 	public Map<String, BanSaoSach> findBanSaoSachBySachIds(List<String> sachIds);
-=======
-	public Map<String, BanSaoSach> findBanSaoSachBySachIds(List<String> sachIds);
-	public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages();
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
+	
+
 }

@@ -19,10 +19,7 @@ export class HeaderComponent {
   constructor(public authService: AuthService,public router:Router,private storage:LocalStorageService,private cartService: CartService) {}
   decodedToken: any = null;// Add decodedToken here
   cartItems: any[] = [];
-<<<<<<< HEAD
 
-=======
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
   ngOnInit(): void {
     this.authService.decodedToken$.subscribe((token) => {
       this.decodedToken = token;
@@ -32,10 +29,7 @@ export class HeaderComponent {
     this.cartService.cartItems$.subscribe(items => {
       this.cartItems = items;
     });
-<<<<<<< HEAD
-  
-=======
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
   }
 
   signOut(){
@@ -71,13 +65,6 @@ export class HeaderComponent {
       return "./assets/images/user/1.jpg";
    }  
 
-<<<<<<< HEAD
-
-  removeFromCart(item: any,event: Event): void {
-    event.stopPropagation(); 
-    this.cartService.removeFromCart(item);
-  }
-=======
   onSearch(searchKey: string) {
      window.location.href = `/timkiemsach?key=${searchKey}`;
     }
@@ -85,5 +72,5 @@ export class HeaderComponent {
       event.stopPropagation(); 
       this.cartService.removeFromCart(item);
     }
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
 }

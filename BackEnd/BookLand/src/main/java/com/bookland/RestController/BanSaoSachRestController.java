@@ -79,13 +79,6 @@ public class BanSaoSachRestController {
 	        return banSaoSachService.findBanSaoSachBySachIds(sachIds);
 	    }
 
-	@GetMapping("/findBySachIds")
-    public Map<String, BanSaoSach> findBanSaoSachBySachIds(@RequestParam List<String> sachIds) {
-        return banSaoSachService.findBanSaoSachBySachIds(sachIds);
-    }
-	@GetMapping("/with-cover-images")
-    public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages() {
-        return banSaoSachService.getBanSaoSachWithCoverImages();
     }
 
-}
+

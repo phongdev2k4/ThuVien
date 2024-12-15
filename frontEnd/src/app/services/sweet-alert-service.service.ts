@@ -42,7 +42,7 @@ export class SweetAlertServiceService {
       cancelButtonText: 'No'
     }).then((result) => result.isConfirmed);
   }
-<<<<<<< HEAD
+
   loading(message: string): any {
     return Swal.fire({
       title: message,
@@ -57,22 +57,10 @@ export class SweetAlertServiceService {
     closeLoading(): void {
       Swal.close(); // Đóng modal
     }
-=======
+
       // Hiển thị màn hình chờ khi đang cập nhật
-      loading(message: string): any {
-        return Swal.fire({
-          title: message,
-          html: 'Vui lòng đợi...',
-          allowOutsideClick: false, // Không cho phép đóng modal bằng cách click ngoài
-          didOpen: () => {
-            Swal.showLoading(); // Hiển thị loading spinner
-          }
-        });
-      }
     
-      // Đóng màn hình chờ
-      closeLoading(): void {
-        Swal.close(); // Đóng modal
-      }
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+    
+     
+
 }

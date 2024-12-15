@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
-import { CommonModule } from '@angular/common';
-=======
+
+
+
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { AsideComponent } from '../../aside/aside.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -13,23 +11,19 @@ import { FormsModule } from '@angular/forms';
 import { PhieuMuonService } from '../../../services/phieu-muon.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
 
 
 @Component({
   selector: 'app-lap-phieu-muon-online',
-<<<<<<< HEAD
-  imports: [AsideComponent,CommonModule],
-=======
+
   imports: [AsideComponent,CommonModule,FormsModule],
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
   templateUrl: './lap-phieu-muon-online.component.html',
   styleUrl: './lap-phieu-muon-online.component.css'
 })
 export class LapPhieuMuonOnlineComponent {
-<<<<<<< HEAD
 
-=======
   cartItems: any[] = [];
   bookList: any[] = [];
   maHoiVien: string = ''; // For Mã Hội Viên
@@ -111,5 +105,5 @@ export class LapPhieuMuonOnlineComponent {
     // Navigate to /trangChu
     this.router.navigate(['/trangChu']);
   }
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
 }

@@ -27,10 +27,7 @@ import { PhieuMuonComponent } from './components/admin/phieu-muon/lapPhieuMuon/p
 import { TablePhieuMuonComponent } from './components/admin/phieu-muon/table-phieu-muon/table-phieu-muon.component';
 import { TablePhieuphatComponent } from './components/admin/phieuphat/table-phieuphat/table-phieuphat.component';
 import { ReportsComponent } from './components/admin/reports/reports.component';
-<<<<<<< HEAD
-import { LapPhieuMuonOnlineComponent } from './components/user/lap-phieu-muon-online/lap-phieu-muon-online.component';
-import { ProfilecusEditComponent } from './components/user/profilecus-edit/profilecus-edit.component';
-=======
+
 import { NhanvienComponent } from './components/admin/nhanviens/nhanvien/nhanvien.component';
 import { UpdateNhanvienComponent } from './components/admin/nhanviens/update-nhanvien/update-nhanvien.component';
 import { AddNhanvienComponent } from './components/admin/nhanviens/add-nhanvien/add-nhanvien.component';
@@ -48,7 +45,7 @@ import { Timkiemsach1keyComponent } from './components/search/timkiemsach1key/ti
 import { MuonOnlineComponent } from './components/admin/phieu-muon/muon-online/muon-online.component';
 import { XuLiMuonOnlineComponent } from './components/admin/phieu-muon/xu-li-muon-online/xu-li-muon-online.component';
 import { LapPhieuMuonOnlineComponent } from './components/user/lap-phieu-muon-online/lap-phieu-muon-online.component';
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
 // import { PhieuphatComponent } from './components/admin/phieu-tra/phieuphat/phieuphat.component';
 
 
@@ -163,10 +160,6 @@ export const routes: Routes = [
     component:ReportsComponent
 },
 {
-<<<<<<< HEAD
-    path:'lapPhieuMuonOnline',
-    component:LapPhieuMuonOnlineComponent
-=======
     path:'quanlynhanvien',
     component:NhanvienComponent
 },
@@ -177,17 +170,11 @@ export const routes: Routes = [
 {
     path:'addNhanVien',
     component:AddNhanvienComponent
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 },
 {
     path:'Profilecus',
     component:ProfilecusEditComponent
 },
-<<<<<<< HEAD
-
-
-
-=======
 {
     path:'Profilestaff',
     component: ProfilestaffEditComponent
@@ -240,5 +227,5 @@ export const routes: Routes = [
     path:'lapPhieuMuonOnline',
     component:LapPhieuMuonOnlineComponent
 },
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
+
 ];

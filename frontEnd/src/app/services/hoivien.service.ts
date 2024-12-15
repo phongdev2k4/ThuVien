@@ -78,9 +78,5 @@ export class HoivienService {
     
         return this.http.get<any>(this.apiUrl+"/searchPage", { params });
       }
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 3854c00292736ee617b3daa90044772ec186972f
 }

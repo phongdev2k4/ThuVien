@@ -60,9 +60,7 @@ export class BansaosachService {
       return this.http.get<BanSaoSach>(`${this.apiUrl+'/with-cover-images'}`);
     }
 
-    fetchHomeItems(): Observable<any> {
-      return this.http.get<BanSaoSach>(`${this.apiUrl+'/with-cover-images'}`);
-    }
+   
     findBySachIds(sachIds: string[]): Observable<any> {
       let params = new HttpParams();
       sachIds.forEach((id) => {
