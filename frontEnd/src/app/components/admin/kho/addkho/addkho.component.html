@@ -11,15 +11,27 @@
                        </div>
                     </div>
                     <div class="iq-card-body">
-                       <form (ngSubmit)="addKho()">
+                       <form formControlName="Form" (ngSubmit)="addKho()">
                           <div class="form-group">
-                             <label>Tên kho:</label>
-                             <input  class="form-control" type="text"  [(ngModel)]="kho.tenKho"  name="tenKho" required>
+                              <label>Tên kho:</label>
+                              <input  class="form-control" placeholder="Mời nhập tên kho" formControlName="tenkho" type="text"  [(ngModel)]="kho.tenKho"  name="tenKho" required>
+                              <div class="text-danger">
+                                 @if (Form.controls['tenkho'].errors?.['required']) {
+                                 <span>Tên không được để trống </span>
+                                    }
+                              </div>
                            </div>
+
                            <div class="form-group">
-                            <label>Địa điểm:</label>
-                            <textarea class="form-control" rows="4" [(ngModel)]="kho.diaDiem"   name="diaDiem" required></textarea>
-                         </div>
+                              <label>Địa điểm:</label>
+                              <textarea class="form-control" placeholder="Mời nhập địa điểm" formControlName="diadiem" rows="4" [(ngModel)]="kho.diaDiem"   name="diaDiem" required></textarea>
+                              <div class="text-danger">
+                                 @if (Form.controls['diadiem'].errors?.['required']) {
+                                 <span>Mời nhập địa điểm</span>
+                                    }
+                              </div>
+                           </div>
+
                           <button type="submit" class="btn btn-primary " >Thêm kho</button>
                           <button type="reset" class="btn btn-danger ml-2" (click)="goBack()">Trở lại</button>
                        </form>

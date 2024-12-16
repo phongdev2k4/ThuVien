@@ -47,7 +47,7 @@ import {
   registerables,
   registry,
   scales
-} from "./chunk-CLF6YFON.js";
+} from "./chunk-POEXI2C4.js";
 import "./chunk-YHCV7DAQ.js";
 export {
   Animation,

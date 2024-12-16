@@ -3,17 +3,28 @@
     <div class="container">
         <div class="container-form">
             <h3>Thông Tin Nhân Viên</h3>
-            <form  class="form-group" (ngSubmit)="onSubmit()">
+            <form [formGroup]="Form" class="form-group" (ngSubmit)="onSubmit()">
                 <div class="form-row">
                     <!-- Mã Nhân Viên -->
                     <div class="form-group col-6">
                         <label for="maNV">Tên đăng nhập</label>
-                        <input class="form-control" id="maNV" name="maNV" [(ngModel)]="nhanVien.taiKhoanNV.userName" placeholder="userName" required />
+                        <input class="form-control" id="maNV" formControlName="userName" name="maNV" [(ngModel)]="nhanVien.taiKhoanNV.userName" placeholder="Nhập username" required />
+                        <div class="text-danger">
+                            @if ( Form.controls['userName'].errors?.['required']) {
+                            <span>Mời nhập tên đăng nhập</span>
+                       }
+                       </div>
                     </div>
+                    
                     <!-- Email -->
                     <div class="form-group col-6">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="nhanVien.email" placeholder="Nhập email" required />
+                        <input type="email" class="form-control" formControlName="email" id="email" name="email" [(ngModel)]="nhanVien.email" placeholder="Nhập email" required />
+                        <div class="text-danger">
+                            @if (Form.controls['email'].errors?.['required']) {
+                            <span>Mời nhập email</span>
+                       }
+                       </div>
                     </div>
                 </div>
     
@@ -21,12 +32,24 @@
                     <!-- Mật Khẩu -->
                     <div class="form-group col-6">
                         <label for="matKhau">Mật Khẩu</label>
-                        <input type="password" class="form-control" id="matKhau" name="matKhau" [(ngModel)]="nhanVien.taiKhoanNV.password" placeholder="Nhập mật khẩu" required />
+                        <input type="password" class="form-control" formControlName="password" id="matKhau" name="matKhau" [(ngModel)]="nhanVien.taiKhoanNV.password" placeholder="Nhập mật khẩu" required />
+                        <div class="text-danger">
+                            @if (Form.controls['password'].errors?.['minlength'] && Form.controls['password'].errors?.['required']) {
+                            <span>Mật khẩu chưa phù hợp </span>
+                            }
+                        </div>
                     </div>
+                    
+
                     <!-- Số Điện Thoại -->
                     <div class="form-group col-6">
                         <label for="soDienThoai">Số Điện Thoại</label>
-                        <input class="form-control" id="soDienThoai" name="soDienThoai" [(ngModel)]="nhanVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                        <input class="form-control" id="soDienThoai" formControlName="phone" name="soDienThoai" [(ngModel)]="nhanVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                        <div class="text-danger">
+                            @if (Form.controls['phone'].errors?.['required']) {
+                            <span>Mời nhập số điện thoại</span>
+                       }
+                       </div>
                     </div>
                 </div>
     
@@ -34,8 +57,15 @@
                     <!-- Họ Tên -->
                     <div class="form-group col-6">
                         <label for="hoTen">Họ Tên</label>
-                        <input class="form-control" id="hoTen" name="hoTen" [(ngModel)]="nhanVien.hoTen" placeholder="Nhập họ tên" required />
+                        <input class="form-control" formControlName="hoten" id="hoTen" name="hoTen" [(ngModel)]="nhanVien.hoTen" placeholder="Nhập họ tên" required />
+                        <div class="text-danger">
+                            @if (Form.controls['hoten'].errors?.['required']) {
+                            <span>Mời nhập số điện thoại</span>
+                       }
+                       </div>
                     </div>
+
+
                     <!-- Ngày Sinh -->
                     <div class="form-group col-6">
                         <label for="ngaySinh">Ngày Sinh</label>
@@ -66,11 +96,16 @@
                     <!-- Địa Chỉ -->
                     <div class="form-group col-12">
                         <label for="diaChi">Địa Chỉ</label>
-                        <input class="form-control" id="diaChi" name="diaChi" [(ngModel)]="nhanVien.diaChi" placeholder="Nhập địa chỉ" />
+                        <input class="form-control" formControlName="diachi" id="diaChi" name="diaChi" [(ngModel)]="nhanVien.diaChi" placeholder="Nhập địa chỉ" />
+                        <div class="text-danger">
+                            @if (Form.controls['diachi'].errors?.['required']) {
+                            <span>Mời nhập số điện thoại</span>
+                        }
+                       </div>
                     </div>
                 </div>
     
-                <div class="form-row">
+        <div class="form-row">
 <!-- Chức Vụ -->
 <div class="form-group col-6">
     <label for="chucVu">Chức Vụ</label>

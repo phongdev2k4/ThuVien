@@ -11,17 +11,29 @@
             </div>
           </div>
           <div class="iq-card-body">
-            <form>
+            <form [formGroup]="Form" >
               <div class="form-group">
                 <label>Mã Thẻ:</label>
-                <input type="text" class="form-control" [(ngModel)]="maHV" (input)="onIdInput($event)" name="maThẻ"
+                <input type="text" class="form-control" formControlName="mathe" [(ngModel)]="maHV" (input)="onIdInput($event)" name="maThẻ"
                   placeholder="Nhập mã thẻ" required>
-              </div>
+                <div class="text-danger">
+                    @if (Form.controls['mathe'].errors?.['required']) {
+                    <span>Mã thẻ không được để trống</span>
+                  }
+               </div>
+                </div>
+
               <div class="form-group">
                 <label>Họ Tên:</label>
-                <input type="text" class="form-control" [(ngModel)]="searchTerm" name="searchName"
+                <input type="text" formControlName="hoten" class="form-control" [(ngModel)]="searchTerm" name="searchName"
                   placeholder="Nhập tên">
+                <div class="text-danger">
+                    @if (Form.controls['hoten'].errors?.['required']) {
+                    <span>Họ tên không được để trống</span>
+                  }
+               </div>
               </div>
+
               <div class="form-group">
                 <label>Ngày tạo:</label>
                 <input type="date" class="form-control" name="namXB" [value]="currentDate" disabled>

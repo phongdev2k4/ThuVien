@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router,RouterLink } from '@angular/router';
 import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
@@ -8,7 +8,7 @@ import { NhanvienService } from '../../../../services/nhanvien.service';
 @Component({
   selector: 'app-add-nhanvien',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './add-nhanvien.component.html',
   styleUrl: './add-nhanvien.component.css'
 })
@@ -29,7 +29,16 @@ export class AddNhanvienComponent {
         password: "",
         authorities: []
     }
-};
+  };
+
+  Form : FormGroup = new FormGroup({
+    userName: new FormControl('', Validators.required),
+    email : new FormControl('',[Validators.email , Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    phone : new FormControl('',Validators.required),
+    hoten : new FormControl('', Validators.required),
+    diachi : new FormControl('', Validators.required)
+  })
 
   chucVuList: any [] = [];
   ngOnInit(): void {

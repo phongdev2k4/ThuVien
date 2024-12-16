@@ -3,55 +3,85 @@
    <div class="container">
        <div class="container-form">
            <h3>Thông Tin Hội Viên</h3>
-           <form  class="form-group" (ngSubmit)="onSubmit()">
+           <form [formGroup]="Form" class="form-group" (ngSubmit)="onSubmit()">
                <div class="form-row">
-                   <!-- Mã Nhân Viên -->
+                   <!-- Tên đăng nhập -->
                    <div class="form-group col-6">
                        <label for="maNV">Tên đăng nhập</label>
-                       <input class="form-control" id="maNV" name="userName" [(ngModel)]="hoiVien.taiKhoanHV.userName"  placeholder="userName" required />
+                       <input class="form-control" formControlName="userName" id="maNV" name="userName" [(ngModel)]="hoiVien.taiKhoanHV.userName"  placeholder="userName" required />
+                       <div class="text-danger">
+                        @if ( Form.controls['userName'].errors?.['required']) {
+                        <span>Tên đăng nhập không được để trống</span>
+                   }
                    </div>
+                    </div>
                    <!-- Email -->
                    <div class="form-group col-6">
                        <label for="email">Email</label>
-                       <input type="email" class="form-control" id="email" name="email"  [(ngModel)]="hoiVien.email" placeholder="Nhập email" required />
+                       <input type="email" formControlName="email" class="form-control" id="email" name="email"  [(ngModel)]="hoiVien.email" placeholder="Nhập email" required />
+                       <div class="text-danger">
+                        @if (Form.controls['email'].errors?.['required']) {
+                        <span>Email không được để trống</span>
+                   }
                    </div>
+                    </div>
                </div>
    
                <div class="form-row">
                    <!-- Mật Khẩu -->
                    <div class="form-group col-6">
                        <label for="matKhau">Mật Khẩu</label>
-                       <input type="password" class="form-control" id="matKhau" name="password" [(ngModel)]="hoiVien.taiKhoanHV.password" placeholder="Nhập mật khẩu" required />
-                   </div>
+                       <input type="password" formControlName="password" class="form-control" id="matKhau" name="password" [(ngModel)]="hoiVien.taiKhoanHV.password" placeholder="Nhập mật khẩu" required />
+                       <div class="text-danger">
+                        @if (Form.controls['password'].errors?.['minlength'] && Form.controls['password'].errors?.['required']) {
+                        <span>Mật khẩu không đúng hoặc chưa phù hợp </span>
+                        }
+                    </div>
+                    </div>
                    <!-- Số Điện Thoại -->
                    <div class="form-group col-6">
                        <label for="soDienThoai">Số Điện Thoại</label>
-                       <input class="form-control" id="soDienThoai" name="soDienThoai" [(ngModel)]="hoiVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                       <input class="form-control" formControlName="phone" id="soDienThoai" name="soDienThoai" [(ngModel)]="hoiVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                       <div class="text-danger">
+                        @if (Form.controls['phone'].errors?.['required']) {
+                        <span>Số điện thoại không được để trống</span>
+                        }
                    </div>
+                    </div>
                </div>
    
                <div class="form-row">
                    <!-- Họ Tên -->
                    <div class="form-group col-6">
                        <label for="hoTen">Họ Tên</label>
-                       <input class="form-control" id="hoTen" name="hoTen" [(ngModel)]="hoiVien.hoTen" placeholder="Nhập họ tên" required />
+                       <input class="form-control" formControlName="hoten" id="hoTen" name="hoTen" [(ngModel)]="hoiVien.hoTen" placeholder="Nhập họ tên" required />
+                       <div class="text-danger">
+                        @if (Form.controls['hoten'].errors?.['required']) {
+                        <span>Họ và tên không được đê trống</span>
+                   }
                    </div>
-                                      <!-- Tình Trạng -->
-                                      <div class="form-group col-6">
-                                        <label for="tinhTrang">Tình Trạng</label>
-                                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="hoiVien.tinhTrang">
-                                            <option value="true">Hoạt động</option>
-                                            <option value="false">không hoạt động</option>
-                                        </select>
-                                    </div>
+                    </div>
+                    <!-- Tình Trạng -->
+                    <div class="form-group col-6">
+                        <label for="tinhTrang">Tình Trạng</label>
+                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="hoiVien.tinhTrang">
+                            <option value="true">Hoạt động</option>
+                            <option value="false">không hoạt động</option>
+                        </select>
+                    </div>
                </div>
    
                <div class="form-row">
                    <!-- Địa Chỉ -->
                    <div class="form-group col-12">
                        <label for="diaChi">Địa Chỉ</label>
-                       <input class="form-control" id="diaChi" name="diaChi" [(ngModel)]="hoiVien.diaChi" placeholder="Nhập địa chỉ" />
+                       <input class="form-control" formControlName="diachi" id="diaChi" name="diaChi" [(ngModel)]="hoiVien.diaChi" placeholder="Nhập địa chỉ" />
+                       <div class="text-danger">
+                        @if (Form.controls['diachi'].errors?.['required']) {
+                        <span>Địa chỉ không đươc để trống</span>
+                    }
                    </div>
+                    </div>
                                       <!-- Hình Ảnh Nhân Viên -->
                                       <div class="form-group col-6">
                                         <label for="hinhAnhNV">Hình Ảnh Hội Viên</label>

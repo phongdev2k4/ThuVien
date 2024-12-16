@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
 import { Router,RouterLink } from '@angular/router';
 import { HoivienService } from '../../../../services/hoivien.service';
@@ -8,11 +8,21 @@ import { HoivienService } from '../../../../services/hoivien.service';
 @Component({
   selector: 'app-addhoivien',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './addhoivien.component.html',
   styleUrl: './addhoivien.component.css'
 })
 export class AddhoivienComponent {
+  
+  Form : FormGroup = new FormGroup({
+    userName: new FormControl('', Validators.required),
+    email : new FormControl('',[Validators.email , Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    phone : new FormControl('',Validators.required),
+    hoten : new FormControl('', Validators.required),
+    diachi : new FormControl('', Validators.required)
+  })
+  
   constructor(private router: Router,private hoivienService:HoivienService,private sweetAlertService: SweetAlertServiceService) {}
   hoiVien: any = {
     maHV: "",

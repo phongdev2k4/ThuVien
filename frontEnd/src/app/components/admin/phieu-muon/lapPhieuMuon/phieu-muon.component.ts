@@ -1,8 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
 
-import { debounceTime } from 'rxjs';
 import { CommonModule, formatDate } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Router,RouterLink } from '@angular/router';
 import { BrowserMultiFormatReader } from '@zxing/browser';
@@ -18,13 +17,10 @@ import { LocalStorageService } from '../../../../services/local-storage.service'
 import { PhieuMuonService } from '../../../../services/phieu-muon.service';
 
 
-
-
-
 @Component({
     selector: 'app-phieu-muon',
     standalone: true,
-    imports: [ CommonModule, FormsModule],
+    imports: [ CommonModule, FormsModule,ReactiveFormsModule],
     templateUrl: './phieu-muon.component.html',
     styleUrl: './phieu-muon.component.css'
 })
@@ -45,6 +41,10 @@ export class PhieuMuonComponent {
   @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
   constructor(private hoiVienService: HoivienService,private bookService:SachService,public bansaosachService: BansaosachService,private router: Router,private storage:LocalStorageService,private phieuMuonService: PhieuMuonService) {}
  
+  Form : FormGroup = new FormGroup({
+    mathe : new FormControl('',Validators.required),
+    hoten : new FormControl('',Validators.required) 
+  })
 
   BanSaoList: any[] = [];
 

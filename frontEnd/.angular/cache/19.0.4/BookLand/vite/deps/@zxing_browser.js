@@ -20,10 +20,10 @@ import {
   NotFoundException_default,
   PDF417Reader_default,
   QRCodeReader_default
-} from "./chunk-IMSXBECP.js";
+} from "./chunk-34T5OYJK.js";
 import "./chunk-3OV72XIM.js";
 
-// node_modules/@zxing/browser/esm/common/HTMLCanvasElementLuminanceSource.js
+// ../../../node_modules/@zxing/browser/esm/common/HTMLCanvasElementLuminanceSource.js
 var __extends = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -163,7 +163,7 @@ var HTMLCanvasElementLuminanceSource = (
   }(LuminanceSource_default)
 );
 
-// node_modules/@zxing/browser/esm/common/navigator-utils.js
+// ../../../node_modules/@zxing/browser/esm/common/navigator-utils.js
 function hasNavigator() {
   return typeof navigator !== "undefined";
 }
@@ -174,7 +174,7 @@ function canEnumerateDevices() {
   return !!(isMediaDevicesSupported() && navigator.mediaDevices.enumerateDevices);
 }
 
-// node_modules/@zxing/browser/esm/readers/BrowserCodeReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserCodeReader.js
 var __assign = function() {
   __assign = Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -1279,7 +1279,7 @@ var BrowserCodeReader = (
   }()
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserAztecCodeReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserAztecCodeReader.js
 var __extends2 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1311,7 +1311,7 @@ var BrowserAztecCodeReader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserMultiFormatOneDReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserMultiFormatOneDReader.js
 var __extends3 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1343,7 +1343,7 @@ var BrowserMultiFormatOneDReader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserDatamatrixCodeReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserDatamatrixCodeReader.js
 var __extends4 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1375,7 +1375,7 @@ var BrowserDatamatrixCodeReader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserMultiFormatReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserMultiFormatReader.js
 var __extends5 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1427,7 +1427,7 @@ var BrowserMultiFormatReader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserPDF417Reader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserPDF417Reader.js
 var __extends6 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1459,7 +1459,7 @@ var BrowserPDF417Reader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/readers/BrowserQRCodeReader.js
+// ../../../node_modules/@zxing/browser/esm/readers/BrowserQRCodeReader.js
 var __extends7 = /* @__PURE__ */ function() {
   var extendStatics = function(d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -1491,7 +1491,7 @@ var BrowserQRCodeReader = (
   }(BrowserCodeReader)
 );
 
-// node_modules/@zxing/browser/esm/writers/BrowserCodeSvgWriter.js
+// ../../../node_modules/@zxing/browser/esm/writers/BrowserCodeSvgWriter.js
 var svgNs = "http://www.w3.org/2000/svg";
 var BrowserCodeSvgWriter = (
   /** @class */
@@ -1582,7 +1582,7 @@ var BrowserCodeSvgWriter = (
   }()
 );
 
-// node_modules/@zxing/browser/esm/writers/BrowserQRCodeSvgWriter.js
+// ../../../node_modules/@zxing/browser/esm/writers/BrowserQRCodeSvgWriter.js
 var svgNs2 = "http://www.w3.org/2000/svg";
 var BrowserQRCodeSvgWriter = (
   /** @class */

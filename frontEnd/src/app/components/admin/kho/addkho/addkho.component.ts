@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
 import { Router,RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { KhoService } from '../../../../services/kho.service';
 
 
@@ -13,12 +12,19 @@ import { KhoService } from '../../../../services/kho.service';
     imports: [
         CommonModule,
         FormsModule,
-        RouterLink
+        RouterLink,
+        ReactiveFormsModule
     ],
     templateUrl: './addkho.component.html',
     styleUrl: './addkho.component.css'
 })
 export class AddkhoComponent {
+
+  Form : FormGroup = new FormGroup({
+  tenkho : new FormControl('',Validators.required),
+  diadiem : new FormControl('',Validators.required)
+  })
+
   constructor(public khoService: KhoService, private router: Router) {}
   public kho={
     tenKho: "",

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth-service.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-aside',
@@ -10,7 +11,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './aside.component.css'
 })
 export class AsideComponent {
-  constructor(public authService: AuthService) {}
+
+  decodedToken: any = null;// Add decodedToken here
+
+  constructor(public authService: AuthService, private storage:LocalStorageService, private router: Router) {}
 
   toggleCollapse(event: MouseEvent): void {
     // Prevent the default anchor behavior
@@ -26,5 +30,12 @@ export class AsideComponent {
       // If not, alert the user about the permission issue
       alert("You don't have permission to access this section.");
     }
+  }
+
+  signOut(){
+    this.storage.remove('auth-key');
+    this.storage.clear();
+    this.decodedToken = null; 
+    this.router.navigateByUrl('login')
   }
 }

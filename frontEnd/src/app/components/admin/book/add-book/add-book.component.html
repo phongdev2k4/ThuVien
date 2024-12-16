@@ -16,24 +16,42 @@
         <div class="col-sm-12">
           <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
-              <div class="iq-header-title">
+              
                 <h4 class="card-title">Thêm sách</h4>
-              </div>
+              
             </div>
             <div class="iq-card-body">
-              <form>
+              <form [formGroup]="Form">
                 <div class="form-group">
                   <label>Mã Sách:</label>
-                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.maSach" name="maSach" required>
+                  <input type="text" formControlName="masach" placeholder="Mời nhập mã sách" class="form-control" [(ngModel)]="sachService.sach.maSach" name="maSach" required>
+                  <div class="text-danger">
+                    @if (Form.controls['masach'].errors?.['required']) {
+                    <span>Mời nhập mã sách</span>
+                      }
+                  </div>
                 </div>
+
                 <div class="form-group">
                   <label>Tên Sách:</label>
-                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
+                  <input type="text" placeholder="Mời nhập tên sách" formControlName="tensach" class="form-control" [(ngModel)]="sachService.sach.tenSach" name="tenSach" required>
+                  <div class="text-danger">
+                    @if (Form.controls['tensach'].errors?.['required']) {
+                    <span>Mời nhập tên tên sách</span>
+                      }
+                  </div>
                 </div>
+
                 <div class="form-group">
                   <label>Tiền:</label>
-                  <input type="text" class="form-control" [(ngModel)]="sachService.sach.tienSach" name="tienSach" required>
+                  <input type="text" placeholder="Mời nhập tiền" formControlName="tien" class="form-control" [(ngModel)]="sachService.sach.tienSach" name="tienSach" required>
+                  <div class="text-danger">
+                    @if (Form.controls['tensach'].errors?.['required']) {
+                    <span>Mời nhập tiền</span>
+                    }
+                  </div>
                 </div>
+
                 <div class="form-group">
                   <label>Tác giả sách:</label>
                   <select class="form-control" [(ngModel)]="sachService.sach.maTacGia" name="tacGia" required>
@@ -43,6 +61,7 @@
                     </option>
                   </select>
                 </div>
+
                 <div class="form-group">
                   <label>Thể loại:</label>
                   <div *ngFor="let theLoai of theloaiList" class="form-check">
@@ -59,14 +78,17 @@
                     </label>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label>Nhà xuất bản:</label>
                   <input type="text" class="form-control" [(ngModel)]="sachService.sach.nxb" name="nxb" required>
                 </div>
+
                 <div class="form-group">
                   <label>Năm xuất bản:</label>
                   <input type="number" class="form-control" [(ngModel)]="sachService.sach.namXB" name="namXB" required>
                 </div>
+
                 <div class="form-group">
                   <label>Chọn hình ảnh:</label>
                   <!-- <input
@@ -126,6 +148,7 @@
                   </div>
                   
                 </div>
+
                 <div class="form-group">
                   <div class="d-flex flex-wrap">
                     <!-- <div *ngFor="let preview of imagePreviews" class="me-2 mb-2">

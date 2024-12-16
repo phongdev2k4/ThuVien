@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import {Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
 import { TheloaiService } from '../../../../services/theloai.service';
 import { TacgiaService } from '../../../../services/tacgia.service';
@@ -15,7 +15,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         RouterLink,
         CommonModule,
         FormsModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        ReactiveFormsModule
     ],
     templateUrl: './add-book.component.html',
     styleUrl: './add-book.component.css'
@@ -30,10 +31,14 @@ export class AddBookComponent implements OnInit {
   imagePreviews: { [key: number]: string | null } = { 1: null, 2: null, 3: null };
   loading: boolean = false; // Loading state
 
-
-
   constructor(public sachService: SachService,public theloaiService: TheloaiService,private tacgiaService: TacgiaService,private router: Router,private notificationService: SweetAlertServiceService,@Inject(PLATFORM_ID) private platformId: Object){} 
   
+  Form: FormGroup =  new FormGroup({
+    masach: new FormControl('', Validators.required),
+    tensach: new FormControl('', Validators.required),
+    tien: new FormControl('', Validators.required),
+  });
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Only fetch cover images if we are in the browser (not server-side)
