@@ -85,8 +85,8 @@ export class HomeComponent {
         console.log('Books borrowed today:', count);
   
         // Check if the user has already borrowed 2 or more books today
-        if (count >= 2) {
-          alert("Không thể mượn quá 2 quyển trong ngày xin hãy mượn vào những ngày sau");
+        if (count >= 1) {
+          alert("Đã quá lần mượn quyển trong ngày xin hãy mượn vào những ngày sau");
           return; // Exit the method if the user has borrowed 2 or more books today
         }
   

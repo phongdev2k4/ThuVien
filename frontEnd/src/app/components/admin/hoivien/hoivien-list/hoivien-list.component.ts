@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import {  Router,RouterLink } from '@angular/router';
 import { HoivienService } from '../../../../services/hoivien.service';
 
@@ -12,11 +12,20 @@ import { HoivienService } from '../../../../services/hoivien.service';
   styleUrl: './hoivien-list.component.css'
 })
 export class HoivienListComponent {
-  constructor(public hoivienService:HoivienService, private router: Router) {}
+  constructor(public hoivienService:HoivienService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
   HoiVienList: any[] = [];
   ngOnInit(): void {
-    this.getHoiViens(0,this.pageSize);
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.getHoiViens(0,this.pageSize);
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
   }
+    
+   
+  
   loadListHoiVien(): void {
     this.hoivienService.getHoiVien().subscribe(
       data => {
