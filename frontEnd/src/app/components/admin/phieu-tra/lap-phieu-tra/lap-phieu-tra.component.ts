@@ -38,12 +38,15 @@ export class LapPhieuTraComponent {
   };
   phieuTraList: any[] = [];
   maHV!: string;
+  id!:number;
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Only fetch cover images if we are in the browser (not server-side)
       this.route.queryParams.subscribe(params => {
         this.maHV = params['maHV'];
+        this.id = params['id'];
         console.log('Received maHV:', this.maHV);
+        console.log('Received maHV:', this.id);
       });
       this.loadChiTiet();
 
@@ -53,7 +56,7 @@ export class LapPhieuTraComponent {
   }
   loadChiTiet():void {
     if (this.maHV.trim()) { // Ensure the input is not empty
-      this. phieuMuonService.getChiTietPhieuMuonByHoiVienId(this.maHV).subscribe(
+      this. phieuMuonService.getChiTietPhieuMuonByHoiVienId(this.maHV,this.id).subscribe(
         data => {
           this.phieuTraList = data; // Load the result into the table
           console.log(this.phieuTraList[0].phieuMuon.maPM
@@ -96,9 +99,7 @@ isOverdue(hanTraSach: string): boolean {
     }
   }
 
-  goBack() {
-    this.router.navigate(['/tablePhieuTra']); 
-  }
+ 
   selectedPhieuTra: any;
 
 openModal(phieuTra: any): void {
@@ -153,15 +154,19 @@ submitPhieuTra(): void {
     next: (response) => {
       console.log('Response from backend:', response);
       alert('Phiếu trả đã được tạo thành công!');
-      this.handledBooks = []; // Reset the array after successful submission
+      this.handledBooks = [];
+      this.goBack(); // Reset the array after successful submission
     },
     error: (error) => {
       console.error('Error occurred:', error);
       alert('Có lỗi xảy ra khi tạo phiếu trả. Vui lòng thử lại.');
     },
   });
-}
 
+}
+goBack() {
+  this.router.navigate(['/TablePhieuTra']); 
+}
 
 }
 

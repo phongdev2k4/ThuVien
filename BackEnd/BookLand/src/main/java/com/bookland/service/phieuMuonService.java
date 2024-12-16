@@ -18,7 +18,7 @@ public interface phieuMuonService {
 
 	PhieuMuon create(addPhieuMuondto pmRequest);
 
-	List<ChiTietPhieuMuon>  findChiTietPhieuMuonByHvID(String maHv);
+	List<ChiTietPhieuMuon>  findChiTietPhieuMuonByHvID(String maHv,Integer id);
 
 	List<PhieuMuon> findPhieuMuonByHvID(String maHV,String maVach);
 
@@ -37,5 +37,15 @@ public interface phieuMuonService {
 	Optional<MuonOnline> getMuonOnlineById(Long id);
 	PhieuMuon createPhieuMuonOnline(xuLiMuonOnlineDTO pmRequest);
 	List<BorrowOnlineDetail> getDetailsByMuonOnlineId(Long muonOnlineId);
+
+	List<ChiTietPhieuMuon> findChiTietPhieuMuonByHvID2(String maHV);
+
+	List<MuonOnline> findAllViPhamDaMuonOnline();
+
+	boolean canUserBorrowToday(String maHV);
+
+	List<MuonOnline> findBorrowedTodayByUser(String maHV);
+
+	long findBorrowedTodayByHV(String maHV);
 
 }

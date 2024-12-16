@@ -46,7 +46,7 @@ export class ListPhieuTraComponent {
   
   searchPhieuTra(): void {
     if (this.maHV.trim()) { // Ensure the input is not empty
-      this. phieuMuonService.getChiTietPhieuMuonByHoiVienId(this.maHV).subscribe(
+      this. phieuMuonService.getChiTietPhieuMuonByHoiVienId2(this.maHV).subscribe(
         data => {
           this.phieuTraList = data; // Load the result into the table
           console.log(data)

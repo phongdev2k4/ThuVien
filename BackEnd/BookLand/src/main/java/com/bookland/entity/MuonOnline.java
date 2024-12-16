@@ -31,6 +31,12 @@ public class MuonOnline {
 
 	@Column(name = "tinhTrang")
 	private boolean tinhTrang = false;
+	
+	@Column(name = "tienDatCoc")
+	private Double  tienDatCoc;
+	
+	  @Column(name = "isPickedUp")
+	  private boolean isPickedUp = false;
 
 	@OneToMany(mappedBy = "borrowOnline", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BorrowOnlineDetail> details;

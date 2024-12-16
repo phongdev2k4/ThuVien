@@ -113,7 +113,7 @@ export class PhieuphatComponent {
 
 
   goBack(): void {
-    this.router.navigate(['/previous-page']); // Adjust route as necessary
+    this.router.navigate(['/TablePhieuPhat']); // Adjust route as necessary
   }
   clear(): void {
     this.maHV = '';
@@ -121,6 +121,7 @@ export class PhieuphatComponent {
     this.maPT = '';
     this.soNgayQuaHan = null!;
     this.tienPhat = null!;
+    this.goBack();
    // Reset the PhieuPhat object
   }
   calculateTongTienPhat(): number {

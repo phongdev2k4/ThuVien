@@ -73,7 +73,9 @@ this.tenSachArray = this.phieuDangMuonList.details.map((borrowedBook: any) => bo
   this.phieuMuonService.createPhieuMuonOnline(finalBook).subscribe({
     next: (response) => {
       console.log('PhieuMuon created successfully:', response);
-      alert("thanh cong")
+      alert("Xử lí thành công")
+      this.goBack();
+      
       
     },
     error: (error) => {
@@ -82,5 +84,8 @@ this.tenSachArray = this.phieuDangMuonList.details.map((borrowedBook: any) => bo
   });
   
   console.log('Final Borrowed Books:', finalBook );
+}
+goBack() {
+  this.router.navigate(['/MuonOnline']); 
 }
 }

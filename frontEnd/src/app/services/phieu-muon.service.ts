@@ -15,8 +15,11 @@ export class PhieuMuonService {
   postPhieuMuon(pmRequest: FinalBorrowedBook): Observable<any> {
     return this.http.post<any>(this.apiUrl, pmRequest);
   }
-  getChiTietPhieuMuonByHoiVienId(maHV: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${maHV}`);
+  getChiTietPhieuMuonByHoiVienId(maHV: string,id:number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${maHV}/${id}`);
+  }
+  getChiTietPhieuMuonByHoiVienId2(maHV: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/find/${maHV}`);
   }
   getPhieuMuonByHoiVienId(maHV: string, maVach: string): Observable<any> {
     const params = new HttpParams()
@@ -43,6 +46,9 @@ findChiTietPhieuMuonById(maPM: number): Observable<any> {
 postMuonOnline(pmRequest: BorrowRequestDto): Observable<any> {
   return this.http.post<any>(this.apiUrl+'/muonOnline', pmRequest);
 }
+findAllViPhamMuonOnline(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/GetAllViPhamMuonOnline`);
+}
 findAllDangMuonOnline(): Observable<any> {
   return this.http.get<any>(`${this.apiUrl}/GetAllDangMuonOnline`);
 }
@@ -58,5 +64,8 @@ createPhieuMuonOnline(pmRequest: XuLiMuonOnlineDTO): Observable<any> {
 findChiTietPhieuMuonOnlineById(maPM: number): Observable<any> {
   return this.http.get(`${this.apiUrl}/chiTietMuonOnline/${maPM}`);
    
+}
+getCountBorrowedToday(maHV: string): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/count-borrowed-today?maHV=${maHV}`);
 }
 }

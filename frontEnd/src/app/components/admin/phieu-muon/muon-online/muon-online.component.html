@@ -7,16 +7,21 @@
                   <div class="iq-card-body p-0">
                      <div class="iq-edit-list">
                         <ul class="iq-edit-profile d-flex nav nav-pills">
-                           <li class="col-md-6 p-0">
+                           <li class="col-md-4 p-0">
                               <a class="nav-link active" data-toggle="pill" href="#personal-information">
                                  Xử Lí Đặt Sách Trước
                               </a>
                            </li>
-                           <li class="col-md-6 p-0">
+                           <li class="col-md-4 p-0">
                               <a class="nav-link" data-toggle="pill" href="#chang-pwd">
                                  Thông Tin Đặt Sách Của Khách
                               </a>
                            </li>
+                           <li class="col-md-4 p-0">
+                            <a class="nav-link" data-toggle="pill" href="#chang-pwd2">
+                               Thông Tin Đặt Sách Quá Hạn Của Khách
+                            </a>
+                         </li>
                         </ul>
                      </div>
                   </div>
@@ -42,8 +47,11 @@
                                         <th style="width: 5%;">STT</th>
                                         <th style="width: 12%;">Id</th>
                                         <th style="width: 10%;">Người Mượn</th>
+                                        <th style="width: 10%;">Tiền Cọc</th>
+                                       
                                         <th style="width: 10%;">Ngày Hẹn Lấy</th>
                                         <th style="width: 10%;">Ngày Mượn</th>
+                                        <th style="width: 10%;">Trạng Thái</th>
                                         <th style="width: 10%;">Tình Trạng </th>
                                         <th style="width: 12%;">Hoạt động</th>
                                     </tr>
@@ -53,8 +61,14 @@
                                         <td>{{ i + 1 }}</td>
                                         <td>{{ phieu.id }}</td>
                                         <td>{{ phieu.hoiVien.maHV }}</td>
+                                        <td>{{ phieu.tienDatCoc | currency:'VND':'symbol':'1.0-0' }}</td>
+
+
                                         <td>{{ phieu.ngayHenLay | date:'dd/MM/yyyy' }}</td>
                                         <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                        <td [ngClass]="{'tinhTrang-chua-tra': phieu.pickedUp === false, 'tinhTrang-da-tra': phieu.pickedUp === true}">
+                                            {{ phieu.pickedUp === false ? 'Quá Hạn ' : ' Chưa Quá Hạn' }}
+                                          </td>
                                         <td [ngClass]="{'tinhTrang-chua-tra': phieu.tinhTrang === false, 'tinhTrang-da-tra': phieu.tinhTrang === true}">
                                             {{ phieu.tinhTrang === false ? 'Chưa Lấy' : 'Đã Lấy' }}
                                           </td>
@@ -76,7 +90,7 @@
                         <div class="iq-card">
                             <div class="iq-card-header d-flex justify-content-between">
                              <div class="iq-header-title">
-                                 <h4 class="card-title"> Thông Tin Phiếu Trả<nav></nav></h4>
+                                 <h4 class="card-title"> Thông Tin Phiếu Muon Online<nav></nav></h4>
                              </div>
                              <div class="iq-card-header-toolbar d-flex align-items-center">
                                  <a  class="btn btn-primary">Tìm kiếm</a>
@@ -92,6 +106,7 @@
                                             <th style="width: 10%;">Ngày Hẹn Lấy</th>
                                             <th style="width: 10%;">Ngày Mượn</th>
                                             <th style="width: 10%;">Tình Trạng </th>
+                                            <th style="width: 10%;">Trạng Thái</th>
                                             <th style="width: 12%;">Hoạt động</th>
                                         </tr>
                                     </thead>
@@ -102,6 +117,60 @@
                                             <td>{{ phieu.hoiVien.maHV }}</td>
                                             <td>{{ phieu.ngayHenLay | date:'dd/MM/yyyy' }}</td>
                                             <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                            <td [ngClass]="{'tinhTrang-chua-tra': phieu.pickedUp === false, 'tinhTrang-da-tra': phieu.pickedUp === true}">
+                                                {{ phieu.pickedUp === false ? 'Quá Hạn ' : ' Chưa Quá Hạn' }}
+                                              </td>
+                                            <td [ngClass]="{'tinhTrang-chua-tra': phieu.tinhTrang === false, 'tinhTrang-da-tra': phieu.tinhTrang === true}">
+                                                {{ phieu.tinhTrang === false ? 'Chưa Lấy' : 'Đã Lấy' }}
+                                              </td>
+                                            <td>
+                                                <div class="flex align-items-center list-user-action">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" 
+                                                    (click)="openModal(phieu)">
+                                                     Chi Tiết
+                                                   </button>
+                                                </div>
+                                            </td>    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="tab-pane fade" id="chang-pwd2" role="tabpanel">
+                        <div class="iq-card">
+                            <div class="iq-card-header d-flex justify-content-between">
+                             <div class="iq-header-title">
+                                 <h4 class="card-title"> Thông Tin Phiếu Mượn Online Quá Hạn<nav></nav></h4>
+                             </div>
+                             <div class="iq-card-header-toolbar d-flex align-items-center">
+                                 <a  class="btn btn-primary">Tìm kiếm</a>
+                             </div>
+                            </div>
+                            <div class="iq-card-body">
+                                <table class="data-tables table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">STT</th>
+                                            <th style="width: 12%;">Id</th>
+                                            <th style="width: 10%;">Người Mượn</th>
+                                            <th style="width: 10%;">Ngày Hẹn Lấy</th>
+                                            <th style="width: 10%;">Ngày Mượn</th>
+                                            <th style="width: 10%;">Tình Trạng </th>
+                                            <th style="width: 10%;">Trạng Thái</th>
+                                            <th style="width: 12%;">Hoạt động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let phieu of phieuMuonOnlineViPhamList; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ phieu.id }}</td>
+                                            <td>{{ phieu.hoiVien.maHV }}</td>
+                                            <td>{{ phieu.ngayHenLay | date:'dd/MM/yyyy' }}</td>
+                                            <td>{{ phieu.ngayMuon | date:'dd/MM/yyyy' }}</td>
+                                            <td [ngClass]="{'tinhTrang-chua-tra': phieu.pickedUp === false, 'tinhTrang-da-tra': phieu.pickedUp === true}">
+                                                {{ phieu.pickedUp === false ? 'Quá Hạn ' : ' Chưa Quá Hạn' }}
+                                              </td>
                                             <td [ngClass]="{'tinhTrang-chua-tra': phieu.tinhTrang === false, 'tinhTrang-da-tra': phieu.tinhTrang === true}">
                                                 {{ phieu.tinhTrang === false ? 'Chưa Lấy' : 'Đã Lấy' }}
                                               </td>

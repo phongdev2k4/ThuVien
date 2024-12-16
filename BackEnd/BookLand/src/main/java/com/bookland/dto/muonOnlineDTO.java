@@ -16,4 +16,5 @@ public class muonOnlineDTO {
 		private String maHV;
 	    private Date ngayHenLay;
 	    private List<Integer> idBanSaoSach;
+	    private Double tongTienSach;
 }

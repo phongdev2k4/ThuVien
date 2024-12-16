@@ -191,7 +191,7 @@ export class PhieuMuonComponent {
     this.phieuMuonService.postPhieuMuon(finalBook).subscribe({
       next: (response) => {
         console.log('PhieuMuon created successfully:', response);
-        alert("thanh cong")
+        alert("Tạo phiếu mượn thành công !!!")
         this.maHV = "";
         this.searchTerm = "";
         this.borrowedBooks = [];
@@ -199,6 +199,7 @@ export class PhieuMuonComponent {
         this.checkTenSachTonTai=[];
         this.result = "";
         this.stopScanning();
+        this.goBack();
       },
       error: (error) => {
         console.error('Error creating PhieuMuon:', error);
@@ -206,6 +207,9 @@ export class PhieuMuonComponent {
     });
     
     console.log('Final Borrowed Books:', finalBook );
+}
+goBack() {
+  this.router.navigate(['/PhieuMuonList']); 
 }
 
 }

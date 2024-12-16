@@ -12,8 +12,11 @@ import com.bookland.report.BorrowReport123;
 import com.bookland.report.MostBorrowedBook;
 
 public interface phieuMuonDAO extends JpaRepository<PhieuMuon, Integer> {
+	@Query("SELECT pm.maPM FROM PhieuMuon pm WHERE pm.hoiVien.maHV = :maHV and pm.maPM = :id")
+	List<Integer> findIdPhieuMuonByHoiVienMaHV(String maHV,Integer id);
+	
 	@Query("SELECT pm.maPM FROM PhieuMuon pm WHERE pm.hoiVien.maHV = :maHV")
-	List<Integer> findIdPhieuMuonByHoiVienMaHV(String maHV);
+	List<Integer> findIdPhieuMuonByHoiVienMaHV2(String maHV);
 
 	@Query("SELECT pm FROM PhieuMuon pm "
 			+ "WHERE pm.maPM IN (SELECT ctp.phieuMuon.maPM FROM ChiTietPhieuMuon ctp WHERE ctp.banSaoSach.maBanSaoSach = :maBanSaoSach AND ctp.isReturned = false) "

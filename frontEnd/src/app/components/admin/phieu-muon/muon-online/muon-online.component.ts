@@ -15,12 +15,14 @@ import { FormsModule } from '@angular/forms';
 export class MuonOnlineComponent {
   phieuDangMuonList: any[] = [];
   phieuDaMuonList: any[] = [];
+  phieuMuonOnlineViPhamList: any[] = [];
   constructor(private phieuMuonService:PhieuMuonService,public bansaosachService: BansaosachService,@Inject(PLATFORM_ID) private platformId: Object,private router: Router) {}
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Only fetch cover images if we are in the browser (not server-side)
       this.loadDangMuonOnline();
       this.loadMuonOnline();
+      this.loadDangMuonOnlineViPham()
 
     } else {
       console.log('Not running in the browser, skipping API call');
@@ -30,6 +32,18 @@ export class MuonOnlineComponent {
     this.phieuMuonService.findAllDangMuonOnline().subscribe(
       data => {
         this.phieuDangMuonList = data;
+        console.log(this.phieuDangMuonList)
+        
+      },
+      error => {
+        console.error('Có lỗi xảy ra khi gọi API:', error);
+      }
+    );
+  }
+  loadDangMuonOnlineViPham():void {
+    this.phieuMuonService.findAllViPhamMuonOnline().subscribe(
+      data => {
+        this.phieuMuonOnlineViPhamList = data;
         console.log(this.phieuDangMuonList)
         
       },

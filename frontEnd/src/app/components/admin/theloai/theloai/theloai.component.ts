@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router,RouterLink } from '@angular/router';
 import { TheloaiService } from '../../../../services/theloai.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-theloai',
@@ -15,9 +15,15 @@ import { CommonModule } from '@angular/common';
 })
 export class TheloaiComponent implements OnInit{
   theloaiList: any[] = [];
-  constructor(private TheloaiService:TheloaiService, private router: Router) {}
+  constructor(private TheloaiService:TheloaiService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
   ngOnInit(): void {
-    this.loadTheLoai();
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+        this. loadTheLoai();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
  }
 
  loadTheLoai(): void {

@@ -72,14 +72,32 @@ export class LapPhieuMuonOnlineComponent {
   }
   Post(): void{
     if (!this.maHoiVien || !this.ngayHenLay) {
-      alert('Please ensure all required fields are filled.');
+      alert('Xin hãy điền đầy đủ thông tin.');
       return;
     }
+    const userData = this.getTTNguoiDung();
+    let tongTienSach = 0;
+
+    // Calculate the total price of all the books in the book list
+    this.bookList.forEach((book: any) => {
+      tongTienSach += book.sach.tienSach * 0.5; // Add each book's price to the total
+    });
+  
+    // Check if the user can afford at least 50% of the total price
+    if (userData.tienNap < tongTienSach) {
+      alert(`Không đủ tiền trong tài khoản để đặt cọc sách .`);
+      return;
+    }
+
+    console.log(userData.tienNap )
+    console.log(tongTienSach )
+  
 
     const dto = {
       maHV: this.maHoiVien,
       ngayHenLay: this.ngayHenLay,
-      idBanSaoSach: this.bookList.map((book) => book.maBanSaoSach)
+      idBanSaoSach: this.bookList.map((book) => book.maBanSaoSach),
+      tongTienSach
     };
     console.log('Posting DTO:', dto);
     this.pmService.postMuonOnline(dto).subscribe(
