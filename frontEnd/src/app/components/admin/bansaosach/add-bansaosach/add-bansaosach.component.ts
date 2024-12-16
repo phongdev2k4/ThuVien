@@ -1,28 +1,27 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SachService } from '../../../../services/sach.service';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { KhoService } from '../../../../services/kho.service';
+import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
 
 @Component({
-  selector: 'app-add-bansaosach',
-  standalone: true,
-  imports: [
-    AsideComponent,
-    RouterLink,
-    CommonModule,
-    FormsModule
-  ],
-  templateUrl: './add-bansaosach.component.html',
-  styleUrl: './add-bansaosach.component.css'
+    selector: 'app-add-bansaosach',
+    standalone: true,
+    imports: [
+        RouterLink,
+        CommonModule,
+        FormsModule
+    ],
+    templateUrl: './add-bansaosach.component.html',
+    styleUrl: './add-bansaosach.component.css'
 })
 export class AddBansaosachComponent implements OnInit{
   SachList: any[] = [];
   khoList: any[] = [];
-  constructor(public bansaosachService: BansaosachService,public sachService: SachService,public khoService: KhoService,private router: Router,@Inject(PLATFORM_ID) private platformId: Object){} 
+  constructor(public bansaosachService: BansaosachService,public sachService: SachService,public khoService: KhoService,private router: Router,@Inject(PLATFORM_ID) private platformId: Object,private sweetAlertService: SweetAlertServiceService){} 
   public bansaosach ={
     sach: {
       maSach: "" 
@@ -69,19 +68,21 @@ public soLuong = 1;
   )
  }
  addBanSaoSach(): void {
+  this.sweetAlertService.loading('Đang thêm bản cứng sách...');
     this.bansaosachService.addBanSaoSach(this.bansaosach,this.soLuong).subscribe(
       response => {
-        console.log('bản sao sách đã được thêm thành công:', response);
-        alert(" Bản sao sách đã được thêm thành công");
+        this.sweetAlertService.closeLoading();
+        this.sweetAlertService.success("Thêm Thành Công")
         this.router.navigateByUrl("/BanSaoSachList"); 
       },
       error => {
-        console.error('Có lỗi xảy ra khi thêm tác giả:', error);
-        alert("Có lỗi xảy ra khi thêm bản sao sách");
+        console.error('Có lỗi xảy ra khi thêm bản cứng:', error);
+        this.sweetAlertService.error("Lỗi");
       }
     );
 }
 goBack(): void {
   this.router.navigate(['/BanSaoSachList']); // Điều hướng về AuthorsAdmin
 }
+
 }

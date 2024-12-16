@@ -1,0 +1,83 @@
+
+<div id="content-page" class="content-page mt-4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="iq-card">
+            <!-- content muon  -->
+            <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                <h4 class="card-title">Phiếu Mượn </h4>
+              </div>
+            </div>
+            <div class="iq-card-body">
+              <form>
+                <div class="form-group">
+                  <label>Mã Thẻ:</label>
+                  <input type="text" class="form-control"  name="maThẻ"
+                    placeholder="Nhập mã thẻ" [(ngModel)]="maHV" required>
+                </div>
+                <div class="form-group">
+                  <label>Họ Tên:</label>
+                  <input type="text" class="form-control" name="searchName"
+                  [(ngModel)]="searchTerm"  placeholder="Nhập tên">
+                </div>
+                <div class="form-group">
+                  <label>Ngày tạo:</label>
+                  <input type="date" class="form-control" name="namXB"  [value]="currentDate" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="hanTra">Ngày Hạn Trả:</label>
+                  <input type="date" class="form-control" [(ngModel)]="hanTra" name="hanTra" required>
+                </div>
+              </form>
+            </div>
+            <!-- ending           -->
+  
+            <div class="iq-card">
+              <!-- content sach muon   -->
+              <!-- Button trigger modal -->
+              <!-- title  -->
+              <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                  <h4 class="card-title">Thông tin sách mượn của khách </h4>
+                </div>
+              </div>
+              <!-- title end -->
+              <div class="iq-card-body">
+                <!-- Borrowed Books Table -->
+                <table class="table mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">STT</th>
+                      <th scope="col">Tên Sách</th>
+                      <th scope="col">Tác Giả</th>
+                      <th scope="col">NXB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let borrowedBook of phieuDangMuonList.details; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ borrowedBook.banSaoSach.sach.tenSach }}</td>
+                        <td>{{ borrowedBook.banSaoSach.sach.tacGia.tenTacGia  }}</td>
+                        <td>{{ borrowedBook.banSaoSach.sach.nxb }}</td>
+                      </tr>
+                  </tbody>
+                </table>
+  
+  
+                <!-- Button Container -->
+                <div class="button-container" style="text-align: right; margin-top: 10px;">
+                  <button class="btn btn-success" (click)="finalizeBorrowing()" >Hoàn tất</button>
+                  <button class="btn btn-secondary">Huỷ</button>
+                </div>
+  
+              </div>
+              <!-- ending           -->
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+ 

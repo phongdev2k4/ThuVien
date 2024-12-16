@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BanSaoSach } from '../models/bansaosach.model';
@@ -54,6 +55,19 @@ export class BansaosachService {
   }
   findByMaVach(maVach: string): Observable<BanSaoSach> {
       return this.http.get<BanSaoSach>(`${this.apiUrl+'/mavach'}/${maVach}`);
+    }
+    fetchHomeItems(): Observable<any> {
+      return this.http.get<BanSaoSach>(`${this.apiUrl+'/with-cover-images'}`);
+    }
+
+   
+    findBySachIds(sachIds: string[]): Observable<any> {
+      let params = new HttpParams();
+      sachIds.forEach((id) => {
+        params = params.append('sachIds', id);
+      });
+    
+      return this.http.get<any>(`${this.apiUrl}/findBySachIds`, { params });
     }
 
 }

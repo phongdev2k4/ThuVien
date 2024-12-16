@@ -2,6 +2,7 @@ package com.bookland.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -41,9 +42,18 @@ public class BanSaoSach {
 	private List<ChiTietPhieuMuon> chiTietPhieuMuonList;
 	
 	@JsonIgnore 
+	@OneToMany(mappedBy = "banSaoSach")
+	private List<ChiTietPhieuPhat> chiTietPhieuPhatList;
+	
+	@JsonIgnore 
     @OneToMany(mappedBy = "banSaoSach")
     private List<ChiTietPhieuTra> chiTietPhieuTraList;
 	
+	@JsonIgnore 
+	@OneToMany(mappedBy = "banSaoSach")
+	private List<BorrowOnlineDetail> chiTietMuonOnlineList;
+	
 	@Transient // This makes JPA ignore the field
 	private long soLuong123;
+	
 }

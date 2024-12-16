@@ -1,20 +1,18 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { Router,RouterLink } from '@angular/router';
 import { SachService } from '../../../../services/sach.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AddBookRes } from '../../../../models/add-book-res';
 
 @Component({
-  selector: 'app-books',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+    selector: 'app-books',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterLink
+    ],
+    templateUrl: './books.component.html',
+    styleUrl: './books.component.css'
 })
 export class BooksComponent {
   sachList: AddBookRes[] = [];

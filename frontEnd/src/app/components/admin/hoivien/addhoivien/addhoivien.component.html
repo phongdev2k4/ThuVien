@@ -1,0 +1,71 @@
+
+<div id="content-page" class="content-page">
+   <div class="container">
+       <div class="container-form">
+           <h3>Thông Tin Hội Viên</h3>
+           <form  class="form-group" (ngSubmit)="onSubmit()">
+               <div class="form-row">
+                   <!-- Mã Nhân Viên -->
+                   <div class="form-group col-6">
+                       <label for="maNV">Tên đăng nhập</label>
+                       <input class="form-control" id="maNV" name="userName" [(ngModel)]="hoiVien.taiKhoanHV.userName"  placeholder="userName" required />
+                   </div>
+                   <!-- Email -->
+                   <div class="form-group col-6">
+                       <label for="email">Email</label>
+                       <input type="email" class="form-control" id="email" name="email"  [(ngModel)]="hoiVien.email" placeholder="Nhập email" required />
+                   </div>
+               </div>
+   
+               <div class="form-row">
+                   <!-- Mật Khẩu -->
+                   <div class="form-group col-6">
+                       <label for="matKhau">Mật Khẩu</label>
+                       <input type="password" class="form-control" id="matKhau" name="password" [(ngModel)]="hoiVien.taiKhoanHV.password" placeholder="Nhập mật khẩu" required />
+                   </div>
+                   <!-- Số Điện Thoại -->
+                   <div class="form-group col-6">
+                       <label for="soDienThoai">Số Điện Thoại</label>
+                       <input class="form-control" id="soDienThoai" name="soDienThoai" [(ngModel)]="hoiVien.soDienThoai" placeholder="Nhập số điện thoại" />
+                   </div>
+               </div>
+   
+               <div class="form-row">
+                   <!-- Họ Tên -->
+                   <div class="form-group col-6">
+                       <label for="hoTen">Họ Tên</label>
+                       <input class="form-control" id="hoTen" name="hoTen" [(ngModel)]="hoiVien.hoTen" placeholder="Nhập họ tên" required />
+                   </div>
+                                      <!-- Tình Trạng -->
+                                      <div class="form-group col-6">
+                                        <label for="tinhTrang">Tình Trạng</label>
+                                        <select class="form-control" id="tinhTrang" name="tinhTrang" [(ngModel)]="hoiVien.tinhTrang">
+                                            <option value="true">Hoạt động</option>
+                                            <option value="false">không hoạt động</option>
+                                        </select>
+                                    </div>
+               </div>
+   
+               <div class="form-row">
+                   <!-- Địa Chỉ -->
+                   <div class="form-group col-12">
+                       <label for="diaChi">Địa Chỉ</label>
+                       <input class="form-control" id="diaChi" name="diaChi" [(ngModel)]="hoiVien.diaChi" placeholder="Nhập địa chỉ" />
+                   </div>
+                                      <!-- Hình Ảnh Nhân Viên -->
+                                      <div class="form-group col-6">
+                                        <label for="hinhAnhNV">Hình Ảnh Hội Viên</label>
+                                        <input type="file"   (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/gif, image/bmp, image/webp" />
+                                    </div>
+               </div>
+   
+               <div class="form-group d-flex justify-content-between">
+                   <button type="button" class="btn btn-warning" (click)="goBack()">Quay lại</button>
+                   <button type="submit" class="btn btn-primary">Lưu Thông Tin</button>
+               </div>
+           </form>
+       </div>
+   </div>
+</div>
+
+

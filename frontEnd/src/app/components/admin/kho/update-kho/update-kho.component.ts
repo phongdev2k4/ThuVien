@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
 import { KhoService } from '../../../../services/kho.service';
 import { CommonModule } from '@angular/common';
-import { AsideComponent } from '../../aside/aside.component';
 import { FormsModule } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-update-kho',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    FormsModule,
-    RouterLink
-  ],
-  templateUrl: './update-kho.component.html',
-  styleUrl: './update-kho.component.css'
+    selector: 'app-update-kho',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterLink
+    ],
+    templateUrl: './update-kho.component.html',
+    styleUrl: './update-kho.component.css'
 })
 export class UpdateKhoComponent {
   constructor(public khoService: KhoService, private router: Router) {}

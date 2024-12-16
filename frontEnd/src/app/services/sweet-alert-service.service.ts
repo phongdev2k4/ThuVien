@@ -42,4 +42,25 @@ export class SweetAlertServiceService {
       cancelButtonText: 'No'
     }).then((result) => result.isConfirmed);
   }
+
+  loading(message: string): any {
+    return Swal.fire({
+      title: message,
+      html: 'Vui lòng đợi...',
+      allowOutsideClick: false, // Không cho phép đóng modal bằng cách click ngoài
+      didOpen: () => {
+        Swal.showLoading(); // Hiển thị loading spinner
+      }
+    });
+  }
+    // Đóng màn hình chờ
+    closeLoading(): void {
+      Swal.close(); // Đóng modal
+    }
+
+      // Hiển thị màn hình chờ khi đang cập nhật
+    
+    
+     
+
 }

@@ -10,4 +10,5 @@ public class phieuPhatDTO { // Unique identifier for the penalty slip
 	private int soNgayQuaHan; // Number of overdue days
 	private double tienPhat; // Fine amount
 	private String maNV;
+	private String moTa;
 }

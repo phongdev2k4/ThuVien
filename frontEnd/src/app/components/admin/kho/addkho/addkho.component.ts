@@ -4,21 +4,19 @@ import { Component } from '@angular/core';
 import { Router,RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { KhoService } from '../../../../services/kho.service';
-import { AsideComponent } from '../../aside/aside.component';
 
 
 
 @Component({
-  selector: 'app-addkho',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    FormsModule,
-    RouterLink
-  ],
-  templateUrl: './addkho.component.html',
-  styleUrl: './addkho.component.css'
+    selector: 'app-addkho',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterLink
+    ],
+    templateUrl: './addkho.component.html',
+    styleUrl: './addkho.component.css'
 })
 export class AddkhoComponent {
   constructor(public khoService: KhoService, private router: Router) {}

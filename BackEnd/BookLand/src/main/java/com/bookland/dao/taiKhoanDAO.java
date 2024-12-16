@@ -12,5 +12,6 @@ import com.bookland.entity.TaiKhoan;
 public interface taiKhoanDAO extends JpaRepository<TaiKhoan,String> {
 
 	Optional<TaiKhoan> findByUserName(String username);
-
+	
+	boolean existsByUserName(String userName);
 }

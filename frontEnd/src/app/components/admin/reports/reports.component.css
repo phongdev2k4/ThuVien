@@ -1,0 +1,71 @@
+.chart-container {
+    width: 100%;       /* Full width of the parent */
+    height: 400px;     /* Set a fixed height */
+  }
+  .stats-header {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #dee2e6; /* Subtle border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    text-align: center; /* Center-align the text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+  }
+  
+  .stats-header h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Set a readable font size */
+    font-weight: 600; /* Bold font */
+    color: #343a40; /* Dark gray text color */
+  }
+  .iphone-brand-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* A clean, modern font similar to Apple's branding */
+    font-size: 26px; /* Slightly larger font size for emphasis */
+    font-weight: 600; /* Semi-bold for a modern look */
+    color: #333; /* Dark gray color for a sophisticated feel */
+    text-align: center; /* Center the text */
+    padding: 15px 20px; /* Adequate padding for a clean look */
+    margin: 0; /* Remove default margin */
+    background-color: #f5f5f5; /* Light gray background for a soft contrast */
+    border-radius: 10px; /* Rounded corners for a modern touch */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+.iphone-brand-title:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover for interactivity */
+}
+ .tag {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fdd;
+  border-radius: 10px;
+  border: 2px solid #808080;
+  font-size: 20px;
+  font-weight: bold;
+  color: black ;
+}
+
+.tag::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #808080;
+}
+
+.tag::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+}
+

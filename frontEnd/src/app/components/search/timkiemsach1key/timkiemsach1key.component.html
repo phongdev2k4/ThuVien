@@ -1,0 +1,79 @@
+         <!-- Page Content  -->
+         <div id="content-page" class="content-page mt-5">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="iq-card-transparent mb-0">
+                        <div class="d-block text-center">
+                           <h2 class="mb-3">Search by Book Name</h2>     
+                        </div>
+                     </div>
+                     <div class="iq-card">
+                        <div class="iq-card-body">
+                           <div class="row" >
+                              <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let sach of SachList;let i = index">
+                                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height search-bookcontent m-0 mb-sm-0 mb-md-0 mb-lg-0">
+                                    <div class="iq-card-body p-0">
+                                       <div class="d-flex align-items-center">
+                                          <div class="col-6 p-0 position-relative image-overlap-shadow">
+                                             <a href="javascript:void();"><img class="img-fluid rounded w-100" src="{{sach.hinhAnhSach.frontside.imageUrl}}" alt=""></a>
+                                             <div class="view-book">
+                                                <a href="book-page.html" class="btn btn-sm btn-white" [routerLink]="['/chitietsach', sach.maSach]">Xem chi tiết</a>
+                                             </div>
+                                          </div>
+                                          <div class="col-6">
+                                             <div class="mb-2">
+                                                <h6 class="mb-1">{{sach.tenSach}}</h6>
+                                                <p class="font-size-13 line-height mb-1">{{sach.tacGia.tenTacGia}}</p>
+                                                <p class="font-size-13 line-height mb-1" *ngFor="let tl of sach.theloai">
+                                                   <span>{{tl.tenTheLoai}}</span>
+                                                </p>
+                                                <div class="d-block">
+                                                   <span class="font-size-13 text-warning">
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                   </span>
+                                                </div>
+                                             </div>
+                                             <div class="price d-flex align-items-center">
+
+                                                <span class="pr-1 old-price"></span>
+                                                <small><b>{{formatTienNap(sach.tienSach)}} vnd</b></small>
+                                             </div>
+                                             <div class="iq-product-action">
+                                                <a href="javascript:void();"><i class="ri-shopping-cart-2-fill text-primary"></i></a>
+                                                <a href="javascript:void();" class="ml-2"><i class="ri-heart-fill text-danger"></i></a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="d-flex justify-content-center mt-4">
+                              <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                       <!-- Nút Previous -->
+                  <li class="page-item" [class.disabled]="currentPage === 0">
+                    <a class="page-link" (click)="changePage(currentPage - 1)">Trước</a>
+                  </li>
+                  <!-- Hiển thị tối đa 3 nút số -->
+                  <li class="page-item" *ngFor="let page of displayedPages" [class.active]="page === currentPage">
+                    <a class="page-link" (click)="changePage(page)">{{ page + 1 }}</a>
+                  </li>
+                                      <!-- Nút Next -->
+                  <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+                    <a class="page-link" (click)="changePage(currentPage + 1)">Sau</a>
+                  </li>
+                                </ul>
+                              </nav>
+                            </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>

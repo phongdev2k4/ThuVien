@@ -1,0 +1,217 @@
+
+            <!-- Page Content  -->
+            <div id="content-page" class="content-page">
+               <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                          <div class="iq-card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-user-line"></i></div>
+                              <div class="text-left ml-3">
+                                <h2 class="mb-0">
+                                  <span class="">{{ reportCounts.HoiVien | number }}</span>
+                                </h2>
+                                <h5 class="">Hội Viên</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+                      <div class="col-md-6 col-lg-3">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                          <div class="iq-card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="rounded-circle iq-card-icon bg-danger"><i class="ri-book-line"></i></div>
+                              <div class="text-left ml-3">
+                                <h2 class="mb-0">
+                                  <span class="">{{ this.reportCounts.Sach | number }}</span>
+                                </h2>
+                                <h5 class="">Sách</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                          <div class="iq-card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="rounded-circle iq-card-icon bg-info"><i class="ri-radar-line"></i></div>
+                              <div class="text-left ml-3">
+                                <h2 class="mb-0">
+                                  <span class="">{{ reportCounts.SachNonNewCondition | number }}</span>
+                                </h2>
+                                <h5 class="">Sách Bị Lỗi</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                     <div class="col-md-6 col-lg-3">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                           <div class="iq-card-body">
+                              <div class="d-flex align-items-center">
+                                 <div class="rounded-circle iq-card-icon bg-warning"><i class="ri-shopping-cart-2-line"></i></div>
+                                 <div class="text-left ml-3">                                 
+                                    <h2 class="mb-0"><span class="">{{ reportCounts.sachWithNewConditionCount | number }}</span></h2>
+                                    <h5 class="">Sách sử dụng tốt</h5>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- <div class="col-md-12 mb-3 stats-header">
+                      <h3>Thống kê theo sách:</h3>
+                    </div> -->
+                    <div class="col-md-12 mb-3">
+                      <h3 class="iphone-brand-title">Thống kê sách:</h3>
+                  </div>
+
+                  <div class="col-md-12 mb-3">
+                    <div class="tag">Thống kê mượn:</div>
+                </div>
+                  
+                     <div class="col-md-4">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                          <div class="iq-card-header d-flex justify-content-between align-items-center">
+                            <div class="iq-header-title">
+                              <h4 class="card-title mb-0">Số Lượng Sách Mượn Theo: </h4>
+                            </div>
+                            <!-- Dropdown for selecting Day, Month, or Year -->
+                            <div>
+                              <select [(ngModel)]="selectedOption" class="form-control" (change)="onOptionChange()">
+                                <option value="week">Week in month ({{this.month}})</option>
+                                <option value="month">Month</option>
+                                <option value="year">Year</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="iq-card-body">
+                            <div>
+                              <canvas
+                                baseChart
+                                [datasets]="barChartData.datasets"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="true"
+                                chartType="bar"
+                              ></canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div>        
+                     <div class="col-md-4">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                              <div class="iq-card-body">
+                                <div class="container">
+                                    <h4>Top 5 sách được mượn nhiều nhất</h4>
+                                    <canvas id="myChart"></canvas>
+                                  </div>
+                                  
+                              </div>
+                           </div>
+                     </div> 
+                     <div class="col-md-4">
+                      <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                            <div class="iq-card-body">
+                              <div class="container">
+                                  <h4>Thống kê thể loại được mượn nhiều </h4>
+                                  <canvas id="myChartGenres"></canvas>
+                                </div>
+                                
+                            </div>
+                         </div>
+                   </div>  
+                   <div class="col-md-12 mb-3">
+                    <div class="tag">Thống kê tình trạng kho của sách:</div>
+                </div>
+                <div class="col-md-3">
+                  <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                     <div class="iq-card-header d-flex justify-content-between align-items-center">
+                        <div class="iq-header-title">
+                           <h4 class="card-title mb-0">Trạng Thái Bảo Quản Sách Có Trong Kho </h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                      <ul class="list-inline p-0 mb-0">
+                          <li>
+                            <div class="iq-details mb-2">
+                              <span class="title">Mới </span>
+                              <div class="percentage float-right text-primary">{{ conditionData.newPercentage | number: '1.0-0' }} <span>%</span></div>
+                              <div class="iq-progress-bar-linear d-inline-block w-100">
+                                <div class="iq-progress-bar iq-bg-primary">
+                                  <span class="bg-primary" [style.width]="conditionData.newPercentage + '%'"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="iq-details mb-2">
+                              <span class="title">Mất </span>
+                              <div class="percentage float-right text-warning">{{ conditionData.lostPercentage | number: '1.0-0' }} <span>%</span></div>
+                              <div class="iq-progress-bar-linear d-inline-block w-100">
+                                <div class="iq-progress-bar iq-bg-warning">
+                                  <span class="bg-warning" [style.width]="conditionData.lostPercentage + '%'"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="iq-details mb-2">
+                              <span class="title">Hỏng </span>
+                              <div class="percentage float-right text-info">{{ conditionData.brokenPercentage | number: '1.0-0' }} <span>%</span></div>
+                              <div class="iq-progress-bar-linear d-inline-block w-100">
+                                <div class="iq-progress-bar iq-bg-info">
+                                  <span class="bg-info" [style.width]="conditionData.brokenPercentage + '%'"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                        
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                      <div class="iq-card-body">
+                        <div class="container">
+                            <h4>Trạng Thái Mượn Của Sách Có Trong Kho </h4>
+                            <canvas id="inventoryChart"></canvas>
+                          </div>
+                          
+                      </div>
+                   </div>
+             </div>
+             <div class="col-md-6">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                <div class="iq-card-body">
+                  <div class="container">
+                    <h4>Sách nhu cầu cao nhưng số lượng kho thấp </h4>
+                    <div id="chart">
+                      <apx-chart 
+                        [series]="chartOptions.series" 
+                        [chart]="chartOptions.chart" 
+                        [xaxis]="chartOptions.xaxis" 
+                        [title]="chartOptions.title" 
+                        [colors]="chartOptions.colors" 
+                        [plotOptions]="chartOptions.plotOptions" 
+                        [dataLabels]="chartOptions.dataLabels" 
+                        [legend]="chartOptions.legend">
+                      </apx-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+            
+            
+            
+                  
+                  </div>
+               </div>
+            </div>

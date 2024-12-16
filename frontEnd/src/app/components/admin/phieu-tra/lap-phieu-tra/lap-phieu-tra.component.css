@@ -148,4 +148,14 @@ h3 {
   .text-red {
     color: red;
   }
+  .text-danger {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .text-success {
+    color: rgb(90, 128, 0);
+    font-weight: bold;
+  }
+  
   

@@ -1,19 +1,17 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { BansaosachService } from '../../../../services/bansaosach.service';
 import { Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-bansaosachlist',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './bansaosachlist.component.html',
-  styleUrl: './bansaosachlist.component.css'
+    selector: 'app-bansaosachlist',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterLink
+    ],
+    templateUrl: './bansaosachlist.component.html',
+    styleUrl: './bansaosachlist.component.css'
 })
 export class BansaosachlistComponent implements OnInit{
   constructor(private bansaosachService:BansaosachService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object ) {}
@@ -55,4 +53,8 @@ export class BansaosachlistComponent implements OnInit{
       );
     }
   }
+        // Hàm để tách chuỗi trước dấu ","
+        getImage(url: string): string {
+          return url.split(',')[0];
+        }
 }

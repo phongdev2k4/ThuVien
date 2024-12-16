@@ -25,5 +25,6 @@ public class sachHinhAnhServiceImpl implements sachHinhAnhService {
 		return dao.findByImageType("COVER");
 	}
 	
+	
 
 }

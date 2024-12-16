@@ -3,13 +3,11 @@ import { IntergrationService } from '../../../services/intergration.service';
 
 
 @Component({
-  selector: 'app-profile-edit',
-  standalone: true,
-  imports: [
-  
-  ],
-  templateUrl: './profile-edit.component.html',
-  styleUrl: './profile-edit.component.css'
+    selector: 'app-profile-edit',
+    standalone: true,
+    imports: [],
+    templateUrl: './profile-edit.component.html',
+    styleUrl: './profile-edit.component.css'
 })
 export class ProfileEditComponent implements OnInit{
   userData: any;

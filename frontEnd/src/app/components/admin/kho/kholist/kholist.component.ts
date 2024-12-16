@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink } from '@angular/router';
 import { KhoService } from '../../../../services/kho.service';
 
 @Component({
-  selector: 'app-kholist',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './kholist.component.html',
-  styleUrl: './kholist.component.css'
+    selector: 'app-kholist',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterLink
+    ],
+    templateUrl: './kholist.component.html',
+    styleUrl: './kholist.component.css'
 })
 export class KholistComponent implements OnInit{
   constructor(private khoService:KhoService, private router: Router) {}

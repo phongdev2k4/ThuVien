@@ -20,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -40,7 +42,7 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 			return http.cors(Customizer.withDefaults()).csrf(c -> c.disable())
-					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai","/hoiVien/*","/rest/sach/*","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuTra/create","/phieuMuon/findPhieuMuon/*","/phieuPhat").permitAll()
+					.authorizeHttpRequests(req -> req.requestMatchers("/api/dangNhap","/api/doRegister","/api/user/*","/rest/sach","/rest/tacgia","/rest/theloai","/rest/sach/*","/rest/sach/**","/rest/kho","/rest/bansaosach","/rest/bansaosach/mavach/*","/phieuMuon/muonOnline/*","/phieuMuon","/phieuMuon/chiTietMuonOnline/*","/rest/bansaosach/update","/rest/bansaosach/*","/phieuMuon/*","/phieuMuon/*/*","/phieuMuon/**","/phieuTra/create","/phieuMuon/findPhieuMuon/*","/phieuPhat","/phieuPhat/**","/phieuTra","/phieuTra/**","/report/**","/rest/nhavien","/rest/nhavien/*","/rest/nhavien/**","/rest/taikhoan/*","/hoiVien","/hoiVien/*","/hoiVien/**","/api/paymen/vnpay/naptien","/api/paymen/callback","/rest/thanhtoan/**","/rest/thanhtoan/*").permitAll()
 					.requestMatchers("/api/trangChu").authenticated())
 					.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 					.authenticationProvider(authenticationProvider())
@@ -64,4 +66,5 @@ public class SecurityConfiguration {
 	AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
+	 
 }

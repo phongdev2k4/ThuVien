@@ -1,4 +1,4 @@
-<app-aside-admin></app-aside-admin>
+
  <!-- Page Content  -->
  <div id="content-page" class="content-page">
     <div class="container-fluid">
@@ -20,6 +20,7 @@
                             <tr>
                                <th style="width: 3%;">STT</th>
                                <th style="width: 5%;">Mã BSS</th>
+                               <th style="width: 15%;">Mã Vạch</th>
                                <th style="width: 7%;">Mã Sách</th> 
                                <th style="width: 10%;">Tên sách</th>
                                <th style="width: 7%;">Trạng Thái bảo quản</th>
@@ -32,6 +33,10 @@
                            <tr *ngFor="let bansaosachf of bansaosachList;let i = index">
                               <td>{{i+1}}</td>
                               <td>{{ bansaosachf.maBanSaoSach}}</td>
+                              <td>
+                                 <img class="img-fluid rounded" 
+                                 [src]="getImage(bansaosachf.hinhAnhMaVach)">
+                                 </td>
                               <td>{{ bansaosachf.sach.maSach}}</td>
                               <td>{{ bansaosachf.sach.tenSach}}</td>
                               <td>{{ bansaosachf.trangThaiBaoQuan}}</td>

@@ -14,6 +14,7 @@ public class addBookRequest {
     private String tenSach;
     private String nxb;
     private int namXB;
+    private double tienSach;
     private String maTacGia; // ID of TacGia
     private String hinhAnhSach;
     private String moTa;

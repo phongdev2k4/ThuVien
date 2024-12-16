@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
 import {Router,RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,18 +9,16 @@ import { SweetAlertServiceService } from '../../../../services/sweet-alert-servi
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-add-book',
-  standalone: true,
-  imports: [
-    RouterLink,
-    CommonModule,
-    FormsModule,
-    AsideComponent,
-    NgxSpinnerModule
-    
-  ],
-  templateUrl: './add-book.component.html',
-  styleUrl: './add-book.component.css'
+    selector: 'app-add-book',
+    standalone: true,
+    imports: [
+        RouterLink,
+        CommonModule,
+        FormsModule,
+        NgxSpinnerModule
+    ],
+    templateUrl: './add-book.component.html',
+    styleUrl: './add-book.component.css'
 })
 export class AddBookComponent implements OnInit {
   // imagesToUpload: File[] = []; // Store multiple selected files

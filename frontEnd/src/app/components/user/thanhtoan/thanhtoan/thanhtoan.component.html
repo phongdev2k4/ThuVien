@@ -1,0 +1,112 @@
+
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="container">
+          <h4>Số dư: <span>{{ TienNap}} VND </span></h4>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+  Nạp tiền
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Nạp tiền</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <label for="amount">Số tiền</label>
+              <input 
+                  id="amount" 
+                  name="amount" 
+                  [(ngModel)]="amount" 
+                  type="number" 
+                  class="form-control" 
+                  required 
+                  min="10000" 
+                  max="10000000"
+                  placeholder="Nhập số tiền" />
+              <!-- Hiển thị lỗi nếu nhập không đúng -->
+              <div *ngIf="form.controls['amount']?.invalid && form.controls['amount']?.touched" class="text-danger">
+                  <small *ngIf="form.controls['amount']?.errors?.['required']">Số tiền là bắt buộc.</small>
+                  <small *ngIf="form.controls['amount']?.errors?.['min']">Số tiền phải lớn hơn 10.000.</small>
+                  <small *ngIf="form.controls['amount']?.errors?.['max']">Số tiền phải nhỏ hơn 10.000.000.</small>
+              </div>
+          </div>
+      
+          <!-- Nút submit -->
+          <button 
+              type="submit" 
+              class="btn btn-primary" 
+              [disabled]="form.invalid">
+              Thanh toán
+          </button>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+            <h4>Lịch sử giao dịch</h4>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã giao dịch</th>
+                    <th scope="col">Số tiền</th>
+                    <th scope="col">Loại thanh toán</th>
+                    <th scope="col">Trạng thái giao dịch</th>
+                    <th scope="col">Thời gian</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let thanhToan of lichSuThanhToan; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{thanhToan.maGiaoDich}}</td>
+                    <td>{{ thanhToan.soTien | number:'1.0-0' }} VNĐ</td>
+                    <td>{{thanhToan.loaiThanhToan}}</td>
+                    <td>{{thanhToan.trangThaiGiaoDich}}</td>
+                    <td>{{ thanhToan.thoiGianThanhToan | date:'HH:mm dd/MM/yyyy' }}</td>
+                    <td><a [href]="thanhToan.urlThanhToan" 
+                      class="btn" 
+                      [ngClass]="{
+                          'btn-primary': thanhToan.trangThaiGiaoDich === 'Đang chờ',
+                          'btn-secondary': thanhToan.trangThaiGiaoDich !== 'Đang chờ'
+                      }" 
+                      target="_blank" 
+                      [attr.disabled]="thanhToan.trangThaiGiaoDich !== 'Đang chờ' ? true : null">
+                       Thanh toán
+                   </a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-center mt-4">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+         <!-- Nút Previous -->
+    <li class="page-item" [class.disabled]="currentPage === 0">
+      <a class="page-link" (click)="changePage(currentPage - 1)">Trước</a>
+    </li>
+    <!-- Hiển thị tối đa 3 nút số -->
+    <li class="page-item" *ngFor="let page of displayedPages" [class.active]="page === currentPage">
+      <a class="page-link" (click)="changePage(page)">{{ page + 1 }}</a>
+    </li>
+                        <!-- Nút Next -->
+    <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+      <a class="page-link" (click)="changePage(currentPage + 1)">Sau</a>
+    </li>
+                  </ul>
+                </nav>
+              </div>
+        </div>
+    </div>
+</div>

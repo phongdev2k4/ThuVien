@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { AsideComponent } from '../../aside/aside.component';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router,RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TacgiaService } from '../../../../services/tacgia.service';
 
 @Component({
-  selector: 'app-authors',
-  standalone: true,
-  imports: [
-    CommonModule,
-    AsideComponent,
-    RouterLink
-  ],
-  templateUrl: './authors.component.html',
-  styleUrl: './authors.component.css'
+    selector: 'app-authors',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterLink
+    ],
+    templateUrl: './authors.component.html',
+    styleUrl: './authors.component.css'
 })
 export class AuthorsComponent implements OnInit{
   tacgiaList: any[] = [];
 
-  constructor(private tacgiaService: TacgiaService, private router: Router) {}
+  constructor(private tacgiaService: TacgiaService, private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    this.loadTacGia();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadTacGia();
+
+    } else {
+      console.log('Not running in the browser, skipping API call');
+    }
   }
  
   loadTacGia(): void {

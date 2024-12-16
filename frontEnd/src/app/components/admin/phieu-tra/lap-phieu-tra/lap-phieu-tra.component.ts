@@ -1,9 +1,8 @@
 
-import { AsideComponent } from '../../aside/aside.component';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { NotFoundException } from '@zxing/library';
 import { PhieuMuonService } from '../../../../services/phieu-muon.service';
@@ -15,210 +14,159 @@ import { LocalStorageService } from '../../../../services/local-storage.service'
 import Swal from 'sweetalert2';
 import { SweetAlertServiceService } from '../../../../services/sweet-alert-service.service';
 import { Observable } from 'rxjs';
+import { PhieuTraDTO } from '../../../../models/phieu-tra-dto';
 
 
 @Component({
-  selector: 'app-lap-phieu-tra',
-  standalone: true,
-  imports: [AsideComponent, CommonModule, FormsModule],
-  templateUrl: './lap-phieu-tra.component.html',
-  styleUrl: './lap-phieu-tra.component.css'
+    selector: 'app-lap-phieu-tra',
+    standalone: true,
+    imports: [ CommonModule, FormsModule],
+    templateUrl: './lap-phieu-tra.component.html',
+    styleUrl: './lap-phieu-tra.component.css'
 })
 export class LapPhieuTraComponent {
-  BanSaoList: any[] = [];
-  result: string | null = null;
-  private codeReader = new BrowserMultiFormatReader();
-  @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
-  maHV: string = '';
-  maHV123: string = ''; // The value of the input
-  suggestions: any[] = [];
-  isSuggestionSelected: boolean = false;
-  scannedResults: string[] = [];
-  maNV: string = '';
-  hanTra: Date = new Date();
-
-
-  constructor(private router: Router, private phieuMuonService: PhieuMuonService, public bansaosachService: BansaosachService, private hoiVienService: HoivienService, private phieuTraService: PhieuTraService, private storage: LocalStorageService, private sweetAlertService: SweetAlertServiceService) { }
-
-  goBack() {
-    this.router.navigate(['/tablePhieuTra']);
-  }
-  // startScanning(): void {
-  //   this.codeReader.decodeFromVideoDevice(undefined, this.videoElement.nativeElement, (result, err) => {
-  //     if (result) {
-  //       this.result = result.getText(); // Lấy kết quả từ mã vạch
-  //       this.scannedResults.push(this.result);
-  //       this.maNV = this.storage.getIdUser();
-  //       this.LapPhieuMuon( this.maNV,this.scannedResults);
-  //     } else if (err && !(err instanceof NotFoundException)) {
-  //       console.error(err); // Xử lý lỗi nếu có
-  //     }
-  //   });
-  // }
-  startScanning(): void {
-    this.codeReader.decodeFromVideoDevice(undefined, this.videoElement.nativeElement, (result, err) => {
-      if (result) {
-        this.result = result.getText(); // Get the barcode result
-        this.maNV = this.storage.getIdUser();
-        console.log(this.result)
-        console.log(this.maHV123)
-        if (this.maHV123 && this.result) {
-          this.checkAndProcessPhieuTra(this.maHV123, this.result);
-        } else {
-          console.error('maHV or result is null.');
-          alert('Mã hội viên hoặc mã vạch không hợp lệ.');
-        }
-        const returnDate = new Date();
-
-      } else if (err && !(err instanceof NotFoundException)) {
-        console.error(err); // Handle error if it occurs
-      }
-    });
-  }
-
-
-
-
-  stopScanning(): void {
-    const stream = this.videoElement.nativeElement.srcObject as MediaStream;
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop()); // Dừng tất cả các track video
-      this.videoElement.nativeElement.srcObject = null; // Ngắt kết nối video
-    }
-  }
-  checkAndProcessPhieuTra(maHV: string, maVach: string): void {
-    if (this.scannedResults.includes(maVach)) {
-      console.log(`Mã vạch ${maVach} đã được quét.`);
-      alert(`Mã vạch ${maVach} đã được quét. Vui lòng quét mã khác.`);
-      return;
-    // Exit the method if maVach is already scanned
-    }
-  
-    this.phieuMuonService.getPhieuMuonByHoiVienId(maHV, maVach).subscribe({
-      next: (response) => {
-        // Get the due date (hanTraSach) from the response and convert it to a Date object
-        if (Array.isArray(response) && response.length === 0) {
-          console.error('No data found for the given maNV and maVach.');
-          alert('Không tìm thấy dữ liệu cho mã hoi viên hoặc mã vạch này.');
-          return; // Exit the method if response is empty
-        }
-        this.scannedResults.push(maVach); // Save to scanned results
-          this.sweetAlertService.confirm('Bạn có muốn scan thêm sách không ?')
-            .then((willAddMore) => {
-              if (willAddMore) {
-                this.startScanning();
-              } else {
-                // If user selects "Cancel," process the scanned results
-                this.LapPhieuMuon(this.maNV, this.scannedResults);
-               
-
-              }
-            });
-      },
-      error: (error) => {
-        console.error('Error checking PhieuMuon:', error);
-        alert("Có lỗi xảy ra khi kiểm tra Phiếu Mượn.");
-      }
-    });
-  }
-
-  // Helper function to check if the return date is past the due date
-  checkIfOverdue(returnDate: Date, hanTra: Date): boolean {
-    return returnDate > hanTra;
-  }
-
-
-
-
-
-
-  LapPhieuMuon(maNV: string, maVach: string[]): void {
-    this.phieuTraService.createPhieuTra(maNV, maVach).subscribe({
-      next: (response) => {
-        console.log('PhieuTra created:', response);
-        const hanTra = new Date(response.phieuMuon.hanTraSach);
-        const returnDate = new Date(response.ngayLapPhieuTra);
-        const differenceInMilliseconds = returnDate.getTime() - hanTra.getTime();
-        const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-        console.log(this.maHV123)
-         // Check if the book is overdue by comparing the due date with the current date
-         const isOverdue = this.checkIfOverdue(returnDate, hanTra);
-
-         if (isOverdue) {         
-          this.sweetAlertService.confirm('Phiếu này đã quá hạn mượn.Bạn có muốn lập phiếu phạt không ??')
-          .then((willAddMore) => {
-            if (willAddMore) {
-              this.router.navigate(['/PhieuPhat'], {
-                          queryParams: {  
-                            maHV: this.maHV123,
-                            maNV: this.maNV,
-                            maVach: this.result,
-                            ngayQuaHan: differenceInDays,
-                            maPT:response.maPT
-
-                          }
-                        });
-             
-            } else {
-              this.result = '';
-              this.maHV123 = '';
-              this.maHV = '';
-              this.scannedResults = [];
-              this.sweetAlertService.success("Thêm Thành Công");
-            }
-          });
-              
-                
-          
-         }
-         else{
-          this.result = '';
-              this.maHV123 = '';
-              this.maHV = '';
-              this.scannedResults = [];
-              this.sweetAlertService.success("Thêm Thành Công");
-         }
-
-
-      },
-      error: (error) => {
-        console.error('Error creating PhieuTra:', error);
-        alert("Co loi xay ra khi tim sach")
-        this.scannedResults = [];
-
-      }
-    });
-
-  }
-  onSearch(event: any) {
-    const id = this.maHV.trim();
-    if (id.length > 0) {
-      // Modify this line to reflect that you're receiving a single HoiVien object
-      this.hoiVienService.findById(id).subscribe((data: HoiVien) => {  // Expecting HoiVien object, not an array
-        if (data) {
-          // If data is found, set the suggestions to show `maHV` and `hoTen`
-          this.suggestions = [{
-            maHV: data.maHV,
-            hoTen: data.hoTen
-          }];
-        } else {
-          this.suggestions = []; // Clear suggestions if no data found
-        }
+  constructor(private router: Router, private phieuMuonService: PhieuMuonService, public bansaosachService: BansaosachService, private hoiVienService: HoivienService, private phieuTraService: PhieuTraService, private storage: LocalStorageService, private sweetAlertService: SweetAlertServiceService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute) { }
+  phieuTra: any = {
+    maPM: '',
+    hoiVien: { maHV: '' },
+    nhanVien: { maNV: '' },
+    ngayLapPhieuTra: '',
+    chiTietPhieuTraList: [
+      // Khởi tạo một chi tiết sách trả mẫu
+      { maSach: '', tenSach: '', ngayTra: '' }
+    ]
+  };
+  phieuTraList: any[] = [];
+  maHV!: string;
+  id!:number;
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Only fetch cover images if we are in the browser (not server-side)
+      this.route.queryParams.subscribe(params => {
+        this.maHV = params['maHV'];
+        this.id = params['id'];
+        console.log('Received maHV:', this.maHV);
+        console.log('Received maHV:', this.id);
       });
+      this.loadChiTiet();
+
     } else {
-      this.suggestions = []; // Clear suggestions if input is empty
+      console.log('Not running in the browser, skipping API call');
+    }
+  }
+  loadChiTiet():void {
+    if (this.maHV.trim()) { // Ensure the input is not empty
+      this. phieuMuonService.getChiTietPhieuMuonByHoiVienId(this.maHV,this.id).subscribe(
+        data => {
+          this.phieuTraList = data; // Load the result into the table
+          console.log(this.phieuTraList[0].phieuMuon.maPM
+          )
+          console.log(data)
+          this.phieuTra.hoiVien.maHV = this.phieuTraList[0].phieuMuon.hoiVien.maHV;
+          this.phieuTra.nhanVien.maNV = this.phieuTraList[0].phieuMuon.nhanVien.maNV;
+          this.phieuTra.maPM = this.phieuTraList[0].phieuMuon.maPM;
+          this.phieuTra.ngayLapPhieuTra = this.formatDate(new Date());
+        },
+        error => console.error('Error fetching data:', error)
+      );
+    } else {
+      alert('Vui lòng nhập mã hội viên');
+    }
+  }
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+ 
+
+
+isOverdue(hanTraSach: string): boolean {
+  const dueDate = new Date(hanTraSach); // Convert hanTraSach to a Date object
+  const today = new Date(); // Get today's date
+  // Ensure the comparison disregards time
+  return dueDate.getTime() < today.setHours(0, 0, 0, 0);
+}
+
+  onSubmit(){
+    
+  }
+
+  deleteChiTiet(index: number){
+    if (index > -1) {
+      this.phieuTra.chiTietPhieuTraList.splice(index, 1);
     }
   }
 
+ 
+  selectedPhieuTra: any;
 
-  // Method to handle the selection of a suggestion
-  onSelect(suggestion: any) {
-    this.maHV = suggestion.maHV + "-" + suggestion.hoTen;
-    this.maHV123 = suggestion.maHV; // Set the selected maHV to the input field
-    this.suggestions = []; // Clear suggestions after selection
-    this.isSuggestionSelected = true;
+openModal(phieuTra: any): void {
+  this.selectedPhieuTra = phieuTra;
+}
+maVachArray: string[] = []; // Array to store Mã Vạch
+statusArray: string[] = []; 
+handledBooks1: Set<number> = new Set(); 
+selectedStatus: string = ''; // To store the selected status from the dropdown
+
+handledBooks: PhieuTraDTO[] = []; // Array to hold objects with maVach and status
+
+
+saveStatuses(): void {
+  if (this.selectedPhieuTra) {
+    const maVach = this.selectedPhieuTra?.banSaoSach?.maVach;
+
+    if (maVach && this.selectedStatus) {
+      // Find if the maVach already exists in handledBooks
+      const existingIndex = this.handledBooks.findIndex((book) => book.maVach === maVach);
+
+      if (existingIndex !== -1) {
+        // Update the existing entry
+        this.handledBooks[existingIndex].status = this.selectedStatus;
+      } else {
+        // Add a new entry using the PhieuTraDTO class
+        const newBook = new PhieuTraDTO(maVach, this.selectedStatus,  this.phieuTra.nhanVien.maNV);
+        this.handledBooks.push(newBook);
+      }
+
+      console.log('Handled Books:', this.handledBooks);
+
+      // Reset modal and dropdown
+      this.selectedPhieuTra = null;
+      this.selectedStatus = '';
+    } else {
+      alert('Vui lòng chọn trạng thái trước khi lưu.');
+    }
   }
+}
 
-
+// Check if a book has already been handled
+isBookHandled(maVach: string): boolean {
+  return this.handledBooks.some((book) => book.maVach === maVach);
+}
+submitPhieuTra(): void {
+  if (this.handledBooks.length === 0) {
+    alert('Danh sách sách cần xử lý đang trống!');
+    return;
+  }
+  this.phieuTraService.createPhieuTra(this.handledBooks).subscribe({
+    next: (response) => {
+      console.log('Response from backend:', response);
+      alert('Phiếu trả đã được tạo thành công!');
+      this.handledBooks = [];
+      this.goBack(); // Reset the array after successful submission
+    },
+    error: (error) => {
+      console.error('Error occurred:', error);
+      alert('Có lỗi xảy ra khi tạo phiếu trả. Vui lòng thử lại.');
+    },
+  });
 
 }
+goBack() {
+  this.router.navigate(['/TablePhieuTra']); 
+}
+
+}
+

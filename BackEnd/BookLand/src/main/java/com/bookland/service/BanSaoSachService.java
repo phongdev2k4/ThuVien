@@ -1,7 +1,11 @@
 package com.bookland.service;
 
 import java.util.List;
+import java.util.Map;
+
+import com.bookland.dto.BanSaoSachWithCoverImageDTO;
 import com.bookland.entity.BanSaoSach;
+import com.bookland.entity.BorrowOnlineDetail;
 
 public interface BanSaoSachService {
   
@@ -11,4 +15,12 @@ public interface BanSaoSachService {
     public BanSaoSach update(BanSaoSach banSaoSach);
 	public void delete(int mabansaosach);
 	public BanSaoSach findByMaVach(String maVach);
+
+
+	public List<BanSaoSachWithCoverImageDTO> getBanSaoSachWithCoverImages();
+
+	public Map<String, BanSaoSach> findBanSaoSachBySachIds(List<String> sachIds);
+
+	
+
 }

@@ -9,10 +9,10 @@ import org.springframework.data.repository.query.Param;
 import com.bookland.entity.ChiTietPhieuMuon;
 
 public interface chiTietPhieuMuonDao extends JpaRepository<ChiTietPhieuMuon,Integer>{
-//	 @Query("SELECT ct FROM ChiTietPhieuMuon ct WHERE ct.phieuMuon.maPM = :maPM")
-//	    List<ChiTietPhieuMuon> findAllByPhieuMuonId(@Param("maPM") int maPM);
+	 @Query("SELECT ct FROM ChiTietPhieuMuon ct WHERE ct.phieuMuon.maPM = :maPM")
+	    List<ChiTietPhieuMuon> findAllByPhieuMuonId(@Param("maPM") int maPM);
 		
-		  @Query("SELECT ct FROM ChiTietPhieuMuon ct WHERE ct.phieuMuon.maPM IN :maPMList")
+		  @Query("SELECT ct FROM ChiTietPhieuMuon ct WHERE ct.phieuMuon.maPM IN :maPMList and ct.isReturned = false")
 		    List<ChiTietPhieuMuon> findAllByPhieuMuonIds(@Param("maPMList") List<Integer> maPMList);
 		  
 		  @Query("SELECT c FROM ChiTietPhieuMuon c WHERE c.banSaoSach.maBanSaoSach = :banSaoSachId AND c.isReturned = false")

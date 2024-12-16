@@ -23,7 +23,7 @@ public class HoiVien {
 	@Id
     @Column(name = "MaHV", length = 30)
     private String maHV;	 
-    @Column(name = "Email", length = 255, unique = true)
+    @Column(name = "Email", length = 255)
     private String email;
 
     @Column(name = "SoDienThoai", length = 20)
@@ -44,7 +44,10 @@ public class HoiVien {
     @Column(name = "TienNap")
     private double tienNap;
     
-    @JsonIgnore
+	@Column(name = "HinhAnhHV", columnDefinition = "nvarchar(255)")
+	private String hinhAnhHV;
+    
+    
     @OneToOne
     @JoinColumn(name = "account_id",nullable =false, unique = true)
     private TaiKhoan taiKhoanHV;
@@ -61,7 +64,11 @@ public class HoiVien {
     private List<PhieuTra> phieuTraList;
     
     
-   
+	@JsonIgnore
+    @OneToMany(mappedBy = "hoiVien") // Liên kết với bảng ThanhToan
+    private List<ThanhToan> thanhToans; // Danh sách thanh toán của hội viên
     
-  
+    @JsonIgnore 
+    @OneToMany(mappedBy = "hoiVien",cascade = CascadeType.ALL)
+    private List<MuonOnline> MuonOnlineList;
 }

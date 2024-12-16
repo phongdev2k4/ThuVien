@@ -24,11 +24,9 @@ public class NhanVien {
     @Column(name = "MaNV", length = 30)
     private String maNV;
 
-    @Column(name = "Email", length = 255, unique = true)
+    @Column(name = "Email", length = 255)
     private String email;
 
-    @Column(name = "MatKhau", length = 100, nullable = false)
-    private String matKhau;
 
     @Column(name = "HoTen", columnDefinition = "nvarchar(150)")
     private String hoTen;
@@ -69,7 +67,9 @@ public class NhanVien {
     @OneToMany(mappedBy = "nhanVien")
     private List<PhieuTra> phieuTraList;
 
-    
+    @JsonIgnore
+    @OneToMany(mappedBy = "nhanVien") // Liên kết với bảng ThanhToan
+    private List<ThanhToan> thanhToans; // Danh sách thanh toán của nhân viên
    
     
  
